@@ -601,6 +601,56 @@ check_true("V43 E8 cite: 4 dominant weights",
 check_true("V43 E8 cite: multiplicity sum 30380",
            e8["sum_multiplicities"] == 30380, "SC")
 
+# V43b: E8 adjoint explicit generators (2026-09-19 update) — the page's NC
+# claims cite the completed build; the validator checks the artifacts exist
+# with the claimed dimensions and the build log records exit 0, no timeouts.
+import os, csv
+adj_csv = '/home/hatch/workspace/tables/E8_adjoint_critical.csv'
+with open(adj_csv) as fh:
+    rdr = csv.reader(fh)
+    adj_header = next(rdr)
+    adj_rows = sum(1 for _ in rdr)
+check_true("V43b E8 adjoint: critical CSV columns (gen,row,col,re,im)",
+           adj_header == ["gen", "row", "col", "re", "im"], "NC")
+check_true("V43b E8 adjoint: 49,440 nonzero entries",
+           adj_rows == 49440, "NC")
+with open('/home/hatch/workspace/icloud_pyto/rebuilt/E8_ADJOINT_BUILD_LOG.txt') as fh:
+    adj_log = fh.read()
+check_true("V43b E8 adjoint: build log exit 0, no timeouts",
+           "exit code 0" in adj_log and "timeout" not in adj_log.lower(), "NC")
+check_true("V43b E8 adjoint: Fierz tripwire exactly 0.0 in log",
+           "max residual = 0.000e+00" in adj_log, "NC")
+
+# V43c: E8 30380 explicit sparse generators (2026-09-19 update).
+crit_dir = '/home/hatch/workspace/tables'
+e8_csvs = sorted(f for f in os.listdir(crit_dir)
+                 if f.startswith('E8_') and f.endswith('_critical.csv')
+                 and not f.startswith('E8_adjoint'))
+check_true("V43c E8 30380: 24 critical CSVs (8 Cartan + 16 simple roots)",
+           len(e8_csvs) == 24, "NC")
+tot_rows = 0
+bad_hdr = [f for f in e8_csvs
+           if open(os.path.join(crit_dir, f)).readline().strip() != "row,col,re,im"]
+check_true("V43c E8 30380: all critical CSVs have (row,col,re,im) columns",
+           not bad_hdr, "NC")
+for f in e8_csvs:
+    with open(os.path.join(crit_dir, f)) as fh:
+        next(fh)
+        tot_rows += sum(1 for _ in fh)
+check_true("V43c E8 30380: 3,097,576 critical rows total",
+           tot_rows == 3097576, "NC")
+gen_dir = '/home/hatch/workspace/tables/E8_30380_generators'
+check_true("V43c E8 30380: 248 sparse .npz generator matrices",
+           os.path.isdir(gen_dir) and
+           len([f for f in os.listdir(gen_dir) if f.endswith('.npz')]) == 248, "NC")
+with open('/home/hatch/workspace/e8_30380/E8_30380_BUILD_LOG.txt') as fh:
+    log30380 = fh.read()
+check_true("V43c E8 30380: all phases exit 0, no timeouts",
+           "all phases 0" in log30380 and "No timeouts" in log30380, "NC")
+check_true("V43c E8 30380: Casimir 120 and Serre 1.688e-14 in log",
+           "exact Casimir eigenvalue (lambda,lambda+2rho) = 120" in log30380
+           and "max Serre residual = 1.688e-14" in log30380, "NC")
+
 n_num = sum(1 for r in results if r[3] in ("CP", "SC"))
 print(f"\nAll {len(results)} checks passed ({n_num} CP/SC, "
       f"{len(results)-n_num} other). Worst measured numeric error: {worst:.3e}. "
