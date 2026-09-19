@@ -7,7 +7,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import os
 
-OUT = os.path.expanduser("~/workspace/book0/graphs")
+OUT = os.path.expanduser("~/workspace/r-theory-rewrite/book0/graphs")
 os.makedirs(OUT, exist_ok=True)
 
 # ---------- primitives ----------
@@ -115,5 +115,5 @@ print("wrote 7 PNGs to", OUT)
 xx = np.linspace(0.1, 1.4, 1000)
 assert np.allclose(srx(xx)*sxp(xx), 1, atol=1e-12)
 assert np.allclose(urx(xx)+uxp(xx), 4/np.sin(2*xx), atol=1e-12)
-assert np.allclose(H**2*4 + V**2, 0.25, atol=1e-12) or True
+assert np.allclose(4*H**2 + V**2, 0.25, atol=1e-12)
 print("identity spot-checks passed")
