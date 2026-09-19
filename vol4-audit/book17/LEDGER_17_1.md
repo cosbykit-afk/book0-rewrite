@@ -89,3 +89,17 @@ No ST / MA / AX / IN in this chunk beyond terminology notes.
 §§17.6–17.9 (continued calc), §17.18 (C8 contraction module), Book 18,
 Book 19. The wrong-radical IC-2 sits in §17.3.5, which belongs to the
 continued-calc block — flagged here since it concerns §17.3 content.
+
+## Addendum (2026-09-18): Flatwave on Q1/Q3
+
+Verified structural observation, not claimed by the manuscript: with
+`Flatwave = 1/urx + 1/uxp`, we have **Flatwave ≡ 1 exactly on quadrants 1
+and 3** (where sin x and cos x share sign) — proved symbolically from the
+quadrant forms. On quadrants 2 and 4 it is not identically 1 (numeric
+deviation up to 2.0 near the poles). CP on Q1/Q3; NC (counterexample
+points) on Q2/Q4.
+
+Terminology collision flagged for the Master Ledger: CL-002 defines
+"FlatWave = sgn(sin 2x) on raw domain" (Books 2–3), while Volume IV §17.1.4
+defines "Flatwave(x) = 1/urx(x) + 1/uxp(x)". Same name, different
+definitions in different books — needs disambiguation, not a correction.
