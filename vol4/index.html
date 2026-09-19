@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Volume IV — Audit Overview</title>
+<style>
+body{font-family:Georgia,serif;max-width:900px;margin:0 auto;padding:24px;line-height:1.65;color:#1a1a1a;background:#fdfdfb}
+h1{font-size:1.9em;border-bottom:2px solid #333;padding-bottom:8px}
+h2{font-size:1.45em;margin-top:2.2em;border-bottom:1px solid #aaa;padding-bottom:4px}
+h3{font-size:1.15em;margin-top:1.6em}
+table{border-collapse:collapse;width:100%;margin:1em 0;font-size:.92em}
+th,td{border:1px solid #bbb;padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#f0f0ec}
+.formula{text-align:center;font-size:1.12em;margin:.9em 0}
+.tag{display:inline-block;font-size:.78em;font-weight:bold;border:1px solid #666;border-radius:3px;padding:0 6px;margin-right:4px;background:#eee}
+.tag.CP{background:#dff0d8}.tag.SC{background:#e3f2fd}.tag.NC{background:#d7f0e8}.tag.ST{background:#e8e4f5}
+.tag.MA{background:#fcf8e3}.tag.AX{background:#fde8d8}.tag.IN{background:#e8e8e8}.tag.IC{background:#fbdcdc}
+.small{font-size:.9em;color:#444}
+ul.tight li{margin-bottom:.35em}
+.books{display:grid;grid-template-columns:1fr;gap:12px;margin:1.2em 0}
+.book{border:1px solid #bbb;border-left:4px solid #1b5faa;border-radius:6px;padding:14px 16px;background:#fff}
+.book h3{margin:.1em 0 .3em}
+.book p{margin:.35em 0;font-size:.93em}
+.book a{color:#0645ad;text-decoration:none;font-weight:600}
+footer{margin-top:3em;color:#555;font-size:.9em;border-top:1px solid #bbb;padding-top:1em}
+code{font-size:.88em}
+</style>
+</head>
+<body>
+<h1>Volume IV — Audit Overview</h1>
+<p><i>R Theory — Volume IV, "The Discrete Octant and the Computational Frontier", Books 17–19.
+This page is the volume-level record of the audit: progress, findings, versions, and open items.
+<b>v1 is the sole audit authority.</b> v2, the v3 draft, and the unsigned certification report are
+context only; nothing in them is promoted beyond what v1 establishes. The manuscript's own words
+EXACT / CONDITIONAL / OPEN are self-labels, never the audit's verdicts.</i></p>
+
+<p class="small"><b>Scope discipline</b> (applies to the whole volume): every claim carries exactly one
+status — <span class="tag CP">CP</span> checked proof · <span class="tag SC">SC</span> completed symbolic
+check · <span class="tag NC">NC</span> completed numerical check · <span class="tag ST">ST</span> standard
+imported theorem · <span class="tag MA">MA</span> manuscript assertion · <span class="tag AX">AX</span>
+assumption or axiom · <span class="tag IN">IN</span> incomplete or failed computation ·
+<span class="tag IC">IC</span> incorrect result. Sampled numerical agreement (~1e-10) is a completed
+numerical check, never a proof.</p>
+
+<h2>Audit progress: CP-10 … CP-13</h2>
+<p>The Volume IV audit ran as four ledger-managed chunks (control-framework rows CP-10…CP-13).
+Totals: <b>407 assertions passed, 0 failed, no timeouts; 18 distinct IC findings;
+<span class="formula">Δ<sub>op</sub>(Volume IV) = ∅</span></b>.</p>
+<table>
+<tr><th>Chunk</th><th>Coverage</th><th>Assertions</th><th>Breakdown</th></tr>
+<tr><td>CP-10 (chunk 1)</td><td>Book 17, §§17.1–17.5</td><td>116</td><td>CP 107 · NC 9 · IC 3</td></tr>
+<tr><td>CP-11a (chunk 2)</td><td>Book 17, §§17.6–17.9</td><td>58</td><td>CP 54 · SC 1 · NC 2 · MA 1</td></tr>
+<tr><td>CP-11b (chunk 3)</td><td>Book 17, §17.18</td><td>85</td><td>CP 83 · NC 2 · IN 3 (blocked)</td></tr>
+<tr><td>CP-12 (chunk 4)</td><td>Book 18</td><td>40</td><td>CP 31 · NC 1 · IC 8 assertions</td></tr>
+<tr><td>CP-13 (chunk 5)</td><td>Book 19 + Appendices A–C</td><td>108</td><td>CP 73 · NC 1 · ST 2 · MA 31 · AX 1</td></tr>
+</table>
+<p class="small">Published ledgers live outside this repo (see control framework); the per-book rewrite
+pages link the checks re-run for every figure on this site.</p>
+
+<div class="books">
+<div class="book">
+<h3>Book 17 — The Octant Decomposition</h3>
+<p>Primitive octant structure, the 2:1 elliptic map, rapidity ladder, Flatwave identity (SC, 2026-09-19),
+C8↔octant word, and the §17.18 contraction construction with its defects. 259 assertions across three
+chunks. <a href="../book17/">Read Book 17 →</a></p>
+</div>
+<div class="book">
+<h3>Book 18 — The Contraction Module</h3>
+<p>Dimension spine, branching arithmetic, conversion chain, ordered-contraction roadmap; six figures;
+IC-12…IC-17. The skeleton duplicate carries the same four defects. <a href="../book18/">Read Book 18 →</a></p>
+</div>
+<div class="book">
+<h3>Book 19 — The UV Boundary</h3>
+<p>The line-3542 tension resolved (IC-18), Appendix A flags, Appendix B no-go ledger verified, two
+Addendum contradictions, and the empty promotion accounting. <a href="../book19/">Read Book 19 →</a></p>
+</div>
+</div>
+
+<h2>Incorrect as stated: IC-1 … IC-18</h2>
+<ul class="tight">
+<li><b>IC-1</b> (§17.2): <span class="formula">ε = sgn(sin 2x)</span> does not record the 2:1 sheet — it is
+deck-invariant; it records ellipse halves. <span class="tag IC">IC</span></li>
+<li><b>IC-2</b> (§17.3.5): printed radical for crx(112.5°) evaluates ≈ 0.6682, not ≈ 5.027. Correct:
+<span class="formula">1/cxp(112.5°) = √(4+2√2)+1+√2 ≈ 5.0273</span>. <span class="tag IC">IC</span></li>
+<li><b>IC-3</b> (§17.1.4): <span class="formula">1/(urx·uxp)</span> is the reciprocal of the product, not of
+the geometric mean. <span class="tag IC">IC</span></li>
+<li><b>IC-4</b> (§17.6.2): "cos(4x) vanishes at the octant boundaries" is false — it vanishes at the octant
+midpoints (22.5° + k·45°); at boundaries it is ±1. <span class="tag IC">IC</span></li>
+<li><b>IC-5</b> (§17.18.5.2): "all four O propagators" — the C8 word (E,B,E,O)×2 contains exactly two O's.
+<span class="tag IC">IC</span></li>
+<li><b>IC-6</b> (§17.18, Tier 1.3): "The 120 = Λ²(16) sits inside Sym²(128)" — false; the 120 lives in
+<span class="formula">Λ²(128) = 120 ⊕ 8008</span>, per v1's own §17.18.4.1. <span class="tag IC">IC</span></li>
+<li><b>IC-7</b> (§17.18, Tier 2.4): "The 135 is the adjoint of SO(16)" — the adjoint is
+<span class="formula">16·15/2 = 120</span>; the 135 is Sym²₀(16). <span class="tag IC">IC</span></li>
+<li><b>IC-8</b> (§17.18.8.2 Step 1): 1820-basis construction as written yields nullity 0; the intended
+reading yields 8255, not 1820; needs <span class="formula">P_{6435}</span>, unavailable in v1.
+<span class="tag IC">IC</span></li>
+<li><b>IC-9</b> (§17.18.8.2 Steps 2–3): four 128×128 Kronecker factors give a 128⁴×128⁴ matrix,
+incompatible with the 1820×8256 sandwich. <span class="tag IC">IC</span></li>
+<li><b>IC-10</b> (§17.18.8.2 Steps 6–7): <span class="formula">−(1/256)</span> double-counted (stripped
+input fed to a stripping formula). <span class="tag IC">IC</span></li>
+<li><b>IC-11</b> (§17.18.8.2 Step 5): <span class="formula">wickSign</span> never assigned.
+<span class="tag IC">IC</span></li>
+<li><b>IC-12</b> (§18.4): the 120-in-Sym²(128) error recurs, = IC-6. <span class="tag IC">IC</span></li>
+<li><b>IC-13</b> (§18.8 Step 1): recurs IC-8 in the skeleton duplicate. <span class="tag IC">IC</span></li>
+<li><b>IC-14</b> (§18.8 Steps 2–3): recurs IC-9 in the skeleton duplicate. <span class="tag IC">IC</span></li>
+<li><b>IC-15</b> (§18.8 Steps 6–7): recurs IC-10 in the skeleton duplicate. <span class="tag IC">IC</span></li>
+<li><b>IC-16</b> (§18.8 Step 5): recurs IC-11 in the skeleton duplicate; Step-5 sum ranges further
+abbreviated away. <span class="tag IC">IC</span></li>
+<li><b>IC-17</b> (§18.2, new): the "standard construction"
+<span class="formula">γᵢ = σ_x^{⊗(i−1)} ⊗ σ_a ⊗ I^{⊗(8−i)}</span> has 8 qubit factors → 256×256
+matrices, but the section requires 128×128; <span class="formula">σ_a</span> undefined, only i = 1…8
+shown for 16 matrices. The printed template cannot produce what the section asks for. <span class="tag IC">IC</span></li>
+<li><b>IC-18</b> (Addendum 4.A line 3542): "the propagator rapidity product is 16" — incorrect as stated;
+the established propagator product is <span class="formula">(√2)⁴ = 4</span>; 16 is the all-eight
+product. <span class="tag IC">IC</span></li>
+</ul>
+
+<h2>Open gates</h2>
+<p class="small"><span class="tag MA">MA</span> per the manuscript's own admissions, confirmed by the audit:
+<span class="formula">S_F</span>, <span class="formula">N_{1820}</span>, <span class="formula">ζ_{parent}</span>
+(k₀ power), <span class="formula">η_{-4}</span> (UV selection), <span class="formula">c_{ord}/K_{parent}</span>
+values, <span class="formula">P_{54}</span> location (135 vs 1820 unreconciled), the <span class="formula">N_{1820}</span>
+1/2 → 1/4 gap, <span class="formula">P_{6435}</span>, the explicit 1820 projector, the Frobenius norms, the
+role of 638.78, the C3/C4 forcing question, the explicit 1820×1820 E, B, O matrices, the 120 embedding, the
+54 projector.</p>
+
+<h2>Unresolved editorial issues</h2>
+<ul class="tight">
+<li class="small">§17.18 and Book 18 share the same title (duplication — the skeleton defects recur in
+both printings).</li>
+<li class="small">A dangling "§17.11" reference in v1.</li>
+<li class="small">Flatwave naming: formerly flagged as a collision with Books 2–3 "FlatWave = sgn(sin 2x)".
+<b>Resolved 2026-09-19 as an exact identity, not a collision:</b> the audit's new symbolic computation
+proved Volume IV <span class="formula">Flatwave = 1/urx + 1/uxp ≡ sgn(sin 2x)</span> exactly
+(<span class="tag SC">SC</span>). Same function, two definitions.</li>
+</ul>
+
+<h2>The four versions</h2>
+<table>
+<tr><th>Version</th><th>Status vs the audit</th></tr>
+<tr><td><b>v1</b><br><code>1-T5Eh7tbPcNenfB1ubkUmST5IYq_QGchm5X1ZcIRvoU</code></td>
+<td><b>The sole audit authority.</b> Four constants open (<span class="formula">S_F, N_{1820}, ζ_{parent}, η_{-4}</span>).
+87 EXACT / 24 CONDITIONAL / 78 OPEN are the manuscript's own self-labels only.</td></tr>
+<tr><td><b>v2</b><br><code>1V3YwJZivcAtrcLs7IkT4zYlPkqGtBixZqSQjR22LxNc</code></td>
+<td>Context. "The Discrete Octant and the Computational Frontier" (Transfer State, Sept 16, 2026). Keeps the
+four constants open; Module 11 is the immediate next step.</td></tr>
+<tr><td><b>v3 draft</b><br><code>1sUOU-DDV_r9-sZXj13JUUgEFATZLI5eW7YBw2rcQ0mk</code></td>
+<td>Context. Claims <span class="formula">S_F = 0.48958371</span>, <span class="formula">N_{1820} = 3</span>,
+<span class="formula">c_{rest} = 1.30555656</span> EXACT/CERTIFIED — <b>contradicts</b> v1/v2's admissions
+and the September 15 normalization verdict; not established.</td></tr>
+<tr><td><b>Certification report</b><br><code>1IiANYug3ISdG0GNApO-5T5jMl2EfsYN_LM5ZYqzPp0g</code></td>
+<td>Context. Unsigned, undated; "MASTER CERTIFICATION COMPLETE" claim is contradicted by the open gates
+above. Inventories Modules 27–28, which do not exist in the ledger (21–26, 29, 31, 32); calls A_y feedback
+"Module 25 CERTIFIED" (ledger: Module 25 is Direct Derivative Tensor Mismatch; A_y is Module 32
+READY/ACTIVE); its locked M/B values match neither ledger Module 26 nor the draft appendix. Not established.</td></tr>
+</table>
+<p class="small">All four documents are saved locally in <code>~/workspace/vol4/</code>; the V4 control
+document carries the OI chain as its dependency record. No change of audit basis without the user's
+explicit say.</p>
+
+<h2>Open-issue chain OI-01 … OI-29 (summary)</h2>
+<p class="small">Full item texts live in the V4 control document's §5–§6; this page carries the chain's
+structure so the volume's dependencies are visible at a glance. Items are ledger-carried, not resolved here.</p>
+<ul class="tight">
+<li class="small"><b>OI-01 … OI-23</b> — the volume-I-through-IV dependency chain:
+<b>Vol I:</b> Wolfram Modules 6 and 8–12 IC-as-encoded, the corrected construction NC-only, Master-Retirement
+OPEN; <b>Vol II:</b> CL-008…CL-013 CONDITIONAL, ledger-carried; <b>Vol III:</b> imports as ST,
+E8(−24) host as MA, frozen Chevalley as MA, LieART SC-cited, λ₂/κ OPEN, absolute normalization OPEN per the
+Sept 15 verdict, BRST / spin-2 / Pfaffian / N4 / mirror / T_N OPEN, radial stabilization OPEN, A_y / R2–R3 /
+Airy / conjugacy OPEN, dim ≤ 4 AX, global anomaly OPEN, source defects editorial;
+<b>Vol IV:</b> <span class="formula">S_F/N_{1820}/ζ_{parent}/η_{-4}</span> OPEN,
+<span class="formula">c_{ord}/N_{1820}/K_{parent}</span> not established, 78 OPEN self-labels, the
+§17.18/Book 18 title duplication, the non-monotonic document order, and the Flatwave collision —
+now resolved as an exact identity (see above), recorded 2026-09-19.</li>
+<li class="small"><b>OI-24</b> — the unsigned certification report's completion claim is contradicted by the
+open gates.</li>
+<li class="small"><b>OI-25</b> — the report's phantom Modules 27–28 do not exist in the ledger (21–26, 29,
+31, 32).</li>
+<li class="small"><b>OI-26</b> — the report's "Module 25 CERTIFIED" A_y misattribution: ledger Module 25 is
+Direct Derivative Tensor Mismatch; A_y is Module 32 READY/ACTIVE.</li>
+<li class="small"><b>OI-27</b> — M/B three-way disagreement (ledger Module 26 vs report vs draft appendix).</li>
+<li class="small"><b>OI-28</b> — the draft's N_1820 = 3 contradicts v1/v2's admissions and the Sept 15 verdict.</li>
+<li class="small"><b>OI-29</b> — authority conflict: the draft declares itself authoritative; audit basis
+remains v1-first unless the user directs otherwise.</li>
+</ul>
+
+<footer>
+<p>Volume IV audit overview. v1 is the sole audit authority. Chunk totals: 407 assertions passed, 0 failed,
+no timeouts; 18 distinct IC findings; <span class="formula">Δ<sub>op</sub>(Volume IV) = ∅</span>.
+Structural validation: <a href="../validation/vol4/verify_vol4.py">validation/vol4/verify_vol4.py</a>.</p>
+</footer>
+</body>
+</html>

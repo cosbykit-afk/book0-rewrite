@@ -1,8 +1,10 @@
 # Validation scripts
 
 The scripts used to generate and verify the figures and live-graph embeds for
-the Volume I rewrite pages (`book0/`–`book6/`). They are published so anyone
-can see exactly what was checked and re-run the checks.
+the rewrite-series pages (`book0/`–`book19/`) plus the Volume IV overview.
+They are published so anyone can see exactly what was checked and re-run the
+checks. Every row below was independently re-run 2026-09-19: all scripts exit
+0, no timeouts.
 
 ## Scope
 
@@ -14,24 +16,44 @@ These scripts perform **completed numerical checks** and structural tests
 
 | Book | Scripts | What they check |
 |------|---------|-----------------|
-| book0 | `make_graphs.py` | Generates the 7 PNG fallbacks; asserts the plotted identities numerically |
-| book1 | `make_graphs.py` | Generates the 7 PNG fallbacks; asserts the plotted identities numerically |
-| book2 | `verify_figures.py`, `test_embeds.py` | Assertion-verified numerical checks of all figure identities; embed ID consistency |
-| book3 | `verify_figures.py`, `gen_graphs.py`, `test_ids.py` | Assertion-verified numerical checks; PNG generation; embed ID consistency |
-| book4 | `verify_figures.py`, `test_embed_ids.py` | Numerical + one symbolic (sympy) check of figure identities; embed ID consistency |
-| book5 | `test_ids.py` | Embed ID consistency (6 figures). See provenance note below |
-| book6 | `verify_book6.py`, `gen_figs_book6.py`, `test_ids.py` | 201 assertions over the figure identities; PNG generation; embed ID consistency |
+| book0 | `make_graphs.py`, `verify_book0.py`, `test_embeds.py` | Generates the 7 PNG fallbacks (correct output path, no neutered assertions). `verify_book0.py`: all 15 page claims (V1–V15: reciprocal pairs, positivity, π-periodicity, quarter-turn swap, one-generator reconstruction, Riccati law, UNA sum, FlatWave identity, carrier ellipse, E_D kernel, Gram det, J rotations, mirror spirals, Thm 0.IV.T1 logic, transfer curve), all pass, no timeouts. `test_embeds.py`: Desmos latex ↔ fallback ↔ caption consistency |
+| book1 | `make_graphs.py`, `verify_book1.py`, `test_embeds.py` | Generates the 7 PNG fallbacks (correct output path; d7 gained the Q0 highlight arc the caption claims). `verify_book1.py`: V1–V28, 111 numerical assertions + exact checks, all pass, worst measured error 8.6e-10 (floating-point noise near seams; identities are exact algebra), no timeouts. `test_embeds.py`: Desmos latex ↔ fallback ↔ caption consistency (7 figures) |
+| book2 | `make_graphs.py`, `verify_book2.py`, `test_embeds.py` | Generates the 7 PNG fallbacks (correct output path). `verify_book2.py`: V1–V40, 129 assertion checks (116 CP, 12 NC, 1 ST), all pass, no timeouts; reciprocal caption corrected to measured 3.6e-11, honest finite-difference worst case 8.8e-9. `test_embeds.py`: Desmos latex ↔ fallback ↔ caption consistency (incl. dashed/solid color assignments) |
+| book3 | `gen_graphs.py`, `verify_book3.py`, `test_embeds.py` | Generates the 7 PNG fallbacks (correct output path, no neutered assertions). `verify_book3.py`: B1–B48, 67 checks (22 CP, 45 NC), all pass, worst-case numerical residual 2.4e-10, no timeouts; status line's false "~1e-10 or better" replaced with the honest whole-suite worst case; parity table upgraded to exact CP. `test_embeds.py`: Desmos latex ↔ fallback ↔ caption consistency (7 figures) |
+| book4 | `make_graphs.py`, `verify_book4.py`, `test_embeds.py` | Generates the 7 PNG fallbacks. `verify_book4.py`: V1–V29, 29 checks (18 CP, 6 SC, 5 NC), all pass, worst-case numerical error 2.84e-14, no timeouts; Fig 3 overlay corrected 0.7892 → 0.7891 (verified 0.789141…); a neutered `assert … or True` replaced by an exact isometry proof; several NC claims upgraded to CP/SC. `test_embeds.py`: Desmos latex ↔ fallback ↔ caption consistency (7 figures) |
+| book5 | `verify_book5.py`, `test_embeds.py` | No figure-generation script exists for book5 (fallbacks pre-generated and valid); none created per the cleanup rule. `verify_book5.py`: V1–V12, 15 assertions (11 CP, 4 NC), all pass, honest worst case 1.2e-15, no timeouts; the book previously had no mathematical verifier. `test_embeds.py`: Desmos latex ↔ fallback ↔ caption consistency (6 figures). Intro corrected from "last figure" to "last two"; Axiom Zero remains AX, its consequences are checked |
+| book6 | `gen_figs_book6.py`, `verify_book6.py`, `test_embeds.py` | Generates the 7 PNG fallbacks (generator remains 110 dpi — visual styling, deferred). `verify_book6.py`: V1–V32, 214 assertions (66 CP, 148 NC), all pass, worst NC 9.07e-11, no timeouts; real fallback-content bug fixed: `b6_block.png` had E/V blocks reversed relative to caption/embed — generator fixed, PNG regenerated. `test_embeds.py`: Desmos latex ↔ fallback ↔ caption consistency (7 figures) |
+| book7 | `make_graphs.py`, `verify_book7.py`, `test_embeds.py` | Generates the 7 PNG fallbacks. `verify_book7.py`: 89 assertions (29 CP + 34 NC + 26 SC), all pass, worst 3.7e-10 relative, no timeouts. Missing orange dotted curve added to Fig 2; Fig 1/2 viewports restricted to the valid principal chart; captions distinguish live/fallback content. The 7.4.CL2 sign slip is page-flagged IC (printed cos x − sin x; correct form 2λ−1 = sin x − cos x proved CP, conclusion unaffected). `test_embeds.py`: embed consistency incl. negative control |
+| book8 | `gen_figs_book8.py`, `verify_book8.py`, `test_embeds.py` | Generates the 8 PNG fallbacks (correct output path; neutered Fig-4 assertion replaced with a real A=dχ gradient check). `verify_book8.py`: W1–W44, 72 assertions (45 CP, 5 SC, 22 NC), all pass, worst-case numerical error 5.315e-8 on the 8.6.T3 metric-flattening grid check, no timeouts; five vacuous old checks (`check(..., True)`, zero-multiplied gradients, tautologies) replaced with real calculations. `test_embeds.py`: Desmos latex ↔ fallback ↔ caption consistency (8 figures, 30 latex fragments, viewport containment, negative control) |
+| book9 | `verify_book9.py`, `test_embeds.py` | Reconstructed scripts (RECONSTRUCTED 2026-09-19, not originals — see `RECONSTRUCTION_NOTE.md`). `verify_book9.py`: V1–V14, 19 numerical assertions + 4 symbolic checks, all pass, worst 1.8e-13, no timeouts; inherited caption errors replaced with measured values. `test_embeds.py`: E1–E5 embed consistency, passes. §9.6's Poisson-recovery and static-dust claims remain MA (page labels them so). §9.5's earlier mixed-component misquote corrected: G^r_r − G^t_t = 2(NA)′/(rNA³), conclusion AN = 1 unaffected |
+| book10 | `gen_figures.py`, `verify_book10.py`, `test_embeds.py` | Generates the PNG fallbacks (correct output path, no neutered assertions). `verify_book10.py`: V1–V11, 40 assertions (5 CP, 1 SC, 12 ST, 13 NC, 9 MA), all pass, worst measured error 6.6e-11 (radial-Dirac integrator vs analytic ground state), no timeouts. Fixed: d3 sign/formula so normalized curves coincide; d1 meridian moved y=0 → y=π; §4 radial P,Q renamed F,G (collided with P = A²); §6 dependency verdicts quote the Volume I ledger exactly (V11 enforces quote-accuracy). `test_embeds.py`: embed consistency (5 figures, 14 latex fragments, viewport containment, caption panel-subset disclosures, negative control) |
+| book11 | `make_figs.py`, `verify_book11.py`, `test_embeds.py` | Generates the 7 PNG fallbacks (correct output path, no neutered assertions). `verify_book11.py`: V1–V25, 33 checks (19 CP + 8 NC + 6 SC), all pass, no timeouts; script's final line: honest worst-case measured numerical error 5.403e-15 (floating-point noise; identities are exact algebra). Fixed: live d1 color mismatch — `crx` now green consistently. `test_embeds.py`: Desmos latex ↔ fallback ↔ caption consistency (32 latex fragments, color-caption agreement, viewport sanity, negative control) |
+| book12 | `make_figs.py`, `verify_book12.py`, `test_embeds.py` | Generates the 7 PNG fallbacks (correct output path, no neutered assertions). `verify_book12.py`: W1–W33, 87 checks, all pass, no timeouts; overstatement 4e-16 corrected to measured-safe 4.5e-16 (measured 4.44e-16); stale footer replaced with canonical verifier provenance. `test_embeds.py`: Desmos latex ↔ fallback ↔ caption consistency (7 figures). Empirical inputs remain fenced MA. IC: the general Q_ε trace formula (1/5)Tr(Q_ε²) = \|H\| is incorrect as stated — holds only at λ=3/5, 1/2; the page fences it |
+| book13 | `make_figs.py`, `verify_book13.py`, `test_embeds.py` | Generates the 7 PNG fallbacks (correct output path, no neutered assertions). `verify_book13.py`: V1–V54, 86 checks (26 CP, 57 NC, 1 IC, 2 IN), all pass, worst absolute error on a tight identity check 4.9e-10 (global reciprocal-access pair, 4×10⁴ points), err/tol ratio worst 0.55, no timeouts; two neutered `assert True` replaced with exact SymPy exhaustion; two upstream source defects remain explicitly IN. `test_embeds.py`: Desmos latex ↔ fallback ↔ caption consistency (7 figures, 15 latex fragments, dashed λ(T) curve) |
+| book14 | `verify_book14.py`, `test_embeds.py` | No figure-generation script exists for book14 (6 PNG fallbacks pre-generated and valid); none created per the cleanup rule. `verify_book14.py`: V1–V29, 52 assertions, all pass, worst measured error 6.576e-07 on the V16 weak-binding limit check at B=1e-6 (limit-convergence rate; all exact-identity checks ≤1e-10), no timeouts. Fixed: Figure 2 embed's hardcoded rounded constant `cosh(1.3863)` → `cosh(ln(4))` — exact, since q_m=0.6 gives λ_m=2·atanh(0.6)=ln 4 exactly (verified V2). `test_embeds.py`: embed consistency (6 figures, 11 latex fragments, dashed/solid assignments, viewport containment) |
+| book15 | `verify_book15.py`, `test_embeds.py` | No separate figure-generation script for the rewrite page; `vol3/book15/make_figs.py` (working state, not in this repo) generated the 6 fallbacks. `verify_book15.py`: V0–V43, 220 assertions (all CP/SC), all pass, worst measured error 2.524e-8 on (1−cos x)/sin x-type reciprocal forms near seams (pure floating-point cancellation; identities are exact algebra), no timeouts. Fixed: Figure 1 caption mislabeled all four primitives vs the source (volume_iii.txt ll.808–814) — corrected; g2 drew the full dashed hyperbola while the embed shows only the right branch — restricted to x∈[4,14], g1/g2 PNGs regenerated; d5 lacked the sign-marker dots its caption claimed — added 8 dots; caption "upper or lower" → s_Ω=+1 (right)/−1 (left); d1/d4 viewports tightened to [0,π/2], d2 left edge −14→3.9. Tag upgrades: 15.VII.1/15.VII.2/15.VII.C3 NC→CP; E8 30380 citation NC→SC. `test_embeds.py`: embed consistency (6 figures, incl. d1 corrected source names, d2 right-branch-only hyperbola, d5 both s_Ω dot sets, v1.11 loader pin) |
+| book16 | `make_graphs.py`, `verify_book16.py`, `test_embeds.py` | `make_graphs.py` generates the 15 PNG fallbacks from the embedded formulas with corrected viewports (deterministic matplotlib). `verify_book16.py`: V1–V41, 164 checks (98 CP, 21 SC, 45 NC), all pass, no timeouts; includes reruns of all five original audit suites (690/690 pass). Worst measured error: CP 1.164e-10 (floating-point noise), NC 1.554e-04 (three-decimal caption markers). Scope-tag review: 6 rounded-plotted-coordinate checks retagged CP→NC with 5 exact CP counterparts added. Fig 8 Hessian reconciled (50-digit mpmath: H_schur = 0.8626173567; earlier sampled 0.897173 was an erroneous evaluation point). Page fixes: Fig 15 gained the 4 verified broken-minima dots its caption claims; Fig 5 viewport top 1.3 → 58; Fig 4 viewport bottom −0.2 → −1.2; Fig 14 real domains; duplicated `</script></body></html>` removed. `test_embeds.py`: embed consistency (15 divs ↔ 15 expression lists ↔ 15 PNGs, d14 real domains, d15 broken-minima dots, API v1.11, live-rendering disclosure) |
+| book17 | `gen_graphs.py`, `verify_book17.py`, `test_embeds.py` | `gen_graphs.py` generates the 5 PNG fallbacks at 240 dpi from the verified expressions (correct output path, real asserts on plotted constants). `verify_book17.py`: V1–V39, 89 checks (54 CP, 19 SC, 16 NC), all pass, worst measured residual 6.119e-10 on the finite-difference dw/dx tripwire (the identity is exact via the accompanying symbolic check), no timeouts. Every page number re-checked and confirmed (3.3e-14 tripwire measured 3.324e-14; V_E⁴ = 638.78227249; IC-2 radical = 0.66817864); no caption/formula corrections were needed. Renamed from `verify_figures.py` 2026-09-19. `test_embeds.py`: embed consistency (5 figures, 24 latex fragments, expression counts 13/6/5/11/11) |
+| book18 | `verify_book18.py`, `test_embeds.py` | Also generates the 6 PNG fallbacks (correct output path, no neutered assertions; regenerated byte-identical from the verified expressions). `verify_book18.py`: V1–V16, 42 checks (41 CP, 1 NC), all pass, no timeouts; honest worst-case 1.8e-2 on the V_E⁴ bound check (\|5.0273⁴−638.78\| = 0.018 < 0.05; all exact-integer checks at 0). Exact-integer checks upgraded NC→CP per the standing precision rule; duplicate assert removed; coverage gaps (tension arithmetic, V_E⁴ bound, IC-12…IC-17 exhibits) given real numbered assertions. Renamed from `verify_figures.py` 2026-09-19. Page fixes: Fig 2 caption overreach qualified ("gray dashed parts" exist only in the static fallback, not the live embed); footer link updated. `test_embeds.py`: embed consistency (6 figures, 42 latex fragments, expression counts 2/6/8/4/6/10, viewport containment). All six PNGs visually inspected against captions and embeds — no contradictions |
+| book19 | `verify_book19.py`, `test_embeds.py` | Also generates the 2 PNG fallbacks at 240 dpi from the verified expressions (fail-fast: PNGs only regenerate after all checks pass; correct output path, no neutered assertions). `verify_book19.py`: V1–V24, 24 checks (17 CP, 1 SC, 3 NC), all pass, no timeouts; worst measured error 2.75e-05 on V_E⁴ vs 638.7823 (exact checks at 0). Neutered tautology (`x**4 - x**4`, checking nothing) replaced with real plotted-data assertions. Renamed from `verify_figures.py` 2026-09-19. Page fixes: footer link renamed; `.status` paragraph added (credits both suites, honest worst case, chunk-5 standing carried from the audit ledger, live-Desmos-unverified disclosed). Captions, formulas, and viewports verified correct — no other page changes. `test_embeds.py`: embed consistency (2 figures, 20 latex fragments, expression counts 4/7, viewport linkage) |
+| vol4 | `verify_vol4.py` | Structural/data assertions over the Volume IV overview: page existence, overview links, chunk totals sum to 407, IC-1..IC-18 present, Δ_op=∅ and v1 authority stated, four-version IDs present, OI-01..OI-29 markers, book pages link the overview, and all three books' embed tests pass |
 
 ## Provenance notes
 
-- Scripts are copied verbatim from the working environment where they ran.
-  Several hardcode absolute paths (`~/workspace/...` or
-  `/home/hatch/workspace/...`); adjust the path variables at the top of each
-  script to run them elsewhere.
-- `book5/test_ids.py` was **regenerated after publication** from the pattern
-  used for Books 3, 4 and 6 — no standalone Book 5 script was saved from the
-  original run, and no figure-verification script for Book 5 was found in the
-  working records. Its header says so. It passes against the published page.
+- Scripts are the canonical per-book validators; several hardcode absolute
+  paths (`~/workspace/...` or `/home/hatch/workspace/...`); adjust the path
+  variables at the top of each script to run them elsewhere.
+- `book5/` and `book14/` have no figure-generation script: their fallback
+  PNGs pre-date the validation cycle and are non-empty, valid images; no
+  generator was created per the cleanup rule (visual restyling deferred).
+  `book15/`'s fallback PNGs were generated by `vol3/book15/make_figs.py`
+  (working state in `~/workspace/vol3/`, not in this repo); g1/g2 were
+  corrected and regenerated in the 2026-09-19 cleanup cycle.
+- `book9`'s scripts are reconstructions (RECONSTRUCTED 2026-09-19), not
+  originals — see `validation/book9/RECONSTRUCTION_NOTE.md`. The T4/T6/
+  "Towards Unification"/"Reverse Engineering Einstein"/"Lorentz witness"
+  provenance labels are not valid Volume II upstream dependencies under the
+  volume's dependency rule (dependency-labeling defects, not math errors).
 - The embed ID tests exist because Book 1 once shipped with container IDs
   (`d1`–`d7`) that did not match the JavaScript config IDs (`e1`–`e7`), so its
   live graphs could not initialize. That bug is fixed, and every book's page
@@ -39,22 +61,7 @@ These scripts perform **completed numerical checks** and structural tests
 - Live Desmos rendering was never verified in a real browser from the build
   environment; the checks here are static (ID matching, expression sanity,
   non-empty fallbacks). Each page falls back to its PNGs and says so.
-
-## Volume II (Books 7–13)
-
-The same arrangement for the second volume. Audit scripts are included
-alongside the figure and embed tests, since the Volume II pipeline audited
-each book's mathematics (not only its figures).
-
-| Book | Scripts | What they check |
-|------|---------|-----------------|
-| book7 | `audit_book7.py`, `audit_book7_symbolic.py`, `make_graphs.py`, `test_graph_ids.py` | 78 numerical + 23 SymPy assertions; figure generation; embed ID consistency |
-| book8 | `audit_book8.py`, `gen_figs_book8.py`, `test_ids_book8.py` | 46 assertions (incl. symbolic covariance, F∧F=d(A∧F)); figure generation; embed ID consistency |
-| book9 | validation/book9/ | Originals were not saved. Reconstructed scripts (RECONSTRUCTED 2026-09-19, not originals): audit_book9.py (17 numerical assertions, all pass, max err 1.7e−13), audit_book9_symbolic.py (2 SymPy derivations, both pass; the S1 identity quoted in brief/page was incorrect as stated — corrected form G^r_r − G^t_t = 2(NA)′/(rNA³), conclusion AN = 1 unaffected), test_ids.py (embed consistency, pass). See RECONSTRUCTION_NOTE.md. |
-| book10 | `audit_book10.py`, `gen_figures.py`, `test_ids.py` | Assertion checks incl. symbolic du∧dv=2dF∧dG; figure generation; embed ID consistency |
-| book11 | `audit_checks.py`, `embed_test.py`, `make_figs.py` | 37 assertions incl. exact anomaly-coefficient arithmetic; embed test; figure generation |
-| book12 | `audit_book12.py`, `make_figs.py`, `test_graphs.py` | 55 assertions incl. symbolic checks through 12.III–12.XI; figure generation; graph tests |
-| book13 | `audit_book13.py`, `make_figs.py`, `test_graphs.py` | 80 assertions; figure generation; graph tests |
-
-The audits found incorrect results and gaps; these are flagged on the
-book pages themselves with their scope labels, not silently corrected.
+- `validation/book18/verify_book18.py`, `validation/book19/verify_book19.py`
+  were renamed from `verify_figures.py` in the 2026-09-19 cleanup cycle;
+  `validation/book17/verify_book17.py` was renamed the same way. The old
+  names are gone.
