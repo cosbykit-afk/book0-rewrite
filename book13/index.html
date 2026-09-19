@@ -122,14 +122,17 @@ reversal contract. <span class="tag ST">ST</span></div>
 
 <hr>
 <h2 id="p2">Part II — Then earn it</h2>
-<p>Section by section. Each claim carries one status tag. Numerical checks below were run in
-vol2_book13/audit_book13.py (80 assertions, all passed; tolerances 1e-6–1e-14).</p>
+<p>Section by section. Each claim carries one status tag. Checks below were run in
+validation/book13/verify_book13.py: 86 checks, all passed (26 CP, 57 NC, 1 IC and
+2 IN findings documented). Worst err/tol ratio 0.55; tightest identity checks measure
+≤ 4.9e-10 absolute (global reciprocal-access pair, 4×10⁴ points); near-seam identity
+checks ≤ 4e-9 absolute on values up to ~1e3; no timeouts.</p>
 
 <h3>13.I — Reciprocal access and the Bernoulli statistical state</h3>
 <p>On admissible charts (ε=+1) the reciprocal-access relations <span class="formula">urx = ε/λ, uxp = ε/(1−λ)</span>
 hold with canonical λ, verified against the certified Book 2 sum/product identities (which-is-which pinned:
 urx = 1/λ, not the swap). <span class="tag NC">NC</span> The identity
-<span class="formula">λ(1−λ) = sin(2x)/4 = H</span> holds signed, exactly. <span class="tag NC">NC</span>
+<span class="formula">λ(1−λ) = sin(2x)/4 = H</span> holds signed, exactly. <span class="tag CP">CP</span>
 The positive square-root state <span class="formula">Ψ<sub>stat</sub> = (√λ, √(1−λ))</span> is the canonical
 square-root embedding of a Bernoulli distribution <i>after</i> the statistical contract — it adds no quantum
 phase or coherence. <span class="tag MA">MA</span> (status declaration, correctly labeled as contract-dependent).</p>
@@ -222,8 +225,8 @@ and is not in the Volume I audit ledger as earned. The proof as given leans on a
 2-cycles <span class="formula">(srx crx)(sxp cxp)</span>; ε, H, urx, uxp, FlatWave reverse after one cophase step
 and restore after two; all are π-periodic, hence cannot distinguish x from x+π; and
 <span class="formula">λ(π/2−x) = 1−λ(x)</span>. <span class="tag NC">NC</span>
-No faithful affine C4 action on one real coordinate exists (a=±1 exhaustion); R² rotations give a faithful one.
-<span class="tag NC">NC</span></p>
+No faithful affine C4 action on one real coordinate exists (a=±1 exhaustion, verified symbolically); R² rotations give a faithful one.
+<span class="tag CP">CP</span></p>
 <p><b>Incorrect as stated (source).</b> "The transfer coordinate lambda is quarter-turn invariant." Under the
 volume's canonical notation <span class="formula">λ = (1+sin x−cos x)/2</span> this is false:
 <span class="formula">λ(0) = 0</span> but <span class="formula">λ(π/2) = 1</span> (verified). What <i>is</i>
@@ -274,7 +277,7 @@ spectrum/interaction/counting are supplied. Two-line complete proof. <span class
 equal to −4k<sub>B</sub> (finite) at λ=1/2 — the midpoint is a smooth maximum, not a critical singularity;
 <span class="formula">λ:(0,π/2) → (0,1)</span> is a strictly monotone bijection; any interior λ<sub>0</sub> maps to
 zero of a monotone control coordinate <span class="formula">τ = a[logit(λ) − logit(λ<sub>0</sub>)]</span>.
-<span class="tag NC">NC</span>
+<span class="tag CP">CP</span>
 <b>Negative Result 13.IX.N1</b> (BEC promotion no-go): coordinate matching alone cannot identify any Projection
 midpoint/seam/FlatWave reversal/entropy extremum with Bose–Einstein condensation; the many-body and
 thermodynamic contracts must be supplied, and any Projection-specific claim must predict a restriction beyond
