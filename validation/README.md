@@ -50,7 +50,7 @@ each book's mathematics (not only its figures).
 |------|---------|-----------------|
 | book7 | `audit_book7.py`, `audit_book7_symbolic.py`, `make_graphs.py`, `test_graph_ids.py` | 78 numerical + 23 SymPy assertions; figure generation; embed ID consistency |
 | book8 | `audit_book8.py`, `gen_figs_book8.py`, `test_ids_book8.py` | 46 assertions (incl. symbolic covariance, F∧F=d(A∧F)); figure generation; embed ID consistency |
-| book9 | — | No scripts were saved from the Book 9 run (17 numerical assertions + SymPy checks were reported, brief + source retained in the working records) |
+| book9 | validation/book9/ | Originals were not saved. Reconstructed scripts (RECONSTRUCTED 2026-09-19, not originals): audit_book9.py (17 numerical assertions, all pass, max err 1.7e−13), audit_book9_symbolic.py (2 SymPy derivations, both pass; the S1 identity quoted in brief/page was incorrect as stated — corrected form G^r_r − G^t_t = 2(NA)′/(rNA³), conclusion AN = 1 unaffected), test_ids.py (embed consistency, pass). See RECONSTRUCTION_NOTE.md. |
 | book10 | `audit_book10.py`, `gen_figures.py`, `test_ids.py` | Assertion checks incl. symbolic du∧dv=2dF∧dG; figure generation; embed ID consistency |
 | book11 | `audit_checks.py`, `embed_test.py`, `make_figs.py` | 37 assertions incl. exact anomaly-coefficient arithmetic; embed test; figure generation |
 | book12 | `audit_book12.py`, `make_figs.py`, `test_graphs.py` | 55 assertions incl. symbolic checks through 12.III–12.XI; figure generation; graph tests |

@@ -140,6 +140,7 @@ x = np.linspace(-1.2, 1.2, 6000); ok = np.abs(np.sin(2*x)) > 1e-4; x = x[ok]
 ax.plot(x, Fs_p(x), lw=1.6, label="F_s+ : 0 from left, +inf from right")
 ax.plot(x, Fs_m(x), lw=1.6, label="F_s- : +inf from left, 0 from right")
 ax.plot(x, Fc_p(x), lw=1.6, label="F_c+ -> 1 both sides (regular)")
+ax.plot(x, Fc_m(x), lw=1.6, label="F_c- -> 1 both sides (regular)")
 ax.axvline(0, color="k", lw=0.8)
 ax.set_xlim(-1.2, 1.2); ax.set_ylim(-0.3, 6)
 ax.set_title("Zero-pole exchange at a sine-zero seam; opposite channel regular at 1")

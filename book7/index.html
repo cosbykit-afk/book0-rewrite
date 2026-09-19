@@ -320,8 +320,9 @@ reciprocal factorization, exponential and rational coordinates were verified exa
 (SymPy) and numerically (~1e-12) on all charts. The <span class="math">K</span>-level
 classification is an <b>explicitly labeled lawful mathematical extension</b>, not an
 inherited theorem; the certified carrier fixes <span class="math">K = 16</span>. The link
-"constant-coefficient two-state flow of Book 5" inherits a Book 5 result that is
-conditional on Axiom Zero (see Part II).</div>
+"constant-coefficient two-state flow of Book 5" is a <span class="tag ms">manuscript assertion</span>:
+it inherits a Book 5 result that is conditional on Axiom Zero (see Part II), not an
+independently proved upstream result.</div>
 
 <h2 id="part2">Part II — Then earn it: the audit</h2>
 
@@ -333,7 +334,7 @@ assertion · assumption or axiom · incorrect result · incomplete or failed com
 <tr><th>Claim</th><th>Scope label</th><th>Basis</th></tr>
 <tr><td>7.1.T1 Saw balance-product identity</td><td><span class="tag cert">checked proof</span> <span class="tag num">completed numerical check</span></td><td>Parallel-sum algebra exact given Book 2 transfer data; identities verified to ~1e-15 on four charts.</td></tr>
 <tr><td>7.1.C1 endpoint/balance structure</td><td><span class="tag cert">checked proof</span></td><td><span class="math">λ(1−λ) ≤ 1/4</span> elementary; uniqueness at <span class="math">λ=1/2</span> exact.</td></tr>
-<tr><td>7.1.T2 companion cosine decomposition</td><td><span class="tag num">completed numerical check</span></td><td>Identity verified to ~1e-15 on all charts; magnitude + sign proved symbolically on principal chart. Manuscript proof step asserting <span class="math">pq=εcos2x</span> from the transfer construction is a <span class="tag ms">manuscript assertion</span> (see §9).</td></tr>
+<tr><td>7.1.T2 companion cosine decomposition</td><td><span class="tag num">completed numerical check</span> <span class="tag sym">completed symbolic check</span></td><td>Identity verified independently: numerically to ~1e-15 on all four charts, and magnitude + sign proved symbolically on the principal chart (SymPy). The manuscript's derivation step — <span class="math">pq=εcos2x</span> as supplied by the Book 2 transfer construction — is <span class="tag ms">asserted, not derived</span>; §7.1.4's direct <span class="math">αβ</span> computation re-derives the identity from <span class="math">α=sgn(sin x)</span>, <span class="math">β=sgn(cos x)</span> without the transfer construction (see §9).</td></tr>
 <tr><td>7.1.C2 differential companion</td><td><span class="tag sym">completed symbolic check</span></td><td><span class="math">cos2x = 2H′</span> exact via SymPy.</td></tr>
 <tr><td>7.1 temporary D/N calculation</td><td><span class="tag num">completed numerical check</span></td><td><span class="math">N = 4cot2x</span> follows from Book 2's proved <span class="math">A=2cot x, B=2tan x</span>; <span class="math">D²−N²=16</span> standard.</td></tr>
 <tr><td>7.1.T3 carrier phasor theorem</td><td><span class="tag std">standard imported theorem</span> <span class="tag num">completed numerical check</span></td><td>Euler's identity; <span class="math">2V+i4H=e^{2ix}</span> already in Book 2, re-verified.</td></tr>
@@ -360,9 +361,9 @@ all passing). No physics was imported.</p>
 <h3>§9. Dependency verdicts against the Volume I ledger</h3>
 <ul class="tight">
 <li><b>Book 2 reciprocal/UNA spine</b> (<span class="math">saw_r=1/urx</span>, <span class="math">saw_x=1/uxp</span>, <span class="math">H=1/(urx+uxp)=sin2x/4</span>, <span class="math">urx+uxp=4/sin2x</span>, <span class="math">ε=saw_r+saw_x=sgn(sin2x)</span>, <span class="math">Z_{car}=2V+i4H=e^{2ix}</span>, Σ²−Δ²=16 family): <span class="tag cert">earned</span> — present in the ledger as proved (independent numeric checks, ~1e-13).</li>
-<li><b>Book 2 transfer coordinate λ</b> (<span class="math">saw_r=ελ</span>, <span class="math">saw_x=ε(1−λ)</span>, <span class="math">p=1−2λ</span>, <span class="math">pq=εcos2x</span> as "supplied by the transfer construction"): <span class="tag ms">not earned as stated</span> — the ledger records a dependency-labeling defect on the "certified" λ in Book 2 and marks the transfer-construction sections as read but not independently checked. The identities themselves were verified numerically here on four charts, so Book 7's use is numerically grounded but the upstream certification label is unsupported.</li>
+<li><b>Book 2 transfer coordinate λ</b> (<span class="math">saw_r=ελ</span>, <span class="math">saw_x=ε(1−λ)</span>, <span class="math">p=1−2λ</span>, <span class="math">pq=εcos2x</span> as "supplied by the transfer construction"): <span class="tag ms">manuscript assertion</span> — the Volume I ledger records a dependency-labeling defect on the "certified" λ in Book 2 and marks the transfer-construction sections as read but not independently checked, so the upstream derivation is asserted, not derived. The identities themselves were verified numerically here on four charts (the cosine identity additionally symbolically on the principal chart), so Book 7's use is numerically grounded but the upstream certification label is unsupported.</li>
 <li><b>Principal-branch formula <span class="math">λ=(1+sin x−cos x)/2</span></b>: not itemized in the ledger; <span class="tag num">completed numerical check</span> here (matches <span class="math">ε·saw_r</span> on the principal chart to ~1e-15).</li>
-<li><b>Book 5 constant-coefficient two-state flow / "Axiom Zero realized at doubled phase"</b> (§7.4 conclusion, 7.4.C3): <span class="tag ax">flagged</span> — the Volume I ledger does not list a Book 5 linear-flow theorem as earned; Book 5's Axiom Zero is recorded as an <i>assumption</i>, correctly labeled as such. Book 7's return to the Book 5 flow is lawful inheritance, but its status is <b>conditional on Axiom Zero</b>, not an independently proved upstream result.</li>
+<li><b>Book 5 constant-coefficient two-state flow / "Axiom Zero realized at doubled phase"</b> (§7.4 conclusion, 7.4.C3): <span class="tag ms">manuscript assertion</span> — the Volume I ledger does not list a Book 5 linear-flow theorem as earned; Book 5's Axiom Zero is recorded as an <i>assumption</i>. Book 7's return to the Book 5 flow is lawful inheritance, but its status is <b>conditional on Axiom Zero</b>, not an independently proved upstream result.</li>
 <li><b>Ordinary background mathematics</b> (Euler's formula, trig identities, differentiation, matrix algebra, Hamiltonian/Lagrangian formalism after declaration): <span class="tag std">standard imported theorem</span> — permitted by the volume dependency rule.</li>
 <li><b>Physics imports:</b> none. The manuscript declares none, and the negative theorems plus the signature firewall (7.4.CL1) explicitly refuse physical readings of <span class="math">x</span>, <span class="math">H</span>, <span class="math">E</span>, <span class="math">Σ²−Δ²</span>. FlatWave is never assigned probability/time/charge/chirality/helicity meaning. <span class="tag cert">Dependency rule satisfied.</span></li>
 </ul>
@@ -391,7 +392,8 @@ Live Desmos rendering: NOT browser-verified (no live browser in audit environmen
 
 <h2 id="part3">Part III — Close the book</h2>
 
-<h3>§11. Certified exact mathematics</h3>
+<h3>§11. Exact mathematics — "certified" status as <span class="tag ms">manuscript assertion</span></h3>
+<p><span class="tag ms">manuscript assertion</span> on the status label: "certified" is the manuscript's own status term (source.txt lines 1–9) and is not earned under the Volume I ledger labels. The identities listed below were numerically rechecked here — 78 numeric assertions to ~1e-12 or better, 23 symbolic assertions exact.</p>
 <p>Book 7 establishes: the normalized double-angle carrier from the bounded transfer variables;
 its quadratic-image relation to the normalized transfer circle; the hyperbolic parent identity
 <span class="math">Σ²−Δ²=16</span> and its projective map to the doubled unit circle; the closed
@@ -423,7 +425,7 @@ nature, spacetime geometry, gauge structure, electromagnetism, quantum dynamics,
 empirical observable distinct from accepted physics. It does not create an independent U(1)
 phase: every carrier coordinate here is driven by the same scalar <span class="math">x</span>.</p>
 <div class="ledger">BOOK 7 FINAL STATUS
-FORMAL CORE: certified (one sign slip in Clarification 7.4.CL2 flagged above; conclusion unaffected).
+FORMAL CORE: "certified" status is a <span class="tag ms">manuscript assertion</span> — not earned under the Volume I ledger labels; the underlying identities were numerically rechecked here (78 assertions, ~1e-12 or better). One sign slip in Clarification 7.4.CL2 flagged above; conclusion unaffected.
 EXTENSION LEDGER: 7.4.E1 classification explicit; K fixed at 16 for the certified carrier.
 PHYSICAL CONTENT DERIVED: none. PHYSICS IMPORTS: 0.
 BOOK 8 HANDOFF: inherits the exact carrier mathematics (reciprocal transfer, paired

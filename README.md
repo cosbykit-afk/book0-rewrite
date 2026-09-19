@@ -25,10 +25,7 @@ required); if Desmos fails to load, static PNG fallbacks in each book's
 
 ## Status discipline
 
-Every claim in the text carries its status: checked proof, completed symbolic
-check, completed numerical check, standard imported theorem, manuscript
-assertion, assumption/axiom, or incorrect/incomplete. Nothing is promoted
-beyond what the mathematics supports.
+Book pages label claims with the scope the audit earned — checked proof, completed symbolic check, completed numerical check, standard imported theorem, manuscript assertion, assumption/axiom, or incorrect/incomplete. Book 0 additionally preserves the original manuscript's own status tags (CERTIFIED etc.), as disclosed on that page; those are the manuscript's labels, not independent re-verification. Nothing is promoted beyond what the mathematics supports.
 
 ## Source
 

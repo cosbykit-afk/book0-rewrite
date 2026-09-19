@@ -72,7 +72,7 @@ can't load, a static image is shown instead, generated from the same formulas.</
 <div class="calc" id="d1"></div>
 <img class="fallback" id="f1" src="graphs/g1_primitives.png" alt="The four primitives srx, sxp, cxp, crx">
 <figcaption><b>Figure 1.</b> The four primitive operators on their domain
-<span class="math">D = ℝ \ {kπ/2}</span>. Seams (gray) at every multiple of π/2; everything stays
+<span class="math">D = ℝ \ {kπ/2}</span>. Seams (gray in the static image) at every multiple of π/2; everything stays
 nonnegative; <span class="math">srx·sxp = 1</span> and <span class="math">cxp·crx = 1</span> pair them as
 reciprocals; a quarter-turn swaps the pairs. <i>Live in Desmos — zoom into a seam.</i></figcaption>
 </figure>
@@ -82,7 +82,7 @@ reciprocals; a quarter-turn swaps the pairs. <i>Live in Desmos — zoom into a s
 <p class="math">srx = |csc x| + cot x,&nbsp;&nbsp; sxp = |csc x| − cot x = 1/srx</p>
 <p class="math">cxp = |sec x| + tan x,&nbsp;&nbsp; crx = |sec x| − tan x = 1/cxp</p>
 <p>The absolute values <i>fold</i> the cosecant and secant upward, so all four stay positive
-wherever they're defined. The gray lines are the <b>seams</b> — the points
+wherever they're defined. The gray lines in the static image are the <b>seams</b> — the points
 <span class="math">x = kπ/2</span> where the underlying trig functions blow up and the primitives
 are undefined. Between seams, each primitive is smooth.</p>
 <p>Three things to notice before any formalism: (1) the curves come in <b>reciprocal pairs</b>
@@ -731,7 +731,8 @@ var GRAPHS = [
  {id:'d2', fb:'f2', vw:{left:-7, right:7, bottom:-12, top:12}, exprs:[
   {latex:'y=\\left|\\frac{1}{\\sin(x)}\\right|+\\frac{\\cos(x)}{\\sin(x)}-\\left|\\frac{1}{\\cos(x)}\\right|+\\frac{\\sin(x)}{\\cos(x)}', color:'#1f77b4'},
   {latex:'y=\\left|\\frac{1}{\\cos(x)}\\right|+\\frac{\\sin(x)}{\\cos(x)}-\\left|\\frac{1}{\\sin(x)}\\right|+\\frac{\\cos(x)}{\\sin(x)}', color:'#ff7f0e'},
-  {latex:'y=\\frac{4}{\\sin(2x)}', color:'#2ca02c', lineStyle:'dashed'}]},
+  {latex:'y=\\left|\\frac{1}{\\sin(x)}\\right|+\\frac{\\cos(x)}{\\sin(x)}-\\left|\\frac{1}{\\cos(x)}\\right|+\\frac{\\sin(x)}{\\cos(x)}+\\left|\\frac{1}{\\cos(x)}\\right|+\\frac{\\sin(x)}{\\cos(x)}-\\left|\\frac{1}{\\sin(x)}\\right|+\\frac{\\cos(x)}{\\sin(x)}', color:'#2ca02c'},
+  {latex:'y=\\frac{4}{\\sin(2x)}', color:'#d62728', lineStyle:'dashed'}]},
  {id:'d3', fb:'f3', vw:{left:-7, right:7, bottom:-1.7, top:1.7}, exprs:[
   {latex:'y=\\operatorname{sign}(\\sin(2x))', color:'#9467bd'}]},
  {id:'d4', fb:'f4', vw:{left:-0.34, right:0.34, bottom:-0.64, top:0.64}, exprs:[
