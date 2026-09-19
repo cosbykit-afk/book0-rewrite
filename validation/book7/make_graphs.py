@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Book 7 static PNG fallbacks. Every plotted expression numerically verified
-in audit_book7.py / audit_book7_symbolic.py before plotting."""
+in verify_book7.py before plotting."""
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")

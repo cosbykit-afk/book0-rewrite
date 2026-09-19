@@ -110,7 +110,7 @@ exact given <span class="math">saw_r = ελ</span>, <span class="math">saw_x = �
 <span class="math">H = ελ(1−λ)</span>, <span class="math">|H| = λ(1−λ)</span>,
 <span class="math">0 &lt; |H| ≤ 1/4</span>, and the equivalent primitive form
 <span class="math">H = AB/((A+B)(AB−1))</span> were verified numerically to
-~1e-15 on four charts. No force law, time law, or observable follows from this section.</div>
+1.1e-13 (worst case) on four charts. No force law, time law, or observable follows from this section.</div>
 
 <h3>§2. The cosine carrier: imbalance times envelope</h3>
 
@@ -119,9 +119,11 @@ exact given <span class="math">saw_r = ελ</span>, <span class="math">saw_x = �
 <img class="fallback" id="f2" src="graphs/g2_cosine.png" alt="Companion cosine decomposition">
 <figcaption><b>Figure 2.</b> The cosine carrier <span class="math">cos(2x)</span> (blue) equals
 directed imbalance <span class="math">ε(1−2λ)</span> times the complementary envelope
-<span class="math">√(1+4λ(1−λ))</span> (green dashed). The bare imbalance
-<span class="math">ε(1−2λ)</span> (orange dotted) is <i>not</i> the cosine — the envelope
-factor is essential. Principal chart shown. <i>Live in Desmos.</i></figcaption>
+<span class="math">√(1+4λ(1−λ))</span> (green dashed); their product (orange dashed) lands
+exactly on the blue curve. The bare imbalance <span class="math">ε(1−2λ)</span> (orange
+dotted) is <i>not</i> the cosine — the envelope factor is essential. Principal chart shown
+in the live embed; the static fallback verifies the same identity over (0, π).
+<i>Live in Desmos.</i></figcaption>
 </figure>
 
 <div class="intuition">
@@ -138,7 +140,7 @@ readouts.</p>
 </div>
 <div class="formal"><span class="tag num">COMPLETED NUMERICAL CHECK</span> <span class="tag ms">MANUSCRIPT ASSERTION</span>
 <b>Formal home:</b> §7.1.2, Theorem 7.1.T2 + Corollaries 7.1.C1–C2. The identity was verified
-numerically to ~1e-15 on all four charts. <b>Audit note:</b> the manuscript's proof asserts
+numerically to 2.2e-13 (worst case) on all four charts. <b>Audit note:</b> the manuscript's proof asserts
 the key product <span class="math">pq = εcos(2x)</span> as supplied by the Book 2 transfer
 construction rather than deriving it; that construction is not re-derived in Book 7 and is
 not independently checked in the Volume I audit, so the <i>proof step</i> is a manuscript
@@ -207,7 +209,7 @@ phase must get it elsewhere or declare it as an extension.</p>
 <span class="math">αβ</span> multiplication is direct algebra; every stated identity
 (<span class="math">p²+q²=2</span>, <span class="math">pq=εcos2x</span>,
 <span class="math">U=ε(a²−b²)</span>, <span class="math">W=2εab</span>,
-<span class="math">U+iW=εζ²</span>) was verified numerically to ~1e-15 on all four charts.
+<span class="math">U+iW=εζ²</span>) was verified numerically to 2.2e-13 (worst case) on all four charts.
 The link <span class="math">p = 1−2λ</span> is inherited Book 2 transfer data (numerically
 confirmed here).</div>
 
@@ -239,7 +241,7 @@ in decomposed coordinates manufactures no independent modes, fields, or phases.<
 <b>Formal home:</b> §7.2, Lemma 7.2.L1, Theorems 7.2.T1–T2, Corollaries 7.2.C1–C3, 7.2.N1.
 Lemma 7.2.L1 is the standard <span class="math">sec²−tan² = csc²−cot² = 1</span>; both
 decompositions are exact algebra on <span class="math">sin x ≠ 0, cos x ≠ 0</span>, verified
-numerically to ~1e-15 including the fully expanded primordial forms.</div>
+numerically to 1.1e-13 (worst case) including the fully expanded primordial forms.</div>
 
 <h3>§6. The carrier as a closed flow with a conserved ellipse</h3>
 
@@ -247,10 +249,11 @@ numerically to ~1e-15 including the fully expanded primordial forms.</div>
 <div class="calc" id="d6"></div>
 <img class="fallback" id="f6" src="graphs/g6_flow.png" alt="Carrier flow and conserved ellipse">
 <figcaption><b>Figure 6.</b> The autonomous linear flow <span class="math">P′ = V</span>,
-<span class="math">V′ = −4P</span> (gray direction field) preserves the ellipse
-<span class="math">V² + 4P² = 1/4</span> (blue) exactly; red dots are orbit points. After
-<span class="math">Q = 2P</span> this is uniform rotation on a circle of radius 1/2.
-<i>Live in Desmos.</i></figcaption>
+<span class="math">V′ = −4P</span> preserves the ellipse
+<span class="math">V² + 4P² = 1/4</span> (blue) exactly. The static fallback shows the gray
+direction field with red orbit dots; the live embed traces the same orbit as a red
+parametric curve. After <span class="math">Q = 2P</span> this is uniform rotation on a
+circle of radius 1/2. <i>Live in Desmos (direction field in fallback only).</i></figcaption>
 </figure>
 
 <div class="intuition">
@@ -273,7 +276,7 @@ does not make it measured energy.</p>
 7.3.N1–N2. Differentiation identities verified exactly with SymPy; the matrix identities
 <span class="math">A² = −4I</span>, <span class="math">AᵀG + GA = 0</span>, the evolution
 operator, and <span class="math">H = 1/8</span> on the orbit checked numerically to
-~1e-16. The Hamiltonian/Lagrangian realizations are exact <i>after the canonical
+2.2e-16 (worst case). The Hamiltonian/Lagrangian realizations are exact <i>after the canonical
 two-form is declared</i> — the declaration is part of the result, not smuggled in.</div>
 
 <h3>§7. The hyperbolic parent, projectively linearized</h3>
@@ -281,12 +284,12 @@ two-form is declared</i> — the declaration is part of the result, not smuggled
 <figure class="graph">
 <div class="calc" id="d7"></div>
 <img class="fallback" id="f7" src="graphs/g7_hyperbola.png" alt="Hyperbolic parent and projective circle">
-<figcaption><b>Figure 7.</b> Left: the hyperbolic parent <span class="math">Σ² − Δ² = 16</span>
-(blue/orange branches, gray asymptotes). Right: its projective image
-<span class="math">(Q, S) = (Δ/Σ, 4/Σ)</span> — the doubled unit circle. The nonlinear
-parent flow projectively <i>linearizes</i> to the constant-coefficient rotation
-<span class="math">S′ = 2Q</span>, <span class="math">Q′ = −2S</span>. <i>Live in Desmos
-(hyperbola shown).</i></figcaption>
+<figcaption><b>Figure 7.</b> The static fallback, left: the hyperbolic parent
+<span class="math">Σ² − Δ² = 16</span> (blue/purple branches, gray asymptotes); right: its
+projective image <span class="math">(Q, S) = (Δ/Σ, 4/Σ)</span> — the doubled unit circle.
+The nonlinear parent flow projectively <i>linearizes</i> to the constant-coefficient
+rotation <span class="math">S′ = 2Q</span>, <span class="math">Q′ = −2S</span>.
+<i>Live in Desmos (hyperbola panel only).</i></figcaption>
 </figure>
 
 <div class="intuition">
@@ -317,7 +320,8 @@ from it.</p>
 <b>Formal home:</b> §7.4, Theorems 7.4.T1–T7, Corollaries 7.4.C1–C10, Research Extension
 7.4.E1. The hyperbolic identity, projective completion, parent flow, linearization,
 reciprocal factorization, exponential and rational coordinates were verified exactly
-(SymPy) and numerically (~1e-12) on all charts. The <span class="math">K</span>-level
+(SymPy) and numerically (1.1e-10 relative, worst case — absolute errors grow only where
+<span class="math">|Σ|,|Δ|</span> blow up near seams) on all charts. The <span class="math">K</span>-level
 classification is an <b>explicitly labeled lawful mathematical extension</b>, not an
 inherited theorem; the certified carrier fixes <span class="math">K = 16</span>. The link
 "constant-coefficient two-state flow of Book 5" is a <span class="tag ms">manuscript assertion</span>:
@@ -332,37 +336,37 @@ symbolic check · completed numerical check · standard imported theorem · manu
 assertion · assumption or axiom · incorrect result · incomplete or failed computation</i>.</p>
 <table class="audit">
 <tr><th>Claim</th><th>Scope label</th><th>Basis</th></tr>
-<tr><td>7.1.T1 Saw balance-product identity</td><td><span class="tag cert">checked proof</span> <span class="tag num">completed numerical check</span></td><td>Parallel-sum algebra exact given Book 2 transfer data; identities verified to ~1e-15 on four charts.</td></tr>
+<tr><td>7.1.T1 Saw balance-product identity</td><td><span class="tag cert">checked proof</span> <span class="tag num">completed numerical check</span></td><td>Parallel-sum algebra exact given Book 2 transfer data; identities verified to 1.1e-13 (worst case) on four charts.</td></tr>
 <tr><td>7.1.C1 endpoint/balance structure</td><td><span class="tag cert">checked proof</span></td><td><span class="math">λ(1−λ) ≤ 1/4</span> elementary; uniqueness at <span class="math">λ=1/2</span> exact.</td></tr>
-<tr><td>7.1.T2 companion cosine decomposition</td><td><span class="tag num">completed numerical check</span> <span class="tag sym">completed symbolic check</span></td><td>Identity verified independently: numerically to ~1e-15 on all four charts, and magnitude + sign proved symbolically on the principal chart (SymPy). The manuscript's derivation step — <span class="math">pq=εcos2x</span> as supplied by the Book 2 transfer construction — is <span class="tag ms">asserted, not derived</span>; §7.1.4's direct <span class="math">αβ</span> computation re-derives the identity from <span class="math">α=sgn(sin x)</span>, <span class="math">β=sgn(cos x)</span> without the transfer construction (see §9).</td></tr>
+<tr><td>7.1.T2 companion cosine decomposition</td><td><span class="tag num">completed numerical check</span> <span class="tag sym">completed symbolic check</span></td><td>Identity verified independently: numerically to 2.2e-13 (worst case) on all four charts, and magnitude + sign proved symbolically on the principal chart (SymPy). The manuscript's derivation step — <span class="math">pq=εcos2x</span> as supplied by the Book 2 transfer construction — is <span class="tag ms">asserted, not derived</span>; §7.1.4's direct <span class="math">αβ</span> computation re-derives the identity from <span class="math">α=sgn(sin x)</span>, <span class="math">β=sgn(cos x)</span> without the transfer construction (see §9).</td></tr>
 <tr><td>7.1.C2 differential companion</td><td><span class="tag sym">completed symbolic check</span></td><td><span class="math">cos2x = 2H′</span> exact via SymPy.</td></tr>
 <tr><td>7.1 temporary D/N calculation</td><td><span class="tag num">completed numerical check</span></td><td><span class="math">N = 4cot2x</span> follows from Book 2's proved <span class="math">A=2cot x, B=2tan x</span>; <span class="math">D²−N²=16</span> standard.</td></tr>
 <tr><td>7.1.T3 carrier phasor theorem</td><td><span class="tag std">standard imported theorem</span> <span class="tag num">completed numerical check</span></td><td>Euler's identity; <span class="math">2V+i4H=e^{2ix}</span> already in Book 2, re-verified.</td></tr>
-<tr><td>7.1.T4 transfer–carrier quadratic map</td><td><span class="tag cert">checked proof</span> <span class="tag num">completed numerical check</span></td><td><span class="math">αβ</span> algebra direct; all identities ~1e-15 on four charts.</td></tr>
+<tr><td>7.1.T4 transfer–carrier quadratic map</td><td><span class="tag cert">checked proof</span> <span class="tag num">completed numerical check</span></td><td><span class="math">αβ</span> algebra direct; all identities 2.2e-13 or better (worst case) on four charts.</td></tr>
 <tr><td>7.2.L1 reciprocal conjugates</td><td><span class="tag std">standard imported theorem</span></td><td><span class="math">sec²−tan²=csc²−cot²=1</span>.</td></tr>
-<tr><td>7.2.T1 UNA reciprocal-sum decomposition</td><td><span class="tag cert">checked proof</span> <span class="tag num">completed numerical check</span></td><td>Absolute-value cancellation exact; expanded form ~1e-15.</td></tr>
-<tr><td>7.2.T2 reciprocal-square decomposition</td><td><span class="tag cert">checked proof</span> <span class="tag num">completed numerical check</span></td><td>Exact algebra; expanded primordial form ~1e-16.</td></tr>
+<tr><td>7.2.T1 UNA reciprocal-sum decomposition</td><td><span class="tag cert">checked proof</span> <span class="tag num">completed numerical check</span></td><td>Absolute-value cancellation exact; expanded form 1.1e-13 (worst case).</td></tr>
+<tr><td>7.2.T2 reciprocal-square decomposition</td><td><span class="tag cert">checked proof</span> <span class="tag num">completed numerical check</span></td><td>Exact algebra; expanded primordial form 3.3e-16 (worst case).</td></tr>
 <tr><td>7.3.T1 closed first-order carrier flow</td><td><span class="tag sym">completed symbolic check</span></td><td>Differentiation exact via SymPy.</td></tr>
 <tr><td>7.3.T2 conserved quadratic form</td><td><span class="tag sym">completed symbolic check</span> <span class="tag num">completed numerical check</span></td><td><span class="math">dE/dx=0</span> exact; <span class="math">E=1/4</span> on orbit.</td></tr>
-<tr><td>7.3.C2–C4 generator, evolution operator, circular normalization</td><td><span class="tag cert">checked proof</span> <span class="tag num">completed numerical check</span></td><td>Matrix identities exact; evolution operator ~1e-16.</td></tr>
+<tr><td>7.3.C2–C4 generator, evolution operator, circular normalization</td><td><span class="tag cert">checked proof</span> <span class="tag num">completed numerical check</span></td><td>Matrix identities exact; evolution operator 2.2e-16 (worst case).</td></tr>
 <tr><td>7.3.T3 formal Hamiltonian realization</td><td><span class="tag cert">checked proof</span></td><td>Exact <i>conditional on the declared two-form</i> <span class="math">ω=dP∧dV</span>; declaration is explicit. <span class="tag ms">manuscript assertion</span> would be calling it physical energy — the book explicitly does not.</td></tr>
-<tr><td>7.4.T1 hyperbolic parent identity</td><td><span class="tag cert">checked proof</span> <span class="tag num">completed numerical check</span></td><td>Envelope cancellation exact; ~1e-12 on four charts. Core identities also in Volume I ledger as proved (Book 2, 2.XI.L).</td></tr>
-<tr><td>7.4.T2 projective double-angle completion</td><td><span class="tag cert">checked proof</span> <span class="tag num">completed numerical check</span></td><td>Exact algebra; ~1e-14.</td></tr>
+<tr><td>7.4.T1 hyperbolic parent identity</td><td><span class="tag cert">checked proof</span> <span class="tag num">completed numerical check</span></td><td>Envelope cancellation exact; 1.1e-10 relative (worst case) on four charts. Core identities also in Volume I ledger as proved (Book 2, 2.XI.L).</td></tr>
+<tr><td>7.4.T2 projective double-angle completion</td><td><span class="tag cert">checked proof</span> <span class="tag num">completed numerical check</span></td><td>Exact algebra; 8.9e-16 (worst case).</td></tr>
 <tr><td>7.4.T3–T5 parent flow, first integral, projective linearization</td><td><span class="tag sym">completed symbolic check</span></td><td>All differentiation/quotient identities exact via SymPy.</td></tr>
-<tr><td>7.4.T6–T7, C6–C10 reciprocal factorization, exponential/rational coordinates</td><td><span class="tag sym">completed symbolic check</span> <span class="tag num">completed numerical check</span></td><td><span class="math">L₊=|cot x|</span>, <span class="math">w′=−Σ/2</span>, Riccati law exact; rational forms ~1e-14.</td></tr>
+<tr><td>7.4.T6–T7, C6–C10 reciprocal factorization, exponential/rational coordinates</td><td><span class="tag sym">completed symbolic check</span> <span class="tag num">completed numerical check</span></td><td><span class="math">L₊=|cot x|</span>, <span class="math">w′=−Σ/2</span>, Riccati law exact; rational forms 2.2e-13 (worst case).</td></tr>
 <tr><td>7.4.E1 conserved-level deformation + classification</td><td><span class="tag sym">completed symbolic check</span> <span class="tag ms">manuscript assertion</span></td><td>Algebra exact; <i>status</i> is explicitly a lawful mathematical extension, not an inherited theorem. Certified carrier fixes <span class="math">K=16</span>.</td></tr>
 <tr><td>7.4.CL2 (clarification)</td><td><span class="tag bad">incorrect result</span></td><td><b>Sign error:</b> from <span class="math">λ=(1+sin x−cos x)/2</span> follows <span class="math">2λ−1 = sin x − cos x</span>, not <span class="math">cos x − sin x</span> as printed. The conclusion (<span class="math">2λ−1 ≠ cos2x</span>) is unaffected.</td></tr>
 <tr><td>Negative theorems 7.3.N1–N2, 7.4.N1, 7.1.N1, 7.2.N1; clarifications 7.1.CL1, 7.4.CL1, 7.4.CL2(coord)</td><td><span class="tag cert">checked proof</span></td><td>Scope statements; the mathematics they guard is as stated. (7.4.CL2's sign slip flagged above.)</td></tr>
 </table>
 <p>No claim in Book 7 required the label <span class="tag inc">incomplete or failed computation</span>:
-every numerical and symbolic check ran to completion (78 numeric assertions, 23 symbolic assertions,
-all passing). No physics was imported.</p>
+every numerical and symbolic check ran to completion (89 assertions: 29 checked-proof +
+34 numerical + 26 symbolic, all passing; worst measured error 3.7e-10 relative). No physics was imported.</p>
 
 <h3>§9. Dependency verdicts against the Volume I ledger</h3>
 <ul class="tight">
 <li><b>Book 2 reciprocal/UNA spine</b> (<span class="math">saw_r=1/urx</span>, <span class="math">saw_x=1/uxp</span>, <span class="math">H=1/(urx+uxp)=sin2x/4</span>, <span class="math">urx+uxp=4/sin2x</span>, <span class="math">ε=saw_r+saw_x=sgn(sin2x)</span>, <span class="math">Z_{car}=2V+i4H=e^{2ix}</span>, Σ²−Δ²=16 family): <span class="tag cert">earned</span> — present in the ledger as proved (independent numeric checks, ~1e-13).</li>
 <li><b>Book 2 transfer coordinate λ</b> (<span class="math">saw_r=ελ</span>, <span class="math">saw_x=ε(1−λ)</span>, <span class="math">p=1−2λ</span>, <span class="math">pq=εcos2x</span> as "supplied by the transfer construction"): <span class="tag ms">manuscript assertion</span> — the Volume I ledger records a dependency-labeling defect on the "certified" λ in Book 2 and marks the transfer-construction sections as read but not independently checked, so the upstream derivation is asserted, not derived. The identities themselves were verified numerically here on four charts (the cosine identity additionally symbolically on the principal chart), so Book 7's use is numerically grounded but the upstream certification label is unsupported.</li>
-<li><b>Principal-branch formula <span class="math">λ=(1+sin x−cos x)/2</span></b>: not itemized in the ledger; <span class="tag num">completed numerical check</span> here (matches <span class="math">ε·saw_r</span> on the principal chart to ~1e-15).</li>
+<li><b>Principal-branch formula <span class="math">λ=(1+sin x−cos x)/2</span></b>: not itemized in the ledger; <span class="tag num">completed numerical check</span> here (matches <span class="math">ε·saw_r</span> on the principal chart to 3.3e-16).</li>
 <li><b>Book 5 constant-coefficient two-state flow / "Axiom Zero realized at doubled phase"</b> (§7.4 conclusion, 7.4.C3): <span class="tag ms">manuscript assertion</span> — the Volume I ledger does not list a Book 5 linear-flow theorem as earned; Book 5's Axiom Zero is recorded as an <i>assumption</i>. Book 7's return to the Book 5 flow is lawful inheritance, but its status is <b>conditional on Axiom Zero</b>, not an independently proved upstream result.</li>
 <li><b>Ordinary background mathematics</b> (Euler's formula, trig identities, differentiation, matrix algebra, Hamiltonian/Lagrangian formalism after declaration): <span class="tag std">standard imported theorem</span> — permitted by the volume dependency rule.</li>
 <li><b>Physics imports:</b> none. The manuscript declares none, and the negative theorems plus the signature firewall (7.4.CL1) explicitly refuse physical readings of <span class="math">x</span>, <span class="math">H</span>, <span class="math">E</span>, <span class="math">Σ²−Δ²</span>. FlatWave is never assigned probability/time/charge/chirality/helicity meaning. <span class="tag cert">Dependency rule satisfied.</span></li>
@@ -373,27 +377,34 @@ all passing). No physics was imported.</p>
 <li><b>Container/config ID match:</b> automated test parses this page — every Desmos config target (<span class="math">d1…d7</span>) exists exactly once as a <span class="math">&lt;div class="calc"&gt;</span> container, and every fallback id (<span class="math">f1…f7</span>) matches an existing non-empty PNG. <b>Result: pass</b> (see test output below).</li>
 <li><b>Negative control:</b> the same test run against a deliberately corrupted copy (one config retargeted to a nonexistent <span class="math">e4</span>) <b>correctly fails</b>, demonstrating the test catches the Book 1-class mismatch.</li>
 <li><b>PNG fallbacks:</b> all 7 exist, non-empty, valid image dimensions.</li>
-<li><b>Plotted math:</b> every plotted expression was executed and numerically verified in the audit scripts before rendering (max errors ~1e-12 or better).</li>
+<li><b>Plotted math:</b> every plotted expression was executed and numerically verified in
+validation/book7/verify_book7.py before rendering (worst measured error 3.7e-10 relative;
+worst among page-claim checks 1.1e-10 relative).</li>
 <li><b>Honest limitation:</b> live Desmos rendering was <i>not</i> browser-verified (no live browser available to the audit worker). Static verification + numerical verification of the plotted math is the standard applied; the page states this.</li>
 </ul>
-<div class="ledger">GRAPH EMBED TEST — run 2026-09-18, automated parse of this page
+<div class="ledger">GRAPH EMBED TEST — run 2026-09-19, automated parse of this page
+(validation/book7/test_embeds.py)
 --- book7/index.html (as shipped) ---
 configs=7 containers=7 fallbacks=7
 RESULT: PASS
   every config target d1..d7 exists exactly once as a container;
-  every fallback f1..f7 matches an existing non-empty PNG in graphs/.
+  every fallback f1..f7 matches an existing non-empty PNG in graphs/;
+  every plotted formula fragment present in the embedded LaTeX.
 --- negative control (config d4 retargeted to nonexistent e4) ---
 FAIL: container 'd4' has no config targeting it
 FAIL: fallback 'f4' not referenced by any config
 RESULT: FAIL (mismatch correctly caught)
 PNG fallbacks: 7/7 present, non-empty, valid dimensions.
-Plotted expressions: executed and numerically verified (audit scripts, max err ~1e-12).
+Plotted expressions: executed and numerically verified (validation/book7/verify_book7.py,
+89 assertions: 29 checked-proof + 34 numerical + 26 symbolic, all passing).
+Worst measured error 3.7e-10 (relative, on the Omega editorial-convention check);
+worst among page-claim checks 1.1e-10 (relative, on Sig^2-Del^2=16).
 Live Desmos rendering: NOT browser-verified (no live browser in audit environment).</div>
 
 <h2 id="part3">Part III — Close the book</h2>
 
 <h3>§11. Exact mathematics — "certified" status as <span class="tag ms">manuscript assertion</span></h3>
-<p><span class="tag ms">manuscript assertion</span> on the status label: "certified" is the manuscript's own status term (source.txt lines 1–9) and is not earned under the Volume I ledger labels. The identities listed below were numerically rechecked here — 78 numeric assertions to ~1e-12 or better, 23 symbolic assertions exact.</p>
+<p><span class="tag ms">manuscript assertion</span> on the status label: "certified" is the manuscript's own status term (source.txt lines 1–9) and is not earned under the Volume I ledger labels. The identities listed below were numerically rechecked here — 89 assertions (29 checked-proof + 34 numerical + 26 symbolic, all passing; worst measured error 3.7e-10 relative).</p>
 <p>Book 7 establishes: the normalized double-angle carrier from the bounded transfer variables;
 its quadratic-image relation to the normalized transfer circle; the hyperbolic parent identity
 <span class="math">Σ²−Δ²=16</span> and its projective map to the doubled unit circle; the closed
@@ -425,7 +436,7 @@ nature, spacetime geometry, gauge structure, electromagnetism, quantum dynamics,
 empirical observable distinct from accepted physics. It does not create an independent U(1)
 phase: every carrier coordinate here is driven by the same scalar <span class="math">x</span>.</p>
 <div class="ledger">BOOK 7 FINAL STATUS
-FORMAL CORE: "certified" status is a <span class="tag ms">manuscript assertion</span> — not earned under the Volume I ledger labels; the underlying identities were numerically rechecked here (78 assertions, ~1e-12 or better). One sign slip in Clarification 7.4.CL2 flagged above; conclusion unaffected.
+FORMAL CORE: "certified" status is a <span class="tag ms">manuscript assertion</span> — not earned under the Volume I ledger labels; the underlying identities were numerically rechecked here (89 assertions: 29 checked-proof + 34 numerical + 26 symbolic, worst measured error 3.7e-10 relative). One sign slip in Clarification 7.4.CL2 flagged above; conclusion unaffected.
 EXTENSION LEDGER: 7.4.E1 classification explicit; K fixed at 16 for the certified carrier.
 PHYSICAL CONTENT DERIVED: none. PHYSICS IMPORTS: 0.
 BOOK 8 HANDOFF: inherits the exact carrier mathematics (reciprocal transfer, paired
@@ -443,15 +454,16 @@ browser-verified from the audit environment) with numerically verified static fa
 
 <script>
 var GRAPHS = [
- {id:'d1', fb:'f1', vw:{left:-0.2, right:1.8, bottom:-0.35, top:1.15}, exprs:[
+ {id:'d1', fb:'f1', vw:{left:0, right:1.57, bottom:-0.35, top:1.15}, exprs:[
   {latex:'y=\\frac{1+\\sin(x)-\\cos(x)}{2}', color:'#2ca02c'},
   {latex:'y=1-\\frac{1+\\sin(x)-\\cos(x)}{2}', color:'#d62728'},
   {latex:'y=\\left(\\frac{1+\\sin(x)-\\cos(x)}{2}\\right)\\left(1-\\frac{1+\\sin(x)-\\cos(x)}{2}\\right)', color:'#ff7f0e'},
   {latex:'y=\\frac{\\sin(2x)}{4}', color:'#1f77b4', lineStyle:'dashed'}]},
- {id:'d2', fb:'f2', vw:{left:-0.2, right:1.75, bottom:-1.9, top:1.9}, exprs:[
+ {id:'d2', fb:'f2', vw:{left:0, right:1.57, bottom:-1.9, top:1.9}, exprs:[
   {latex:'L(x)=\\frac{1+\\sin(x)-\\cos(x)}{2}', color:'#999999'},
   {latex:'y=\\cos(2x)', color:'#1f77b4'},
   {latex:'y=\\left(1-2L(x)\\right)\\sqrt{1+4L(x)\\left(1-L(x)\\right)}', color:'#ff7f0e', lineStyle:'dashed'},
+  {latex:'y=1-2L(x)', color:'#ff7f0e', lineStyle:'dotted'},
   {latex:'y=\\sqrt{1+4L(x)\\left(1-L(x)\\right)}', color:'#2ca02c', lineStyle:'dashed'},
   {latex:'y=-\\sqrt{1+4L(x)\\left(1-L(x)\\right)}', color:'#2ca02c', lineStyle:'dashed'}]},
  {id:'d3', fb:'f3', vw:{left:-1.3, right:1.3, bottom:-1.3, top:1.3}, exprs:[
@@ -487,6 +499,7 @@ function initAll(){
       g.exprs.forEach(function(e, i){
         var cfg = {id:'e'+i, latex:e.latex, color:e.color};
         if(e.lineStyle === 'dashed') cfg.lineStyle = Desmos.Styles.DASHED;
+        if(e.lineStyle === 'dotted') cfg.lineStyle = Desmos.Styles.DOTTED;
         if(e.showLabel){ cfg.showLabel = true; cfg.label = e.label; }
         calc.setExpression(cfg);
       });
