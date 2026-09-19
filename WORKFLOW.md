@@ -127,4 +127,42 @@ is declared clean only when every item below is done:
 
 When a book is clean, its changes are committed and pushed to GitHub under
 the §5 push discipline. Book 0 completed this cycle 2026-09-19 and is the
-reference implementation for the rest of the series.
+reference implementation for the rest of the series. Books 0–19 completed
+the cycle 2026-09-19.
+
+## 8. Research closure and the dependency chain
+
+The cleaning pipeline (§7) ships books that are *honest* — every page claim
+is verified and every open item is labeled. It does not close the research:
+the items the audit marks OPEN / IN / CONDITIONAL stay open on a clean page,
+correctly labeled. Closing them is a separate track with its own map.
+
+**Closure** means establishing the open items — turning the manuscript's
+"remains OPEN" admissions into earned values. The audit's headline measure
+is Δ_op: the set of operational differences the work establishes. Today
+Δ_op(Volume IV) = ∅. Closure moves it.
+
+The map is the **dependency chain** (`~/workspace/vol4/DEPENDENCY_CHAIN.md`),
+derived from the notation ledger: six layers from the atomic missing inputs
+(explicit γ_i, B, Π_−, conventions, SO(16) branching rules) up through the
+C8 contraction, the S_F numerical value, the physical choices (ζ_parent,
+η_−4), to the y_2 physical matching — plus the side calculations that are
+needed in the end but sit off the critical path (M/B recomputation, V_E⁴
+role, S_F normalization settlement, A_y Module 32, and others).
+
+Rules for this track:
+
+1. **It never gates a book.** A book ships when it is clean (§7), open
+   research underneath it notwithstanding. The chain is background work;
+   it must not slow the workflow.
+2. **The critical path jumps around.** The chain names the current
+   bottleneck (today: the Layer 0 Clifford inputs, per v1 §18.6), but as
+   layers close the bottleneck moves — first to the contraction execution,
+   then to the physical choices. The chain's §4 pointer is re-pointed each
+   time a layer closes; the layer map itself stays.
+3. **No new mathematics is asserted in the chain.** Every dependency
+   traces to a ledger entry or a cited v1 line. The chain is planning, not
+   proof.
+4. **Physical choices are flagged as choices.** ζ_parent (parent action)
+   and η_−4 (UV footprint) are not closable by computation — the chain
+   records them as gates, not as gaps to be computed through.
