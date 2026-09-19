@@ -1,9 +1,9 @@
 # LEDGER — Volume IV v1, chunk 1: §§17.1–17.5 (doc lines 2771–2998 + stub 150–410)
 
 Script: `~/workspace/vol4/book17/audit_17_1.py`
-Run: 2026-09-18. **92 assertions passed, 0 failed, no timeout.**
+Run: 2026-09-19. **116 assertions passed, 0 failed, no timeout.**
 
-Published ledger: **CP 83 · NC 9 · IC 3** (incorrect-as-stated findings below).
+Published ledger: **CP 107 · NC 9 · IC 3** (incorrect-as-stated findings below).
 No ST / MA / AX / IN in this chunk beyond terminology notes.
 
 ## Verified (CP)
@@ -26,7 +26,29 @@ No ST / MA / AX / IN in this chunk beyond terminology notes.
   exact derivative-sign analysis on each octant (8 derivative formulae
   verified symbolically; signs elementary on each interval).
   Verified structural observation: the "active pair" members are exactly the
-  two primitives > 1 in each octant; the inactive pair are both < 1.
+  two primitives > 1 in each octant; the inactive pair are both in (0,1).
+  Exact proof, 24 new script assertions: with t = tan(x/2),
+  sin x = 2t/(1+t²), cos x = (1−t²)/(1+t²) (both verified exactly), and
+  tan(x/2) strictly increasing on each octant, t ranges over exact open
+  intervals — oct1 (0,√2−1), oct2 (√2−1,1), oct3 (1,√2+1), oct4 (√2+1,∞),
+  oct5 (−∞,−(√2+1)), oct6 (−(√2+1),−1), oct7 (−1,−(√2−1)), oct8 (−(√2−1),0)
+  (boundary values tan(kπ/8) verified exactly; 0 and ±∞ are limits).
+  The script verifies exactly, per octant, srx−1 and cxp−1 in factored
+  t-form — 16 identities, e.g. oct1: srx−1 = (1−t)/t, cxp−1 = 2t/(1−t);
+  oct3: srx−1 = (1−t)/t, cxp−1 = −2/(t+1); oct5: srx−1 = −(t+1),
+  cxp−1 = −2/(t+1); oct7: srx−1 = −(t+1), cxp−1 = 2t/(1−t) (octant pairs
+  sharing a quadrant verify the same identity, stated per octant for
+  explicitness). Constant facts 0 < √2−1 < 1 and √2+1 > 1 verified exactly
+  as (√2)² = 2 > 1 and (√2)² = 2 < 4 (√2 > 0 principal root). Signs are then
+  elementary on each interval — every factor is linear with roots in
+  {0, ±1}, none inside the corresponding open t-interval: oct1,2:
+  (1−t)/t > 0 and 2t/(1−t) > 0, so srx > 1, cxp > 1 (active pair (srx,cxp)
+  per the manuscript table); oct3,4: (1−t)/t < 0, −2/(t+1) < 0 with
+  srx,cxp > 0, so srx,cxp ∈ (0,1), i.e. crx = 1/cxp > 1, sxp = 1/srx > 1
+  (active pair (crx,sxp)); oct5,6: −(t+1) > 0, −2/(t+1) > 0, so srx > 1,
+  cxp > 1; oct7,8: −(t+1) < 0, 2t/(1−t) < 0 with srx,cxp > 0, so
+  srx,cxp ∈ (0,1), i.e. crx > 1, sxp > 1. Exactly two primitives exceed 1
+  on each open octant: the active pair.
 - **§17.1.5/17.1.6 (three-bit code)**: the 8 codes are all of Z₂³; every
   octant decodes correctly under (half-quadrant, sgn cos 2x, sgn cos x).
 - **Stub §17.1.4 (Flatwave/carrier duality)**: `1/urx + 1/uxp =
@@ -48,8 +70,12 @@ No ST / MA / AX / IN in this chunk beyond terminology notes.
 ## Numerical checks (NC)
 
 - Dense-grid tripwires for §§17.1.1–17.1.2 (relative error < 1e-9 away from
-  poles; pole neighborhoods excluded — both sides blow up like 1/sin 2x,
-  so absolute-error tripwires there measure floating-point noise, not truth).
+  poles; pole neighborhoods excluded). Disclosure: an initial absolute-error
+  dense-grid test FAILED near the poles — both sides blow up like 1/sin 2x,
+  so absolute error there measures floating-point cancellation noise, not
+  truth. It was replaced by relative-error tripwires with pole neighborhoods
+  excluded, after the exact symbolic quadrant proofs above had already
+  passed. The committed script contains only the relative-error version.
 - `dw/dx` finite-difference tripwire (rel err 6.1e-10).
 - `V_E = √(4+2√2)+1+√2 ≈ 5.0273`, `V_E⁴ ≈ 638.78` (manuscript: 638.78 /
   638.7 in the two copies — consistent rounding).
@@ -90,7 +116,7 @@ No ST / MA / AX / IN in this chunk beyond terminology notes.
 Book 19. The wrong-radical IC-2 sits in §17.3.5, which belongs to the
 continued-calc block — flagged here since it concerns §17.3 content.
 
-## Addendum (2026-09-18): Flatwave on Q1/Q3
+## Addendum (2026-09-19): Flatwave on Q1/Q3
 
 Verified structural observation, not claimed by the manuscript: with
 `Flatwave = 1/urx + 1/uxp`, we have **Flatwave ≡ 1 exactly on quadrants 1

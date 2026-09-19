@@ -6,6 +6,8 @@ plus the stub section 17.1 at doc lines 150-410 for cross-consistency).
 Sections covered: 17.1 (primitive octant decomposition), 17.2 (2:1 elliptic
 map), 17.3 (rapidity values), 17.4 (C8 <-> octant correspondence),
 17.5 (open gates), and stub-only 17.1.4 (Flatwave/carrier duality).
+17.1.4 active-pair structure (active pair = exactly the two primitives > 1
+per octant) proved exactly via the t = tan(x/2) substitution.
 
 Status taxonomy: CP checked proof | SC symbolic check | NC numerical check |
 ST standard theorem | MA manuscript assertion | AX assumption |
@@ -157,6 +159,88 @@ check("oct7: d(cxp)/dx = (1+s)/c^2",
 # oct8: d/dx srx = (c-1)/s^2 <= 0 on (3pi/2,2pi) -> sxp grows
 check("oct8: d(srx)/dx = (c-1)/s^2",
       sp.simplify(sp.diff((c - 1)/s, x) - (c - 1)/s**2) == 0, "CP")
+
+# ---------- 17.1.4 active pair: exact >1 / <1 structure ----------
+# Manuscript octant table (raw doc lines 2851-2862): the active pair alternates
+# every two octants: octs 1,2,5,6 -> (srx,cxp); octs 3,4,7,8 -> (crx,sxp).
+# Claim: on each open octant the active pair members are exactly the two
+# primitives > 1; the inactive pair are both in (0,1).
+# Exact route: t = tan(x/2). tan(x/2) is strictly increasing in x on every
+# octant (d/dx = sec^2(x/2)/2 > 0), hence a bijection x-interval -> t-interval:
+#   oct1 (0,45deg): t in (0,sqrt2-1)      oct5 (180,225deg): t in (-oo,-(sqrt2+1))
+#   oct2 (45,90deg): t in (sqrt2-1,1)     oct6 (225,270deg): t in (-(sqrt2+1),-1)
+#   oct3 (90,135deg): t in (1,sqrt2+1)    oct7 (270,315deg): t in (-1,-(sqrt2-1))
+#   oct4 (135,180deg): t in (sqrt2+1,oo)  oct8 (315,360deg): t in (-(sqrt2-1),0)
+# srx, cxp become rational functions of t; srx-1 and cxp-1 factor into linear
+# factors whose roots ({0,+1,-1}) avoid every open t-interval above, so each
+# sign below is constant on its octant (elementary interval sign analysis;
+# the interval/constant facts are the exact checks that follow).
+tt = sp.tan(x/2)
+check("t-sub: sin x = 2t/(1+t^2)",
+      sp.simplify(2*tt/(1+tt**2) - s) == 0, "CP")
+check("t-sub: cos x = (1-t^2)/(1+t^2)",
+      sp.simplify((1-tt**2)/(1+tt**2) - c) == 0, "CP")
+def texact(name, expr):
+    # exact trig identity, proved via the tan(x/2) rewrite
+    check(name, sp.simplify(expr.rewrite(sp.tan)) == 0, "CP")
+# per octant: quadrant form of srx-1 and cxp-1 in factored t-form (exact).
+# Octant pairs sharing a quadrant verify the same identity; stated per octant
+# for explicitness.
+texact("oct1 srx-1 = (1-t)/t, t in (0,sqrt2-1)",
+       (1+c)/s - 1 - (1-tt)/tt)
+texact("oct1 cxp-1 = 2t/(1-t), t in (0,sqrt2-1)",
+       (1+s)/c - 1 - 2*tt/(1-tt))
+texact("oct2 srx-1 = (1-t)/t, t in (sqrt2-1,1)",
+       (1+c)/s - 1 - (1-tt)/tt)
+texact("oct2 cxp-1 = 2t/(1-t), t in (sqrt2-1,1)",
+       (1+s)/c - 1 - 2*tt/(1-tt))
+texact("oct3 srx-1 = (1-t)/t, t in (1,sqrt2+1)",
+       (1+c)/s - 1 - (1-tt)/tt)
+texact("oct3 cxp-1 = -2/(t+1), t in (1,sqrt2+1)",
+       (s-1)/c - 1 + 2/(tt+1))
+texact("oct4 srx-1 = (1-t)/t, t in (sqrt2+1,oo)",
+       (1+c)/s - 1 - (1-tt)/tt)
+texact("oct4 cxp-1 = -2/(t+1), t in (sqrt2+1,oo)",
+       (s-1)/c - 1 + 2/(tt+1))
+texact("oct5 srx-1 = -(t+1), t in (-oo,-(sqrt2+1))",
+       (c-1)/s - 1 + (tt+1))
+texact("oct5 cxp-1 = -2/(t+1), t in (-oo,-(sqrt2+1))",
+       (s-1)/c - 1 + 2/(tt+1))
+texact("oct6 srx-1 = -(t+1), t in (-(sqrt2+1),-1)",
+       (c-1)/s - 1 + (tt+1))
+texact("oct6 cxp-1 = -2/(t+1), t in (-(sqrt2+1),-1)",
+       (s-1)/c - 1 + 2/(tt+1))
+texact("oct7 srx-1 = -(t+1), t in (-1,-(sqrt2-1))",
+       (c-1)/s - 1 + (tt+1))
+texact("oct7 cxp-1 = 2t/(1-t), t in (-1,-(sqrt2-1))",
+       (1+s)/c - 1 - 2*tt/(1-tt))
+texact("oct8 srx-1 = -(t+1), t in (-(sqrt2-1),0)",
+       (c-1)/s - 1 + (tt+1))
+texact("oct8 cxp-1 = 2t/(1-t), t in (-(sqrt2-1),0)",
+       (1+s)/c - 1 - 2*tt/(1-tt))
+# constant interval facts, exact content: (sqrt2)^2 = 2 > 1 gives sqrt2 > 1
+# (principal root, sqrt2 > 0); (sqrt2)^2 = 2 < 4 gives sqrt2 < 2.
+# Hence 0 < sqrt2-1 < 1 and sqrt2+1 > 1.
+check("sqrt(2) > 1  [exact content: (sqrt2)^2 = 2 > 1]", sp.sqrt(2)**2 > 1, "CP")
+check("sqrt(2) < 2  [exact content: (sqrt2)^2 = 2 < 4]", sp.sqrt(2)**2 < 4, "CP")
+# exact octant-boundary values of tan(x/2) (x = k*pi/4 -> x/2 = k*pi/8);
+# the 0 and +-oo endpoints are limits of tan at its zeros/poles.
+check("tan(pi/8) = sqrt(2)-1",
+      sp.simplify(sp.tan(sp.pi/8) - (sp.sqrt(2)-1)) == 0, "CP")
+check("tan(3pi/8) = sqrt(2)+1",
+      sp.simplify(sp.tan(3*sp.pi/8) - (sp.sqrt(2)+1)) == 0, "CP")
+check("tan(5pi/8) = -(sqrt(2)+1)",
+      sp.simplify(sp.tan(5*sp.pi/8) + (sp.sqrt(2)+1)) == 0, "CP")
+check("tan(7pi/8) = -(sqrt(2)-1)",
+      sp.simplify(sp.tan(7*sp.pi/8) + (sp.sqrt(2)-1)) == 0, "CP")
+# Sign conclusions (elementary, from the factored forms + intervals above):
+# oct1,2: (1-t)/t > 0, 2t/(1-t) > 0 -> srx>1, cxp>1 (active (srx,cxp)).
+# oct3,4: (1-t)/t < 0, -2/(t+1) < 0, and srx,cxp > 0 -> srx,cxp in (0,1),
+#   so crx=1/cxp > 1, sxp=1/srx > 1 (active (crx,sxp)).
+# oct5,6: -(t+1) > 0, -2/(t+1) > 0 -> srx>1, cxp>1 (active (srx,cxp)).
+# oct7,8: -(t+1) < 0, 2t/(1-t) < 0, and srx,cxp > 0 -> srx,cxp in (0,1),
+#   so crx > 1, sxp > 1 (active (crx,sxp)).
+# Exactly two primitives exceed 1 on each open octant: the active pair.
 
 # ---------- 17.1.5/17.1.6 three-bit code ----------
 codes = {1: (0, 1, 1), 2: (1, 0, 1), 3: (0, 0, 0), 4: (1, 1, 0),
