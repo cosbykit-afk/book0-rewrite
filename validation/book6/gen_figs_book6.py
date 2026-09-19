@@ -20,16 +20,18 @@ def save(fig, name):
     print("wrote", name)
 
 # ---- Fig 1 (6.1): block structure O(2)xO(3) -------------------------------
+# Orientation matches the Desmos config and the caption: E-block (O(2))
+# lower-left, V-block (O(3)) upper-right, off-diagonal rectangles empty.
 fig, ax = plt.subplots(figsize=(5.2, 5.2))
 for i in range(6):
     ax.plot([0, 5], [i, i], color="black", lw=0.8)
     ax.plot([i, i], [0, 5], color="black", lw=0.8)
-ax.add_patch(Rectangle((0, 3), 2, 2, facecolor=BLUE, alpha=0.35, edgecolor=BLUE, lw=2))
-ax.add_patch(Rectangle((2, 0), 3, 3, facecolor=GREEN, alpha=0.35, edgecolor=GREEN, lw=2))
-ax.text(1, 4, "E-block\nO(2)", ha="center", va="center", fontsize=11, color="#0b3d66")
-ax.text(3.5, 1.5, "V-block\nO(3)", ha="center", va="center", fontsize=11, color="#14532d")
-ax.text(3.5, 4, "no primitive\nmaps", ha="center", va="center", fontsize=9, color=GRAY)
-ax.text(1, 1.5, "no primitive\nmaps", ha="center", va="center", fontsize=9, color=GRAY)
+ax.add_patch(Rectangle((0, 0), 2, 2, facecolor=BLUE, alpha=0.35, edgecolor=BLUE, lw=2))
+ax.add_patch(Rectangle((2, 2), 3, 3, facecolor=GREEN, alpha=0.35, edgecolor=GREEN, lw=2))
+ax.text(1, 1, "E-block\nO(2)", ha="center", va="center", fontsize=11, color="#0b3d66")
+ax.text(3.5, 3.5, "V-block\nO(3)", ha="center", va="center", fontsize=11, color="#14532d")
+ax.text(3.5, 1, "no primitive\nmaps", ha="center", va="center", fontsize=9, color=GRAY)
+ax.text(1, 3.5, "no primitive\nmaps", ha="center", va="center", fontsize=9, color=GRAY)
 ax.set_xlim(-0.15, 5.15); ax.set_ylim(-0.15, 5.15); ax.set_aspect("equal")
 ax.set_xticks([]); ax.set_yticks([])
 ax.set_title("Block structure: Aut_blk = O(2)×O(3)\nso(2)⊕so(3), dim 1+3 = 4", fontsize=12)
