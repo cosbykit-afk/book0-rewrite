@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Book 2 figure verification + PNG fallback generation.
+"""Generate verified PNG fallbacks for Book 2 Desmos graphs.
 
-Every plotted identity is checked numerically with real assertions on
-seam-avoiding grids. These are COMPLETED NUMERICAL CHECKS, never proofs.
-All identities checked are proved in the manuscript text; the checks only
-confirm the plotted curves coincide to floating-point tolerance.
+Each plot uses the EXACT formula that is embedded in the Desmos calculator
+on book2/index.html, so the PNG doubles as verification of the embedded
+expressions. The identities themselves are checked by
+validation/book2/verify_book2.py (V1-V40, all passing, no timeouts).
 
 Outputs: ~/workspace/r-theory-rewrite/book2/graphs/b2_*.png
 """
@@ -17,119 +17,6 @@ import matplotlib.pyplot as plt
 OUT = os.path.expanduser("~/workspace/r-theory-rewrite/book2/graphs")
 os.makedirs(OUT, exist_ok=True)
 
-TOL = 1e-9          # tight tolerance for exact algebraic identities
-TOL_LOOSE = 1e-6    # for finite-difference derivative checks
-
-# ---------------------------------------------------------------- grids
-def D_grid(lo=-7.0, hi=7.0, n=40001, seam_gap=1e-3):
-    x = np.linspace(lo, hi, n)
-    m = (np.abs(np.sin(x)) > seam_gap) & (np.abs(np.cos(x)) > seam_gap)
-    return x[m]
-
-xg = D_grid()                      # common-domain grid, |x|<=7
-sn, cs = np.sin(xg), np.cos(xg)
-
-# canonical primitives (2.I.D1-D3)
-srx = np.abs(1/sn) + cs/sn
-sxp = np.abs(1/sn) - cs/sn
-cxp = np.abs(1/cs) + sn/cs
-crx = np.abs(1/cs) - sn/cs
-
-# UNA differences (2.IV.D1-D2, canonical sign lock)
-urx = srx - crx
-uxp = cxp - sxp
-eps = np.sign(np.sin(2*xg))        # branch sign, nonzero on grid
-
-results = []
-def check(name, err, tol, scope="completed numerical check"):
-    assert np.all(np.isfinite(err)), f"{name}: non-finite values"
-    m = float(np.max(np.abs(err)))
-    assert m < tol, f"{name}: max_error={m} >= tol={tol}"
-    results.append((name, m, tol, scope))
-    print(f"OK  {name}: max_err={m:.3e} < {tol:.0e}")
-
-# ------------------------------------------------- Fig 1: quartet checks
-check("F1 reciprocity srx*sxp=1", srx*sxp - 1, TOL)
-check("F1 reciprocity cxp*crx=1", cxp*crx - 1, TOL)
-assert np.all(srx > 0) and np.all(sxp > 0) and np.all(cxp > 0) and np.all(crx > 0)
-print("OK  F1 positivity: all four > 0 on D grid")
-# threshold law (2.I/2.II): eps=+1 iff both plus-factors > 1 (away from sin2x=0)
-tm = np.abs(np.sin(2*xg)) > 1e-2
-assert np.all(((srx[tm] > 1) & (cxp[tm] > 1)) == (eps[tm] > 0))
-print("OK  F1 threshold law: (srx>1 & cxp>1) <=> eps=+1")
-# principal-chart midpoint: srx(pi/4) = sqrt(2)+1 (2.II.T10)
-assert abs((1/np.sin(np.pi/4) + np.cos(np.pi/4)/np.sin(np.pi/4)) - (np.sqrt(2)+1)) < 1e-12
-print("OK  F1 midpoint srx(pi/4)=sqrt(2)+1")
-
-# ------------------------------------------------- Fig 2: double angle
-s2x = np.sin(2*xg)
-check("F2 sum urx+uxp=4/sin2x",
-      np.abs((urx+uxp) - 4/s2x) / (1 + np.abs(4/s2x)), TOL)
-check("F2 product urx*uxp=4/|sin2x|",
-      np.abs(urx*uxp - 4/np.abs(s2x)) / (1 + np.abs(4/s2x)), TOL)
-check("F2 |sum|=product", np.abs(urx+uxp) - urx*uxp, TOL)
-
-# ------------------------------------------------- Fig 3: FlatWave
-zw = srx*cxp
-fw = (srx + cxp)/(zw - 1)
-assert np.all(np.abs(zw - 1) > 1e-9), "zw-1 too close to 0 on grid"
-check("F3 FlatWave=sgn(sin2x)", fw - eps, 1e-9)
-check("F3 FlatWave^2=1", fw**2 - 1, 1e-12)
-# quadrant character (-1)^k on Q_k
-for k in range(-4, 4):
-    qm = (xg > k*np.pi/2 + 0.05) & (xg < (k+1)*np.pi/2 - 0.05)
-    if np.any(qm):
-        assert np.all(np.abs(fw[qm] - ((-1)**k)) < 1e-9), f"quadrant {k} character"
-print("OK  F3 quadrant character FlatWave=(-1)^k on Q_-4..Q_3")
-
-# ------------------------------------------------- Fig 4: Mobius map
-def Mp(z): return (z+1)/(z-1)          # eps=+1 branch
-def Mm(z): return (1-z)/(1+z)          # eps=-1 branch
-zp = np.linspace(1.001, 8, 20000)
-zm = np.linspace(0.001, 0.999, 20000)
-check("F4 involution M+(M+(z))=z", Mp(Mp(zp)) - zp, TOL)
-check("F4 involution M-(M-(z))=z", Mm(Mm(zm)) - zm, TOL)
-assert np.all(Mp(zp) > 1) and np.all((Mm(zm) > 0) & (Mm(zm) < 1))
-print("OK  F4 branch preservation: M+:I+->I+, M-:I-->I-")
-assert abs(Mp(np.sqrt(2)+1) - (np.sqrt(2)+1)) < 1e-12
-assert abs(Mm(np.sqrt(2)-1) - (np.sqrt(2)-1)) < 1e-12
-print("OK  F4 fixed points sqrt(2)+1 and sqrt(2)-1")
-dMp = (Mp(zp+1e-7) - Mp(zp-1e-7))/2e-7
-dMm = (Mm(zm+1e-7) - Mm(zm-1e-7))/2e-7
-assert np.all(dMp < 0) and np.all(dMm < 0)
-print("OK  F4 strict order reversal on both branches")
-
-# ------------------------------------------------- Fig 5: same-phase reduction
-sm = (np.abs(np.sin(2*xg)) > 1e-3)
-w_meps = (srx[sm] + eps[sm])/(eps[sm]*srx[sm] - 1)
-assert np.all(np.abs(eps[sm]*srx[sm] - 1) > 1e-6), "Mobius denominator near 0"
-check("F5 cxp=M_eps(srx) same phase",
-      np.abs(cxp[sm] - w_meps)/(1 + np.abs(cxp[sm])), TOL)
-
-# ------------------------------------------------- Fig 6: carrier ellipse
-H = np.sin(2*xg)/4
-V = np.cos(2*xg)/2
-check("F6 ellipse V^2+4H^2=1/4", V**2 + 4*H**2 - 0.25, 1e-12)
-U, W = 4*H, 2*V
-check("F6 unit circle U^2+W^2=1", U**2 + W**2 - 1, 1e-12)
-# derivative checks on a uniform seam-free grid (Q_0 interior)
-xu = np.linspace(0.05, 1.5, 40001); dxu = xu[1] - xu[0]
-Hu = np.sin(2*xu)/4; Vu = np.cos(2*xu)/2
-dH = np.gradient(Hu, dxu); dV = np.gradient(Vu, dxu)
-check("F6 H'=V (finite diff)", dH[1:-1] - Vu[1:-1], TOL_LOOSE)
-check("F6 V'=-4H (finite diff)", dV[1:-1] + 4*Hu[1:-1], TOL_LOOSE)
-
-# ------------------------------------------------- Fig 7: harmonic extraction
-check("F7 1/(urx+uxp)=sin2x/4 on D",
-      np.abs(1/(urx+uxp) - np.sin(2*xg)/4)/(1 + np.abs(np.sin(2*xg)/4)), TOL)
-for k in range(-4, 5):
-    assert abs(np.sin(2*(k*np.pi/2))/4) < 1e-15
-print("OK  F7 H(b_k)=0 at seams b_k=k*pi/2")
-check("F7 FlatWave=sgn(H) on D", fw - np.sign(H), 1e-9)
-
-print(f"\nAll {len(results)} numerical checks passed.")
-
-# ================================================================ PNGs
 def seam_mask(x, gap=2e-3):
     return (np.abs(np.sin(x)) < gap) | (np.abs(np.cos(x)) < gap)
 
@@ -237,7 +124,7 @@ ax.set_xlabel("x"); ax.grid(alpha=0.3)
 f.tight_layout(); f.savefig(f"{OUT}/b2_extraction.png", dpi=110); plt.close(f)
 
 sizes = {p: os.path.getsize(os.path.join(OUT, p)) for p in sorted(os.listdir(OUT))}
-print("\nPNG fallbacks written:")
+print("PNG fallbacks written:")
 for p, s in sizes.items():
     assert s > 0, f"{p} is empty"
     print(f"  {p}: {s} bytes")
