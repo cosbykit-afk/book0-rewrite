@@ -3,12 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>R Theory — Volume I · A Visual Rewrite</title>
+<title>R Theory — A Visual Rewrite</title>
 <style>
   :root { --ink:#1a1a1a; --muted:#5a5a5a; --accent:#1b5faa; --paper:#fff; --wash:#f6f8fb; --line:#dfe5ec; }
   body { font-family: -apple-system, "Segoe UI", Georgia, serif; color:var(--ink); background:var(--paper);
          max-width: 860px; margin:0 auto; padding: 24px 20px 80px; line-height:1.65; }
   h1 { font-size:1.9em; line-height:1.25; margin-bottom:.2em; }
+  h2 { margin-top:2em; }
   .sub { color:var(--muted); font-size:1.05em; margin-top:0; }
   .about { background:var(--wash); border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:1.5em 0; }
   .about p { margin:.5em 0; }
@@ -27,16 +28,16 @@
 </style>
 </head>
 <body>
-<h1>R Theory — Volume I</h1>
-<p class="sub">A visual rewrite: pictures and intuition first, the formal audit second.</p>
+<h1>R Theory — A Visual Rewrite</h1>
+<p class="sub">Pictures and intuition first, the formal audit second. Volumes I and II.</p>
 
 <div class="about">
-<p>Each book of the <i>R Theory — Volume I</i> manuscript is restructured the same way: <b>Part I</b> leads with live, interactive graphs and the intuition each one carries; <b>Parts II–IV</b> carry the formal audit with every claim's proof status preserved.</p>
-<p>Graphs are live <a href="https://www.desmos.com">Desmos</a> calculators (internet required); where Desmos cannot load, a static rendering appears instead. The original manuscript is read-only and untouched — these pages are a separate commentary layer.</p>
+<p>Each book of the <i>R Theory</i> manuscript is restructured the same way: <b>Part I</b> leads with live, interactive graphs and the intuition each one carries; <b>Parts II–IV</b> carry the formal audit with every claim's proof status preserved.</p>
+<p>Graphs are live <a href="https://www.desmos.com">Desmos</a> calculators (internet required); where Desmos cannot load, a static rendering appears instead. Live rendering was not browser-verified from the build machine — the static fallbacks carry the verified numbers. The original manuscript is read-only and untouched — these pages are a separate commentary layer.</p>
 <p><span class="tag">Status discipline</span> Every claim carries its status: checked proof, completed symbolic check, completed numerical check, standard imported theorem, manuscript assertion, assumption/axiom — or marked incorrect/incomplete. Nothing is promoted beyond what the mathematics supports. <a href="WORKFLOW.md">How this series is made →</a></p>
 </div>
 
-<h2>The books</h2>
+<h2>Volume I — Books 0–6</h2>
 <div class="books">
   <div class="book done">
     <h3>Book 0 — Source Boundary and the Orientation Question</h3>
@@ -75,8 +76,50 @@
   </div>
 </div>
 
+<h2>Volume II — Books 7–13</h2>
+<div class="about">
+<p>Volume II inherits <b>only</b> results already earned in Volume I, plus ordinary background mathematics and explicitly named physics imports. A familiar physical structure reached after an explicit import is a <b>conditional reconstruction</b>, not a derivation of physical law. FlatWave is not probability, time, charge, chirality, or helicity unless a contract declares it.</p>
+</div>
+<div class="books">
+  <div class="book done">
+    <h3>Book 7 — Classical Dynamics from the Certified Carrier</h3>
+    <p>Reciprocal decomposition of the harmonic carrier, transfer-circle squaring map, primitive reconstruction — 78 numeric + 23 symbolic assertions pass. One sign error and one proof gap flagged in the manuscript. No physics imports.</p>
+    <p><a href="book7/">Read Book 7 →</a></p>
+  </div>
+  <div class="book done">
+    <h3>Book 8 — Pre-Maxwell Geometry and the Compact-Carrier Field Boundary</h3>
+    <p>Covariant derivative, Hodge duality, F∧F, Fubini–Study geometry — 46/46 checks pass. EM frame, charge, and current are explicit imports; the field theory is conditional reconstruction.</p>
+    <p><a href="book8/">Read Book 8 →</a></p>
+  </div>
+  <div class="book done">
+    <h3>Book 9 — Relativity and Gravitation: Conditional Reconstruction</h3>
+    <p>Rapidity identities, rank firewall, Schwarzschild-chart algebra — verified. Gravity after explicit import is conditional reconstruction, not a derivation of GR. One dependency-labeling defect flagged. A short book: 4 figures.</p>
+    <p><a href="book9/">Read Book 9 →</a></p>
+  </div>
+  <div class="book done">
+    <h3>Book 10 — Quantum Kinematics and the Measurement Boundary</h3>
+    <p>Projective-rank obstruction, Dirac-sector ratios, Prüfer reconstruction — all checks pass, no incorrect results. Measurement postulates are kept as declared contracts. 5 figures.</p>
+    <p><a href="book10/">Read Book 10 →</a></p>
+  </div>
+  <div class="book done">
+    <h3>Book 11 — Particle Architecture and Standard Model Comparison</h3>
+    <p>SU(2)/SU(3) structure, anomaly cancellation (exact), charge pattern — 37/37 checks pass. Every Standard Model comparison is conditional on explicit import; Δ_op is empty.</p>
+    <p><a href="book11/">Read Book 11 →</a></p>
+  </div>
+  <div class="book done">
+    <h3>Book 12 — Mass, Frequency, and Harmonic Calibration</h3>
+    <p>55 assertions pass — but one identity is incorrect as stated for general λ (holds only at the native state). Empirical mass matches are witnesses, not derivations.</p>
+    <p><a href="book12/">Read Book 12 →</a></p>
+  </div>
+  <div class="book done">
+    <h3>Book 13 — Thermodynamics, Information, and the Arrow of Time</h3>
+    <p>80 assertions pass; two incorrect-as-stated claims and one incomplete bound flagged. Includes the Volume II closure — the manuscript's own retirement condition is <b>not</b> satisfied, so no retirement is authorized.</p>
+    <p><a href="book13/">Read Book 13 →</a></p>
+  </div>
+</div>
+
 <footer>
-<p>Rewrite series for the <i>R Theory — Volume I</i> manuscript. Pictures illustrate proved statements; they are not the proofs.</p>
+<p>Rewrite series for the <i>R Theory</i> manuscript, Volumes I and II. Pictures illustrate proved statements; they are not the proofs.</p>
 </footer>
 </body>
 </html>
