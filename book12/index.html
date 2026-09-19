@@ -138,7 +138,7 @@ epistemic content, and it is honest.</p>
 <div class="formal"><span class="tag cert">COMPLETED SYMBOLIC CHECK</span> /
 <span class="tag cert">COMPLETED NUMERICAL CHECK</span>
 <b>Formal home:</b> §12.III. The ratio, invariant, inverse, and weak-binding identities
-all verify (the <span class="math">s/(4m₁m₂)</span> form holds to 4×10⁻¹⁶ on a parameter
+all verify (the <span class="math">s/(4m₁m₂)</span> form holds to 4.5×10⁻¹⁶ on a parameter
 grid; <span class="math">B/(2μu²) → 1</span> as <span class="math">B → 0</span>).
 <span class="tag cert">STANDARD IMPORTED THEOREM</span>: the invariant
 <span class="math">s</span> is imported special-relativistic kinematics, labeled as
@@ -616,14 +616,20 @@ limits stay distinct unless an explicit map identifies them. The lock is a
 fence, not a result: it permits inheritance and forbids silent promotion.</p>
 
 <footer>
+<p><b>Rewrite status.</b> Every displayed mathematical identity was re-verified:
+87 real assertions in <span class="math">validation/book12/verify_book12.py</span>,
+all passing, no timeouts. Worst measured grid residual 4.1×10⁻¹⁵ (relative, on
+<span class="math">Ω = cxp/srx</span>; floating-point noise — the identity is exact
+algebra); all symbolic identities exact; Desmos literals agree with the audited
+formulas to display rounding (≤5×10⁻⁵). Embed consistency checked by
+<span class="math">validation/book12/test_embeds.py</span>. Pictures illustrate
+checked statements; they are not the proofs. Live Desmos embeds were <b>not</b>
+browser-verified; static PNG fallbacks are provided.</p>
 <p>Rewrite of Book 12 of <i>R Theory — Volume II</i> (working manuscript). Source span:
 volume2_full.txt lines 4811–5228 (418 lines, 1719 words), copied read-only to
 vol2_book12/source.txt; the Google Doc and the volume source were not modified.
 Restructured: pictures and intuition first (Part I), formal audit second (Part II).
-All theorems, ledgers, and status labels are from the original; no mathematics added.
-Every plotted expression was executed and numerically verified with real assertions
-(vol2_book12/audit_book12.py, 55 assertions; vol2_book12/make_figs.py figure checks).
-Live Desmos embeds were not browser-verified; static PNG fallbacks are provided.</p>
+All theorems, ledgers, and status labels are from the original; no mathematics added.</p>
 </footer>
 
 <script>
