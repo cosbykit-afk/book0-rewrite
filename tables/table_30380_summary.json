@@ -1,0 +1,25 @@
+{
+ "group": "E8",
+ "labeling": "Bourbaki (chain 1-3-4-5-6-7-8, node 2 on 4)",
+ "highest_weight_dynkin": [
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  1,
+  0
+ ],
+ "dimension_weyl": 30380,
+ "n_dominant_weights": 4,
+ "n_distinct_weights": 9121,
+ "sum_multiplicities": 30380,
+ "multiplicity_histogram": {
+  "1": 6720,
+  "7": 2160,
+  "35": 240,
+  "140": 1
+ },
+ "elapsed_s": 0.3
+}
