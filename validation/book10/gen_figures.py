@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Generate the 5 Book 10 PNG figures from the same formulas the audit checked.
-Every number baked into a caption comes from audit_book10.py's verified output.
+Every number baked into a caption comes from verify_book10.py's verified output.
 """
 import numpy as np
 import matplotlib
@@ -30,7 +30,7 @@ def integrate(E, k, ga, r0, rmax, npts=30000):
     assert sol.success
     return sol.t, sol.y[0], sol.y[1]
 
-# ground state (analytic, validated against ODE in the audit to 6.5e-11)
+# ground state (analytic, validated against ODE in the audit to 6.6e-11)
 rg = np.geomspace(1e-3, 1500*(1-1e-9), 6000)
 Fg = np.sqrt(1+GA)*rg**GA*np.exp(-LAM*rg)
 Gg = -np.sqrt(1-GA)*rg**GA*np.exp(-LAM*rg)

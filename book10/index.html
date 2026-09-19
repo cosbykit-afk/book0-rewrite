@@ -116,7 +116,7 @@ silently supplies a phase rule. A representation-rank statement, not a quantum-p
 <span class="math">pc/(E+mc²) = tanh(α/2)</span> (blue curve; orange points sampled from random
 mass-shell pairs). The top axis reads the same number as the Projection half-angle
 <span class="math">x = 2·arctan(r)</span>, where <span class="math">sxp(x) = tan(x/2)</span>
-reproduces every sampled <span class="math">r</span> to 1.4e-15. <i>Live in Desmos.</i></figcaption>
+reproduces every sampled <span class="math">r</span> to 1.5e-15. <i>Live in Desmos.</i></figcaption>
 </figure>
 
 <div class="intuition">
@@ -140,7 +140,7 @@ with the rapidity chart. A contract, not a derivation.
 <span class="tag ok">COMPLETED NUMERICAL CHECK</span>
 <b>Theorem 10.III.T1 — Exact free-spinor ratio correspondence.</b> Under the stated import and
 contract, <span class="math">sxp = pc/(E+mc²)</span> is an exact coordinate identity for the
-ratio magnitude (max error 1.4e-15 over 300 samples; canonical identity
+ratio magnitude (max error 1.5e-15 over 300 samples; canonical identity
 <span class="math">sxp(x) = tan(x/2)</span> on <span class="math">(0,π)</span> checked to
 6e-14). This does <i>not</i> derive the Dirac equation, the mass shell, spin one-half, or any
 interpretation of the components. Conditional on the import — as the manuscript states.</div>
@@ -154,7 +154,8 @@ interpretation of the components. Conditional on the import — as the manuscrip
 components <span class="math">F(r)</span> (large) and <span class="math">−G(r)/|G/F|</span>
 rescaled — the curves coincide because <span class="math">G/F</span> is
 <span class="math">r</span>-independent. <i>Bottom:</i> the ratio itself:
-<span class="math">G/F = −Zα/(1+γ) = −0.00364872</span>, i.e. half-angle
+<span class="math">G/F = −Zα/(1+γ) = −0.00364872</span> (<span class="math">α</span> the
+fine-structure constant), i.e. half-angle
 <span class="math">x = 2·arctan(|G/F|) = 0.007297</span> rad with
 <span class="math">sxp(x) = |G/F|</span> (max err 1e-14). <i>Live in Desmos.</i></figcaption>
 </figure>
@@ -163,7 +164,9 @@ rescaled — the curves coincide because <span class="math">G/F</span> is
 <p>Import the standard radial Dirac equation for a Coulomb potential
 (<b>Physics Import 10.IV.P1</b>). In the circular ground sector the large and small components
 <span class="math">F(r)</span>, <span class="math">G(r)</span> share one radial shape, so their
-ratio is a constant — the textbook <span class="math">−Zα/(1+γ)</span>. A constant positive
+ratio is a constant — the textbook <span class="math">−Zα/(1+γ)</span>
+(<span class="math">α</span> the fine-structure constant here, not the rapidity
+<span class="math">α</span> of §2). A constant positive
 number is exactly what <span class="math">tan(x/2) = sxp(x)</span> parameterizes. So the same
 reciprocal coordinate that reads the free relativistic ratio also reads the ground-sector
 radial ratio, at the fixed half-angle <span class="math">x ≈ 0.007297</span> rad.</p>
@@ -171,8 +174,8 @@ radial ratio, at the fixed half-angle <span class="math">x ≈ 0.007297</span> r
 <div class="formal"><span class="tag imp">STANDARD IMPORTED THEOREM</span>
 <b>Physics Import 10.IV.P1</b> — the radial Dirac–Coulomb system and its conventional
 <span class="math">F</span>, <span class="math">G</span>. The ground-sector constant ratio
-<span class="math">|G/F| = Zα/(1+γ)</span> was verified numerically (relative spread 3e-16
-over four decades of <span class="math">r</span>).
+<span class="math">|G/F| = Zα/(1+γ)</span> was verified numerically (relative spread 3.4e-16
+over six decades of <span class="math">r</span>).
 <span class="tag ok">COMPLETED NUMERICAL CHECK</span>
 <b>Theorem 10.IV.T1 — Ground-sector half-angle correspondence.</b>
 <span class="math">|G/F| = tan(x/2) = sxp(x)</span> under the half-angle parameterization —
@@ -185,12 +188,13 @@ conditional on the import, exact to 1e-14.</div>
 <img class="fallback" id="f4" src="graphs/g4_prufer.png" alt="Excited Dirac state with node, non-constant ratio, running Prufer angle">
 <figcaption><b>Figure 4.</b> The imported <span class="math">n=2, κ=−1</span> radial state
 (computed by direct integration of the radial Dirac system; the integrator reproduces the
-analytic ground state to 7e-11). <i>Top:</i> <span class="math">P(r)</span> has one node
+analytic ground state to 7e-11). <i>Top:</i> <span class="math">F(r)</span> has one node
 (<span class="math">r ≈ 274</span>). <i>Middle:</i> the raw ratio <span class="math">G/F</span>
 is non-constant with a pole at the node. <i>Bottom:</i> the Prüfer pair stays regular —
 <span class="math">Θ(r)</span> (blue) runs <span class="math">3.14 ≈ π</span> rad through the
-sign change while <span class="math">A(r)</span> (orange) stays smooth. <i>Live in Desmos
-(subsampled points).</i></figcaption>
+sign change while <span class="math">A(r)</span> (orange) stays smooth. <i>Live in Desmos:
+the top panel (F and G) as subsampled points; the middle and bottom panels are in the
+static image.</i></figcaption>
 </figure>
 
 <div class="intuition">
@@ -208,7 +212,7 @@ how <span class="math">Θ</span> and <span class="math">A</span> evolve with
 <div class="formal"><span class="tag man">MANUSCRIPT ASSERTION</span>
 <b>Negative Theorem 10.IV.N1 — No universal constant half-angle for excited states.</b>
 The <span class="math">n=2, κ=−1</span> case was confirmed numerically: one node in
-<span class="math">P</span>, <span class="math">Q/P</span> ranging over
+<span class="math">F</span>, <span class="math">G/F</span> ranging over
 <span class="math">[−0.0450, 0.0414]</span> (std/mean 1.65) — no fixed angle works. The
 <i>generic</i> qualifier matters: circular excited states (<span class="math">n_r=0</span>,
 e.g. <span class="math">2P_{3/2}</span>) have constant but <i>state-dependent</i> ratios, so
@@ -233,7 +237,8 @@ is well-defined through the sign changes. Ground state: <span class="math">Θ</s
 <span class="math">4·dF∧dG = 2·du∧dv</span>. <i>Right:</i> the four primitive quadratic
 charts <span class="math">2F², −2G², (F−G)², −(F+G)²</span> along a circle in the
 <span class="math">(F,G)</span> plane — four presentations of the same data, one shared
-area element. <i>Live in Desmos.</i></figcaption>
+area element. <i>Live in Desmos: the four charts (right panel); the area-map panels
+are in the static image.</i></figcaption>
 </figure>
 
 <div class="intuition">
@@ -274,13 +279,15 @@ nonempty operational difference set <span class="math">Δ_op</span>.</p></div>
 <ul class="tight">
 <li><b>"Finite-dimensional and complex carrier after the earlier completion"</b> (10.I) —
 <span class="tag ok">SUPPORTED</span>. Ledger: Book 2 complex carrier
-<span class="math">Z_{car} = e^{2ix}</span> <b>PROVED (independent)</b>; Book 5 complex rank 5
-via <span class="math">I_ι² = −I_{10}</span> <b>PROVED (independent)</b>.</li>
+<span class="math">Z_{car} = e^{2ix}</span> <b>CHECKED (independent numeric, 0.0 exact)</b>;
+Book 5 complex rank 5 via <span class="math">I_ι² = −I_{10}</span> <b>MANUSCRIPT</b>
+(the rank claim's content is the axiom A0.1/A0.2 itself; the surrounding matrix
+arithmetic was independently checked exact).</li>
 <li><b>"The inherited reciprocal half-angle coordinate" sxp</b> (10.III–10.IV) —
 <span class="tag ok">SUPPORTED</span>. Ledger: Book 2 algebraic spine incl.
-<span class="math">srx·sxp = 1</span> <b>PROVED (independent)</b>; the half-angle form
-<span class="math">sxp(x) = tan(x/2)</span> on <span class="math">(0,π)</span> proved in this
-audit (max error 5.7e-14, 20,001 points).</li>
+<span class="math">srx·sxp = 1</span> <b>CHECKED (independent numeric, 1.3e-13)</b>; the half-angle form
+<span class="math">sxp(x) = tan(x/2)</span> on <span class="math">(0,π)</span> checked in this
+audit (max error 5.7e-14, 20,001 points; exact trig identity).</li>
 <li><b>Physics imports explicitly named</b> —
 <span class="tag ok">SUPPORTED</span>: 10.III.P1 (free Dirac equation + positive-energy
 spinors), 10.IV.P1 (radial Dirac–Coulomb + <span class="math">F, G</span>), 10.VII.P1
@@ -290,7 +297,9 @@ spinors), 10.IV.P1 (radial Dirac–Coulomb + <span class="math">F, G</span>), 10
 <li><b>Dependency lock Book 10 → Book 11</b> ("certified complex carrier and exact
 spinorial/projective coordinate architecture") — <span class="tag ok">SUPPORTED</span>.
 Ledger: Module 1 Clifford construction <b>PROVED (independent)</b> after the approved fix;
-Book 2 spine <b>PROVED</b>; Book 3 projective phase <b>STANDARD</b>. The lock correctly
+Book 2 spine <b>CHECKED (independent numeric, ~1e-13)</b>; Book 3 projective phase
+<b>mixed</b> (Möbius algebra PROVED independent-symbolic; w1/Spin results STANDARD;
+separation theorems MANUSCRIPT). The lock correctly
 <i>withholds</i> measurement rules, QFT ontology, chirality, and dynamics — consistent with
 10.VII.N1 and 10.VIII.N1.</li>
 <li><b>FlatWave conflation check</b> — <span class="tag ok">CLEAN</span>. The book never
@@ -299,8 +308,9 @@ identifies FlatWave's orientation sign with probability, phase, charge, or chira
 chirality choice.</li>
 </ul>
 <div class="ledger">BOOK 10 DEPENDENCY VERDICT
-INHERITED-AND-EARNED: complex carrier (Bk2 PROVED); complex rank 5 (Bk4/5 PROVED);
-  reciprocal half-angle coordinate (Bk2 PROVED + this audit).
+INHERITED-AND-EARNED: complex carrier (Bk2 CHECKED numeric); complex rank 5
+  (Bk5 MANUSCRIPT, matrix arithmetic checked exact); reciprocal half-angle
+  coordinate (Bk2 CHECKED numeric + this audit, checked).
 EXPLICIT IMPORTS: 3 (10.III.P1, 10.IV.P1, 10.VII.P1).  DECLARED CONTRACTS: 1 (10.III.PC1).
 CLAIMED-INHERITED-BUT-MISSING-FROM-LEDGER: none.
 UNNAMED PHYSICS: none.  FLATWAVE CONFLATIONS: none.</div>
@@ -427,6 +437,15 @@ architecture. Book 10 does <b>not</b> supply measurement rules, quantum-field on
 preferred chirality, or particle dynamics. Those structures enter Book 11 only through the
 explicit comparison imports stated there.</div>
 
+<p class="status">Rewrite status: every checkable claim on this page was re-verified —
+40 real assertions in validation/book10/verify_book10.py, all passing, no timeouts;
+worst measured error 6.6e-11 on the radial-Dirac integrator versus the analytic ground
+state (integrator accuracy, not an identity; every exact identity verifies to ≤6e-14).
+Part II §6 dependency labels quote the Volume I ledger exactly (Book 2 spine CHECKED
+numeric; complex rank 5 MANUSCRIPT). Embed consistency checked by
+validation/book10/test_embeds.py. Pictures illustrate checked statements; they are not
+the proofs. Live Desmos rendering was not browser-verified from the build machine.</p>
+
 <footer>
 <p>Rewrite of Book 10 of <i>R Theory — Volume II</i> (working manuscript). Restructured:
 pictures and intuition first (Part I), formal audit second (Part II). All theorems, imports,
@@ -439,7 +458,7 @@ browser-verified from the build machine.</p>
 <script>
 var GRAPHS = [
  {id:'d1', fb:'f1', vw:{left:-1, right:7.5, bottom:-1, top:7.5}, exprs:[
-  {latex:'y=0\\left\\{0<x<2\\pi\\right\\}', color:'#1f77b4'},
+  {latex:'y=\\pi\\left\\{0<x<2\\pi\\right\\}', color:'#1f77b4'},
   {latex:'x=0\\left\\{0<y<2\\pi\\right\\}', color:'#999999'},
   {latex:'x=2\\pi\\left\\{0<y<2\\pi\\right\\}', color:'#999999'},
   {latex:'y=2\\pi\\left\\{0<x<2\\pi\\right\\}', color:'#999999'}]},
@@ -447,8 +466,8 @@ var GRAPHS = [
   {latex:'y=\\tanh\\left(\\frac{x}{2}\\right)', color:'#1f77b4'},
   {latex:'(2.2401,0.8076),(2.5406,0.8539),(2.4176,0.8363),(1.4995,0.6350),(1.6896,0.6883),(2.5179,0.8508),(0.2507,0.1247),(2.4655,0.8434),(2.4404,0.8397),(2.0124,0.7642),(1.6962,0.6901),(1.6384,0.6746),(1.5795,0.6583),(1.9744,0.7562)', color:'#ff7f0e'}]},
  {id:'d3', fb:'f3', vw:{left:-60, right:1500, bottom:-0.15, top:1.15}, exprs:[
-  {latex:'y=0.0198363xe^{-0.00729735x}', color:'#1f77b4'},
-  {latex:'y=-0.0198363xe^{-0.00729735x}', color:'#ff7f0e', lineStyle:'dashed'}]},
+  {latex:'y=0.0198389x^{0.99997337}e^{-0.00729735x}', color:'#1f77b4'},
+  {latex:'y=0.0198389x^{0.99997337}e^{-0.00729735x}', color:'#ff7f0e', lineStyle:'dashed'}]},
  {id:'d4', fb:'f4', vw:{left:-50, right:1450, bottom:-1.15, top:1.15}, exprs:[
   {latex:'(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0001),(0.0,0.0001),(0.0,0.0001),(0.0,0.0001),(0.0,0.0001),(0.0,0.0001),(0.0,0.0001),(0.0,0.0001),(0.0,0.0002),(0.0,0.0002),(0.0,0.0002),(0.0,0.0003),(0.0,0.0003),(0.0,0.0003),(0.0,0.0004),(0.0,0.0005),(0.0,0.0005),(0.1,0.0006),(0.1,0.0007),(0.1,0.0008),(0.1,0.0009),(0.1,0.0010),(0.1,0.0012),(0.1,0.0014),(0.1,0.0016),(0.2,0.0018),(0.2,0.0021),(0.2,0.0024),(0.2,0.0027),(0.3,0.0031),(0.3,0.0036),(0.3,0.0041),(0.4,0.0047),(0.5,0.0054),(0.5,0.0062),(0.6,0.0071),(0.7,0.0082),(0.8,0.0094),(0.9,0.0108),(1.1,0.0124),(1.2,0.0142),(1.4,0.0163),(1.6,0.0186),(1.8,0.0214),(2.1,0.0245),(2.4,0.0281),(2.8,0.0321),(3.2,0.0368),(3.7,0.0421),(4.2,0.0482),(4.8,0.0551),(5.5,0.0629),(6.4,0.0718),(7.3,0.0818),(8.4,0.0932),(9.6,0.1060),(11.1,0.1205),(12.7,0.1367),(14.6,0.1547),(16.8,0.1749),(19.3,0.1970),(22.1,0.2214),(25.4,0.2479),(29.1,0.2765),(33.5,0.3071),(38.4,0.3391),(44.1,0.3721),(50.7,0.4054),(58.2,0.4376),(66.8,0.4675),(76.7,0.4931),(88.1,0.5119),(101.2,0.5210),(116.2,0.5172),(133.4,0.4969),(153.2,0.4562),(175.9,0.3916),(201.9,0.3003),(231.9,0.1808),(266.3,0.0339),(305.7,-0.1367),(351.2,-0.3242),(403.3,-0.5155),(463.1,-0.6961),(531.7,-0.8481),(610.5,-0.9539),(701.0,-0.9990),(805.0,-0.9762),(924.3,-0.8883),(1061.3,-0.7490),(1218.6,-0.5813),(1400.0,-0.4107)', color:'#1f77b4'},
   {latex:'(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.1,-0.0000),(0.1,-0.0000),(0.1,-0.0000),(0.1,-0.0000),(0.1,-0.0000),(0.1,-0.0000),(0.1,-0.0000),(0.1,-0.0000),(0.2,-0.0000),(0.2,-0.0000),(0.2,-0.0000),(0.2,-0.0000),(0.3,-0.0000),(0.3,-0.0000),(0.3,-0.0000),(0.4,-0.0000),(0.5,-0.0000),(0.5,-0.0000),(0.6,-0.0000),(0.7,-0.0000),(0.8,-0.0000),(0.9,-0.0000),(1.1,-0.0000),(1.2,-0.0001),(1.4,-0.0001),(1.6,-0.0001),(1.8,-0.0001),(2.1,-0.0001),(2.4,-0.0001),(2.8,-0.0001),(3.2,-0.0001),(3.7,-0.0002),(4.2,-0.0002),(4.8,-0.0002),(5.5,-0.0002),(6.4,-0.0003),(7.3,-0.0003),(8.4,-0.0003),(9.6,-0.0004),(11.1,-0.0004),(12.7,-0.0005),(14.6,-0.0006),(16.8,-0.0007),(19.3,-0.0007),(22.1,-0.0008),(25.4,-0.0010),(29.1,-0.0011),(33.5,-0.0012),(38.4,-0.0013),(44.1,-0.0015),(50.7,-0.0016),(58.2,-0.0018),(66.8,-0.0020),(76.7,-0.0021),(88.1,-0.0023),(101.2,-0.0025),(116.2,-0.0026),(133.4,-0.0027),(153.2,-0.0027),(175.9,-0.0027),(201.9,-0.0026),(231.9,-0.0025),(266.3,-0.0022),(305.7,-0.0019),(351.2,-0.0015),(403.3,-0.0011),(463.1,-0.0006),(531.7,-0.0001),(610.5,0.0003),(701.0,0.0007),(805.0,0.0009),(924.3,0.0009),(1061.3,0.0009),(1218.6,0.0008),(1400.0,0.0006)', color:'#ff7f0e'}]},
