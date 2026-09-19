@@ -24,8 +24,8 @@ a{color:#0645ad}
 <body>
 <h1>Pre-computed Tables</h1>
 <p><i>Every large numerical object the audit built and checked, ready to load — so no
-result below has to be recomputed before it can be used. The E8 30380 weight table is
-downloadable here; the larger binaries (~800&nbsp;MB total) live in the audit workspace
+result below has to be recomputed before it can be used. The E8 30380 weight table and the
+so(16) generator critical-subset table are downloadable here; the larger binaries (~800&nbsp;MB total) live in the audit workspace
 and are available on request. Each entry carries the status the audit actually earned it.</i></p>
 
 <p class="small"><b>Scope discipline</b> (same as the whole series): <span class="tag CP">CP</span>
@@ -60,7 +60,7 @@ in the audit log and establish nothing.</p>
 <tr><td><code>Pi_plus.npy</code>, <code>Pi_minus.npy</code></td><td>256 × 256</td><td><span class="tag NC">NC</span></td><td>Chiral projectors (1 ± γ₁₇)/2.</td></tr>
 <tr><td><code>B.npy</code></td><td>256 × 256</td><td><span class="tag NC">NC</span></td><td>Charge conjugation. Preserves S⁺ (~9e-16); B₊ is a symmetric involution.</td></tr>
 <tr><td><code>U_Splus.npy</code></td><td>256 × 128</td><td><span class="tag NC">NC</span></td><td>Orthonormal basis of the chiral spinor space S⁺. <b>Caution (audit issue U-7):</b> this is <i>not</i> the splus coordinate basis (max|U−E| = 1.0); mixing the two conventions produces symmetry violations of order 2.0.</td></tr>
-<tr><td><code>M_so16.npy</code></td><td>120 × 128 × 128</td><td><span class="tag NC">NC</span></td><td>The 120 so(16) generators acting on S⁺, in the U basis. Every ρ(M) anti-Hermiticity-checked. (A stabilized copy, <code>M_so16_stable.npy</code>, is kept in the workspace.)</td></tr>
+<tr><td><code>M_so16.npy</code></td><td>120 × 128 × 128</td><td><span class="tag NC">NC</span></td><td>The 120 so(16) generators acting on S⁺, in the U basis. Every ρ(M) anti-Hermiticity-checked. (A stabilized copy, <code>M_so16_stable.npy</code>, is kept in the workspace.) <b>Critical subset, downloadable:</b> <a href="M_so16_critical.csv">M_so16_critical.csv</a> — every nonzero entry of every generator (15,360 rows, 315&nbsp;KB; lossless, rebuilds the 30&nbsp;MB binary exactly). Each generator has exactly 128 nonzeros (values ±1/2, ±i/2); 8 generators (the (2k,2k+1) pairs) are purely diagonal, the other 112 purely off-diagonal.</td></tr>
 <tr><td><code>C.npz</code> (sparse)</td><td>8256 × 8256</td><td><span class="tag NC">NC</span></td><td>The corrected Casimir on Sym²(128): C = −Σρ(M)² built directly in an orthonormal basis — no post-hoc symmetrization. Spectrum {0:1, 48:1820, 64:6435}; C(C−48I)(C−64I) = 0 on all 8256 basis vectors. Odd-subspace invariance 0.0; so(16) commutator violation 0.0; centrality ~2.8e-14.</td></tr>
 <tr><td><code>P1.npz</code>, <code>P1820.npz</code>, <code>P6435.npz</code> (sparse)</td><td>8256 × 8256</td><td><span class="tag NC">NC</span></td><td>Casimir eigenspace projectors. Hermitian, idempotent, orthogonal, complete; traces 1 / 1820 / 6435.</td></tr>
 <tr><td><code>basis_1820.npy</code></td><td>1820 × 16384</td><td><span class="tag NC">NC</span></td><td>The 1820 B-mapped four-forms in the full 128² coordinate basis.</td></tr>
