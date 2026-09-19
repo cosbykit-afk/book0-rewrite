@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relativistic and Spinor Witnesses — Volume 0</title>
+<style>
+  :root { --ink:#1a1a1a; --muted:#5a5a5a; --accent:#1b5faa; --paper:#fff; --wash:#f6f8fb; --line:#dfe5ec; }
+  body { font-family: -apple-system, "Segoe UI", Georgia, serif; color:var(--ink); background:var(--paper);
+         max-width: 860px; margin:0 auto; padding: 24px 20px 80px; line-height:1.65; }
+  h1 { font-size:1.9em; line-height:1.25; margin-bottom:.2em; }
+  h2 { font-size:1.45em; margin-top:2.2em; border-bottom:2px solid var(--line); padding-bottom:.3em; }
+  h3 { font-size:1.15em; margin-top:1.8em; color:var(--accent); }
+  .sub { color:var(--muted); font-size:1.05em; margin-top:0; }
+  .about { background:var(--wash); border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:1.5em 0; }
+  .about p { margin:.5em 0; }
+  .intuition { border-left:3px solid var(--accent); padding:.2em 0 .2em 1em; margin:1em 0; }
+  .formal { background:var(--wash); border:1px solid var(--line); border-radius:8px; padding:12px 18px; margin:1.2em 0; }
+  .thm { border:1px solid var(--accent); border-radius:8px; padding:14px 18px; margin:1.4em 0; background:#fbfdff; }
+  .thm .tname { font-weight:700; color:var(--accent); }
+  .ledger { font-family: ui-monospace, Menlo, monospace; font-size:.85em; background:#0f1720; color:#d7e3f0;
+            border-radius:8px; padding:14px 18px; overflow-x:auto; white-space:pre-wrap; margin:1.2em 0; }
+  .tag { display:inline-block; font-size:.75em; font-weight:700; letter-spacing:.06em; border-radius:4px;
+         padding:.15em .6em; margin-right:.4em; vertical-align:middle; }
+  .tag.exact { background:#e6f4ea; color:#146c2e; border:1px solid #b7dfc0; }
+  .tag.cond { background:#e8f0fe; color:#1b5faa; border:1px solid #bcd6f5; }
+  .tag.imp { background:#f3e8fd; color:#6a1fb0; border:1px solid #d9c2f2; }
+  .tag.neg { background:#fdecea; color:#a32b1e; border:1px solid #f2c4bd; }
+  code, .math { font-family: ui-monospace, Menlo, monospace; }
+  .math { background:#f2f5f9; padding:.1em .35em; border-radius:4px; font-size:.95em; }
+  ul.tight li { margin:.35em 0; }
+  .nav { display:flex; flex-wrap:wrap; gap:.5em; margin:1.2em 0 2em; }
+  .nav a { text-decoration:none; border:1px solid var(--line); border-radius:20px; padding:.3em 1em;
+           font-size:.9em; color:var(--accent); background:var(--wash); }
+  footer { margin-top:3em; color:var(--muted); font-size:.9em; border-top:1px solid var(--line); padding-top:1em; }
+  footer a { color:var(--accent); }
+</style>
+</head>
+<body>
+
+<h1>Relativistic and Spinor Witnesses</h1>
+<p class="sub">Volume 0. Exact conditional correspondences between the half-angle calculus and
+accepted relativistic, weak, Coulomb, and electromagnetic structures — and the audit that
+keeps them honest.</p>
+
+<div class="about">
+<p><b>About this book.</b> Rebuilt as standalone R Theory from the former T4 essay-book. It
+asks one question of each imported physical structure: does the canonical half-angle
+calculus occur inside it exactly, and if so, does anything new follow? The answer,
+section by section, is <i>yes, exactly — and no, nothing new</i>. That second clause is
+not a disappointment; it is the result. Every import is declared, every obstruction is
+kept, and the book closes with a formal prediction-difference audit.</p>
+<p><b>Status key.</b> <span class="tag exact">EXACT</span> proved mathematics ·
+<span class="tag cond">CONDITIONAL</span> exact after a declared import or contract ·
+<span class="tag imp">IMPORT</span> accepted physics taken as input, not derived ·
+<span class="tag neg">OBSTRUCTION</span> a proved or retained negative result.</p>
+<p><b>Depends on:</b> <a href="../book0/">Book 0</a> (primitive calculus, one-generator
+reduction); the internal paper <i>Reciprocal Half-Angle Coordinates in the Radial
+Dirac–Coulomb Problem</i>.</p>
+</div>
+
+<div class="nav">
+<a href="#s1">§1 Kinematics</a><a href="#s2">§2 Spinor</a><a href="#s3">§3 V−A</a>
+<a href="#s4">§4 Beta/Coulomb</a><a href="#s5">§5 Electromagnetism</a><a href="#s6">§6 Audit</a>
+</div>
+
+<h2 id="s1">§1 — The relativistic kinematic witness</h2>
+
+<div class="intuition">
+<p>Take a massive particle moving at speed β. There is a classical angle hiding in its
+kinematics: the angle χ with <span class="math">sin χ = β</span> and
+<span class="math">cos χ = mc²/E</span>. On this chart the half-angle coordinate
+<span class="math">q = sxp(χ) = tan(χ/2)</span> is simultaneously three familiar things:
+the free-Dirac lower/upper spinor component ratio, the rational generator of β and γ,
+and the square root of the light-cone ratio. The reciprocal pair
+<span class="math">cxp = e^η</span>, <span class="math">crx = e^−η</span> is the
+rapidity itself — and <span class="math">cxp·crx = 1</span> is exactly the normalized
+mass shell, already imposed by the reference theory.</p>
+</div>
+
+<div class="thm"><span class="tname">Kinematic dictionary</span> <span class="tag cond">CONDITIONAL</span>
+<p>Under the contract sin χ = β, cos χ = mc²/E on the positive-energy branch:</p>
+<p class="math">sxp(χ) = pc/(E+mc²) = tan(χ/2),&nbsp;&nbsp; srx(χ) = (E+mc²)/pc</p>
+<p class="math">cxp(χ) = (E+pc)/mc² = e^η,&nbsp;&nbsp; crx(χ) = (E−pc)/mc² = e^−η</p>
+<p>The mapping is invertible on the declared branch; the reciprocal identity is the
+mass shell. This is a coordinate theorem after importing special-relativistic
+kinematics and the free Dirac spinor — <span class="tag imp">IMPORT</span> both.</p>
+</div>
+
+<div class="formal"><span class="tag neg">OBSTRUCTION</span>
+<b>Rank is not created by notation.</b> Evaluating many functions on the single
+coordinate χ does not manufacture additional independent physical degrees of freedom.
+The dictionary above is one angle's worth of content, however many names it carries.</div>
+
+<h2 id="s2">§2 — Spinor completion and the native ellipse</h2>
+
+<div class="intuition">
+<p>One real coordinate is not a spinor. Lifting <span class="math">q = sxp(χ)</span> to a
+complete two-state spinor requires an <b>independent relative phase φ</b> — the
+one-generator obstruction survives physical completion. The completed state has an
+exact Bloch vector <span class="math">(cos χ cos 2φ, cos χ sin 2φ, sin χ)</span>, and
+the reciprocal pair becomes exact component-amplitude odds. The native complex carrier
+<span class="math">Ψ = H + iV</span> is characterized exactly — an anisotropic
+real-linear squeeze of the circular phase with the counter-rotating decomposition
+<span class="math">Ψ = (i/8)(e^{2ix} + 3e^{−2ix})</span> — but without an independently
+selected physical embedding of its quadratures it determines no unique observable.</p>
+</div>
+
+<div class="thm"><span class="tname">Spinor completion</span> <span class="tag cond">CONDITIONAL</span>
+<p>With independent phase φ, the completed spinor is an exact coordinate representation
+of imported two-state geometry. No new Hamiltonian, interaction, phase law, or observable
+is supplied. The bare native carrier as unspecified physical embedding is
+<b>Class B</b> — its prediction set is undefined until a complete contract and dynamics
+are supplied.</p>
+</div>
+
+<h2 id="s3">§3 — Weak V−A helicity weights and the chirality-orientation obstruction</h2>
+
+<div class="intuition">
+<p>Now import the Standard Model's left-chiral charged-current projector
+<span class="math">P_L = (1−γ⁵)/2</span> — imported, not derived. For a massive
+electron the favored/wrong helicity probabilities are <span class="math">(1±β)/2</span>,
+and their amplitude odds are exactly the reciprocal pair:</p>
+<p class="math">√(P_fav/P_wrong) = cxp,&nbsp;&nbsp; √(P_wrong/P_fav) = crx</p>
+<p>The equality is exact under the §1 kinematic contract. But the calculus is
+left–right symmetric: the mirror right-chiral orientation is equally available to the
+internal reciprocal structure until the Standard Model orientation is imported.
+Projection reconstructs the helicity-weight geometry of an imported chiral interaction;
+it does not derive why the interaction is left-chiral. That is the
+<b>chirality-orientation obstruction</b>, and it is retained, not repaired.</p>
+</div>
+
+<div class="formal"><span class="tag cond">CONDITIONAL</span> <b>V−A helicity correspondence.</b>
+After importing the left-chiral orientation, cxp/crx are the exact favored/wrong
+helicity amplitude odds. <span class="tag neg">OBSTRUCTION</span> The orientation
+itself is not derived; a Projection-only derivation of chirality selection is
+Class B (unspecified).</div>
+
+<h2 id="s4">§4 — Beta decay, Coulomb dressing, and the two-angle bridge</h2>
+
+<div class="intuition">
+<p>Follow the emitted beta electron into the daughter nucleus's Coulomb field. Two
+independent physical angles are compulsory — not one. The continuum kinematic angle
+χ (sin χ = β, from §1) encodes the electron's mass-shell kinematics; the Coulomb
+structural angle <span class="math">a</span> (sin a = Zα, cos a = √(1−(Zα)²))
+encodes the daughter's Coulomb coupling. Identifying them would force β = Zα and
+collapse the continuous beta spectrum to a charge-selected velocity — the
+<b>two-angle necessity theorem</b>. The standard Coulomb parameter becomes their
+exact quotient,</p>
+<p class="math">ξ = Zα/β = sin a / sin χ = u(1+q²) / [q(1+u²)]</p>
+<p>with <span class="math">u = sxp(a)</span>, <span class="math">q = sxp(χ)</span>.
+The baseline allowed phase-space measure becomes fully rational in q and the endpoint
+coordinate q₀. But the relativistic Fermi function keeps its non-elementary core
+<span class="math">exp(πξ)|Γ(λ+iξ)|²</span>: the half-angle substitution rationalizes
+the kinematic and projective layers but does not generate the complex-Gamma Coulomb
+scattering dynamics. The structural angle a is the K=1 member of the Coulomb circle
+of the radial Dirac–Coulomb paper — the bound and continuum problems share the chart
+but use it differently (E_bound/m = cos a &lt; 1 versus E_cont/m = sec χ &gt; 1).</p>
+</div>
+
+<div class="thm"><span class="tname">Two-angle Coulomb structure</span> <span class="tag cond">CONDITIONAL</span>
+<ul class="tight">
+<li>a and χ are generically independent; a = χ would incorrectly force β = Zα.</li>
+<li>ξ = sin a/sin χ exactly; phase space rational in (q, q₀).</li>
+<li>The Fermi function, nuclear matrix elements, radiative and finite-size corrections,
+endpoint energy, and the nuclear scale R remain <span class="tag imp">IMPORT</span>s.</li>
+<li><span class="tag neg">OBSTRUCTION</span> The complex-Gamma factor lies outside the
+finite rational primitive closure — the special-function layer is imported dynamics,
+not derived.</li>
+</ul></div>
+<h2 id="s5">§5 — Electromagnetic comparison: the adversarial audit</h2>
+
+<div class="intuition">
+<p>This section is deliberately adversarial. The question is not whether half-angle,
+Cayley, reciprocal, or doubled-angle forms occur in electromagnetism — they do,
+abundantly. The question is whether any occurrence survives the redundancies of
+electromagnetic description. The audit walks through nine witnesses and strips each
+one:</p>
+<ul class="tight">
+<li><b>Jones polarization:</b> <span class="math">z = e^{iφ} sxp(α)</span> exactly — but
+phase φ and intensity scale A² are independent imported data (coherency/Stokes).</li>
+<li><b>Duality:</b> 2V = cos 2x, 4H = sin 2x give an exact SO(2) duality-rotation matrix —
+but constant duality is an accepted symmetry, not a new prediction.</li>
+<li><b>Native carrier:</b> Ψ = H+iV is an anisotropic squeeze with exact 1:3
+counter-rotating decomposition — but direct H↔E, V↔B assignment fails an ordinary
+traveling wave; the <b>potential-first</b> contract A ∝ H recovers the standard wave
+after differentiation (a repair that reproduces Maxwell, not a new law).</li>
+<li><b>Local duality:</b> making the duality angle spacetime-dependent gives an SO(2)
+connection with zero curvature — pure gauge. The scalar alone does not defeat C0 by
+being made local.</li>
+<li><b>Newman–Penrose:</b> cxp/crx match reciprocal boost weights exactly — but those are
+tetrad-gauge weights, not new observables.</li>
+<li><b>Null Maxwell spinor:</b> the degree-two Veronese map [1:w:w²] — but only the
+null rank-one sector, not the generic field.</li>
+<li><b>Two CP¹ factors:</b> polarization CP¹ and propagation-direction CP¹ are independent
+state spaces; one real scalar cannot supply both.</li>
+<li><b>Conformal dressing:</b> in four dimensions the vacuum Maxwell equations are
+conformally invariant on 2-forms — a scalar conformal factor changes nothing in
+source-free propagation.</li>
+<li><b>Helicity:</b> electromagnetic helicity (massless spin-1) is not weak chirality
+(massive Dirac); the q=1/2 numerical coincidence (odds 3:1 in both sectors) promotes
+no cross-sector law.</li>
+</ul>
+<p>The repeated verdict: exact coordinate correspondences, no surviving
+Projection-specific invariant.</p>
+</div>
+
+<div class="formal"><span class="tag neg">OBSTRUCTION</span> <b>Invariant-survival audit.</b>
+After removing projective, gauge, tetrad, duality, and conformal redundancies, every
+electromagnetic witness above is an exact correspondence inside known representation
+freedom. None establishes a Projection-specific invariant. C0 is strengthened, not
+weakened, by the redundancy analysis.</div>
+
+<h2 id="s6">§6 — The prediction-difference audit and book closure</h2>
+
+<div class="intuition">
+<p>Correspondence is not promotion. For a fully specified Projection-augmented model MP
+against its accepted reference M0, define the operational prediction-difference set</p>
+<p class="math">Δ_op(MP, M0) = { c ∈ C_exp : P_P(·|c) ≠ P_0(·|c) }</p>
+<p>— the experimental configurations where the predictions actually differ. Three
+terminal statuses: <b>Class A</b> (fully specified, Δ_op = ∅), <b>Class B</b>
+(incomplete — Δ_op <i>undefined</i>, and an open ansatz is not a nonempty prediction
+set), <b>Class C</b> (fully specified, Δ_op ≠ ∅). Two firewall theorems: an invertible
+representation change can never create a nonempty Δ_op, and incompleteness is not
+novelty.</p>
+<p>The audit walks every construction of §§1–5. Each fully specified one — the
+kinematic dictionary, the completed spinor, the V−A odds, the two-angle beta rewrite,
+every electromagnetic witness — lands in <b>Class A</b>. Each potentially nonredundant
+but unfinished proposal — bare native-carrier embedding, Projection-only chirality
+selection, scalar-only local duality dynamics — lands in <b>Class B</b>. <b>No Class-C
+candidate is present.</b></p>
+</div>
+
+<div class="ledger">Candidate status matrix (condensed)
+─────────────────────────────────────────────
+Relativistic primitive dictionary ..... Class A, Δ=∅
+Free-Dirac half-angle witness ........ Class A, Δ=∅
+Completed two-state spinor ........... Class A, Δ=∅
+Native ellipse (bare mathematics) .... exact internal theorem
+Native ellipse (physical embedding) .. Class B, Δ undefined
+V−A helicity-weight correspondence ... Class A, Δ=∅
+Projection-only chirality selection .. Class B, Δ undefined
+Beta/Coulomb two-angle rewrite ....... Class A, Δ=∅
+Jones/coherency witness .............. Class A, Δ=∅
+Constant Maxwell duality ............ Class A, Δ=∅
+Potential-first Maxwell wave ........ Class A, Δ=∅
+Scalar-only local duality ........... pure-gauge Class A / failed symmetry
+NP reciprocal boost weights ......... Class A, Δ=∅
+Null Maxwell spinor / Veronese ...... Class A, Δ=∅
+Conformal scalar dressing ........... Class A, Δ=∅
+Class C candidates .................. none
+─────────────────────────────────────────────</div>
+
+<div class="thm"><span class="tname">Book 20 closure</span> <span class="tag exact">EXACT</span>
+<p>The canonical calculus repeatedly furnishes exact, unusually compact adapted
+coordinates on standard relativistic, spinorial, weak-helicity, Coulomb, and
+electromagnetic structures. By explicit obstruction and operational audit, the presently
+specified correspondences do not alter the invariant predictions of their accepted
+reference theories. Accordingly <b>C0 — Projection Craft changes representation but not
+physics</b> — is retained as the undefeated null hypothesis, and
+<span class="math">Δ_op = ∅</span> for every fully specified construction in this book.
+This is a theorem about the content of Book 20, not a universal no-go: C0 remains
+falsifiable by a future fully specified Class-C model with a stated measurement
+contract.</p>
+</div>
+
+<div class="formal"><b>Strongest positive results retained:</b> the one-contract kinematic
+dictionary (sxp ↔ Dirac ratio, cxp ↔ e^η, cxp·crx = 1 as mass shell); the independent-phase
+spinor completion; V−A odds as cxp/crx after chiral import; the two-angle beta/Coulomb
+structure with ξ = sin a/sin χ; rational beta phase space; the exact native-carrier
+characterization. <b>Strongest negative results retained:</b> one scalar gains no rank
+from many evaluations; chirality orientation not derived; a ≠ χ necessarily; no
+complex-Gamma from rational closure; direct E/B assignment fails; local scalar duality
+is pure gauge; NP weights are tetrad-gauge; conformal dressing invisible to source-free
+Maxwell; helicity sectors not identified by coincidence. Later work must survive these
+obstructions rather than restart before them.</div>
+
+<footer>
+<p><a href="../">← Series index</a> · <a href="../vol0/">Volume 0 overview</a> ·
+<a href="../book21/">Next: Fermion Composition →</a></p>
+<p>A Volume 0 book of the R Theory rewrite. Source: the former T4 essay-book, rebuilt standalone.
+Status discipline: exact / conditional / import / obstruction — nothing promoted beyond
+its support. Δ_op = ∅ throughout.</p>
+</footer>
+</body>
+</html>

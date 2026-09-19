@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Volume 0 — Exact Witnesses at the Physics Boundary</title>
+<style>
+  :root { --ink:#1a1a1a; --muted:#5a5a5a; --accent:#1b5faa; --paper:#fff; --wash:#f6f8fb; --line:#dfe5ec; }
+  body { font-family: -apple-system, "Segoe UI", Georgia, serif; color:var(--ink); background:var(--paper);
+         max-width: 860px; margin:0 auto; padding: 24px 20px 80px; line-height:1.65; }
+  h1 { font-size:1.9em; line-height:1.25; margin-bottom:.2em; }
+  h2 { font-size:1.45em; margin-top:2.2em; border-bottom:2px solid var(--line); padding-bottom:.3em; }
+  .sub { color:var(--muted); font-size:1.05em; margin-top:0; }
+  .about { background:var(--wash); border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:1.5em 0; }
+  .about p { margin:.5em 0; }
+  .books { display:grid; grid-template-columns:1fr; gap:14px; margin:1.5em 0; }
+  .book { border:1px solid var(--line); border-radius:8px; padding:16px 18px; background:var(--paper); border-left:4px solid var(--accent); }
+  .book h3 { margin:.2em 0 .4em; font-size:1.1em; }
+  .book p { margin:.4em 0; font-size:.94em; }
+  .book a { color:var(--accent); text-decoration:none; font-weight:600; }
+  .book a:hover { text-decoration:underline; }
+  .formal { background:var(--wash); border:1px solid var(--line); border-radius:8px; padding:12px 18px; margin:1.2em 0; }
+  .prov { border:1px solid #c9a227; border-radius:8px; padding:12px 18px; margin:1.2em 0; background:#fffdf4; }
+  .prov b { color:#7a5c00; }
+  code, .math { font-family: ui-monospace, Menlo, monospace; }
+  .math { background:#f2f5f9; padding:.1em .35em; border-radius:4px; font-size:.95em; }
+  footer { margin-top:3em; color:var(--muted); font-size:.9em; border-top:1px solid var(--line); padding-top:1em; }
+  footer a { color:var(--accent); }
+</style>
+</head>
+<body>
+
+<h1>Volume 0 — Exact Witnesses at the Physics Boundary</h1>
+<p class="sub">The former T4–T6 "Projection Craft" papers, rebuilt as standalone R Theory.</p>
+
+<div class="about">
+<p><b>What this volume is.</b> Three books that take the canonical half-angle calculus of
+<a href="../book0/">Book 0</a> to the boundary of accepted physics — relativistic kinematics,
+the Dirac spinor, weak helicity, Coulomb structure, color, bound states, and canonical
+spin–geometry — and report exactly what is found there: exact coordinate correspondences,
+exact conditional theorems, honest obstructions, and no new physical law.</p>
+<p><b>Why it is standalone.</b> The source material was written as "Projection Craft" essay-books
+T4, T5, T6, framed as continuations of the T-paper series. That framing is not carried over.
+Each book here states its own dependencies, its own imports, and its own status ledger from
+scratch. Nothing is cited to a T-paper authority; every result is presented with the
+mathematics or the import that supports it.</p>
+<p><b>Dependencies.</b> All three books inherit the Book&nbsp;0 core: the reciprocal primitive
+calculus, the one-generator reduction, the Clifford/bilinear structure, and the coframe
+geometry. Books&nbsp;21 and 22 additionally depend on the internal paper
+<i>Reciprocal Half-Angle Coordinates in the Radial Dirac–Coulomb Problem</i> (read and
+algebra-checked 2026-09-19), which supplies the conditional spinor-ratio identities both
+books use. Named physics imports — special relativity, the Dirac equation, V−A, QCD,
+Coulomb/Dirac–Coulomb theory, Maxwell, Einstein–Hilbert, Einstein–Cartan — are declared
+per section, never smuggled.</p>
+</div>
+
+<div class="prov">
+<p><b>Provenance note (2026-09-19).</b> The T6 source preamble credits the T5 source with a
+"Yang–Mills source-free-vacuum obstruction" result — a static homogeneous constant
+noncommuting ansatz whose curvature the source-free Yang–Mills equations force to vanish.
+A full-text search of the T5 source (v2 reconstruction) finds no such result: the only
+occurrence of "Yang–Mills" is the QCD import line. The attribution describes the original
+T5 research draft, not the reconstructed text, and it is <b>not repeated</b> anywhere in
+this volume. If the original computation is located and verified, it will be added with
+its source cited; until then the claim does not exist in R Theory.</p>
+</div>
+
+<h2>The shared discipline</h2>
+<div class="formal">
+<p>Every book in this volume closes with an operational prediction-difference audit. For a
+fully specified Projection-augmented model MP against its accepted reference M0, on a common
+measurement contract,</p>
+<p class="math">Δ_op(MP, M0) = { c ∈ C_exp : P_P(·|c) ≠ P_0(·|c) }</p>
+<p>is the set of experimental configurations where the predictions differ. Three terminal
+statuses are distinguished: <b>Class A</b> — fully specified and Δ_op = ∅ (operationally
+equivalent); <b>Class B</b> — incomplete, Δ_op undefined (an open ansatz is not a
+nonempty prediction set); <b>Class C</b> — fully specified with Δ_op ≠ ∅. An invertible
+reparameterization can never leave Class A; that is proved, not assumed.</p>
+<p>The null hypothesis retained by all three books is <b>C0</b>: <i>Projection Craft changes
+representation but not physics.</i> It is falsifiable — a future fully specified Class-C
+model would defeat it — but undefeated by everything in this volume. Exactness without
+promotion is the theme: the correspondences are real mathematics, and they are not new
+laws of nature.</p>
+</div>
+
+<h2>The books</h2>
+<div class="books">
+  <div class="book">
+    <h3>Relativistic and Spinor Witnesses</h3>
+    <p>The kinematic witness (sin χ = β, with sxp/cxp/crx as the Dirac half-angle ratio and
+    rapidity weights), the two-state spinor completion and its independent phase, the
+    V−A helicity weights after explicit chiral import, the beta-decay/Coulomb two-angle
+    bridge, and the adversarial electromagnetic comparison — Jones, duality, Newman–Penrose,
+    Veronese, conformal — ending in the full Δ_op audit. Every fully specified construction:
+    Class A. <span class="math">Δ_op = ∅</span>.</p>
+    <p><a href="../book20/">Read Book 20 →</a></p>
+  </div>
+  <div class="book">
+    <h3>Fermion Composition, Color Closure, and Bound-State Geometry</h3>
+    <p>The composition firewall, the three-state carrier rebuilt in the correct logical order
+    (C³ → A₂ → su(3), tetrahedral metric demoted to compatible realization), the QCD import
+    with its spatial firewall, the exact two-fermion invariant, the below-threshold coordinate
+    and its conditional Dirac–Coulomb convergence, observational discipline with verified
+    hydrogen/deuteron/muonium numbers, the frozen failure record (81/32, fifth lattice,
+    musical commas), and a firewalled E8 appendix. <span class="math">Δ_op = ∅</span>.</p>
+    <p><a href="../book21/">Read Book 21 →</a></p>
+  </div>
+  <div class="book">
+    <h3>Canonical Spin–Geometry and the Primitive Symplectic Atlas</h3>
+    <p>The volume's strongest exact result: after the declared radial two-component chart and
+    the imported radial Dirac dynamics, the four primitives are canonical charts on one
+    radial-spinor phase plane — p_sxp = 2F², p_srx = −2G², p_cxp = (F−G)², p_crx = −(F+G)²,
+    common form ω_spin = 4 dF∧dG. Around that core: the Prüfer canonical pair, the
+    first-order spherical defect action, charge and angular momentum as canonical momenta,
+    Kerr/Kerr–Newman half-angle identities with their guards, and the full does-not-establish
+    ledger. <span class="math">Δ_op = ∅</span>.</p>
+    <p><a href="../book22/">Read Book 22 →</a></p>
+  </div>
+</div>
+
+<footer>
+<p><a href="../">← Series index</a> · Volume 0. Pictures illustrate proved
+statements; they are not the proofs. Status discipline: every claim is labeled proved,
+checked, conditional on import, or not established — nothing is promoted beyond its
+support.</p>
+</footer>
+</body>
+</html>
