@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book 2 — Canonical R-Operator Calculus</title>
+<script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+<style>
+body{font-family:Georgia,serif;max-width:860px;margin:0 auto;padding:24px;line-height:1.65;color:#1a1a1a;background:#fdfdfb}
+h1{font-size:1.9em;border-bottom:2px solid #333;padding-bottom:8px}
+h2{font-size:1.45em;margin-top:2.2em;border-bottom:1px solid #aaa;padding-bottom:4px}
+h3{font-size:1.15em;margin-top:1.6em}
+.graph{width:100%;height:420px;margin:12px 0 4px;border:1px solid #ccc;background:#fff}
+.fallback{display:none;width:100%;margin:12px 0 4px;border:1px solid #ccc}
+.caption{font-size:.92em;color:#333;background:#f4f4f0;padding:10px 14px;border-left:3px solid #888;margin:0 0 1.4em}
+.formula{text-align:center;font-size:1.12em;margin:.9em 0}
+.status{font-size:.85em;color:#555}
+.tag{display:inline-block;font-size:.78em;font-weight:bold;border:1px solid #666;border-radius:3px;padding:0 6px;margin-right:4px;background:#eee}
+.tag.P{background:#dff0d8}.tag.S{background:#d9edf7}.tag.M{background:#fcf8e3}.tag.D{background:#e8e8e8}.tag.NC{background:#e2d9f3}
+hr{margin:2.5em 0;border:none;border-top:1px solid #bbb}
+.toc a{color:#0645ad;text-decoration:none}
+.small{font-size:.9em;color:#444}
+</style>
+</head>
+<body>
+<h1>Book 2 — Canonical R-Operator Calculus</h1>
+<p><i>A restructured rewrite of Book 2 of R Theory — Volume I. Pictures and intuition first; the formal audit second. Every claim carries its status: <span class="tag P">P</span> proof supplied in the manuscript text, <span class="tag S">S</span> standard imported result, <span class="tag M">M</span> manuscript assertion / stipulation, <span class="tag D">D</span> definition, <span class="tag NC">NC</span> completed numerical check run for this page (sampled agreement ~1e-10 — a check, never a proof). Nothing on this page is a physical claim.</i></p>
+<div class="toc">
+<p><b>Contents.</b> <a href="#p1">I. See it first</a> · <a href="#p2">II. Then earn it</a> · <a href="#p3">III. Certification</a> · <a href="#p4">IV. Close the book</a></p>
+</div>
+
+<hr>
+<h2 id="p1">Part I — See it first</h2>
+<p>Seven pictures. Each one is a theorem of Book 2 drawn before it is proved. The graphs below are live Desmos calculators (drag to pan, scroll to zoom); if Desmos cannot load, a static rendering appears instead. Dashed curves are the identity's right-hand side — where you cannot see them, the two sides coincide exactly.</p>
+
+<h3>Figure 1 — The naming act: the canonical primitive quartet</h3>
+<div class="graph" id="d1"></div>
+<img class="fallback" id="f1" src="graphs/b2_quartet.png" alt="Named primitive quartet">
+<div class="caption"><b>What you see.</b> The four named operators
+<span class="formula">srx = |csc x|+cot x,&nbsp; sxp = |csc x|−cot x,&nbsp; cxp = |sec x|+tan x,&nbsp; crx = |sec x|−tan x</span>
+on D = ℝ ∖ {kπ/2} — the same four functions Book 1 proved everything about, now carrying their canonical names. Naming adds no mathematics (2.I.T6) <span class="tag P">P</span>: the absolute values are inherited, not decoration. Each sine-channel pole is a cosine-channel regular point and vice versa. <b>Checked here</b> <span class="tag NC">NC</span>: reciprocal conjugacy srx·sxp = cxp·crx = 1 (max error ~2e-10), strict positivity on D, the threshold law (srx&gt;1 and cxp&gt;1 ⇔ ε=+1), and srx(π/4) = √2+1.</div>
+
+<h3>Figure 2 — First climax: double-angle closure</h3>
+<div class="graph" id="d2"></div>
+<img class="fallback" id="f2" src="graphs/b2_doubleangle.png" alt="Double-angle closure">
+<div class="caption"><b>What you see.</b> The UNA differences urx = srx−crx and uxp = cxp−sxp (canonical sign lock: <i>not</i> the retired sxp−cxp) combine, and their internal |sin x|/|cos x| imbalance cancels exactly:
+<span class="formula">urx + uxp = 4/sin 2x,&nbsp;&nbsp; urx·uxp = 4/|sin 2x|,&nbsp;&nbsp; |urx+uxp| = urx·uxp</span>
+Solid blue is urx+uxp, dashed orange is 4/sin 2x — one curve is hiding behind the other. Solid green is the product, dashed red 4/|sin 2x|. The signed closure keeps the sign sector; the unsigned closure keeps only the magnitude. <b>Checked here</b> <span class="tag NC">NC</span>: sum, product, and sign–magnitude identities agree to ~1e-13 relative on a seam-avoiding grid. <b>The checksum.</b> Substituting the retired reversed uxp would give 2|csc x|−2|sec x| instead (2.V.C1) <span class="tag P">P</span> — the double angle permanently audits the sign convention.</div>
+
+<h3>Figure 3 — Second climax: FlatWave, the binary collapse</h3>
+<div class="graph" id="d3"></div>
+<img class="fallback" id="f3" src="graphs/b2_flatwave.png" alt="FlatWave binary collapse">
+<div class="caption"><b>What you see.</b> The rational expression (srx+cxp)/(srx·cxp−1) — which <i>looks</i> like it should have a nontrivial amplitude — collapses to a ±1 step function:
+<span class="formula">FlatWave = saw<sub>r</sub>+saw<sub>x</sub> = (srx+cxp)/(srx·cxp−1) = sgn(sin 2x) = ε</span>
+Solid blue is the rational form, dashed red is sgn(sin 2x): again one curve behind the other. Flat on each quadrant (derivative zero), alternating +1, −1, +1, −1 with period π; undefined at the seams, with opposite one-sided limits. It is not a wave. <b>Checked here</b> <span class="tag NC">NC</span>: FlatWave² = 1 to ~5e-13, equality with sgn(sin 2x) to ~2e-13, quadrant character (−1)<sup>k</sup> on Q<sub>k</sub>. <b>What it doesn't show.</b> FlatWave discards the continuous magnitude |sin 2x| — binary data cannot reconstruct it (2.VI.C5) <span class="tag P">P</span>.</div>
+
+<h3>Figure 4 — Third climax, the map: Möbius branches and their fixed points</h3>
+<div class="graph" id="d4"></div>
+<img class="fallback" id="f4" src="graphs/b2_mobius.png" alt="Mobius branches">
+<div class="caption"><b>What you see.</b> The two admissible branches of the branch Möbius map M<sub>ε</sub>(z) = (z+ε)/(εz−1):
+<span class="formula">M<sub>+</sub>(z) = (z+1)/(z−1), z &gt; 1&ensp;(blue);&emsp; M<sub>−</sub>(z) = (1−z)/(1+z), 0 &lt; z &lt; 1&ensp;(green)</span>
+Each branch preserves its interval and strictly reverses order; each is an involution, M<sub>ε</sub>(M<sub>ε</sub>(z)) = z. The black dots are the unique positive fixed points √2+1 and √2−1 — the same numbers as the quadrant-midpoint values srx(m<sub>k</sub>) = √2+ε, not a coincidence but the same theorem seen twice (2.VII.C5) <span class="tag P">P</span>. <b>Checked here</b> <span class="tag NC">NC</span>: involution, branch preservation, fixed points, and strict order reversal (negative derivative on both branches).</div>
+
+<h3>Figure 5 — Third climax, the reduction: one primary value determines the other</h3>
+<div class="graph" id="d5"></div>
+<img class="fallback" id="f5" src="graphs/b2_mobius_phase.png" alt="Same-phase Mobius reduction">
+<div class="caption"><b>What you see.</b> At the <i>same</i> phase x — not at a reflected or shifted argument — the cosine primary is the Möbius image of the sine primary, with FlatWave as the branch datum:
+<span class="formula">cxp(x) = (srx(x)+ε)/(ε·srx(x)−1),&emsp; ε = FlatWave(x)</span>
+Solid blue is cxp(x); dashed orange is the Möbius formula evaluated at srx(x). The apparent two-primary representation is reducible: one positive scalar per open quadrant generates the whole named system (2.VII.T10) <span class="tag P">P</span>. <b>Checked here</b> <span class="tag NC">NC</span>: agreement to ~1e-13 on a seam-avoiding grid. <b>The trap.</b> The branch sign ε is read <i>from</i> the generator (FlatWave is derived), so no second generator is smuggled in (2.VII.T6) <span class="tag P">P</span> — and one generator still does not recover the discrete half-turn label (2.VII.C10) <span class="tag P">P</span>.</div>
+
+<h3>Figure 6 — The carrier ellipse</h3>
+<div class="graph" id="d6"></div>
+<img class="fallback" id="f6" src="graphs/b2_carrier.png" alt="Carrier ellipse">
+<div class="caption"><b>What you see.</b> The reciprocal of the singular UNA sum simplifies on D to an ordinary smooth function, H<sub>D</sub> = 1/(urx+uxp) = sin 2x/4, which extends uniquely to all of ℝ as H(x) = sin 2x/4. With V = H′ = cos 2x/2, the pair (H,V) rides the closed curve
+<span class="formula">v² + 4h² = 1/4,&emsp; H′ = V,&emsp; V′ = −4H,&emsp; H″+4H = 0</span>
+Dashed gray is the ellipse; solid blue is the traced (H(x),V(x)) — one full traversal per half-turn of x, so the representation has exact fibers modulo π. Normalized, U = 4H = sin 2x and W = 2V = cos 2x sit on the unit circle. <b>Checked here</b> <span class="tag NC">NC</span>: the ellipse identity to ~6e-17, the unit-circle identity to ~2e-16, the harmonic system by finite differences. <b>Scope.</b> H″+4H = 0 lives in the dimensionless phase coordinate — it is not a physical equation of motion (2.VIII.C4) <span class="tag P">P</span>.</div>
+
+<h3>Figure 7 — The smooth carrier beneath the singular layer</h3>
+<div class="graph" id="d7"></div>
+<img class="fallback" id="f7" src="graphs/b2_extraction.png" alt="Harmonic extraction through seams">
+<div class="caption"><b>What you see.</b> Solid blue: H(x) = sin 2x/4, smooth across everything. Dashed orange: the raw reciprocal 1/(urx+uxp), defined only on D — it coincides with H between the seams and is <i>undefined at</i> them (the gaps are real, even if they are thin at this scale). Black dots: the seam values H(b<sub>k</sub>) = 0. Those zeros belong to the extended derived coordinate; they are not values assigned to urx, uxp, or any primitive — the smooth carrier does not regularize its singular constituents (2.VIII.N1, 2.VIII.T13) <span class="tag P">P</span>. <b>Checked here</b> <span class="tag NC">NC</span>: raw–smooth agreement to ~7e-17 on D, H(b<sub>k</sub>) = 0 exactly at b<sub>k</sub> = kπ/2, and FlatWave = sgn(H) on D.</div>
+
+<hr>
+<h2 id="p2">Part II — Then earn it</h2>
+<p>The formal audit, section by section, condensed. Notation: srx = |csc x|+cot x, sxp = |csc x|−cot x (D<sub>s</sub>); cxp = |sec x|+tan x, crx = |sec x|−tan x (D<sub>c</sub>); 𝒫 = (srx,sxp,cxp,crx) on D; urx = srx−crx, uxp = cxp−sxp (canonical order); saw<sub>r</sub> = 1/urx, saw<sub>x</sub> = 1/uxp; FlatWave = saw<sub>r</sub>+saw<sub>x</sub>; H = sin 2x/4, V = cos 2x/2, U = 4H, W = 2V; z = srx, w = cxp; M<sub>ε</sub>(z) = (z+ε)/(εz−1); ε = sgn(sin 2x) = αβ.</p>
+
+<h3>2.I — The canonical primitive quartet <span class="tag D">D</span> / <span class="tag P">P</span></h3>
+<p>Book 1 withheld the names until the mathematics was proved without them; naming is now a purely definitional act (D1–D3) <span class="tag D">D</span>. The negative-tangential member is proved to be exactly the reciprocal of the positive-tangential member — sxp = 1/srx, crx = 1/cxp — by rationalizing with csc²−cot² = 1 and sec²−tan² = 1 (T1, T2) <span class="tag P">P</span>. Positivity on the maximal channel domains D<sub>s</sub>, D<sub>c</sub> (T3) <span class="tag P">P</span>; at opposite-channel seams the pair takes the regular value 1 <span class="tag P">P</span>. Conjugate sum/difference recovery of 2|csc x|, 2cot x, etc. (T4) <span class="tag P">P</span>. Absolute-value preservation: the canonical global form keeps Book 1's |·|; chart-local droppings are not global (T5, C6) <span class="tag P">P</span>. The quartet is definitional in name, theorem-level in reciprocity (T6) <span class="tag P">P</span>.</p>
+
+<h3>2.II — The half-angle atlas <span class="tag P">P</span> / <span class="tag S">S</span></h3>
+<p>Principal chart Q<sub>0</sub>: srx = cot(x/2), sxp = tan(x/2), cxp = tan(π/4+x/2), crx = tan(π/4−x/2) (T1, T2) <span class="tag P">P</span> via standard half-angle and addition identities <span class="tag S">S</span>. Maximal channel coordinates: θ<sub>s</sub> ∈ (0,π) gives srx = cot(θ<sub>s</sub>/2) on all of D<sub>s</sub> (T3), a bijection onto (0,∞) per component (T4) <span class="tag P">P</span>; cosine analogues with θ<sub>c</sub> ∈ (−π/2,π/2) (T5, T6) <span class="tag P">P</span>. Common-domain transport in ξ<sub>k</sub>: even quadrants reuse the principal chart, odd quadrants the swapped chart — two chart types, selected by ε (T7, T8, C3) <span class="tag P">P</span>. Range law: z = srx &gt; 1 and w = cxp &gt; 1 exactly on ε = +1 quadrants, 0 &lt; z,w &lt; 1 exactly on ε = −1 (T9) <span class="tag P">P</span>; branch sign read from the range (C4) <span class="tag P">P</span>. Midpoint values √2±ε (T10) <span class="tag P">P</span> with cot(π/8) = √2+1 <span class="tag S">S</span>; octant crossing order (T11) <span class="tag P">P</span>. Stereographic recovery of sin x, cos x, tan x and the signed circle from z plus one half-turn label (T12, C5, C6) <span class="tag P">P</span>. Rational double-angle formulas sin 2x = 4z(z²−1)/(z²+1)², cos 2x from z (T13, T14) <span class="tag P">P</span>; double-angle branch sign from the unit threshold (C8) <span class="tag P">P</span>.</p>
+
+<h3>2.III — The primitive symmetry orbit <span class="tag P">P</span></h3>
+<p>Phase reflection is reciprocal inversion within each channel: srx(−x) = sxp(x), cxp(−x) = crx(x) (T1, C1) <span class="tag P">P</span>; the unit threshold is the reflection fixed value (C2) <span class="tag P">P</span>. Complete quarter-turn action (T2) <span class="tag P">P</span>, preserving reciprocal pairing (C4) <span class="tag P">P</span>. Half-turn invariance with descent to 𝕋<sub>π</sub> (T3, C5) <span class="tag P">P</span>; no half-turn-branch recovery (C6) <span class="tag P">P</span>; the induced quarter-turn has order two on the primitive representation (T4) <span class="tag P">P</span>. Complementary-reflection action (T5) <span class="tag P">P</span>. The quartet is a single orbit of one master function under the phase symmetries (T6) <span class="tag P">P</span>; the induced permutation group is the Klein four V<sub>4</sub> (T7) <span class="tag P">P</span>, transitive on the quartet (C10) <span class="tag P">P</span> — a mathematical label-permutation group, not a physical gauge group. ε transport laws (T8) <span class="tag P">P</span>: two symmetries reverse the branch sector, two preserve it (C12) <span class="tag P">P</span>. The non-scope declarations are stipulated boundaries <span class="tag M">M</span>.</p>
+
+<h3>2.IV — UNA differences and the canonical sign lock <span class="tag D">D</span> / <span class="tag P">P</span></h3>
+<p>urx = srx−crx (D1), uxp = cxp−sxp (D2); Constitutional Rule 2.IV.R1 locks the order — the reversed sxp−cxp = −uxp is retired, not an alternate convention <span class="tag D">D</span>. Complementary reflection exchanges the pair, urx(ι<sub>d</sub>x) = uxp(x) (T1) <span class="tag P">P</span>, which is exactly why the reversed sign is wrong (C1) <span class="tag P">P</span>. Exact magnitude forms urx = [ε+|cos x|−|sin x|]/(|sin x||cos x|) and the uxp analogue (T2, T3) <span class="tag P">P</span>; a strict magnitude-difference bound (L1) <span class="tag P">P</span> gives the common UNA sign sgn(urx) = sgn(uxp) = ε (T4) <span class="tag P">P</span>, hence nonvanishing on D (C3) <span class="tag P">P</span> and sign alternation by quadrant (C4) <span class="tag P">P</span>. Rational same-phase forms urx = (zw−1)/w, uxp = (zw−1)/z with a common numerator (T5, C5) <span class="tag P">P</span>; UNA ratio theorem (C6) <span class="tag P">P</span>. Full symmetry action on the pair (T6–T8) <span class="tag P">P</span>. The reversed sign destroys the common-sign architecture (C8) <span class="tag P">P</span>; the π/4 checksum (C9) <span class="tag P">P</span>. UNA is derived: it adds no primitive information (T9, C10) <span class="tag P">P</span>.</p>
+
+<h3>2.V — First climax: double-angle closure <span class="tag P">P</span></h3>
+<p>urx+uxp = 4/sin 2x, proved twice — conjugate-difference collapse (2cot x+2tan x) and branch-magnitude cancellation (2ε/(|sin x||cos x|)) (T1) <span class="tag P">P</span>. The identity is a permanent checksum for the uxp sign lock: the retired reversed sign would yield 2|csc x|−2|sec x| (C1) <span class="tag P">P</span>. Half-angle-generator form (z²+1)²/[z(z²−1)] (T2) <span class="tag P">P</span> — the sum is already one-generator data (C2) <span class="tag P">P</span>. Unsigned companion urx·uxp = 4/|sin 2x| (T3) <span class="tag P">P</span>, strictly positive (C3) <span class="tag P">P</span>; exact sign–magnitude relation |urx+uxp| = urx·uxp (T4) <span class="tag P">P</span>, separating magnitude from binary branch sign (C5) <span class="tag P">P</span>. Signed/unsigned reciprocal closures (C6, C7) <span class="tag P">P</span>; sum and product transform differently under the symmetries (T5, T6, C8) <span class="tag P">P</span>. Divergence toward every common seam (T7) <span class="tag P">P</span>; the reciprocal closures vanish at the seam in their extended right-hand forms (C9) <span class="tag P">P</span>. Half-angle/double-angle closure theorem (T8) <span class="tag P">P</span>.</p>
+
+<h3>2.VI — Second climax: FlatWave <span class="tag P">P</span> / <span class="tag D">D</span></h3>
+<p>saw<sub>r</sub> = 1/urx, saw<sub>x</sub> = 1/uxp (D1); FlatWave = saw<sub>r</sub>+saw<sub>x</sub> (D2) — canonical spelling and labels; "wave" implies nothing physical <span class="tag D">D</span>. Rational Saw forms saw<sub>r</sub> = w/(zw−1), saw<sub>x</sub> = z/(zw−1) (T1) <span class="tag P">P</span>; FlatWave = (z+w)/(zw−1) (C1) <span class="tag P">P</span>. Binary Character Theorem: FlatWave = ε = sgn(sin 2x) ∈ {−1,+1} (T2) <span class="tag P">P</span> as the quotient of signed by unsigned closure (T3) <span class="tag P">P</span>; exactly self-reciprocal, FlatWave² = 1 (C2) <span class="tag P">P</span>; quadrant character (−1)<sup>k</sup> with period π (C3) <span class="tag P">P</span>; flat on each quadrant (C4) <span class="tag P">P</span>. It retains no continuous double-angle magnitude (C5) <span class="tag P">P</span> and no branch information beyond ε (C6) <span class="tag P">P</span>. Signed Saw partition of unity (T4) <span class="tag P">P</span>; exact boundedness of each Saw response (C7) <span class="tag P">P</span>; Saw product (T5) <span class="tag P">P</span>; sum plus product determine the unordered Saw pair (C8) <span class="tag P">P</span>. FlatWave transformation laws (T6) <span class="tag P">P</span> and the nontrivial one-dimensional sign character χ<sub>F</sub> of V<sub>4</sub> — +1 on identity and complementary reflection, −1 on phase reflection and quarter-turn (T7) <span class="tag P">P</span>; a group homomorphism, not a physical charge. Opposite one-sided limits ±1 at every common seam, no seam value (T8) <span class="tag P">P</span>. Same-phase cross-family equation z+w = ε(zw−1) (T10) <span class="tag P">P</span> — the bridge to the third climax.</p>
+
+<h3>2.VII — Third climax: Möbius reduction <span class="tag P">P</span> / <span class="tag D">D</span></h3>
+<p>Denominator nonvanishing: εz−1 ≠ 0 on D, from the range law ε = +1 ⇔ z &gt; 1, ε = −1 ⇔ 0 &lt; z &lt; 1 (L1, C1) <span class="tag P">P</span>. Branch Möbius map M<sub>ε</sub>(z) = (z+ε)/(εz−1) on I<sub>+</sub> = (1,∞), I<sub>−</sub> = (0,1) (D1) <span class="tag D">D</span>. Exact same-phase reduction w = M<sub>ε</sub>(z), i.e. cxp = (srx+ε)/(ε·srx−1) (T1) <span class="tag P">P</span>; explicit branches (srx+1)/(srx−1) and (1−srx)/(1+srx) (C2) <span class="tag P">P</span>; reciprocal companion crx = (εz−1)/(z+ε) (C3) <span class="tag P">P</span>. Involution M<sub>ε</sub>(M<sub>ε</sub>(z)) = z, proved both by symmetry of (z+w)/(zw−1) = ε and by direct fractional-linear computation (T2) <span class="tag P">P</span>. Branch preservation with strict order reversal (T3) <span class="tag P">P</span>. The involution is the z-coordinate image of complementary reflection (T4, C4) <span class="tag P">P</span>. Unique positive fixed point √2+ε per branch (T5) <span class="tag P">P</span>, equal to the half-angle midpoint value (C5) <span class="tag P">P</span>. Branch selection is internal to the generator — FlatWave is a derived readout, not a second generator (T6, C6) <span class="tag P">P</span>. One-scalar reconstruction of the full named system from z = srx (T7) <span class="tag P">P</span>; exact one-nonconstant-generator theorem on each open quadrant — sufficiency (T8), necessity (T9), synthesis (T10) <span class="tag P">P</span>; the apparent two-primary structure collapses at fixed phase (C8) <span class="tag P">P</span>; derived layers add vocabulary, not continuous dimension (C9) <span class="tag P">P</span>. One generator does not recover the discrete half-turn label (C10) <span class="tag P">P</span>; one-generator closure is task-relative (2.XII.C3) <span class="tag M">M</span>. Third-climax synthesis (T11) <span class="tag P">P</span>.</p>
+
+<h3>2.VIII — Harmonic extraction <span class="tag P">P</span> / <span class="tag S">S</span></h3>
+<p>Reciprocal UNA-sum kernel H<sub>D</sub> = 1/(urx+uxp) on D (D1) <span class="tag D">D</span>; exact extraction H<sub>D</sub> = sin 2x/4 (T1) <span class="tag P">P</span>, with sign ε and 0 &lt; |H<sub>D</sub>| ≤ 1/4, maximum at the midpoints (C1) <span class="tag P">P</span>. Extended harmonic coordinate H(x) = sin 2x/4 on ℝ (D2) <span class="tag D">D</span>; smooth extension theorem (T2) <span class="tag P">P</span>; uniqueness of the continuous extension since D is dense in ℝ (T3) <span class="tag P">P</span> via the standard dense-set argument <span class="tag S">S</span>. Seam values H(b<sub>k</sub>) = 0 belong to H alone — extension does not commute with inversion through zero (C3, N1) <span class="tag P">P</span>. Derivative coordinate V = H′ = cos 2x/2 (D3, T4) <span class="tag P">P</span>; first-order system H′ = V, V′ = −4H (T5) <span class="tag P">P</span>; H″+4H = 0 — an identity in the dimensionless phase coordinate, not a physical equation of motion (C4) <span class="tag P">P</span>. Carrier ellipse v²+4h² = 1/4 (D4, T6) <span class="tag P">P</span>; normalized unit circle U²+W² = 1 with U = sin 2x, W = cos 2x (D5, C5) <span class="tag P">P</span>. Carrier map F(x) = (H(x),V(x)): smooth, π-periodic, exact fibers modulo π (D6, T7, T8, C7) <span class="tag P">P</span>; constant normalized phase-parameter speed (C6) <span class="tag P">P</span>. Seam classifier by the derivative coordinate (T9) <span class="tag P">P</span>; seam class survives smooth gluing (C9) <span class="tag P">P</span>; transverse H = 0 crossing (C10) <span class="tag P">P</span>. FlatWave is the sign projection of H (T10) <span class="tag P">P</span>; three distinct levels of double-angle information — signed, unsigned, binary (C11, C12) <span class="tag P">P</span>. Carrier coordinates from z (T11) <span class="tag P">P</span>. Seam-safe carrier data (T12) <span class="tag P">P</span>; the smooth carrier does not regularize raw operators (T13) <span class="tag P">P</span> — Book 1's C7 rule, inherited. Harmonic extraction theorem (T14) <span class="tag P">P</span>.</p>
+
+<h3>2.IX — Differential, integral, and asymptotic closure <span class="tag P">P</span></h3>
+<p>Envelope derivative forms srx′ = −srx|csc x|, sxp′ = +sxp|csc x| (T1) <span class="tag P">P</span>; autonomous Riccati pairs srx′ = −(1+srx²)/2, sxp′ = +(1+sxp²)/2 (T2) <span class="tag P">P</span> and the cosine analogues (T3, T4) <span class="tag P">P</span>; exact monotonicity on maximal components (C1, C2) <span class="tag P">P</span>. Arctangent linearization with constant slopes ±1/2: d/dx arctan(srx) = −1/2, arctan(sxp) = +1/2, arctan(cxp) = +1/2, arctan(crx) = −1/2 (T5) <span class="tag P">P</span>; differential recovery of the half-angle atlas — arctan(srx) = π/2−θ<sub>s</sub>/2 etc. (C3) <span class="tag P">P</span>; exact phase quadratures dx = ∓2 d(primitive)/(1+primitive²) (C4) <span class="tag P">P</span>. Logarithmic antiderivatives (T6) <span class="tag P">P</span> with half-angle logarithmic forms (C5) <span class="tag P">P</span>. First-order zero–pole seam asymptotics (T7, T8) <span class="tag P">P</span>; the reciprocal zero–pole exchange is first-order (C6) <span class="tag P">P</span>. Regular opposite-channel crossings — the common seam set is composite, not function-universal (T9, T10, C7) <span class="tag P">P</span>. Logarithmic divergence on the pole side; reciprocal pairing exchanges integrable and nonintegrable one-sided behavior (T11, C8) <span class="tag P">P</span>. Exact positive Riccati branches (T12) <span class="tag P">P</span>; the finite-interval pole is intrinsic to the real Riccati chart (C9) <span class="tag P">P</span>. Differential closure requires no second continuous generator (T13) <span class="tag P">P</span>; calculus does not undo one-generator minimality (C10) <span class="tag P">P</span>.</p>
+
+<h3>2.X — Complete named boundary atlas <span class="tag P">P</span></h3>
+<p>One-sided boundary convention (2.X.A) <span class="tag M">M</span>. Sine-zero seams: primitive traces (T1), UNA traces (T2), Saw and FlatWave traces (T3), carrier sine-seam value (T4) <span class="tag P">P</span>. Cosine-zero seams: primitive (T5), UNA (T6), Saw/FlatWave (T7), carrier (T8) <span class="tag P">P</span>. Unified FlatWave and carrier seam law (T9) <span class="tag P">P</span>: the FlatWave sign jump is the sign of a smooth transverse zero of H (C1) <span class="tag P">P</span>. Singular raw operators, bounded split-boundary traces, cusp regularity, and smooth carrier gluing are kept distinct throughout; no physical seam law is inferred <span class="tag M">M</span>.</p>
+
+<h3>2.XI — Complex packaging audit <span class="tag P">P</span> / <span class="tag M">M</span></h3>
+<p>Optional UNA complex package Ψ<sub>U</sub> = urx+i·uxp — seam-singular, information-equivalent to the real pair <span class="tag D">D</span>. Optional complex carrier Z<sub>car</sub> = 2V+i4H = cos 2x+i sin 2x = e<sup>2ix</sup> (T7) <span class="tag P">P</span>; unit modulus (C7) <span class="tag P">P</span>; complex linear harmonic equation Z<sub>car</sub>′ = 2iZ<sub>car</sub> (T8) <span class="tag P">P</span>; exact symmetry laws (T9) <span class="tag P">P</span>; FlatWave and seam class read from Z<sub>car</sub> (C9) <span class="tag P">P</span>; phasor fiber theorem — exact fibers mod π (T10) <span class="tag P">P</span>; complex seam contrast (T11) <span class="tag P">P</span>; complex notation does not itself regularize a representation (C11) <span class="tag P">P</span>. Retention decision: Ψ<sub>U</sub> kept only as an optional diagnostic hyperbola representation; Z<sub>car</sub> kept as the canonical optional complex carrier (T12) <span class="tag M">M</span> — an audit decision, not a derivation. No quantum interpretation is admitted <span class="tag M">M</span>.</p>
+
+<h3>2.XII — Certification <span class="tag P">P</span> / <span class="tag M">M</span></h3>
+<p>No circular dependency in the revised chain (T1) <span class="tag P">P</span>, by the section ledgers. Three-climax theorem — Double Angle, FlatWave, Möbius (T2) <span class="tag P">P</span>; FlatWave is structurally important but not independent data (C1) <span class="tag P">P</span>. Domain ledger (T3) <span class="tag P">P</span>; no silent seam regularization (C2) <span class="tag P">P</span>. Static information hierarchy (T4) <span class="tag P">P</span>. Boundary architecture theorem (T5) <span class="tag P">P</span>; smooth and split-boundary representations are not interchangeable (C4) <span class="tag P">P</span>. Canonical notation and retirement ledger — uxp sign, Saw labels, FlatWave spelling, retired aliases (T6) <span class="tag P">P</span> as a ledger audit. Computer algebra adds no axiom: the Wolfram audit changes no theorem status (T7) <span class="tag M">M</span> — an audit assertion, not independently re-verified here. Extension ledger: 0 new axioms, 0 physics imports, 0 projection contracts, 0 empirical calibrations, 0 dimensional constants, 0 physical equations of motion, 0 physical seam laws, 0 quantum postulates, 0 preferred-chirality axioms (T8) <span class="tag P">P</span> by construction audit; definitions are not axioms (C5) <span class="tag M">M</span>. Negative closure: 12 things NOT established — physical time, frequency/energy, wave propagation, spacetime metric, electromagnetism/gravity, quantum state/Born rule, spin/fermions, particle ontology, preferred chirality, mirror universe, physical seam-crossing, empirical prediction (N1) <span class="tag P">P</span> from absence of introduced structure. Closure certification (T9) <span class="tag P">P</span>.</p>
+
+<hr>
+<h2 id="p3">Part III — What Book 2 establishes, and what it doesn't</h2>
+<h3>Established (abridged)</h3>
+<p class="small">Canonical names srx, sxp, cxp, crx on the four Book 1 factors — naming definitional, reciprocity theorem-level; maximal channel domains with opposite-seam regular value 1; half-angle atlas in named form with exact range/bijection theorems, two chart types, midpoint values √2±ε, octant order; symmetry orbit with Klein-four permutation group V<sub>4</sub> and ε transport laws; UNA differences with canonical sign lock uxp = cxp−sxp, common sign ε, nonvanishing, rational same-phase forms; double-angle closure urx+uxp = 4/sin 2x and urx·uxp = 4/|sin 2x|; FlatWave = sgn(sin 2x) ±1-valued, flat per quadrant, the quotient of signed by unsigned closure, carrying the V<sub>4</sub> sign character; same-phase Möbius reduction w = M<sub>ε</sub>(z), a branch-preserving involution with fixed points √2±ε; exact one-nonconstant-generator closure per open quadrant; smooth carrier H = sin 2x/4, V = cos 2x/2 uniquely extended through every seam, with carrier ellipse, unit circle, exact mod-π fibers, and FlatWave = sgn H; autonomous Riccati pairs, constant-slope arctangent coordinates, logarithmic antiderivatives, first-order seam asymptotics; complete named boundary atlas; complex audit retaining Z<sub>car</sub> = e<sup>2ix</sup> as optional; certification with zero new axioms. Statuses: proved in text unless marked <span class="tag S">S</span>/<span class="tag M">M</span> above; the seven pictures additionally carry this page's own <span class="tag NC">NC</span> numerical re-verification.</p>
+<h3>Not derived (abridged)</h3>
+<p class="small">No physical time, no frequency or energy, no wave propagation law, no spacetime metric, no electromagnetism or gravity, no quantum state or Born rule, no spin or fermionic structure, no particle/antiparticle ontology, no preferred physical chirality, no mirror universe, no physical seam-crossing process, no empirical prediction. The words operator, wave, expon, inverx, carrier, branch, character, phase, reflection, and complex carry only their explicitly defined mathematical meanings. The half-turn branch needs a discrete label no continuous generator supplies; complex packaging regularizes nothing by itself; the smooth carrier heals none of the raw operators. Book 2 is mathematically closed and physically uncommitted — that is the certification, not a gap.</p>
+
+<hr>
+<h2 id="p4">Part IV — Close the book</h2>
+<p><b>Zero counts.</b> New axioms: 0. Physics imports: 0. Projection contracts: 0. Empirical calibrations: 0. Dimensional constants: 0. Physical equations of motion: 0. Physical seam laws: 0. Quantum postulates: 0. Preferred-chirality axioms: 0.</p>
+<p><b>Canonical downstream conventions.</b> uxp = cxp−sxp (sign-locked). Saw labels: saw<sub>r</sub>, saw<sub>x</sub>. Spelling: FlatWave. Retired: the reversed uxp transcription, historical Saw numberings, the "Flatwave" spelling.</p>
+<p><b>Handoff.</b> Book 3 may begin only from this certified mathematical state: per open quadrant exactly one nonconstant continuous scalar generator; smooth carrier representation complete modulo π; full signed unit-circle recovery modulo 2π requires one additional discrete half-turn label.</p>
+<p class="status">Rewrite status: the seven pictured identities were re-verified numerically before drawing — reciprocal conjugacy (~2e-10), double-angle sum/product (~1e-13), FlatWave collapse and quadrant character (~2e-13), Möbius involution/branches/fixed points (~4e-15), same-phase reduction (~1e-13), carrier ellipse and unit circle (~2e-16), harmonic extraction through the seams (~7e-17) — all on seam-avoiding grids via <span class="tag NC">NC</span> sampling. Pictures illustrate proved statements; they are not the proofs. Proofs whose steps were not independently re-derived are labeled <span class="tag P">P</span> (proof in text), standard background <span class="tag S">S</span>, provenance/bookkeeping/audit claims <span class="tag M">M</span>.</p>
+
+<script>
+var GRAPHS=[
+ {id:'d1', fb:'f1', vw:{left:-7, right:7, bottom:-0.5, top:6}, exprs:[
+  {latex:'y=\\left|\\frac{1}{\\sin(x)}\\right|+\\frac{\\cos(x)}{\\sin(x)}', color:'#1f77b4'},
+  {latex:'y=\\left|\\frac{1}{\\sin(x)}\\right|-\\frac{\\cos(x)}{\\sin(x)}', color:'#ff7f0e'},
+  {latex:'y=\\left|\\frac{1}{\\cos(x)}\\right|+\\frac{\\sin(x)}{\\cos(x)}', color:'#2ca02c'},
+  {latex:'y=\\left|\\frac{1}{\\cos(x)}\\right|-\\frac{\\sin(x)}{\\cos(x)}', color:'#d62728'}]},
+ {id:'d2', fb:'f2', vw:{left:-3.2, right:3.2, bottom:-10, top:10}, exprs:[
+  {latex:'y=\\left(\\left|\\frac{1}{\\sin(x)}\\right|+\\frac{\\cos(x)}{\\sin(x)}-\\left|\\frac{1}{\\cos(x)}\\right|+\\frac{\\sin(x)}{\\cos(x)}\\right)+\\left(\\left|\\frac{1}{\\cos(x)}\\right|+\\frac{\\sin(x)}{\\cos(x)}-\\left|\\frac{1}{\\sin(x)}\\right|+\\frac{\\cos(x)}{\\sin(x)}\\right)', color:'#1f77b4'},
+  {latex:'y=\\frac{4}{\\sin(2x)}', color:'#ff7f0e', lineStyle:'dashed'},
+  {latex:'y=\\left(\\left|\\frac{1}{\\sin(x)}\\right|+\\frac{\\cos(x)}{\\sin(x)}-\\left|\\frac{1}{\\cos(x)}\\right|+\\frac{\\sin(x)}{\\cos(x)}\\right)\\left(\\left|\\frac{1}{\\cos(x)}\\right|+\\frac{\\sin(x)}{\\cos(x)}-\\left|\\frac{1}{\\sin(x)}\\right|+\\frac{\\cos(x)}{\\sin(x)}\\right)', color:'#2ca02c'},
+  {latex:'y=\\frac{4}{\\left|\\sin(2x)\\right|}', color:'#d62728', lineStyle:'dashed'}]},
+ {id:'d3', fb:'f3', vw:{left:-7, right:7, bottom:-2, top:2}, exprs:[
+  {latex:'y=\\frac{\\left|\\frac{1}{\\sin(x)}\\right|+\\frac{\\cos(x)}{\\sin(x)}+\\left|\\frac{1}{\\cos(x)}\\right|+\\frac{\\sin(x)}{\\cos(x)}}{\\left(\\left|\\frac{1}{\\sin(x)}\\right|+\\frac{\\cos(x)}{\\sin(x)}\\right)\\left(\\left|\\frac{1}{\\cos(x)}\\right|+\\frac{\\sin(x)}{\\cos(x)}\\right)-1}', color:'#1f77b4'},
+  {latex:'y=\\operatorname{sign}(\\sin(2x))', color:'#d62728', lineStyle:'dashed'}]},
+ {id:'d4', fb:'f4', vw:{left:-0.2, right:5, bottom:-0.2, top:5}, exprs:[
+  {latex:'y=\\frac{x+1}{x-1}\\left\\{x>1\\right\\}', color:'#1f77b4'},
+  {latex:'y=\\frac{1-x}{1+x}\\left\\{0<x<1\\right\\}', color:'#2ca02c'},
+  {latex:'y=x', color:'#999999', lineStyle:'dashed'},
+  {latex:'(\\sqrt{2}+1,\\sqrt{2}+1)', color:'#000000', showLabel:true, label:'sqrt2+1'},
+  {latex:'(\\sqrt{2}-1,\\sqrt{2}-1)', color:'#000000', showLabel:true, label:'sqrt2-1'}]},
+ {id:'d5', fb:'f5', vw:{left:-3.2, right:3.2, bottom:-6, top:6}, exprs:[
+  {latex:'y=\\left|\\frac{1}{\\cos(x)}\\right|+\\frac{\\sin(x)}{\\cos(x)}', color:'#1f77b4'},
+  {latex:'y=\\frac{\\left|\\frac{1}{\\sin(x)}\\right|+\\frac{\\cos(x)}{\\sin(x)}+\\operatorname{sign}(\\sin(2x))}{\\operatorname{sign}(\\sin(2x))\\left(\\left|\\frac{1}{\\sin(x)}\\right|+\\frac{\\cos(x)}{\\sin(x)}\\right)-1}', color:'#ff7f0e', lineStyle:'dashed'}]},
+ {id:'d6', fb:'f6', vw:{left:-0.45, right:0.45, bottom:-0.65, top:0.65}, exprs:[
+  {latex:'y^{2}+4x^{2}=\\frac{1}{4}', color:'#999999', lineStyle:'dashed'},
+  {latex:'\\left(\\frac{\\sin(2\\pi t)}{4},\\frac{\\cos(2\\pi t)}{2}\\right)', color:'#1f77b4'},
+  {latex:'(0,\\frac{1}{2})', color:'#000000', showLabel:true, label:'x=0'}]},
+ {id:'d7', fb:'f7', vw:{left:-7, right:7, bottom:-0.4, top:0.4}, exprs:[
+  {latex:'y=\\frac{\\sin(2x)}{4}', color:'#1f77b4'},
+  {latex:'y=\\frac{1}{\\left|\\frac{1}{\\sin(x)}\\right|+\\frac{\\cos(x)}{\\sin(x)}-\\left|\\frac{1}{\\cos(x)}\\right|+\\frac{\\sin(x)}{\\cos(x)}+\\left|\\frac{1}{\\cos(x)}\\right|+\\frac{\\sin(x)}{\\cos(x)}-\\left|\\frac{1}{\\sin(x)}\\right|+\\frac{\\cos(x)}{\\sin(x)}}', color:'#ff7f0e', lineStyle:'dashed'},
+  {latex:'(-\\pi,0)', color:'#000000', showLabel:true, label:'H=0'},
+  {latex:'(-\\frac{\\pi}{2},0)', color:'#000000', showLabel:true, label:'H=0'},
+  {latex:'(0,0)', color:'#000000', showLabel:true, label:'H=0'},
+  {latex:'(\\frac{\\pi}{2},0)', color:'#000000', showLabel:true, label:'H=0'},
+  {latex:'(\\pi,0)', color:'#000000', showLabel:true, label:'H=0'}]}
+];
+function initAll(){
+  if(!window.Desmos || !Desmos.GraphingCalculator) return;
+  GRAPHS.forEach(function(g){
+    try{
+      var el = document.getElementById(g.id);
+      var calc = Desmos.GraphingCalculator(el,
+        {keypad:false, expressionsTopbar:false, settingsMenu:false, zoomButtons:true,
+         expressionsCollapsed:false, border:false});
+      calc.setMathBounds(g.vw);
+      g.exprs.forEach(function(e){
+        var st = {latex: e.latex, color: e.color};
+        if(e.lineStyle) st.lineStyle = Desmos.Styles.DASHED;
+        if(e.showLabel){ st.showLabel = true; st.label = e.label; }
+        calc.setExpression(st);
+      });
+    }catch(err){
+      var fb = document.getElementById(g.fb);
+      if(fb){ fb.style.display='block'; }
+      var el2 = document.getElementById(g.id);
+      if(el2){ el2.style.display='none'; }
+    }
+  });
+}
+function boot(){
+  if(window.Desmos && Desmos.GraphingCalculator){ initAll(); }
+  else{
+    GRAPHS.forEach(function(g){
+      var fb = document.getElementById(g.fb);
+      if(fb){ fb.style.display='block'; }
+      var el = document.getElementById(g.id);
+      if(el){ el.style.display='none'; }
+    });
+  }
+}
+if(document.readyState==='complete'){ boot(); } else { window.addEventListener('load', boot); }
+setTimeout(function(){
+  var anyLive=false;
+  GRAPHS.forEach(function(g){ var el=document.getElementById(g.id); if(el && el.style.display!=='none' && el.children.length>0) anyLive=true; });
+  if(!anyLive){
+    GRAPHS.forEach(function(g){
+      var fb=document.getElementById(g.fb); if(fb) fb.style.display='block';
+      var el=document.getElementById(g.id); if(el) el.style.display='none';
+    });
+  }
+}, 12000);
+</script>
+</body>
+</html>
