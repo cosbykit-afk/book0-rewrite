@@ -81,8 +81,10 @@ further visual restyling is deferred.
 Static HTML/CSS/JS, no build step, no tracking. Each book lives in its own
 directory (`book0/`, `book1/`, …) with its graphs alongside it. Corrections are
 committed with the full history preserved. Books ship to GitHub one at a time:
-a book is pushed only after it completes the cleanup cycle in §7, and every
-push uses Kit's explicit temporary-key approval — never an unattended push.
+a book is pushed only after it completes the cleanup cycle in §7. Kit has
+given standing approval (2026-09-19) for pushing cleaned books over the
+persistent SSH key — the temporary-key procedure is retired. Only cleaned
+books ship; never push uncleaned work.
 
 ## 6. Audit chunks and the ledger trail
 
