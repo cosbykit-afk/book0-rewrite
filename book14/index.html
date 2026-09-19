@@ -57,7 +57,7 @@ a static rendering appears instead, generated from the same formulas.</p>
 <div class="caption"><b>What you see.</b> <span class="formula">q_m = (m_1-m_2)/(m_1+m_2)</span>
 (blue) against the mass ratio <span class="formula">r = m_1/m_2</span>, overlaid with
 <span class="formula">tanh(\lambda_m/2)</span>, <span class="formula">\lambda_m = \ln r</span>
-(orange, dashed): the two curves coincide exactly. <span class="tag NC">NC</span>
+(orange, dashed): the two curves coincide exactly. <span class="tag CP">CP</span>
 <b>What it doesn't show.</b> The coordinate is bounded bookkeeping of supplied masses; it does not
 generate either mass. <span class="tag MA">MA</span></div>
 
@@ -68,7 +68,7 @@ generate either mass. <span class="tag MA">MA</span></div>
 <span class="formula">s/(4m_1m_2)</span> versus relative rapidity <span class="formula">\eta</span>:
 <span class="formula">(\cosh\lambda_m+\cosh\eta)/2</span> (blue) and the rational form
 <span class="formula">(1-q_m^2q_v^2)/((1-q_m^2)(1-q_v^2))</span> (orange, dashed) coincide.
-<span class="tag NC">NC</span> <b>What it doesn't show.</b> Fixing <span class="formula">q_m</span> leaves
+<span class="tag CP">CP</span> <b>What it doesn't show.</b> Fixing <span class="formula">q_m</span> leaves
 <span class="formula">\eta</span> free — mass asymmetry does not determine relative motion.
 <span class="tag MA">MA</span> (14.II.N1)</div>
 
@@ -77,7 +77,7 @@ generate either mass. <span class="tag MA">MA</span></div>
 <img class="fallback" id="f3" src="graphs/g3_bound_mass.png" alt="M^2/(m1+m2)^2 versus u">
 <div class="caption"><b>What you see.</b> <span class="formula">M^2/(m_1+m_2)^2 = (1+q_m^2u^2)/(1+u^2)</span>
 versus the elliptic coordinate <span class="formula">u</span> (<span class="formula">q_m=0.6</span>):
-the central exact, invertible mass geometry of the book. <span class="tag NC">NC</span>
+the central exact, invertible mass geometry of the book. <span class="tag CP">CP</span>
 <b>What it doesn't show.</b> Supplied <span class="formula">m_1,m_2,M</span> determine
 <span class="formula">u</span> and vice versa; the equation predicts neither the existence nor the
 value of a physical bound-state mass. <span class="tag MA">MA</span></div>
@@ -89,7 +89,7 @@ value of a physical bound-state mass. <span class="tag MA">MA</span></div>
 <span class="formula">u^2 = B(4-B)/(2-B)^2</span> (blue) against binding energy
 <span class="formula">B</span>, with the reduced-mass line <span class="formula">u^2 = B/(2\mu) = B</span>
 (orange, dashed): they merge as <span class="formula">B \to 0</span>.
-<span class="formula">B = 2\mu u^2 + O(u^4)</span>. <span class="tag NC">NC</span>
+<span class="formula">B = 2\mu u^2 + O(u^4)</span>. <span class="tag CP">CP</span>
 <b>What it doesn't show.</b> The Coulomb <span class="formula">u \approx Z\alpha/(2n)</span> check needs
 the imported Coulomb law; the half-angle scaling is only its coordinate image. <span class="tag ST">ST</span></div>
 
@@ -100,7 +100,7 @@ the imported Coulomb law; the half-angle scaling is only its coordinate image. <
 <span class="formula">M = m_1+E</span> (<span class="formula">m_2=1, E=0.3</span>) converging to
 <span class="formula">(m_2-E)/(m_2+E)</span> (dashed) as <span class="formula">m_1 \to \infty</span>;
 the limit equals <span class="formula">\tan^2(\chi_E/2)</span>, <span class="formula">\cos\chi_E = E/m_2</span>.
-<span class="tag NC">NC</span> <b>What it doesn't show.</b> The identification with the Dirac–Coulomb
+<span class="tag CP">CP</span> <b>What it doesn't show.</b> The identification with the Dirac–Coulomb
 <span class="formula">|G/F|</span> ratio needs the standard Dirac–Coulomb import. <span class="tag ST">ST</span></div>
 
 <h3>Figure 6 — The double-angle carrier</h3>
@@ -110,7 +110,7 @@ the limit equals <span class="formula">\tan^2(\chi_E/2)</span>, <span class="for
 <span class="formula">\langle\Phi_u|J_z|\Phi_u\rangle = \cos(2\alpha)</span> and
 <span class="formula">\langle\Phi_u|J_x|\Phi_u\rangle = \sin(2\alpha)</span> on the symmetric-square
 coherent-state locus <span class="formula">\Phi_u = \nu_2(\chi_u)</span>: the double-angle carrier is
-expectation geometry. <span class="tag NC">NC</span> <b>What it doesn't show.</b> This is the one-body
+expectation geometry. <span class="tag CP">CP</span> <b>What it doesn't show.</b> This is the one-body
 image <span class="formula">1\oplus3</span>; the quadrupole <span class="formula">5</span> is genuinely
 new correlation structure, not produced here. <span class="tag CP">CP</span> (14.IX.T1)</div>
 
@@ -319,13 +319,24 @@ ledger: vol3/book14/LEDGER.md. Live Desmos rendering was verified by static ID/e
 only, not by browser rendering — PNG fallbacks are provided.</p>
 </footer>
 
+<p class="status">Rewrite status: every pictured identity and every checkable §14.I–14.IX claim was
+re-verified independently — 52 numbered assertions in validation/book14/verify_book14.py, all passing,
+no timeouts; worst measured error 6.6e-07 on the weak-binding limit check at B = 1e-6
+(limit-convergence rate, not identity error; all exact-identity checks ≤ 1e-10; the conditional
+Coulomb check agrees to 5.2e-06 relative, NC). Figure tags upgraded NC → CP where the plotted
+coincidence is exact algebra (Figs 1–6); the Figure 2 embed now uses ln(4) exactly for
+λ<sub>m</sub> at q<sub>m</sub> = 0.6 instead of the rounded 1.3863. Embed consistency checked by
+validation/book14/test_embeds.py (6 Desmos ids ↔ fallback PNGs ↔ captions; viewports cover
+expression domains). Live Desmos rendering was not browser-verified; static PNG fallbacks are
+provided. Pictures illustrate proved statements; they are not the proofs.</p>
+
 <script>
 var GRAPHS=[
  {id:'d1', fb:'f1', vw:{left:0, right:10, bottom:-1.15, top:1.15}, exprs:[
   {latex:'y=\\frac{x-1}{x+1}\\left\\{0.01<x<10\\right\\}', color:'#1f77b4'},
   {latex:'y=\\tanh\\left(\\frac{\\ln\\left(x\\right)}{2}\\right)\\left\\{0.01<x<10\\right\\}', color:'#ff7f0e', lineStyle:'dashed'}]},
  {id:'d2', fb:'f2', vw:{left:-3.1, right:3.1, bottom:0.9, top:5.5}, exprs:[
-  {latex:'y=\\frac{\\cosh\\left(1.3863\\right)+\\cosh\\left(x\\right)}{2}\\left\\{-3<x<3\\right\\}', color:'#1f77b4'},
+  {latex:'y=\\frac{\\cosh\\left(\\ln\\left(4\\right)\\right)+\\cosh\\left(x\\right)}{2}\\left\\{-3<x<3\\right\\}', color:'#1f77b4'},
   {latex:'y=\\frac{1-0.36\\tanh\\left(\\frac{x}{2}\\right)^{2}}{\\left(1-0.36\\right)\\left(1-\\tanh\\left(\\frac{x}{2}\\right)^{2}\\right)}\\left\\{-3<x<3\\right\\}', color:'#ff7f0e', lineStyle:'dashed'}]},
  {id:'d3', fb:'f3', vw:{left:-0.1, right:3.1, bottom:0.85, top:1.05}, exprs:[
   {latex:'y=\\frac{1+0.36x^{2}}{1+x^{2}}\\left\\{0<x<3\\right\\}', color:'#1f77b4'}]},
