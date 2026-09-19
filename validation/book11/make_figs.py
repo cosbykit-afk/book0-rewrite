@@ -1,5 +1,5 @@
 """Generate 7 static PNG fallbacks for the Book 11 rewrite page.
-Every number plotted was verified in audit_checks.py (exact fractions / identities)."""
+Every number plotted was verified in verify_book11.py (exact fractions / identities)."""
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")
