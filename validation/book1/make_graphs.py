@@ -6,7 +6,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import os
 
-G = os.path.expanduser("~/workspace/book1/graphs")
+G = os.path.expanduser("~/workspace/r-theory-rewrite/book1/graphs")
 os.makedirs(G, exist_ok=True)
 SQ2 = np.sqrt(2)
 

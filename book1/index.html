@@ -114,7 +114,7 @@ four monotone branches in the ranges (1,∞) and (0,1), meeting pairwise at x = 
 <h2 id="p4">Part IV — Close the book</h2>
 <p><b>Zero counts.</b> New axioms: 0. External imports: 0. Projection contracts: 0. Canonical R-operator names: 0. Physical claims: 0.</p>
 <p><b>Airlock.</b> Book 2 may now name the factors — naming is definitional (1.V.T12, 1.IX.T9) and must inherit the absolute-valued global formulas; later derived signs (differences, FlatWave, carrier) are not fixed by Book 1. Nothing proved here selects a physical chirality, a preferred lift, or a spacetime. The mathematics is closed; the physics has not started.</p>
-<p class="status">Rewrite status: all pictured identities were re-verified numerically (reciprocal conjugacy, half-angle charts, midpoint values √2±1, threshold law, octant ordering, boundary limits, ε-lossiness) to ~1e-10 or better before drawing (checks printed by validation/book1/make_graphs.py). Pictures illustrate proved statements; they are not the proofs.</p>
+<p class="status">Rewrite status: all pictured identities were re-verified numerically (reciprocal conjugacy, half-angle charts, midpoint values √2±1, threshold law, octant ordering, boundary limits, ε-lossiness) — 111 real assertions in validation/book1/verify_book1.py, all passing, no timeouts; worst measured error 8.6e-10 on reciprocal conjugacy near seams (floating-point noise; the identity is exact algebra). Embed consistency checked by validation/book1/test_embeds.py. Pictures illustrate proved statements; they are not the proofs.</p>
 
 <script>
 var GRAPHS=[
@@ -147,6 +147,7 @@ var GRAPHS=[
   {latex:'y=\\left|\\frac{1}{\\cos(x)}\\right|-\\frac{\\sin(x)}{\\cos(x)}', color:'#d62728'}]},
  {id:'d7', fb:'f7', vw:{left:-1.45, right:1.45, bottom:-1.45, top:1.45}, exprs:[
   {latex:'x^{2}+y^{2}=1', color:'#333333'},
+  {latex:'\\left(\\cos(t),\\sin(t)\\right)\\left\\{0\\le t\\le\\frac{\\pi}{2}\\right\\}', color:'#1f77b4'},
   {latex:'(1,0)', color:'#d62728', showLabel:true, label:'[0]'},
   {latex:'(0,1)', color:'#d62728', showLabel:true, label:'[pi/2]'},
   {latex:'(-1,0)', color:'#d62728', showLabel:true, label:'[pi]'},
