@@ -46,6 +46,7 @@
   table.scope th, table.scope td { border:1px solid var(--line); padding:.45em .6em; text-align:left; vertical-align:top; }
   table.scope th { background:var(--wash); }
   footer { margin-top:3em; color:var(--muted); font-size:.9em; border-top:1px solid var(--line); padding-top:1em; }
+  .status { font-size:.85em; color:#555; }
 </style>
 </head>
 <body>
@@ -539,8 +540,17 @@ and intuition first (Part I), dependency audit second (Part II). All theorems, l
 and status qualifications are from the original; no mathematics added. Graphs are live
 Desmos calculators with static PNG fallbacks generated from the same formulas; every
 plotted identity was executed and numerically asserted
-(<span class="math">audit_book8.py</span>, <span class="math">gen_figs_book8.py</span>).
+(<span class="math">verify_book8.py</span>, <span class="math">gen_figs_book8.py</span>).
 Live Desmos rendering was not browser-verified from this workstation.</p>
+
+<p class="status">Rewrite status: every checkable claim on this page was re-verified —
+72 real assertions in <span class="math">validation/book8/verify_book8.py</span>
+(45 checked-proof, 5 symbolic, 22 numerical), all passing, no timeouts; worst
+measured numerical error 5.3e-8 on the 8.6.T3 metric-flattening grid check
+(finite-grid noise; the change of variables is exact algebra). Embed consistency
+checked by <span class="math">validation/book8/test_embeds.py</span> (Desmos
+latex ↔ fallback PNG ↔ caption, viewport containment, negative control). Pictures
+illustrate checked statements; they are not the proofs.</p>
 </footer>
 
 <script>

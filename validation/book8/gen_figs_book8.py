@@ -1,7 +1,7 @@
 """Book 8 rewrite: static PNG fallbacks for the 8 Desmos figures.
 
 Same formulas as the Desmos configs in index.html (see GRAPHS there).
-Key identities are asserted here; the full audit is in ../audit_book8.py.
+Key identities are asserted here; the full audit is in verify_book8.py.
 """
 import numpy as np
 import matplotlib
@@ -24,9 +24,9 @@ def save(fig, name):
 # B1 = dA1 = cos(x) dx^dy ; B2 = dA2 = cos(x) dx^dy + d(x dx) = cos(x) dx^dy
 x = np.linspace(-7, 7, 2001)
 A1y = np.sin(x); A2x = x; A2y = np.sin(x)
-B1 = np.gradient(A1y, x) - 0.0            # d(sin x dy) = cos x dx^dy
-B2 = np.gradient(A2y, x) - np.gradient(A2x, x)*0.0  # d(x dx + sin x dy): dx^dx=0
-B2 = np.gradient(A2y, x)                 # - d_y(A2x) = 0
+B1 = np.gradient(A1y, x)            # d(sin x dy) = cos x dx^dy
+# d(x dx + sin x dy) = (d_x(sin x) - d_y(x)) dx^dy = cos x dx^dy - 0; dx^dx = 0
+B2 = np.gradient(A2y, x) - np.zeros_like(x)   # the d_y(A2x) term vanishes
 ib = slice(2, -2)  # interior: avoid one-sided boundary differences
 assert np.max(np.abs(B1[ib] - np.cos(x[ib]))) < 1e-4
 assert np.max(np.abs(B2[ib] - np.cos(x[ib]))) < 1e-4
@@ -80,7 +80,14 @@ save(fig, "b8_g3_z2.png")
 # ---- Fig 4 (8.4): pure-gauge connection has no curvature ----
 x = np.linspace(-7, 7, 2001)
 chi = np.sin(2*x); A = 2*np.cos(2*x); F = np.zeros_like(x)
-assert np.max(np.abs(np.gradient(np.gradient(chi, x), x)*0 + 0)) == 0  # d^2=0: dx^dx=0
+# the plotted connection really is the gradient of the plotted phase ...
+# (central differences on dx=0.007: truncation ~ (dx^2/6)|chi'''| ~ 7e-5;
+#  interior only — one-sided boundary differences are excluded as in Fig 1)
+ib4 = slice(2, -2)
+assert np.max(np.abs(np.gradient(chi, x)[ib4] - A[ib4])) < 1e-4
+# ... and its curvature vanishes identically by exact algebra: dA = d^2 chi,
+# d(2cos 2x dx) = -4 sin 2x dx^dx = 0. The plotted green line is the exact 0.
+assert np.max(np.abs(A[ib4] - 2*np.cos(2*x[ib4]))) < 1e-9
 fig, ax = plt.subplots(figsize=(7.4, 4.4))
 ax.plot(x, chi, color=BLUE, lw=2, label="χ = sin 2x  (phase)")
 ax.plot(x, A, color=ORANGE, lw=2, label="A = dχ = 2cos 2x dx  (pure-gauge connection)")
