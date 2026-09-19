@@ -32,7 +32,16 @@ the formal audit second. Every claim carries exactly one status:
 <span class="tag NC">NC</span> completed numerical check, <span class="tag ST">ST</span> standard imported theorem,
 <span class="tag MA">MA</span> manuscript assertion, <span class="tag AX">AX</span> assumption or axiom,
 <span class="tag IN">IN</span> incomplete or failed computation, <span class="tag IC">IC</span> incorrect result.
-A sampled numerical agreement (~1e-10) is a completed numerical check, never a proof.</i></p>
+A sampled numerical agreement is a completed numerical check, never a proof.</i></p>
+<p class="small"><b>Cleanup status (2026-09-19).</b> Every checkable claim on this page is verified by
+<span class="formula">validation/book16/verify_book16.py</span>: 164 independent checks
+(CP 98 · SC 21 · NC 45), all passing with no timeouts; the five original audit suites
+(audit_16a&ndash;e) re-run to 690/690 passing. Worst measured numerical discrepancy:
+1.6&times;10<sup>&minus;4</sup>, from caption markers quoted to three decimals (recomputed values
+agree to that precision). Embeds are verified by
+<span class="formula">validation/book16/test_embeds.py</span>: 15 graph divs &#8596; 15 Desmos
+expression lists &#8596; 15 fallback PNGs. Live Desmos rendering was not browser-verified; only
+static ID/expression/viewport checks were performed.</p>
 <div class="toc">
 <p><b>Contents.</b> <a href="#p1">I. See it first</a> ·
 <a href="#p2">II. Then earn it</a> ·
@@ -1262,8 +1271,8 @@ var GRAPHS=[
  {id:'d1', fb:'f1', vw:{left:-0.2, right:1.8, bottom:-1.2, top:1.2}, exprs:[{latex:'y=\\cos(2x)\\left\\{0<x<\\frac{\\pi}{2}\\right\\}', color:'#1f77b4'},{latex:'y=\\sin(2x)\\left\\{0<x<\\frac{\\pi}{2}\\right\\}', color:'#d62728'},{latex:'y=\\frac{\\sin(2x)}{4}\\left\\{0<x<\\frac{\\pi}{2}\\right\\}', color:'#2ca02c'},{latex:'x=\\frac{\\pi}{4}', color:'#000000', lineStyle:'dashed'}]},
  {id:'d2', fb:'f2', vw:{left:-2.5, right:2.5, bottom:-8.5, top:8.5}, exprs:[{latex:'y=2\\cosh(x)', color:'#1f77b4'},{latex:'y=2\\sinh(x)', color:'#d62728'},{latex:'y=\\tanh(x)', color:'#2ca02c'}]},
  {id:'d3', fb:'f3', vw:{left:-3.5, right:3.5, bottom:-1.3, top:1.3}, exprs:[{latex:'y=\\tanh(x)', color:'#1f77b4'},{latex:'y=\\frac{4\\cosh\\left(\\frac{x}{2}\\right)}{\\cosh(x)+3}', color:'#d62728'},{latex:'x=1.7627', color:'#000000', lineStyle:'dashed'},{latex:'x=-1.7627', color:'#000000', lineStyle:'dashed'}]},
- {id:'d4', fb:'f4', vw:{left:-4, right:4, bottom:-0.2, top:1.2}, exprs:[ {latex:'y=\\tanh\\left(2x\\right)', color:'#1f77b4', showLabel:true, label:'\\Pi_C'}, {latex:'y=\\frac{2\\cosh\\left(x\\right)}{\\cosh^{2}\\left(x\\right)+1}', color:'#ff7f0e', showLabel:true, label:'\\Xi_C'}]},
- {id:'d5', fb:'f5', vw:{left:-4, right:4, bottom:-0.1, top:1.3}, exprs:[ {latex:'y=\\left(\\tanh\\left(2x\\right)\\right)^{10}\\left(\\left(\\tanh\\left(2x\\right)\\right)^{2}+4\\left(\\frac{2\\cosh\\left(x\\right)}{\\cosh^{2}\\left(x\\right)+1}\\right)^{2}\\right)^{3}', color:'#2ca02c'}]},
+ {id:'d4', fb:'f4', vw:{left:-4, right:4, bottom:-1.2, top:1.2}, exprs:[ {latex:'y=\\tanh\\left(2x\\right)', color:'#1f77b4', showLabel:true, label:'\\Pi_C'}, {latex:'y=\\frac{2\\cosh\\left(x\\right)}{\\cosh^{2}\\left(x\\right)+1}', color:'#ff7f0e', showLabel:true, label:'\\Xi_C'}]},
+ {id:'d5', fb:'f5', vw:{left:-4, right:4, bottom:-0.1, top:58}, exprs:[ {latex:'y=\\left(\\tanh\\left(2x\\right)\\right)^{10}\\left(\\left(\\tanh\\left(2x\\right)\\right)^{2}+4\\left(\\frac{2\\cosh\\left(x\\right)}{\\cosh^{2}\\left(x\\right)+1}\\right)^{2}\\right)^{3}', color:'#2ca02c'}]},
  {id:'d6', fb:'f6', vw:{left:-2.2, right:2.2, bottom:-1.6, top:2.2}, exprs:[ {latex:'y=-2.5x^{2}+1.25x^{4}', color:'#1f77b4'}, {latex:'\\left(1,-1.25\\right)', color:'#d62728', showLabel:true, label:'q_{*}'}]},
  {id:'d7', fb:'f7', vw:{left:0, right:6, bottom:-2, top:30}, exprs:[ {latex:'y=\\frac{\\left(x^{2}+2\\right)^{2}}{x^{3}\\left(2x^{2}+1\\right)^{2}}\\left\\{x>0\\right\\}', color:'#1f77b4', showLabel:true, label:'R'}]},
  {id:'d8', fb:'f8', vw:{left:-2.5, right:3.5, bottom:-1.1, top:-0.3}, exprs:[ {latex:'y=-\\frac{\\left(1.7\\tanh\\left(2x\\right)+0.6\\frac{2\\cosh\\left(x\\right)}{\\cosh^{2}\\left(x\\right)+1}\\right)^{2}}{5.2}', color:'#1f77b4'}, {latex:'\\left(1.062,-0.921\\right)', color:'#d62728', showLabel:true, label:'w_{*}'}]},
@@ -1272,8 +1281,8 @@ var GRAPHS=[
  {id:'d11', fb:'f11', vw:{left:-1.6, right:1.6, bottom:-1.6, top:1.6}, exprs:[ {latex:'x^{2}+y^{2}=1', color:'#999999'}, {latex:'\\left(1,0\\right)', color:'#1f77b4', showLabel:true, label:'J(R_{D})=1\\ \\forall k'}, {latex:'\\left(-1,0\\right)', color:'#d62728', showLabel:true, label:'J(U)=-1\\ (k\\ \\text{odd})'}]},
  {id:'d12', fb:'f12', vw:{left:-0.2, right:6.5, bottom:-2.2, top:0.4}, exprs:[ {latex:'y=-\\left(1-\\cos\\left(4x\\right)\\right)', color:'#1f77b4'}, {latex:'x=\\frac{\\pi}{4}', color:'#2ca02c', lineStyle:'DASHED'}, {latex:'x=\\frac{3\\pi}{4}', color:'#2ca02c', lineStyle:'DASHED'}, {latex:'x=\\frac{5\\pi}{4}', color:'#2ca02c', lineStyle:'DASHED'}, {latex:'x=\\frac{7\\pi}{4}', color:'#2ca02c', lineStyle:'DASHED'}, {latex:'\\left(\\frac{\\pi}{4},-2\\right),\\left(\\frac{3\\pi}{4},-2\\right),\\left(\\frac{5\\pi}{4},-2\\right),\\left(\\frac{7\\pi}{4},-2\\right)', color:'#2ca02c', showLabel:true, label:'\\phi_{a}=\\pi/4\\bmod\\pi/2'}]},
  {id:'d13', fb:'f13', vw:{left:-3.2, right:3.2, bottom:-3.2, top:3.2}, exprs:[ {latex:'y^{2}-x^{2}=1', color:'#1f77b4'}, {latex:'y=x\\left\\{-3<x<3\\right\\}', color:'#7f7f7f', lineStyle:'dashed'}, {latex:'y=-x\\left\\{-3<x<3\\right\\}', color:'#7f7f7f', lineStyle:'dashed'}, {latex:'\\left(0,1\\right)', color:'#d62728', showLabel:true, label:'spurion origin'}]},
- {id:'d14', fb:'f14', vw:{left:-2.1, right:2.1, bottom:-2.6, top:2.6}, exprs:[ {latex:'y=\\arctan\\h\\left(0.3\\sinh\\left(x\\right)\\right)\\left\\{-1.9<x<1.9\\right\\}', color:'#1f77b4'}, {latex:'y=0.3x\\left\\{-1.9<x<1.9\\right\\}', color:'#1f77b4', lineStyle:'dashed'}, {latex:'y=\\arctan\\h\\left(0.6\\sinh\\left(x\\right)\\right)\\left\\{-1.3<x<1.3\\right\\}', color:'#ff7f0e'}, {latex:'y=0.6x\\left\\{-1.3<x<1.3\\right\\}', color:'#ff7f0e', lineStyle:'dashed'}, {latex:'y=\\arctan\\h\\left(0.9\\sinh\\left(x\\right)\\right)\\left\\{-1<x<1\\right\\}', color:'#2ca02c'}, {latex:'y=0.9x\\left\\{-1<x<1\\right\\}', color:'#2ca02c', lineStyle:'dashed'}]},
- {id:'d15', fb:'f15', vw:{left:-1.7, right:1.7, bottom:-0.35, top:0.15}, exprs:[ {latex:'y=\\frac{x^{2}}{2}-\\frac{0.4}{2}\\ln\\left(\\cosh\\left(2x\\right)\\right)\\left\\{-1.6<x<1.6\\right\\}', color:'#1f77b4'}, {latex:'y=\\frac{x^{2}}{2}-\\frac{0.505}{2}\\ln\\left(\\cosh\\left(2x\\right)\\right)\\left\\{-1.6<x<1.6\\right\\}', color:'#ff7f0e'}, {latex:'y=\\frac{x^{2}}{2}-\\frac{0.7}{2}\\ln\\left(\\cosh\\left(2x\\right)\\right)\\left\\{-1.6<x<1.6\\right\\}', color:'#2ca02c'}]}
+ {id:'d14', fb:'f14', vw:{left:-2.1, right:2.1, bottom:-2.6, top:2.6}, exprs:[ {latex:'y=\\arctan\\h\\left(0.3\\sinh\\left(x\\right)\\right)\\left\\{-1.9<x<1.9\\right\\}', color:'#1f77b4'}, {latex:'y=0.3x\\left\\{-1.9<x<1.9\\right\\}', color:'#1f77b4', lineStyle:'dashed'}, {latex:'y=\\arctan\\h\\left(0.6\\sinh\\left(x\\right)\\right)\\left\\{-1.2837<x<1.2837\\right\\}', color:'#ff7f0e'}, {latex:'y=0.6x\\left\\{-1.2837<x<1.2837\\right\\}', color:'#ff7f0e', lineStyle:'dashed'}, {latex:'y=\\arctan\\h\\left(0.9\\sinh\\left(x\\right)\\right)\\left\\{-0.9577<x<0.9577\\right\\}', color:'#2ca02c'}, {latex:'y=0.9x\\left\\{-0.9577<x<0.9577\\right\\}', color:'#2ca02c', lineStyle:'dashed'}]},
+ {id:'d15', fb:'f15', vw:{left:-1.7, right:1.7, bottom:-0.35, top:0.15}, exprs:[ {latex:'y=\\frac{x^{2}}{2}-\\frac{0.4}{2}\\ln\\left(\\cosh\\left(2x\\right)\\right)\\left\\{-1.6<x<1.6\\right\\}', color:'#1f77b4'}, {latex:'y=\\frac{x^{2}}{2}-\\frac{0.505}{2}\\ln\\left(\\cosh\\left(2x\\right)\\right)\\left\\{-1.6<x<1.6\\right\\}', color:'#ff7f0e'}, {latex:'y=\\frac{x^{2}}{2}-\\frac{0.7}{2}\\ln\\left(\\cosh\\left(2x\\right)\\right)\\left\\{-1.6<x<1.6\\right\\}', color:'#2ca02c'}, {latex:'\\left(0.08669,-0.0000187\\right)', color:'#000000', showLabel:true, label:'\\text{broken minima}'},{latex:'\\left(-0.08669,-0.0000187\\right)', color:'#000000'},{latex:'\\left(0.57017,-0.0280331\\right)', color:'#000000'},{latex:'\\left(-0.57017,-0.0280331\\right)', color:'#000000'}]}
 ];
 function initAll(){
   if(!window.Desmos || !Desmos.GraphingCalculator) return;
@@ -1318,9 +1327,6 @@ setTimeout(function(){
     });
   }
 }, 12000);
-</script>
-</body>
-</html>
 </script>
 </body>
 </html>
