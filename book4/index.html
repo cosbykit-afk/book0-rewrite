@@ -22,8 +22,37 @@ hr{margin:2.5em 0;border:none;border-top:1px solid #bbb}
 .toc a{color:#0645ad;text-decoration:none}
 .small{font-size:.9em;color:#444}
 </style>
+<!-- SITENAV-START -->
+<style>
+.sitenav{font-family:Georgia,serif;font-size:.88em;background:#f4f4f0;border:1px solid #bbb;
+ border-radius:4px;padding:8px 14px;margin:0 0 1.5em;display:flex;flex-wrap:wrap;
+ align-items:center;gap:8px 16px;line-height:1.4}
+.sitenav a{color:#0645ad;text-decoration:none;white-space:nowrap}
+.sitenav a:hover{text-decoration:underline}
+.sitenav .sitenav-brand{font-weight:bold;color:#1a1a1a}
+.sitenav .sitenav-links{display:flex;flex-wrap:wrap;gap:8px 14px}
+.sitenav-search{margin-left:auto;display:flex;gap:6px;align-items:center}
+.sitenav-search input{font-family:Georgia,serif;font-size:.95em;padding:4px 8px;
+ border:1px solid #999;border-radius:3px;width:170px;background:#fff;color:#1a1a1a}
+.sitenav-search button{font-family:Georgia,serif;font-size:.95em;padding:4px 12px;
+ border:1px solid #666;border-radius:3px;background:#eee;cursor:pointer;color:#1a1a1a}
+</style>
+<!-- SITENAV-END -->
 </head>
 <body>
+<!-- SITENAV-NAV-START -->
+<nav class="sitenav" aria-label="Site navigation">
+<a class="sitenav-brand" href="../">R Theory — Rewrite</a>
+<span class="sitenav-links">
+<a href="../vol0/">Vol&nbsp;0</a><a href="../#vol1">Vol&nbsp;I</a><a href="../#vol2">Vol&nbsp;II</a><a href="../#vol3">Vol&nbsp;III</a><a href="../vol4/">Vol&nbsp;IV</a><a href="../tables/">Tables</a>
+</span>
+<form class="sitenav-search" action="https://www.google.com/search" method="get" target="_blank" role="search"
+ onsubmit="if(!this.q.value.trim())return false;this.q.value='site:cosbykit-afk.github.io/r-theory-rewrite '+this.q.value">
+<input type="text" name="q" placeholder="Search this site&#8230;" aria-label="Search this site">
+<button type="submit">Search</button>
+</form>
+</nav>
+<!-- SITENAV-NAV-END -->
 <h1>Book 4 — Geometric Rank, Coframes, and Connection</h1>
 <p><i>A restructured rewrite of Book 4 of R Theory — Volume I. Pictures and intuition first; the formal audit second. Every claim carries exactly one scope label: <span class="tag CP">checked proof</span> <span class="tag CS">completed symbolic check</span> <span class="tag CN">completed numerical check</span> <span class="tag ST">standard imported theorem</span> <span class="tag MA">manuscript assertion</span> <span class="tag AA">assumption or axiom</span> <span class="tag IR">incorrect result</span> <span class="tag IF">incomplete or failed computation</span>.</i></p>
 <div class="toc">

@@ -26,8 +26,37 @@
          padding:0 6px; margin-right:4px; background:var(--wash); color:var(--muted); }
   footer { margin-top:3em; color:var(--muted); font-size:.88em; border-top:1px solid var(--line); padding-top:1em; }
 </style>
+<!-- SITENAV-START -->
+<style>
+.sitenav{font-family:Georgia,serif;font-size:.88em;background:#f4f4f0;border:1px solid #bbb;
+ border-radius:4px;padding:8px 14px;margin:0 0 1.5em;display:flex;flex-wrap:wrap;
+ align-items:center;gap:8px 16px;line-height:1.4}
+.sitenav a{color:#0645ad;text-decoration:none;white-space:nowrap}
+.sitenav a:hover{text-decoration:underline}
+.sitenav .sitenav-brand{font-weight:bold;color:#1a1a1a}
+.sitenav .sitenav-links{display:flex;flex-wrap:wrap;gap:8px 14px}
+.sitenav-search{margin-left:auto;display:flex;gap:6px;align-items:center}
+.sitenav-search input{font-family:Georgia,serif;font-size:.95em;padding:4px 8px;
+ border:1px solid #999;border-radius:3px;width:170px;background:#fff;color:#1a1a1a}
+.sitenav-search button{font-family:Georgia,serif;font-size:.95em;padding:4px 12px;
+ border:1px solid #666;border-radius:3px;background:#eee;cursor:pointer;color:#1a1a1a}
+</style>
+<!-- SITENAV-END -->
 </head>
 <body>
+<!-- SITENAV-NAV-START -->
+<nav class="sitenav" aria-label="Site navigation">
+<a class="sitenav-brand" href="">R Theory — Rewrite</a>
+<span class="sitenav-links">
+<a href="vol0/">Vol&nbsp;0</a><a href="#vol1">Vol&nbsp;I</a><a href="#vol2">Vol&nbsp;II</a><a href="#vol3">Vol&nbsp;III</a><a href="vol4/">Vol&nbsp;IV</a><a href="tables/">Tables</a>
+</span>
+<form class="sitenav-search" action="https://www.google.com/search" method="get" target="_blank" role="search"
+ onsubmit="if(!this.q.value.trim())return false;this.q.value='site:cosbykit-afk.github.io/r-theory-rewrite '+this.q.value">
+<input type="text" name="q" placeholder="Search this site&#8230;" aria-label="Search this site">
+<button type="submit">Search</button>
+</form>
+</nav>
+<!-- SITENAV-NAV-END -->
 <h1>R Theory — A Visual Rewrite</h1>
 <p class="sub">Pictures and intuition first, the formal audit second. Volumes 0–IV.</p>
 
@@ -37,7 +66,7 @@
 <p><span class="tag">Status discipline</span> Every claim carries its status: checked proof, completed symbolic check, completed numerical check, standard imported theorem, manuscript assertion, assumption/axiom — or marked incorrect/incomplete. Nothing is promoted beyond what the mathematics supports. <a href="WORKFLOW.md">How this series is made →</a></p>
 </div>
 
-<h2>Volume 0 — Exact Witnesses at the Physics Boundary</h2>
+<h2 id="vol0">Volume 0 — Exact Witnesses at the Physics Boundary</h2>
 <div class="about">
 <p>The former T4–T6 "Projection Craft" essay-books, rebuilt as standalone R Theory —
 no T-paper framing. The half-angle calculus taken to the boundary of accepted physics:
@@ -72,7 +101,7 @@ Start at the <a href="vol0/">Volume 0 overview →</a></p>
   </div>
 </div>
 
-<h2>Volume I — Books 0–6</h2>
+<h2 id="vol1">Volume I — Books 0–6</h2>
 <div class="books">
   <div class="book done">
     <h3>Book 0 — Source Boundary and the Orientation Question</h3>
@@ -111,7 +140,7 @@ Start at the <a href="vol0/">Volume 0 overview →</a></p>
   </div>
 </div>
 
-<h2>Volume II — Books 7–13</h2>
+<h2 id="vol2">Volume II — Books 7–13</h2>
 <div class="about">
 <p>Volume II inherits <b>only</b> results already earned in Volume I, plus ordinary background mathematics and explicitly named physics imports. A familiar physical structure reached after an explicit import is a <b>conditional reconstruction</b>, not a derivation of physical law. FlatWave is not probability, time, charge, chirality, or helicity unless a contract declares it.</p>
 </div>
@@ -153,7 +182,7 @@ Start at the <a href="vol0/">Volume 0 overview →</a></p>
   </div>
 </div>
 
-<h2>Volume III — Books 14–16</h2>
+<h2 id="vol3">Volume III — Books 14–16</h2>
 <div class="about">
 <p>Volume III carries the rapidity → bridge → gate → obstruction dependency grammar into two-fermion mass geometry, Saw interchanges, and the microscopic E8 frontier. Every physical identification remains conditional on explicit import; the manuscript's own September 15, 2026 update retracts earlier normalization-closure claims, and no empirical promotion is authorized anywhere in the volume.</p>
 </div>
@@ -175,7 +204,7 @@ Start at the <a href="vol0/">Volume 0 overview →</a></p>
   </div>
 </div>
 
-<h2>Volume IV — Books 17–19</h2>
+<h2 id="vol4">Volume IV — Books 17–19</h2>
 <div class="about">
 <p>Volume IV, <i>The Discrete Octant and the Computational Frontier</i>, inherits the octant and rapidity machinery of Volumes I–III and attempts the C8 contraction — but its own construction is defective (18 incorrect-as-stated findings) and its physical promotion is empty. The audit's verdict is 407 assertions passed, 0 failed; 18 distinct IC findings; Δ_op = ∅. <b>v1 is the sole audit authority</b> — later versions' locked-constant claims are not established. Start at the <a href="vol4/">Volume IV overview →</a></p>
 </div>
