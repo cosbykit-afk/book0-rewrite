@@ -53,7 +53,7 @@ a static rendering appears instead, generated from the same formulas.</p>
 <div class="graph" id="d1"></div>
 <img class="fallback" id="f1" src="graphs/g1_primitives.png" alt="the four canonical primitives on (0, pi/2)">
 <div class="caption"><b>What you see.</b> On the principal quadrant the four primitives
-<span class="formula">srx = tan(x/2), cxp = cot(x/2), sxp = (1−sin x)/cos x, crx = (1+sin x)/cos x</span>.
+<span class="formula">srx = cot(x/2), sxp = tan(x/2), cxp = tan(π/4+x/2), crx = tan(π/4−x/2)</span>.
 Complementation <span class="formula">Cx = π/2 − x</span> swaps the pairs
 <span class="formula">srx ↔ cxp</span> and <span class="formula">sxp ↔ crx</span> — the primitive
 complementary interchange (Thm 15.I.T1). <span class="tag CP">CP</span>
@@ -97,7 +97,9 @@ the order-two vs order-four distinction is proved in §15.VI. <span class="tag M
 <div class="caption"><b>What you see.</b> The square-root lift
 <span class="formula">ψ = (√λ, e<sup>iφ</sup>√(1−λ))</span> projects to the Bloch meridian
 <span class="formula">(⟨X⟩,⟨Y⟩,⟨Z⟩) = (0, 2s<sub>Ω</sub>√H<sub>Saw</sub>, 2λ−1)</span>;
-the sign choice <span class="formula">s<sub>Ω</sub> = ±1</span> selects the upper or lower half-meridian (dots).
+the sign choice <span class="formula">s<sub>Ω</sub> = ±1</span> selects the
+<span class="formula">s<sub>Ω</sub> = +1</span> (right, orange) or <span class="formula">s<sub>Ω</sub> = −1</span>
+(left, green) half-meridian (dots).
 <span class="tag CP">CP</span> (Thm 15.V.T1, proved symbolically)
 <b>What it doesn't show.</b> No closed R_Y-even Hamiltonian confined to the I/Y operator algebra can traverse
 this meridian (Thm 15.V.T3) — the obstruction is proved, not assumed. <span class="tag CP">CP</span></div>
@@ -114,10 +116,16 @@ cosmology follows. <span class="tag MA">MA</span> (firewall, M15-G)</div>
 
 <hr>
 <h2 id="p2">Part II — Then earn it</h2>
-<p>Section by section. Each claim carries one status tag. Numerical checks below were run in
-vol3/book15/audit_book15.py (240 assertions, all passed; tolerances 1e-6–1e-12, with symbolic spot checks
-for the 15.IV core reduction and the 15.V projector/generator identities). Full ledger:
-vol3/book15/LEDGER.md.</p>
+<p>Section by section. Each claim carries one status tag. Two independent check suites were run.
+The upstream audit vol3/book15/audit_book15.py (240 assertions, all passed; tolerances 1e-6–1e-12, with
+symbolic spot checks for the 15.IV core reduction and the 15.V projector/generator identities; full ledger
+vol3/book15/LEDGER.md) stands as provenance. The rewrite adds validation/book15/verify_book15.py —
+220 assertions, all passing, no timeouts — covering every checkable page claim with exact (sympy / exact
+integer) checks where the mathematics permits them, and validation/book15/test_embeds.py — 13 assertions
+on graph↔fallback↔caption consistency. Worst measured numerical error across the new suite: 2.5e-8,
+confined to (1−cos x)/sin x-type reciprocal forms near seams (floating-point cancellation; the identities
+are exact algebra). Live Desmos rendering was verified by static ID/expression checks only, not by
+browser rendering.</p>
 
 <h3>15.I — Canonical UNA complementary-swap closure</h3>
 <p><b>Theorem 15.I.T1</b> (primitive complementary interchange): complementation exchanges the primitive pairs
@@ -217,13 +225,13 @@ four parity eigenspaces with multiplicative parity rules. <span class="tag CP">C
 <span class="formula">K² = I</span>. <span class="tag CP">CP</span>
 <b>Corollary 15.VII.C2</b>: relative complex-structure orientation on K sectors. <span class="tag CP">CP</span>
 <b>Witness 15.VII.1</b>: the minimal real 4×4 witness has four 4-dimensional parity spaces.
-<span class="tag NC">NC</span> (exact finite-dimensional computation, checked numerically)
+<span class="tag CP">CP</span> (exact finite-dimensional computation, verified exactly)
 <b>Witness 15.VII.2</b>: the orthogonal bridge-polarization witness
 <span class="formula">B = −σ<sub>y</sub></span>, <span class="formula">{K,B} = {H,B} = 0</span>,
 <span class="formula">H(θ) = cosθ·H − sinθ·B</span>, <span class="formula">⟨B,H(θ)⟩ = −sinθ</span>.
-<span class="tag NC">NC</span>
+<span class="tag CP">CP</span> (exact symbolic 2×2 computation)
 <b>Corollary 15.VII.C3</b>: a generic bridge polarization only shifts phase,
-<span class="formula">⟨B<sub>δ</sub>,H(θ)⟩ = cos(δ+θ)</span>. <span class="tag NC">NC</span>
+<span class="formula">⟨B<sub>δ</sub>,H(θ)⟩ = cos(δ+θ)</span>. <span class="tag CP">CP</span> (exact)
 <b>Conditional Theorem 15.VII.CT1</b>: <i>if</i> B-purity is enforced (κ<sub>x</sub>=0), the stationary branch is
 <span class="formula">θ<sub>*</sub> = ±π/2</span> by sign of s<sub>Ω</sub>κ<sub>y</sub> — quarter-phase selection
 is conditional on the purity contract, not derived. <span class="tag CP">CP</span>
@@ -259,7 +267,7 @@ factor c=1. <span class="tag CP">CP</span> (two-line proof)
 The M15-H contract constrains Book-16 ordering; no backward strengthening. <span class="tag MA">MA</span>
 The 30,380-dimensional E8 representation numerics cited here — Weyl dimension 30380, 4 dominant weights,
 exact multiplicity sum 30380 — come from a completed exact integer (Freudenthal) computation.
-<span class="tag NC">NC</span> The existence/use of E8(−24) as the next representation host is admitted input,
+<span class="tag SC">SC</span> The existence/use of E8(−24) as the next representation host is admitted input,
 not derived in Book 15. <span class="tag MA">MA</span></p>
 
 <h3>15.X — Operational status and handoff</h3>
@@ -282,7 +290,7 @@ normalized-square identities. <span class="tag SC">SC</span>/<span class="tag CP
 <li>Saw complement (order 2) vs native quarter-turn (order 4) are distinct; the symmetric-square double-angle
 lift with Q<sub>t</sub>″+4Q<sub>t</sub>=0. <span class="tag CP">CP</span></li>
 <li>The dual-mode operator bigrading and its parity rules. <span class="tag CP">CP</span> (witnesses
-<span class="tag NC">NC</span>)</li>
+<span class="tag CP">CP</span>)</li>
 <li>The even-exterior polynomial 1+6χ+χ², its reciprocal covariance, and the unique minimum at r=1.
 <span class="tag CP">CP</span></li>
 <li>Canonical round-trip normalization c=1. <span class="tag CP">CP</span></li>
@@ -304,8 +312,13 @@ physical spacetime, soldering, a healthy spectrum, chirality, or cosmology. The 
 inheriting any of these from the mathematics alone.</li>
 </ul>
 <p>No incorrect (<span class="tag IC">IC</span>) and no incomplete (<span class="tag IN">IN</span>) claims were
-found in Book 15. The audit's 240 assertions all passed; the two subtle spots (exact Saw reduction on the
-positive chart; λ=(1−p)/2 staying in [0,1] via |p|≤1 on every open quadrant) both check out.</p>
+found in Book 15. The upstream audit's 240 assertions all passed, and the rewrite's two new suites pass
+completely (220 verification assertions + 13 embed-consistency assertions, no timeouts, worst measured
+error 2.5e-8 on cancellation-prone reciprocal forms near seams). The two subtle spots (exact Saw reduction
+on the positive chart; λ=(1−p)/2 staying in [0,1] via |p|≤1 on every open quadrant) both check out.
+One incorrect caption was found and fixed during this cleanup (Figure 1 mislabeled the four primitives
+against the source; the labels are now the source's own). Live Desmos rendering is statically checked,
+not browser-verified.</p>
 
 <hr>
 <h2 id="p4">Part IV — Close the book</h2>
@@ -326,27 +339,45 @@ fallbacks generated from the same formulas. Live Desmos rendering was verified b
 only, not by browser rendering — the author cannot operate a live browser; PNG fallbacks are provided.</p>
 </footer>
 
+<p>Rewrite status: all pictured identities were re-verified against the source — primitive interchange, hyperbola,
+double-angle phasor, Saw complement, Bloch meridian, native doublet, quarter-turn, dual-involution bigrading,
+bridge polarization, even-exterior minimum, round-trip normalization, and the E8 30380 citation — 220 assertions
+in validation/book15/verify_book15.py, all passing, no timeouts. Worst measured error 2.5e-8, confined to the
+(1−cos x)/sin x-type reciprocal forms near seams (pure floating-point cancellation in the grid check; the
+identities are exact algebra); the 15.VII witnesses and the E8 citation were verified exactly (sympy / exact
+integer arithmetic). Embed↔fallback↔caption consistency is checked by validation/book15/test_embeds.py.
+Live Desmos rendering was verified by static ID/expression checks only, not by browser rendering. Pictures
+illustrate proved statements; they are not the proofs.</p>
+
 <script>
 var GRAPHS=[
- {id:'d1', fb:'f1', vw:{left:-0.1, right:1.7, bottom:-0.5, top:8.5}, exprs:[
+ {id:'d1', fb:'f1', vw:{left:0, right:1.5708, bottom:-0.5, top:8.5}, exprs:[
   {latex:'y=\\frac{1-\\cos\\left(x\\right)}{\\sin\\left(x\\right)}\\left\\{0<x<\\frac{\\pi}{2}\\right\\}', color:'#1f77b4'},
   {latex:'y=\\frac{1+\\cos\\left(x\\right)}{\\sin\\left(x\\right)}\\left\\{0<x<\\frac{\\pi}{2}\\right\\}', color:'#ff7f0e'},
   {latex:'y=\\frac{1-\\sin\\left(x\\right)}{\\cos\\left(x\\right)}\\left\\{0<x<\\frac{\\pi}{2}\\right\\}', color:'#2ca02c'},
   {latex:'y=\\frac{1+\\sin\\left(x\\right)}{\\cos\\left(x\\right)}\\left\\{0<x<\\frac{\\pi}{2}\\right\\}', color:'#d62728'}]},
- {id:'d2', fb:'f2', vw:{left:-14, right:14, bottom:-14, top:14}, exprs:[
+ {id:'d2', fb:'f2', vw:{left:3.9, right:14, bottom:-14, top:14}, exprs:[
   {latex:'\\left(\\frac{4}{\\sin\\left(2t\\right)},\\frac{4\\cos\\left(2t\\right)}{\\sin\\left(2t\\right)}\\right)\\left\\{0<t<\\frac{\\pi}{2}\\right\\}', color:'#1f77b4'},
   {latex:'y=\\sqrt{x^{2}-16}\\left\\{x>4\\right\\}', color:'#888888', lineStyle:'dashed'},
   {latex:'y=-\\sqrt{x^{2}-16}\\left\\{x>4\\right\\}', color:'#888888', lineStyle:'dashed'}]},
  {id:'d3', fb:'f3', vw:{left:-1.3, right:1.3, bottom:-1.3, top:1.3}, exprs:[
   {latex:'x^{2}+y^{2}=1', color:'#1f77b4'},
   {latex:'\\left(\\cos\\left(2t\\right),\\sin\\left(2t\\right)\\right)\\left\\{0<t<\\frac{\\pi}{2}\\right\\}', color:'#d62728'}]},
- {id:'d4', fb:'f4', vw:{left:-0.1, right:1.7, bottom:-8.5, top:8.5}, exprs:[
+ {id:'d4', fb:'f4', vw:{left:0, right:1.5708, bottom:-8.5, top:8.5}, exprs:[
   {latex:'y=\\cos^{2}\\left(x\\right)\\left\\{0<x<\\frac{\\pi}{2}\\right\\}', color:'#1f77b4'},
   {latex:'y=\\sin^{2}\\left(x\\right)\\left\\{0<x<\\frac{\\pi}{2}\\right\\}', color:'#ff7f0e'},
   {latex:'y=\\ln\\left(\\frac{1}{\\tan^{2}\\left(x\\right)}\\right)\\left\\{0<x<\\frac{\\pi}{2}\\right\\}', color:'#2ca02c', lineStyle:'dashed'}]},
  {id:'d5', fb:'f5', vw:{left:-1.3, right:1.3, bottom:-1.3, top:1.3}, exprs:[
   {latex:'x^{2}+y^{2}=1', color:'#1f77b4'},
-  {latex:'\\left(\\sin\\left(t\\right),-\\cos\\left(t\\right)\\right)\\left\\{0<t<\\pi\\right\\}', color:'#d62728'}]},
+  {latex:'\\left(\\sin\\left(t\\right),-\\cos\\left(t\\right)\\right)\\left\\{0<t<\\pi\\right\\}', color:'#d62728'},
+  {latex:'\\left(\\sin\\left(\\frac{\\pi}{6}\\right),-\\cos\\left(\\frac{\\pi}{6}\\right)\\right)', color:'#ff7f0e'},
+  {latex:'\\left(\\sin\\left(\\frac{\\pi}{3}\\right),-\\cos\\left(\\frac{\\pi}{3}\\right)\\right)', color:'#ff7f0e'},
+  {latex:'\\left(\\sin\\left(\\frac{2\\pi}{3}\\right),-\\cos\\left(\\frac{2\\pi}{3}\\right)\\right)', color:'#ff7f0e'},
+  {latex:'\\left(\\sin\\left(\\frac{5\\pi}{6}\\right),-\\cos\\left(\\frac{5\\pi}{6}\\right)\\right)', color:'#ff7f0e'},
+  {latex:'\\left(-\\sin\\left(\\frac{\\pi}{6}\\right),-\\cos\\left(\\frac{\\pi}{6}\\right)\\right)', color:'#2ca02c'},
+  {latex:'\\left(-\\sin\\left(\\frac{\\pi}{3}\\right),-\\cos\\left(\\frac{\\pi}{3}\\right)\\right)', color:'#2ca02c'},
+  {latex:'\\left(-\\sin\\left(\\frac{2\\pi}{3}\\right),-\\cos\\left(\\frac{2\\pi}{3}\\right)\\right)', color:'#2ca02c'},
+  {latex:'\\left(-\\sin\\left(\\frac{5\\pi}{6}\\right),-\\cos\\left(\\frac{5\\pi}{6}\\right)\\right)', color:'#2ca02c'}]},
  {id:'d6', fb:'f6', vw:{left:0.008, right:120, bottom:1.5, top:2600}, exprs:[
   {latex:'y=\\frac{x^{2}+x^{-2}+6}{4}\\left\\{x>0\\right\\}', color:'#1f77b4'}]}
 ];
