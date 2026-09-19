@@ -6,19 +6,36 @@ The scripts in this directory are **RECONSTRUCTED, not original**.
 
 The original Book 9 audit run (2026-09-19) reported 17 numerical assertions
 (max error ≤ 5.7e−14), 2 SymPy derivations, and a passing ID-match test, but
-no scripts were saved from that run. The scripts below were reconstructed
-after publication from the Book 9 source span
+no scripts were saved from that run. The reconstructed scripts below were
+rebuilt after publication from the Book 9 source span
 (volume2_full.txt lines 2094–2264) and the section brief. They are new,
 independently written checks of the same identities — they must NOT be cited
 as the original audit scripts.
 
-## Files
+## Cleanup cycle (2026-09-19)
 
-| File | What it does | Result (2026-09-19 reconstruction) |
+The reconstructed scripts were standardized onto the per-book cleanup format:
+
+- `verify_book9.py` — V1–V14, one numbered check per checkable page claim
+  (19 numerical assertions + 4 symbolic checks: V4–V5 wedge-algebra CP proofs
+  for §9.2, V11–V12 SymPy SC derivations for §9.5). **All pass, exit 0**;
+  worst-case numerical max error 1.705e−13 (V9 gradient-based).
+- `test_embeds.py` — E1–E5 embed consistency (Desmos id ↔ fallback PNG ↔
+  caption formula; subsumes the old test_ids.py). **Pass.**
+- Removed (fully subsumed): `audit_book9.py`, `audit_book9_symbolic.py`,
+  `test_ids.py`. test_ids.py's docstring referenced
+  `~/workspace/vol2_book7/test_graph_ids.py`, a stale path in another book's
+  old file; that reference is gone with the subsumed file.
+- `book9/index.html` captions and status line now carry the measured
+  per-check errors from `verify_book9.py` (worst case 1.8e−13).
+
+## Files (as of the reconstruction, before cleanup standardization)
+
+| File | What it did | Result (2026-09-19 reconstruction) |
 |---|---|---|
-| `audit_book9.py` | 17 numerical assertions N1–N17 (§§9.1, 9.3, 9.4, 9.6) | ALL PASS, max error 1.705e−13 (N16, gradient-based) |
-| `audit_book9_symbolic.py` | 2 SymPy derivations S1–S2 (§9.5) | BOTH PASS (see finding below) |
-| `test_ids.py` | Desmos config↔container↔PNG fallback ID consistency for book9/index.html (d1–d4 / f1–f4), with negative control | PASS; negative control caught |
+| `audit_book9.py` (removed, subsumed into `verify_book9.py`) | 17 numerical assertions N1–N17 (§§9.1, 9.3, 9.4, 9.6) | ALL PASS, max error 1.705e−13 (N16, gradient-based) |
+| `audit_book9_symbolic.py` (removed, subsumed into `verify_book9.py` V11–V12) | 2 SymPy derivations S1–S2 (§9.5) | BOTH PASS (see finding below) |
+| `test_ids.py` (removed, subsumed into `test_embeds.py` E5) | Desmos config↔container↔PNG fallback ID consistency for book9/index.html (d1–d4 / f1–f4), with negative control | PASS; negative control caught |
 
 ## Reconciliation with the published page
 
