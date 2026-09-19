@@ -69,13 +69,20 @@ established is labeled a manuscript assertion, not a finding.
 Every figure is a live Desmos embed with a static PNG fallback. Each plotted
 expression is executed and numerically verified where a number is claimed; the
 verification scripts use real assertions, and sampled-point agreement is
-reported as a completed numerical check — never as a proof.
+reported as a completed numerical check — never as a proof. Embed consistency
+is checked per book by `validation/book<N>/test_embeds.py`: every Desmos
+calculator id links to its fallback image, every fallback file exists, and the
+embedded LaTeX contains the formula the caption and the fallback claim.
+Fallback PNGs are generated at 240 dpi (Volume IV treatment, 2026-09-19);
+further visual restyling is deferred.
 
 ## 5. Publishing
 
 Static HTML/CSS/JS, no build step, no tracking. Each book lives in its own
 directory (`book0/`, `book1/`, …) with its graphs alongside it. Corrections are
-committed with the full history preserved.
+committed with the full history preserved. Books ship to GitHub one at a time:
+a book is pushed only after it completes the cleanup cycle in §7, and every
+push uses Kit's explicit temporary-key approval — never an unattended push.
 
 ## 6. Audit chunks and the ledger trail
 
@@ -94,3 +101,28 @@ Chunk ledgers cross-reference the Master Ledger's claim IDs (CL-…) where the
 chunk touches them, and flag terminology collisions across books. The Drive
 control documents remain the state of record; this repo's `*-audit/`
 directories are the reproducible evidence trail behind them.
+
+## 7. Book cleanup and release cycle
+
+After the audit chunks, each book goes through a cleanup pass before release.
+The pass is per book, in series order unless Kit directs otherwise, and a book
+is declared clean only when every item below is done:
+
+1. **Claim verification.** `validation/book<N>/verify_book<N>.py` checks every
+   checkable mathematical claim on the book's page — one numbered check per
+   claim, each a real assertion with a §2 scope tag. The run exits 0 only if
+   all checks pass; failures, errors, and timeouts are reported, never
+   absorbed. (Book 0: 15 checks, all passing.)
+2. **Embed consistency.** `validation/book<N>/test_embeds.py` (see §4).
+3. **Notation.** Every symbol the book defines or uses is entered in the
+   **notation ledger** (`~/workspace/vol4/NOTATION_LEDGER.md`, series-wide):
+   its definition, where it is defined, its audit standing, and any collision
+   or misuse. Collisions are resolved in the ledger before the book ships —
+   e.g. the FlatWave/Flatwave dual characterization was verified as one
+   object, not two names.
+4. **Tooling hygiene.** Generator scripts must point at the real output paths
+   and contain no neutered assertions.
+
+When a book is clean, its changes are committed and pushed to GitHub under
+the §5 push discipline. Book 0 completed this cycle 2026-09-19 and is the
+reference implementation for the rest of the series.
