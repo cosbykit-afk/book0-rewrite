@@ -48,6 +48,20 @@ Book 18 §18.5 is "The 54 Projector" — it makes no rapidity-product or
 - §18.5's branching formula 135|_{SO(10)×SU(4)} = (54,1)⊕(1,20')⊕(10,6)⊕(1,1)
   is dimensionally exact (CP); the SO(10)/SU(4) content is standard
   representation theory (ST, not derived here).
+- **Frobenius–Schur indicator of the 1820 = +1 (CP, proved 2026-09-20 by
+  hand, checked line by line).** On W = Λ⁴(C¹⁶), the
+  determinant-of-Gram-matrix pairing
+  B(v₁∧v₂∧v₃∧v₄, w₁∧w₂∧w₃∧w₄) = det(⟨vₖ,w_ℓ⟩) is well-defined (alternating
+  multilinear + universal property), SO(16)-invariant, nondegenerate
+  (B(e_I,e_J) = δ_{I,J} on increasing index sets — hence W self-dual), and
+  symmetric (Gram transpose); irreducibility via the highest-weight vector
+  e₁∧e₂∧e₃∧e₄ of weight ω₄ with dim V(ω₄) = 1820 = dim Λ⁴V. By Schur's
+  lemma on Hom_G(W,W*), every invariant pairing on the 1820 is a scalar
+  multiple of B, hence symmetric; no alternating one exists. Proof:
+  `~/workspace/vol4/w2_schur_constraints/W2_INDICATOR_PROOF_Kit.md`.
+  Scope: constrains pairings, not operators — whether the manuscript's
+  M_e/Oprop are SO(16)-equivariant at all remains a manuscript-reading
+  question (MA).
 
 ### Conversion chain (§18.6)
 - S_F = 3a₂₂₂₂ from (6/5)(5/2) = 3 (CP); a = (6/5)c inverts to
