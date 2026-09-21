@@ -20,11 +20,18 @@ to this workflow — they are never edited without Kit's explicit confirmation.
   negative results (a zero trace, a failed projection, a no-go theorem is a
   successful outcome, reported raw).
 - **Master ledger** — "Projection Craft — Research Control & Master Ledger
-  Audit (V3)." The project's state of record: the critical-path ledger
-  (CP-01 … CP-09), the claim ledger (CL-001 … CL-013), module certification
-  results, and the verification matrix (V-001 … V-006). Every audit chunk
+  Audit (V4)" (V3 superseded 2026-09-18; V3 untouched). The project's state
+  of record: the critical-path ledger (CP-01 … CP-13), the claim ledger
+  (CL-001 … CL-013), the open-issue dependency chain (OI-01 … OI-29),
+  incorrect-as-stated findings (IC-1 … IC-18), module certification results,
+  and the verification matrix (V-001 … V-006). Every audit chunk
   cross-references the ledger entries it touches, and no claim is stated
   beyond its ledger state.
+- **Project board** — a Notion workspace ("R Theory — Project Board",
+  connected 2026-09-19) mirroring the ledger: Open Issues (OI-01 … OI-29),
+  Critical Path (CP-01 … CP-13), and Incorrect Findings (IC-1 … IC-18)
+  databases with a kanban view. Working surface for triage; the Drive
+  ledger remains the state of record.
 
 The scope labels in §2 map onto the ledger's states: checked proof and
 completed symbolic check correspond to [CERTIFIED]/[EXACT]; completed
@@ -41,9 +48,16 @@ applies to every source volume and to the Drive control documents above.
 
 ## 2. Audit before rewrite
 
-Before a book is rewritten, its mathematics is checked independently (numerical
-checks with NumPy, symbolic checks where feasible, Wolfram modules where the
-engine is licensed). Every result is labeled with exactly one scope:
+Before a book is rewritten, its mathematics is checked independently with the
+compute stack inventoried in §9: numerical checks in NumPy, symbolic checks
+in SymPy where feasible, the Wolfram 12-module computation in Wolfram Engine
+15.0 (extracted at `~/workspace/wolfram/engine-root`, run through the
+`~/workspace/wolframscript.sh` wrapper on the free on-demand entitlement),
+and exact integer arithmetic in Python (arbitrary-precision big ints — e.g.
+the Freudenthal recursion behind the E8 30380 weight table). Pre-computed
+tables live at `~/workspace/tables/` (`TABLES.md` catalog plus
+`manifest.json` with tuning provenance) and are consumed via symlinks. Every
+result is labeled with exactly one scope:
 
 - **checked proof** — established by rigorous argument
 - **completed symbolic check** — a finished exact computation
@@ -73,18 +87,26 @@ reported as a completed numerical check — never as a proof. Embed consistency
 is checked per book by `validation/book<N>/test_embeds.py`: every Desmos
 calculator id links to its fallback image, every fallback file exists, and the
 embedded LaTeX contains the formula the caption and the fallback claim.
-Fallback PNGs are generated at 240 dpi (Volume IV treatment, 2026-09-19);
-further visual restyling is deferred.
+Fallback PNGs are rendered with matplotlib (Agg backend) by each book's
+`validation/book<N>/make_graphs.py` (or `gen_graphs.py`) from the exact
+expressions embedded in Desmos, so each PNG doubles as verification of the
+embedded formula; Volume IV fallbacks are rendered at 240 dpi (2026-09-19).
+Further visual restyling is deferred. Live Desmos rendering cannot be
+browser-verified from the build machine; the validation suite checks embed
+consistency instead (see `test_embeds.py` above).
 
 ## 5. Publishing
 
 Static HTML/CSS/JS, no build step, no tracking. Each book lives in its own
-directory (`book0/`, `book1/`, …) with its graphs alongside it. Corrections are
-committed with the full history preserved. Books ship to GitHub one at a time:
-a book is pushed only after it completes the cleanup cycle in §7. Kit has
-given standing approval (2026-09-19) for pushing cleaned books over the
-persistent SSH key — the temporary-key procedure is retired. Only cleaned
-books ship; never push uncleaned work.
+directory (`book0/`, `book1/`, …; the Volume 0 salvage pages use internal
+dirs `book20/`–`book22/` but carry no user-facing book numbers, per Kit's
+decision) with its graphs alongside it. Corrections are committed with git
+and the full history is preserved. Books ship to GitHub one at a time over
+the persistent SSH key (`~/.ssh/id_ed25519`), with the remote verified after
+every push: a book is pushed only after it completes the cleanup cycle in
+§7. Kit has given standing approval (2026-09-19) for pushing cleaned books
+this way — the temporary-key procedure is retired. Only cleaned books ship;
+never push uncleaned work.
 
 ## 6. Audit chunks and the ledger trail
 
@@ -130,6 +152,14 @@ the §5 push discipline. Book 0 completed this cycle 2026-09-19 and is the
 reference implementation for the rest of the series. Books 0–19 completed
 the cycle 2026-09-19.
 
+Ongoing maintenance runs on a schedule, not by hand: the
+`rewrite-polish-scanner` cron (daily ~03:47 PT) sweeps one book per run,
+book0 → book19 then wraps, proofreading text, checking links and figures,
+and verifying status discipline. It pushes polish fixes itself under a
+standing approval and logs to `scanner/scan.log` (pointer in
+`scanner/pointer.json`). It stays silent unless a fix — or an unfixable
+issue — is worth Kit's attention.
+
 ## 8. Research closure and the dependency chain
 
 The cleaning pipeline (§7) ships books that are *honest* — every page claim
@@ -166,3 +196,44 @@ Rules for this track:
 4. **Physical choices are flagged as choices.** ζ_parent (parent action)
    and η_−4 (UV footprint) are not closable by computation — the chain
    records them as gates, not as gaps to be computed through.
+5. **Proving ground first.** Calculations advance from what is already
+   proved or exactly established (CP theorems, CLEAN identities, SC
+   tables) rather than speculatively hunting for connections — e.g.
+   sweeping the archive for the missing contraction inputs. Per Kit
+   2026-09-20; speculative searches are deprioritized.
+
+## 9. Tool inventory
+
+Every stage above names its tools here in one place.
+
+- **Sources (read-only).** Google Docs (the "R Theory" manuscripts) and
+  Google Drive ("Projection Craft & R-Theory (Active) / Control & Ledgers"),
+  both read-only — never edited without Kit's explicit confirmation; Notion
+  ("R Theory — Project Board": Open Issues, Critical Path, Incorrect
+  Findings databases) as the triage surface.
+- **Computation.** Python 3 with NumPy (numerical checks), SymPy (symbolic
+  checks), and arbitrary-precision integers (exact tables — e.g. the E8 30380
+  Freudenthal recursion); Wolfram Engine 15.0 via
+  `~/workspace/wolframscript.sh` (free on-demand entitlement); pre-computed
+  tables at `~/workspace/tables/` (`TABLES.md` catalog, `manifest.json`
+  provenance), consumed through symlinks. Everything runs from the shell
+  (`muse.exec`); long computations run in the background and report only on
+  completion, with timeouts disclosed, never absorbed.
+- **Figures.** Desmos embeds with PNG fallbacks; fallbacks rendered by
+  `validation/book<N>/make_graphs.py` with matplotlib (Agg) + NumPy from the
+  exact embedded expressions; per-book `validation/book<N>/test_embeds.py`
+  checks embed consistency.
+- **Pages.** Static HTML/CSS/JS authored directly (`muse.write`,
+  `muse.edit`); one directory per book with its graphs alongside it.
+- **Publishing.** git + GitHub over the persistent SSH key
+  (`~/.ssh/id_ed25519`); remote verified after every push; only cleaned
+  books ship, under Kit's standing push approval.
+- **Orchestration.** Independent parallel verification is delegated to
+  subagents (`subagent.spawn`); recurring work runs on cron (`cron.add`,
+  `cron.list` — e.g. the daily `rewrite-polish-scanner`); commitments are
+  tracked (`tracking.create`, `tracking.set_status`) and durable research
+  goals live under `user_goal`; theory work stays routed to the R Theory
+  side chat (`chat.*`).
+- **Verification discipline.** Every check is a real assertion in a script
+  that exits nonzero on failure; scope labels from §2 are attached at the
+  point of the check; nothing is promoted beyond what the check established.
