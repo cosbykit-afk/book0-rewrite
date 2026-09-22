@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Computational Audit Appendix — R Theory Rewrite Series</title>
+<style>
+body{font-family:Georgia,serif;max-width:900px;margin:0 auto;padding:24px;line-height:1.65;color:#1a1a1a;background:#fdfdfb}
+h1{font-size:1.9em;border-bottom:2px solid #333;padding-bottom:8px}
+h2{font-size:1.45em;margin-top:2.2em;border-bottom:1px solid #aaa;padding-bottom:4px}
+table{border-collapse:collapse;width:100%;margin:1em 0;font-size:.9em}
+th,td{border:1px solid #bbb;padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#f0f0ec}
+.tag{display:inline-block;font-size:.78em;font-weight:bold;border:1px solid #666;border-radius:3px;padding:0 6px;margin-right:4px;background:#eee}
+.tag.CP{background:#dff0d8}.tag.SC{background:#e3f2fd}.tag.NC{background:#d7f0e8}.tag.ST{background:#e8e4f5}
+.tag.MA{background:#fcf8e3}.tag.AX{background:#fde8d8}.tag.IN{background:#e8e8e8}.tag.IC{background:#fbdcdc}
+.small{font-size:.9em;color:#444}
+.note{background:#f6f8fb;border:1px solid #dfe5ec;border-radius:8px;padding:10px 16px;margin:1em 0;font-size:.94em}
+pre{background:#f4f4f1;border:1px solid #ccc;border-radius:4px;padding:12px 14px;font-size:.85em;overflow-x:auto}
+code{font-size:.88em}
+footer{margin-top:3em;color:#555;font-size:.9em;border-top:1px solid #bbb;padding-top:1em}
+a{color:#0645ad}
+</style>
+<!-- SITENAV-START -->
+<style>
+.sitenav{font-family:Georgia,serif;font-size:.88em;background:#f4f4f0;border:1px solid #bbb;
+ border-radius:4px;padding:8px 14px;margin:0 0 1.5em;display:flex;flex-wrap:wrap;
+ align-items:center;gap:8px 16px;line-height:1.4}
+.sitenav a{color:#0645ad;text-decoration:none;white-space:nowrap}
+.sitenav a:hover{text-decoration:underline}
+.sitenav .sitenav-brand{font-weight:bold;color:#1a1a1a}
+.sitenav .sitenav-links{display:flex;flex-wrap:wrap;gap:8px 14px}
+.sitenav-search{margin-left:auto;display:flex;gap:6px;align-items:center}
+.sitenav-search input{font-family:Georgia,serif;font-size:.95em;padding:4px 8px;
+ border:1px solid #999;border-radius:3px;width:170px;background:#fff;color:#1a1a1a}
+.sitenav-search button{font-family:Georgia,serif;font-size:.95em;padding:4px 12px;
+ border:1px solid #666;border-radius:3px;background:#eee;cursor:pointer;color:#1a1a1a}
+</style>
+<!-- SITENAV-END -->
+</head>
+<body>
+<!-- SITENAV-NAV-START -->
+<nav class="sitenav" aria-label="Site navigation">
+<a class="sitenav-brand" href="../">R Theory — Rewrite</a>
+<span class="sitenav-links">
+<a href="../#hard">Hard&nbsp;science</a><a href="../#theoretical">Theoretical</a><a href="../vol0/">Vol&nbsp;0</a><a href="../vol4/">Vol&nbsp;IV</a><a href="../tables/">Tables</a>
+</span>
+<form class="sitenav-search" action="https://www.google.com/search" method="get" target="_blank" role="search"
+ onsubmit="if(!this.q.value.trim())return false;this.q.value='site:cosbykit-afk.github.io/r-theory-rewrite '+this.q.value">
+<input type="text" name="q" placeholder="Search this site&#8230;" aria-label="Search this site">
+<button type="submit">Search</button>
+</form>
+</nav>
+<!-- SITENAV-NAV-END -->
+<h1>Appendix: Computational Audit Trail</h1>
+<p><i>The exact-script audit of the manuscript's 12-module Wolfram computation
+(gamma matrices → so(16) generators → Casimir decomposition), its failures as
+encoded, the corrected constructions, and the independent re-verification.
+Every claim below carries the status the work actually earned it.</i></p>
+
+<div class="note">
+<p><b>Source archive.</b> The complete working set behind this appendix —
+scripts, logs, machine-readable results, the theorem ledger, the notation
+ledger, the dependency chain, and the breakage follow-up log — is preserved
+in the daily Drive backup <code>r-theory-audit-work.zip</code> (refreshed
+~05:47&nbsp;PT; multi-GB Wolfram Engine artifacts excluded). See
+<a href="#repro">Reproducibility</a> for the file inventory.</p>
+<p class="small">First published 2026-09-22.</p>
+</div>
+
+<h2>Status vocabulary</h2>
+<p>This appendix uses the audit's own scope labels, mapped to the series tags:
+<span class="tag CP">CP</span> checked proof = <b>PROVED</b> ·
+<span class="tag SC">SC</span> completed symbolic check and
+<span class="tag NC">NC</span> completed numerical check = <b>CHECKED</b> ·
+<span class="tag MA">MA</span> manuscript assertion = <b>ASSERTED</b> ·
+<span class="tag IC">IC</span> incorrect result = <b>INVALID</b> ·
+<span class="tag IN">IN</span> incomplete or failed computation = <b>INCOMPLETE</b>.
+<span class="tag ST">ST</span> marks standard imported theorems.
+Nothing is promoted beyond what the mathematics supports: in particular, a
+numerical check of a <i>corrected</i> construction does not repair the
+<i>original</i> encoding it replaces.</p>
+
+<h2>Method</h2>
+<p>Two separate computations, written and run independently:</p>
+<ol>
+<li><b>Exact-script audit</b> (<span class="tag NC">NC</span>):
+<code>run_modules.py</code>, a faithful NumPy/SciPy port of the manuscript's
+12 Wolfram modules, run 2026-09-18/19 (~523&nbsp;s, completed with
+<code>ALL MODULES DONE</code>; full transcript in <code>run_fixed.log</code>,
+machine-readable results in <code>results.json</code>). Its purpose was to
+evaluate the exact script — to find where it breaks, not to confirm it.</li>
+<li><b>Independent re-verification</b> (<span class="tag NC">NC</span>):
+<code>verify_independent.py</code>, written fresh from the definitions (not a
+re-run of the audit port), completed 2026-09-21 (~603&nbsp;s, exit 0). It
+rebuilds the gamma matrices, the guarded so(16) generators, and the corrected
+Casimir from scratch, cross-checking the assembled operator entry-by-entry
+against the literal operator definition on random symmetric matrices.</li>
+</ol>
+<p>A third run, <code>diag_casimir.py</code> (2026-09-19, exit 0, ~36&nbsp;min),
+ran exhaustive diagnostics on the corrected construction: odd-subspace
+invariance, all so(16) commutators, and Casimir centrality.</p>
+
+<h2>Module-by-module findings</h2>
+<table>
+<tr><th>Module</th><th>What the exact script produced</th><th>Status</th></tr>
+<tr><td>M1 — gamma matrices</td><td>Original encoding used <code>s3</code> in the
+tensor slots <i>after</i> the active Pauli slot, where
+<code>IdentityMatrix[2]</code> is required. Original worst Clifford violation
+<b>2.0</b> (at pair (1,3)); repaired construction (one-sided σ₃ string,
+Kit-approved): worst violation <b>0</b>.</td>
+<td><span class="tag IC">IC</span> original as encoded · <span class="tag NC">NC</span> repaired</td></tr>
+<tr><td>M2 — gamma assembly</td><td>16 gamma matrices, each 256×256.</td>
+<td><span class="tag NC">NC</span></td></tr>
+<tr><td>M3 — Clifford / Γ₁₇</td><td><code>CliffordOK=true</code>,
+<code>Gamma17Squared=true</code>, <code>Gamma17Anticommutes=true</code>,
+Γ₁₇ Hermiticity error 0.0.</td><td><span class="tag NC">NC</span></td></tr>
+<tr><td>M4 — chirality</td><td>Ranks 128 / 128, dim S₊ = 128, projector
+orthonormality error 0.0.</td><td><span class="tag NC">NC</span></td></tr>
+<tr><td>M5 — charge conjugation</td><td><code>ChargeConjugationOK=true</code>,
+B 256×256.</td><td><span class="tag NC">NC</span></td></tr>
+<tr><td>M6 — so(16) commutation</td><td><code>CommutationOK=false</code>,
+<code>SigmaAntisymmetric=false</code> (120 generators). Two defects:
+(1)&nbsp;Σ(i,j) was built with no i==j guard, giving Σ(i,i)=I/2 where the
+antisymmetric convention requires 0 — exactly the 10 identical-generator
+(i,j)=(k,l) cases fail, each with violation exactly <b>1.0</b>;
+(2)&nbsp;the script tested S<sub>ij</sub>+S<sub>ij</sub><sup>T</sup> on
+<i>complex anti-Hermitian</i> generators (error 1.0) — the correct test is
+S<sub>ij</sub>+S<sub>ij</sub><sup>†</sup>, residual <b>0.0</b>.</td>
+<td><span class="tag IC">IC</span> as encoded</td></tr>
+<tr><td>M7 — Sym² basis</td><td>Basis size 8256 = expected 8256.</td>
+<td><span class="tag NC">NC</span></td></tr>
+<tr><td>M8 — Casimir action</td><td>Defined on all 120 generators
+(<code>max_imag_allGens=0.5</code> recorded in the raw output).</td>
+<td><span class="tag IC">IC</span> (with M9–M12 below)</td></tr>
+<tr><td>M9 — Casimir matrix</td><td>8256×8256 assembled; symmetry error 0.0 —
+but it is the matrix of the <i>wrong operator</i> (see below).</td>
+<td><span class="tag IC">IC</span></td></tr>
+<tr><td>M10 — spectrum</td><td>Distinct eigenvalues
+[−128,−120,−96,−64,−60,−56,−48,−28,0]; multiplicities at +48 and +64 are
+<b>0</b> (mult₀=1). The claimed decomposition {0:1,&nbsp;48:1820,&nbsp;64:6435}
+is not produced.</td><td><span class="tag IC">IC</span> as encoded</td></tr>
+<tr><td>M11 — projectors</td><td>Lagrange-projector ranks 36722 / −82471 /
+54005 (nonsense — negative rank is impossible); idempotence false;
+orthogonality false; completeness formally true.</td>
+<td><span class="tag IC">IC</span> as encoded</td></tr>
+<tr><td>M12 — four-form image</td><td>1820 quadruples built
+(Γ₄ symmetric: true; Λ² image dim 120, Λ⁴ image dim 1820), but
+<code>ImageInP1820=false</code>, worst sample violation <b>21.0</b>.</td>
+<td><span class="tag IC">IC</span> as encoded</td></tr>
+</table>
+<div class="note">
+<p><b>Why Modules 8–12 fail.</b> The encoded double-commutator
+Σ<sub>a</sub>[A<sub>a</sub>,[A<sub>a</sub>,M]] is the Casimir only in a
+<i>real antisymmetric</i> basis. The script's generators are complex
+anti-Hermitian and act on symmetric matrices by <i>congruence</i>,
+ρ(A)M = AM + MA<sup>T</sup> — for which the double commutator is the wrong
+operator. This is a basis/encoding defect, not numerical noise.</p>
+</div>
+
+<h2>The corrected operator</h2>
+<p>Expanding ρ(A)² with ρ(A)M = AM + MA<sup>T</sup> gives the exact algebra
+(<span class="tag CP">CP</span> by inspection):</p>
+<p style="text-align:center">C′(M) = −Σ<sub>a</sub>(A<sub>a</sub>²M +
+2A<sub>a</sub>MA<sub>a</sub><sup>T</sup> + M(A<sub>a</sub><sup>T</sup>)²)</p>
+<ul>
+<li>First assembly: spectrum {0:1,&nbsp;48:1820,&nbsp;64:<b>6307</b>,&nbsp;128:<b>128</b>}
+— <span class="tag IC">IC</span>: the assembly double-counted diagonal
+(p=q) Sym² basis inputs, producing a spurious 128-eigenspace. Disclosed and
+patched (p=q handled once).</li>
+<li>Patched rerun (2026-09-19): distinct eigenvalues {0.0:&nbsp;1,&nbsp;48.0:&nbsp;1820,&nbsp;64.0:&nbsp;6435};
+eigenvalue range 1.15e-13…64.00000000000173; max|imag| = 0.0; matrix symmetry
+error 0.0. <span class="tag NC">NC</span></li>
+<li>Exhaustive diagnostics (<code>diag_casimir.py</code>): the 128-dim odd
+subspace is exactly invariant under every even product ΓᵢΓⱼ (max 0.0); all
+so(16) commutators hold (max violation 0.0); the corrected Casimir is central
+to machine precision (≈2.8–2.9e-14 against scales ~129–171).
+<span class="tag NC">NC</span></li>
+</ul>
+<p class="small"><b>Scope.</b> This validates the spectrum of the
+<i>corrected</i> operator. It does not validate the manuscript's original
+Modules 8–12 encoding, which remains <span class="tag IC">IC</span> as
+written.</p>
+
+<h2>Independent verification (2026-09-21)</h2>
+<p><code>verify_independent.py</code> — fresh implementation from the
+definitions, ~603&nbsp;s, exit 0:</p>
+<ul>
+<li>Clifford relations rebuilt from scratch: max violation <b>0.0</b>.</li>
+<li>Anti-Hermitian check on all 120 guarded generators: residual <b>0.0</b>.</li>
+<li>so(16) commutation on all <b>7,140</b> generator pairs: max violation <b>0.0</b>.</li>
+<li>Original Module 6 defect reproduced exactly: the 10 diagonal cases fail
+with violation exactly <b>1.0</b> under the unguarded Σ(i,i)=I/2.</li>
+<li>Corrected 8256-dim Casimir matrix: symmetry error <b>0.0</b>.</li>
+<li>Fresh assembly vs. the literal operator action on random symmetric
+matrices: max deviation <b>3.694822225952521e-13</b>, max imaginary part <b>0.0</b>.</li>
+<li>Full spectrum confirmed: <b>{0:1,&nbsp;48:1820,&nbsp;64:6435}</b>.</li>
+</ul>
+<p>Status of the corrected spectrum: <span class="tag NC">NC</span> (two
+independent numerical implementations agree). The corrected numerics are kept
+as cross-confirmation — the spectrum itself is a theorem (next section).</p>
+
+<h2>Analytic status: the spectrum is a theorem</h2>
+<p>The decomposition is <span class="tag CP">CP</span>
+(<span class="tag ST">ST</span>/<span class="tag SC">SC</span> components
+cited), proved 2026-09-19 (K-1…K-9):</p>
+<ul>
+<li>S₊ (dim 128) carries the chiral spinor representation V(ω₈) of so(16);
+M<sub>AB</sub> = ½γ<sub>A</sub>γ<sub>B</sub> satisfy the so(16) relations
+(K-1, K-2 — hand case analysis on the Clifford relations).</li>
+<li>C = −Σρ(M<sub>AB</sub>)² is central (K-2 corollary); the B₊-bilinear
+singlet is annihilated, Cs = 0 (K-3, K-4).</li>
+<li>The 1820 B-mapped four-forms span a nonzero submodule F ≅ V(ω₄),
+dim 1820 (K-5, K-6; the 2-fold terms cancel in [M<sub>AB</sub>,γ<sub>I</sub>]).</li>
+<li>V(2ω₈) ⊆ Sym²(S₊), dim 6435 by the Weyl formula — exact symbolic
+computation (K-7, <span class="tag SC">SC</span>).</li>
+<li>Sym²(128) = ℂs ⊕ F ⊕ V(2ω₈): 1 + 1820 + 6435 = 8256, direct and
+exhaustive (K-8).</li>
+<li>Eigenvalues by Harish-Chandra proportionality with κ pinned on S₊
+(−ΣM<sub>AB</sub>² = 30I) and D₈ arithmetic: ω₈ → 30, ω₄ → <b>48</b>,
+2ω₈ → <b>64</b> (K-9). Hence C acts as 0 / 48 / 64 on the three summands.</li>
+</ul>
+<p>The corrected operator C′ above is exactly the matrix form of
+−Σρ(M<sub>AB</sub>)² on Sym²(S₊) (the vec identity turns
+(A⊗I+I⊗A)² into A²M + 2AMA<sup>T</sup> + M(A<sup>T</sup>)²), so K-9 covers
+the corrected operator's spectrum. The numerics are corroboration, not the
+establishment.</p>
+<div class="note">
+<p><b>B-6 reconciled.</b> The breakage follow-up log's item B-6 asked for an
+analytic proof of the {0:1,&nbsp;48:1820,&nbsp;64:6435} spectrum — but that
+proof already existed (K-1…K-9, 2026-09-19). The analytic result is
+<b>not</b> open. What remains open under the B-items is the ledger
+documentation of the corrected derivations (B-4).</p>
+</div>
+
+<h2>Open follow-up items (as of 2026-09-22)</h2>
+<p>The breakage follow-up worker (every ~6h) works these in priority order,
+logging terse per-run entries to the dedicated log channel; status changes
+sync to the notation ledger. All are <span class="tag IN">IN</span> the sense
+of "not yet done" — none is claimed complete.</p>
+<table>
+<tr><th>Item</th><th>What is open</th><th>Status</th></tr>
+<tr><td>B-1</td><td>Module 12's 1820 projected Clifford four-form image check,
+re-run on the <i>corrected</i> C′: is max|C′(v) − 48v| &lt; 1e-6 over all
+1820 forms?</td><td>OPEN</td></tr>
+<tr><td>B-2</td><td>Corrected Lagrange projectors
+p₁(x)=(x−48)(x−64)/3072, p₁₈₂₀(x)=x(64−x)/768,
+p₆₄₃₅(x)=x(x−48)/1024: idempotence, pairwise orthogonality, completeness on
+the corrected C′.</td><td>OPEN</td></tr>
+<tr><td>B-3</td><td>Rewrite-series status hygiene: sweep the series pages for
+citations of the original (invalid) Modules 6/8–12 encodings and fix any
+overclaims (book13/book16 already carry the corrected wording).</td><td>OPEN</td></tr>
+<tr><td>B-4</td><td>Ledger documentation: the corrected Module 6 construction
+(guarded Σ, S+S<sup>†</sup>=0) and the exact derivation
+ρ(A)M=AM+MA<sup>T</sup> ⇒ ρ(A)²M=A²M+2AMA<sup>T</sup>+M(A<sup>T</sup>)² into
+the theorem ledger.</td><td>OPEN</td></tr>
+<tr><td>B-5</td><td>Reality question: does the 128 representation admit a real
+basis (Frobenius–Schur indicator)? If yes, the manuscript's Module 8
+double-commutator formula is rehabilitable in that basis; if no, the
+corrected C′ stands as the replacement.</td><td>OPEN</td></tr>
+</table>
+
+<h2>What this audit does not establish</h2>
+<ul>
+<li>The manuscript's original Modules 6 and 8–12 as encoded do
+<b>not</b> establish their claims. The decomposition {0:1,&nbsp;48:1820,&nbsp;64:6435}
+is established for the <i>corrected</i> operator (numerically) and by the
+analytic theorem — never by the original encoding.</li>
+<li>Nothing in these checks selects a physical chirality, a preferred lift,
+or a physical spacetime — consistent with the manuscript's own nonselection
+theorems.</li>
+<li>The audit covers only the 12-module computation. The Layer-0/Layer-1
+bottleneck is unaffected: M<sub>e</sub>, O<sub>prop</sub>, P₅₄, the C8
+contraction, and S_F remain absent or mocked, and the dependency chain
+records them as missing inputs, not missing computation.</li>
+<li>The E8 30380 weight table and the other pre-computed objects are
+documented separately on the <a href="../tables/">tables page</a>.</li>
+</ul>
+
+<h2 id="repro">Reproducibility</h2>
+<table>
+<tr><th>File</th><th>What it is</th></tr>
+<tr><td><code>run_modules.py</code></td><td>Faithful NumPy/SciPy port of the 12 Wolfram modules.</td></tr>
+<tr><td><code>run_fixed.log</code></td><td>Full run transcript (~523&nbsp;s), ending <code>ALL MODULES DONE</code>.</td></tr>
+<tr><td><code>results.json</code></td><td>Machine-readable per-module results (the numbers quoted above).</td></tr>
+<tr><td><code>test_casimir2.py</code></td><td>Corrected Casimir implementation (includes the patched p=q handling).</td></tr>
+<tr><td><code>diag_casimir.py</code></td><td>Exhaustive corrected-construction diagnostics (~36&nbsp;min, exit 0).</td></tr>
+<tr><td><code>verify_independent.py</code></td><td>Independent from-definitions verification (~603&nbsp;s, exit 0).</td></tr>
+<tr><td><code>theorem_ledger.md</code></td><td>The audit's theorem ledger (Volume I Books 0–6).</td></tr>
+</table>
+<p>Rerun: <code>python3 run_modules.py</code> (requires NumPy/SciPy; ~9&nbsp;min)
+reproduces the exact-script audit; <code>python3 verify_independent.py</code>
+(~10&nbsp;min) reproduces the independent check. The full set plus the
+notation ledger, dependency chain, and breakage follow-up log is archived in
+the daily Drive backup <code>r-theory-audit-work.zip</code> (multi-GB Wolfram
+Engine artifacts excluded).</p>
+
+<footer>
+<p>Part of the R Theory rewrite series. Every claim above carries the status the audit actually earned it; corrected constructions never launder the original encodings' failures. <a href="../">← Series index</a></p>
+<p>By <a href="https://orcid.org/0009-0003-5392-2359">Christopher Cosby</a> &middot; ORCID <a href="https://orcid.org/0009-0003-5392-2359">0009-0003-5392-2359</a></p>
+</footer>
+</body>
+</html>
