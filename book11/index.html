@@ -30,6 +30,7 @@
          padding:.15em .6em; margin-right:.4em; vertical-align:middle; }
   .tag.cert { background:#e6f4ea; color:#146c2e; border:1px solid #b7dfc0; }
   .tag.note { background:#fff4e0; color:#8a5a00; border:1px solid #ecd9a8; }
+  .tag.niv { background:#ffe9c9; color:#7a4a00; border:1px solid #e0a83e; }
   code, .math { font-family: ui-monospace, Menlo, monospace; }
   .math { background:#f2f5f9; padding:.1em .35em; border-radius:4px; font-size:.95em; }
   ul.tight li { margin:.35em 0; }
@@ -89,7 +90,7 @@ exactly one scope tag:
 <span class="tag cert">COMPLETED SYMBOLIC CHECK</span>
 <span class="tag cert">COMPLETED NUMERICAL CHECK</span>
 <span class="tag cert">STANDARD IMPORTED THEOREM</span>
-<span class="tag note">MANUSCRIPT ASSERTION</span>
+<span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span>
 <span class="tag note">ASSUMPTION OR AXIOM</span>
 <span class="tag note">INCORRECT RESULT</span>
 <span class="tag note">INCOMPLETE OR FAILED COMPUTATION</span>.
@@ -285,7 +286,7 @@ connection transformation law, <span class="math">F = dA + A∧A</span>, Bianchi
 <span class="math">A = −dUU⁻¹</span> gives <span class="math">F = 0</span> (Maurer–Cartan) — local basis
 variation alone produces no force.
 <span class="tag cert">STANDARD IMPORTED THEOREM</span> <b>11.PG.V:</b> non-Abelian curvature term.
-<span class="tag note">MANUSCRIPT ASSERTION</span> <b>11.PG.VI:</b> minimal Yang–Mills candidate
+<span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> <b>11.PG.VI:</b> minimal Yang–Mills candidate
 <span class="math">S_YM = −(1/2g²)∫tr(F∧∗F)</span> within a stated candidate class; "candidate-class
 uniqueness" is asserted, not proved here.
 <span class="tag cert">CHECKED PROOF</span> <b>Negative Theorem 11.PG.N2:</b> no gauge-invariant bare
@@ -312,7 +313,7 @@ mirror. Depends on a <i>later</i> Lorentz-spinor completion (Book 9's conditiona
 <span class="tag cert">CHECKED PROOF</span> <b>11.I.A</b> mirror exchange lemma;
 <b>11.I.B</b> naturality no-go for intrinsic chirality selectors;
 <b>11.I.C</b> axial-covariance obstruction (correlation ≠ selection);
-<span class="tag note">MANUSCRIPT ASSERTION</span> <b>11.I.D</b> rotational spin-connection corollary —
+<span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> <b>11.I.D</b> rotational spin-connection corollary —
 conditional on the imported T6 slow-rotation geometry;
 <span class="tag cert">STANDARD IMPORTED THEOREM</span> <b>11.I.E</b> Einstein–Cartan sign erasure:
 <span class="math">L_T,eff = −(β²/4α)K²</span> is <span class="math">K → −K</span> invariant;
@@ -322,14 +323,14 @@ supply — a requirement, not a derivation).</div>
 
 <h3>11.II — The three-state internal block</h3>
 <div class="formal">
-<span class="tag note">MANUSCRIPT ASSERTION</span> <b>11.II.A</b> supersession theorem: the earned
+<span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> <b>11.II.A</b> supersession theorem: the earned
 <span class="math">W_V ≅ ℂ³</span> replaces the historical "declare <span class="math">V₃ ≅ ℂ³</span>".
 The earning itself lives in Book 6 (see Part III dependency verdict).
 <span class="tag cert">STANDARD IMPORTED THEOREM</span> <b>11.II.B:</b> determinant-one block isometries
 give <span class="math">SU(3)</span>, <span class="math">dim_ℝ su(3) = 8</span>;
 <b>11.II.C:</b> <span class="math">A₂</span> weight/root re-entry;
 <b>11.II.D:</b> <span class="math">Lie{iλ₁,iλ₂,iλ₆} = su(3)</span> (one-bridge closure).
-<span class="tag note">MANUSCRIPT ASSERTION</span> <b>11.II.E</b> QCD airlock: color-singlet closure
+<span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> <b>11.II.E</b> QCD airlock: color-singlet closure
 <span class="math">3⊗3̄ = 1⊕8</span>, <span class="math">3⊗3⊗3 = 1⊕8⊕8⊕10</span> follows <i>only after</i>
 the explicit color projection contract.
 <span class="tag cert">CHECKED PROOF</span> <b>Negative Theorem 11.II.F1:</b> singlet algebra does not
@@ -342,7 +343,7 @@ derive confinement — a logical firewall, proved by separation of the claims.</
 (<span class="math">2a+3b=0</span> forces <span class="math">a:b = 1/2:−1/3</span> up to scale and sign).
 The full chain rank-five → doubled carrier → <span class="math">ℂ²⊕ℂ³</span> → <span class="math">U(2)×U(3)</span>
 → <span class="math">S(U(2)×U(3))</span> → <span class="math">su(2)⊕su(3)⊕u(1)</span> is a
-<span class="tag note">MANUSCRIPT ASSERTION</span> insofar as its first links are Book 6's
+<span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> insofar as its first links are Book 6's
 not-independently-rechecked theorems (Part III).</div>
 
 <h3>11.IV — The decadic half-spin matter module</h3>
@@ -358,7 +359,7 @@ not-independently-rechecked theorems (Part III).</div>
 <span class="tag cert">CHECKED PROOF</span> (exact fraction arithmetic on <span class="math">y(p,q) = p/2 − q/3</span>).
 <span class="tname">11.IV.N1.</span> <span class="tag cert">CHECKED PROOF</span> Half-spin existence does not
 select physical chirality.
-<span class="tag note">MANUSCRIPT ASSERTION</span> <b>11.IV.G</b> fermionic-ontology firewall: the
+<span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> <b>11.IV.G</b> fermionic-ontology firewall: the
 exterior/Fock realization does not establish fields, statistics, or dynamics.</div>
 
 <h3>11.V — Conditional Standard-Model representation comparison</h3>
@@ -370,7 +371,7 @@ physics identification, not a premise of Theorem 11.IV.T2.
 under that contract the six blocks are exactly one SM generation plus a neutral singlet; no hypercharge
 was fitted independently.
 <span class="tag cert">CHECKED PROOF</span> <b>11.V.D</b> mirror-generation corollary.
-<span class="tag note">MANUSCRIPT ASSERTION</span> <b>11.V.E</b> decadic economy: a genuine reduction in
+<span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> <b>11.V.E</b> decadic economy: a genuine reduction in
 independent mathematical premises, not yet a reduction in physical input.</div>
 
 <h3>11.VI — Quantum-consistency test</h3>
@@ -383,7 +384,7 @@ Weyl anomaly rules (imported QFT).
 <span class="tag cert">COMPLETED SYMBOLIC CHECK</span> <b>11.VI.T5:</b> 3+1 = 4 doublets, even — Witten parity pass.
 <span class="tag cert">CHECKED PROOF</span> <b>11.VI.N1:</b> anomaly consistency is chirality-sign blind here.
 <span class="tag cert">CHECKED PROOF</span> <b>11.VI.T7:</b> anomaly consistency cannot retroactively prove Axiom Zero.
-<span class="tag note">MANUSCRIPT ASSERTION</span> <b>11.VI.H</b> Dai–Freed/bordism witness — an external QFT
+<span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> <b>11.VI.H</b> Dai–Freed/bordism witness — an external QFT
 certificate, honestly labeled with restricted background assumptions.</div>
 
 <h3>11.VII — Generation multiplicity</h3>
@@ -408,7 +409,7 @@ the colored triplet cannot be silently discarded from the same five.
 (dimensions 136 = 10+126, 120 verified); Yukawa admissibility after a 10-valued field is introduced.
 <span class="tag cert">CHECKED PROOF</span> <b>11.VIII.N2:</b> gauge invariance does not determine flavor texture.
 Physical debts (scalar ontology, potential, VEV, masses, splitting) explicitly unresolved —
-<span class="tag note">MANUSCRIPT ASSERTION</span> ledger, kept as such.</div>
+<span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> ledger, kept as such.</div>
 
 <h3>11.IX — Central U(1) and conditional electromagnetic remnant</h3>
 <div class="formal">
@@ -427,10 +428,10 @@ Couplings <span class="math">g, g′, e</span>, the weak mixing angle, and the e
 
 <h3>11.X — Closure</h3>
 <div class="formal">
-<span class="tag note">MANUSCRIPT ASSERTION</span> <b>11.X.T1</b> Decadic Particle-Architecture Closure
+<span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> <b>11.X.T1</b> Decadic Particle-Architecture Closure
 Theorem: a summary of items 1–11 with their individual scope labels — an exact conditional
 architecture match plus the combined obstruction ledger, not a derivation of the Standard Model.
-<span class="tag note">MANUSCRIPT ASSERTION</span> <b>Operational-promotion audit:</b>
+<span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> <b>Operational-promotion audit:</b>
 <span class="math">Δ_op(Book 11) = ∅</span> — no nonempty operational prediction-difference set is claimed.
 <b>BOOK 11 STATUS: CLOSED AT THE CURRENT PARTICLE-ARCHITECTURE SCOPE.</b></div>
 
@@ -439,17 +440,17 @@ architecture match plus the combined obstruction ledger, not a derivation of the
 <h3>Upstream dependency verdicts</h3>
 <ul class="tight">
 <li><b>Book 6 carrier <span class="math">W = W_E ⊕ W_V ≅ ℂ² ⊕ ℂ³</span>.</b>
-<span class="tag note">MANUSCRIPT ASSERTION</span> as an inheritance: the Volume I audit ledger records
+<span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> as an inheritance: the Volume I audit ledger records
 Book 6's envelope/no-go theorems as read but not independently re-proved; the internal group facts
 (<span class="math">U(2)×U(3)</span>, <span class="math">S(U(2)×U(3))</span> reduction, <span class="math">a=1/2, b=−1/3</span>)
 are <span class="tag cert">STANDARD IMPORTED THEOREM</span>s. Book 11's conditionality ("inherited from Book 6")
 is honestly labeled in the text.</li>
-<li><b>Historical T4 / T5 / T6.</b> <span class="tag note">MANUSCRIPT ASSERTION</span> — retired-master
+<li><b>Historical T4 / T5 / T6.</b> <span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> — retired-master
 witnesses re-entered by name (helicity odds, axial spin connection, Einstein–Cartan sector, decadic Clifford
 construction). The text labels each re-entry explicitly; none is used backward as a premise.</li>
 <li><b>Book 0 / Book 3 orientation data.</b> FlatWave transformation laws are
 <span class="tag cert">COMPLETED NUMERICAL CHECK</span>s in the Volume I ledger; the manuscript's
-separation theorems are <span class="tag note">MANUSCRIPT ASSERTION</span>s there. Book 11 re-proves its own
+separation theorems are <span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span>s there. Book 11 re-proves its own
 chirality no-go arguments from stated premises and keeps FlatWave out of all charge/chirality labeling —
 no conflation found.</li>
 <li><b>Physics imports.</b> Relativistic Dirac structure + <span class="math">P_L</span> (§11.PG.IX),

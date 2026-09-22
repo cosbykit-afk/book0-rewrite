@@ -17,7 +17,8 @@ h3{font-size:1.15em;margin-top:1.6em}
 .status{font-size:.85em;color:#555}
 .tag{display:inline-block;font-size:.78em;font-weight:bold;border:1px solid #666;border-radius:3px;padding:0 6px;margin-right:4px;background:#eee}
 .tag.CP{background:#dff0d8}.tag.SC{background:#e3f2fd}.tag.NC{background:#d7f0e8}.tag.ST{background:#e8e4f5}
-.tag.MA{background:#fcf8e3}.tag.AX{background:#fde8d8}.tag.IN{background:#e8e8e8}.tag.IC{background:#fbdcdc}
+.tag.MA{background:#fcf8e3}
+.tag.niv{background:#ffe9c9}.tag.AX{background:#fde8d8}.tag.IN{background:#e8e8e8}.tag.IC{background:#fbdcdc}
 hr{margin:2.5em 0;border:none;border-top:1px solid #bbb}
 .toc a{color:#0645ad;text-decoration:none}
 .small{font-size:.9em;color:#444}
@@ -59,7 +60,7 @@ footer{margin-top:3em;color:#555;font-size:.9em;border-top:1px solid #bbb;paddin
 Pictures and intuition first; the formal audit second. Every claim carries exactly one status:
 <span class="tag CP">CP</span> checked proof, <span class="tag SC">SC</span> completed symbolic check,
 <span class="tag NC">NC</span> completed numerical check, <span class="tag ST">ST</span> standard imported theorem,
-<span class="tag MA">MA</span> manuscript assertion, <span class="tag AX">AX</span> assumption or axiom,
+<span class="tag MA">MA</span> <span class="tag niv">not independently verified</span> manuscript assertion, <span class="tag AX">AX</span> assumption or axiom,
 <span class="tag IN">IN</span> incomplete or failed computation, <span class="tag IC">IC</span> incorrect result.
 A sampled numerical agreement (~1e-10) is a completed numerical check, never a proof.</i></p>
 <div class="toc">
@@ -86,7 +87,7 @@ runs monotonically from 0 to 1, crossing 1/2 exactly at <span class="formula">x 
 <span class="formula">1−λ</span>. This is the only chart on which the Bernoulli statistical contract
 (<span class="formula">0&lt;λ&lt;1</span>) can be declared — off this quadrant λ leaves (0,1).
 <span class="tag NC">NC</span> <b>What it doesn't show.</b> Nothing here is yet a probability; λ becomes a
-Bernoulli parameter only after the statistical contract of §13.II is supplied. <span class="tag MA">MA</span></div>
+Bernoulli parameter only after the statistical contract of §13.II is supplied. <span class="tag MA">MA</span> <span class="tag niv">not independently verified</span></div>
 
 <h3>Figure 2 — Reciprocal access</h3>
 <div class="graph" id="d2"></div>
@@ -106,7 +107,7 @@ certified Book 2 sum/product identities at 2×10⁴ points, max error &lt; 1e-10
 (blue, peak ln 2 at λ=1/2) and the response kernel <span class="formula">|H| = λ(1−λ)</span> (green, peak 1/4).
 |H| fixes the entropy level; the sign of H records orientation and the entropy is blind to it.
 <span class="tag NC">NC</span> <b>What it doesn't show.</b> That |H| later controls energy variance and heat capacity
-needs the Gibbs contract (§13.III) — the curve alone proves no thermodynamics. <span class="tag MA">MA</span></div>
+needs the Gibbs contract (§13.III) — the curve alone proves no thermodynamics. <span class="tag MA">MA</span> <span class="tag niv">not independently verified</span></div>
 
 <h3>Figure 4 — The convex generator A(v)</h3>
 <div class="graph" id="d4"></div>
@@ -164,7 +165,7 @@ urx = 1/λ, not the swap). <span class="tag NC">NC</span> The identity
 <span class="formula">λ(1−λ) = sin(2x)/4 = H</span> holds signed, exactly. <span class="tag CP">CP</span>
 The positive square-root state <span class="formula">Ψ<sub>stat</sub> = (√λ, √(1−λ))</span> is the canonical
 square-root embedding of a Bernoulli distribution <i>after</i> the statistical contract — it adds no quantum
-phase or coherence. <span class="tag MA">MA</span> (status declaration, correctly labeled as contract-dependent).</p>
+phase or coherence. <span class="tag MA">MA</span> <span class="tag niv">not independently verified</span> (status declaration, correctly labeled as contract-dependent).</p>
 <p><b>Textual defect (source).</b> The sentence "with 00 as h-&gt;0 and S<sub>sys</sub>=k<sub>B</sub> ln 2 at h=1/4"
 is garbled as printed: the variable <span class="formula">h</span> is undefined (canonical notation uses
 <span class="formula">H</span>) and "00" is not a constraint. Recovered intent —
@@ -175,7 +176,7 @@ is garbled as printed: the variable <span class="formula">h</span> is undefined 
 identities (urx+uxp, urx·uxp, FlatWave) are ledger-PROVED (Book 2 spine). But the Volume I audit found the
 "certified transfer coordinate λ" label defective in 2.XI.L9 (λ is constructible as ε/urx, but "certified" was
 never earned). Book 13 uses λ as a <i>defined</i> coordinate (saw_r) on admissible charts, which is legitimate;
-any reading that leans on λ's upstream <i>certification</i> inherits that defect. <span class="tag MA">MA</span></p>
+any reading that leans on λ's upstream <i>certification</i> inherits that defect. <span class="tag MA">MA</span> <span class="tag niv">not independently verified</span></p>
 <h3>13.II — Statistical closure (Conditional Theorem 13.II.T1)</h3>
 <p>Every step of the proof was verified: <span class="formula">A′(v) = λ</span>,
 <span class="formula">A′′(v) = λ(1−λ) = |H|</span> (on admissible charts),
@@ -247,7 +248,7 @@ declared model. <span class="tag CP">CP</span></p>
 that seam data "does not determine a unique crossing rule or stochastic transition law" — is argued <i>by the
 source boundary theorem</i>, which appears nowhere else in Volume II (single occurrence, inside Book 13 itself)
 and is not in the Volume I audit ledger as earned. The proof as given leans on an uncertified premise.
-<span class="tag MA">MA</span> (with dependency flag; the telescoping lemma alone is <span class="tag CP">CP</span>).</p>
+<span class="tag MA">MA</span> <span class="tag niv">not independently verified</span> (with dependency flag; the telescoping lemma alone is <span class="tag CP">CP</span>).</p>
 
 <h3>13.VI — Cophase topology and kinetic nonselection</h3>
 <p>Verified: the lifted quarter-turn has exact order four; its action on the primitive quartet is the pair of
@@ -268,11 +269,11 @@ canonically selected real cycle bias must be both reflection-invariant and sign-
 "canonical selection" premise does the work; this is not a formal derivation. The conclusion (no certified
 result selects unequal cophase rates) is correctly scoped as a nonselection result, and the book explicitly
 refuses to conflate orientation signs with temporal direction ("Orientation signs can record which orientation
-has been chosen. They do not choose it."). <span class="tag MA">MA</span></p>
+has been chosen. They do not choose it."). <span class="tag MA">MA</span> <span class="tag niv">not independently verified</span></p>
 <p>The rank claims — a single continuous branch-bias coordinate captures only the C2 parity quotient; a
 faithful stochastic cophase refinement needs at least two branch-bias directions (rank ≥ 3 with λ); the
 correction of the earlier factorized (λ,η) ansatz — use modeling language ("locally complete convex
-probability family") not given a precise definition in the book. <span class="tag MA">MA</span></p>
+probability family") not given a precise definition in the book. <span class="tag MA">MA</span> <span class="tag niv">not independently verified</span></p>
 
 <h3>13.VII — Path-space irreversibility, boundary conditions, time</h3>
 <p>Verified: <span class="formula">S<sub>sys</sub>(λ) = S<sub>sys</sub>(1−λ)</span>; on the principal quadrant the
@@ -285,7 +286,7 @@ mid-time low-entropy condition giving two-sided increase; the arrow requiring as
 data — is standard imported statistical-mechanical reasoning, correctly stated and correctly separated from
 Projection's internal mathematics. <span class="tag ST">ST</span> The retirement of a universal Time=ΔEntropy
 identity is a status declaration following from 13.VII.T1, correctly scoped ("at most" a process-dependent
-progress coordinate). <span class="tag MA">MA</span></p>
+progress coordinate). <span class="tag MA">MA</span> <span class="tag niv">not independently verified</span></p>
 
 <h3>13.VIII — Thermodynamic state rank and lawful extensions</h3>
 <p><b>Theorem 13.VIII.T1</b> (state-rank obstruction): every certified scalar readout is a function of one real
@@ -319,16 +320,16 @@ condensate phase is correctly classified as a genuine extension under 13.VIII.T1
 The cited reasons (time-neutral state functions, telescoping affinities, no visible circulation, unselected
 cophase rates, zero detailed-balance production, even Fisher/free-energy geometry) are established; but
 "the preceding sections exhaust the admitted candidate mechanisms" is asserted, not proved — exhaustiveness
-over a candidate list cannot be derived from the list. <span class="tag MA">MA</span></p>
+over a candidate list cannot be derived from the list. <span class="tag MA">MA</span> <span class="tag niv">not independently verified</span></p>
 <p><b>Terminal Theorem 13.X.T2</b> (Book 13 closure): three-level closure bookkeeping (statistical closure /
 conditional thermodynamic closure / arrow obstruction). Proof is a section-pointer summary; no circular
-dependence is introduced, and no unresolved premise is promoted. <span class="tag MA">MA</span></p>
+dependence is introduced, and no unresolved premise is promoted. <span class="tag MA">MA</span> <span class="tag niv">not independently verified</span></p>
 <p><b>Arrow-of-time discipline verdict.</b> The book keeps three things distinct throughout:
 (a) <i>exact mathematical asymmetries</i> — the two-ended entropy <span class="tag CP">CP</span>, cophase
 sign-flip laws <span class="tag NC">NC</span>; (b) <i>thermodynamic imports</i> — the Bernoulli, Gibbs, Markov,
 path/reversal, and many-body contracts, each explicitly declared <span class="tag ST">ST</span>/
 <span class="tag AX">AX</span>; (c) <i>philosophical interpretation</i> — retirement of Time=ΔEntropy,
-"a thermometer is not a clock" <span class="tag MA">MA</span>. The nonnegativity
+"a thermometer is not a clock" <span class="tag MA">MA</span> <span class="tag niv">not independently verified</span>. The nonnegativity
 <span class="formula">(J<sub>+</sub>−J<sub>−</sub>)ln(J<sub>+</sub>/J<sub>−</sub>) ≥ 0</span> is mathematics
 <i>inside</i> the Markov contract, not an imported second law; the import is the contract itself. FlatWave's
 orientation sign is never conflated with temporal direction — the book explicitly forbids it.
@@ -346,7 +347,7 @@ No imported second law is presented as a derived result.</p>
 <li>|H| as the Bernoulli response kernel and entropy-magnitude carrier. <span class="tag NC">NC</span></li>
 <li>The seam, symmetry, rank, and critical-location obstruction results (13.V telescoping, 13.VII.T1, 13.VIII.T1,
 13.VIII.N1, 13.IX.N1). <span class="tag CP">CP</span> — except 13.V.N1's seam half, which leans on the uncertified
-"source boundary theorem". <span class="tag MA">MA</span></li>
+"source boundary theorem". <span class="tag MA">MA</span> <span class="tag niv">not independently verified</span></li>
 </ul>
 <h3>True only under additional physical contracts</h3>
 <ul>
@@ -369,7 +370,7 @@ thermodynamic arrow; a Projection-derived BEC critical point or complex condensa
 <p>Any future nonzero thermodynamic arrow must enter through an explicit history-sensitive extension: asymmetric
 rates or cycle affinity, multiple reservoirs, nonconservative forcing, external driving, asymmetric
 preparation/boundary data, hidden memory or environmental correlations, or a separately imported
-microscopic time-asymmetric law with its path/reversal contract. <span class="tag MA">MA</span> (extension ledger)</p>
+microscopic time-asymmetric law with its path/reversal contract. <span class="tag MA">MA</span> <span class="tag niv">not independently verified</span> (extension ledger)</p>
 
 <hr>
 <h2 id="p4">Part IV — Close the book</h2>
@@ -382,7 +383,7 @@ dynamics, fields, relativity, quantum representation, particle architecture, har
 thermodynamics. At every stage physical equations enter only under explicit import; later representation
 successes do not retroactively justify earlier axioms. Through Book 13 the operational-difference set remains
 empty. Subsequent work may inherit only the certified mathematical identities and explicitly labeled
-conditional physics established here. <span class="tag MA">MA</span> (status declaration; the "certified"
+conditional physics established here. <span class="tag MA">MA</span> <span class="tag niv">not independently verified</span> (status declaration; the "certified"
 wording carries the §13.I dependency note above)</p>
 
 <hr>
@@ -413,13 +414,13 @@ this worker's span and are <span class="tag MA">MA</span> from this audit's posi
 <p>No book in Volume II has established a nonempty Projection-specific operational difference set relative to its
 named reference theory. Therefore <span class="formula">Δ<sub>op</sub>(Volume II) = ∅</span>. The null hypothesis
 — Projection Craft may change representation without changing operational physics — survives the closure of
-Volume II. <span class="tag MA">MA</span> (from this worker's position: Book 13 contributes no counterexample;
+Volume II. <span class="tag MA">MA</span> <span class="tag niv">not independently verified</span> (from this worker's position: Book 13 contributes no counterexample;
 Books 7–12 were not audited here)</p>
 <h3>Two-Volume Boundary</h3>
 <p>Volume II depends <b>only</b> on Volume I, ordinary background mathematics, and explicitly declared external
 imports. No access to the former consolidated master manuscript is required for the logical reading of Books
 7–13. Future extensions may cite these two volumes, but they must not silently alter their theorem status,
-numbering, or dependency order. <span class="tag MA">MA</span> — with two Book 13 dependency flags recorded
+numbering, or dependency order. <span class="tag MA">MA</span> <span class="tag niv">not independently verified</span> — with two Book 13 dependency flags recorded
 above: the inherited "certified λ" labeling defect (Volume I ledger, 2.XI.L9) and the uncertified "source
 boundary theorem" invoked in 13.V.N1.</p>
 <h3>Master-Retirement Condition</h3>
@@ -430,7 +431,7 @@ This is a conditional permission, not an authorization: the antecedent is not sa
 ledger still lists open/incomplete items (Book 1–3 sections read but not
 independently machine-checked; Wolfram Engine unlicensed). The corrected-Casimir rerun and exhaustive Casimir
 diagnostics have since completed (corrected-operator spectrum {0:1, 48:1820, 64:6435}; odd-subspace invariance 0.0;
-so(16) commutator violation 0.0; see ledger §1, §8), but that does not satisfy the antecedent. <span class="tag MA">MA</span> (procedural condition;
+so(16) commutator violation 0.0; see ledger §1, §8), but that does not satisfy the antecedent. <span class="tag MA">MA</span> <span class="tag niv">not independently verified</span> (procedural condition;
 antecedent currently unmet)</p>
 
 <footer>

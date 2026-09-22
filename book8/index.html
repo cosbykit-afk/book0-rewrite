@@ -36,6 +36,7 @@
   .tag.assumption { background:#fdeee4; color:#a04a00; border:1px solid #f2c9a8; }
   .tag.incorrect { background:#fde8e8; color:#a02020; border:1px solid #f0b0b0; }
   .tag.incomplete { background:#eceff1; color:#455a64; border:1px solid #b0bec5; }
+  .tag.niv { background:#ffe9c9; color:#7a4a00; border:1px solid #e0a83e; }
   code, .math { font-family: ui-monospace, Menlo, monospace; }
   .math { background:#f2f5f9; padding:.1em .35em; border-radius:4px; font-size:.95em; }
   ul.tight li { margin:.35em 0; }
@@ -170,7 +171,7 @@ declared geometric extension, and the book labels it as such.</p>
 <span class="tag standard">STANDARD IMPORTED THEOREM</span> Given the declared metric,
 <span class="math">⋆₄² = −1</span> on 2-forms is standard Lorentzian geometry (verified by
 direct matrix computation in the audit).
-<span class="tag manuscript">MANUSCRIPT ASSERTION</span> The constitutive boundary:
+<span class="tag manuscript">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> The constitutive boundary:
 <span class="math">G = λ⋆₄F</span> is a constitutive <i>identification</i> and
 <span class="math">dG = J</span> a sourced field law — neither is forced by exterior
 calculus. Conditional Corollary 8.2.C1 (<span class="math">dJ = 0</span> from
@@ -270,7 +271,7 @@ theory).
 <span class="tag symbolic">COMPLETED SYMBOLIC CHECK</span> Lemma 8.5.L2:
 <span class="math">F∧F = d(A∧F)</span> verified by exact symbolic computation on test
 1-forms.
-<span class="tag manuscript">MANUSCRIPT ASSERTION</span> Theorem 8.5.T1 (candidate-relative
+<span class="tag manuscript">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> Theorem 8.5.T1 (candidate-relative
 Maxwell uniqueness) and Conditional Corollary 8.5.C1 (source coupling
 <span class="math">a·d⋆F = J</span> with <span class="math">dJ = 0</span>): conditional
 theorems whose proof ingredients are standard, but whose candidate-class boundary is a
@@ -315,7 +316,7 @@ g<sub>μν</sub>[½K(∇φ)² + V]</span> verified by exact symbolic computation
 <span class="math">C = X² − Y² = 4V<sub>car</sub>² − 16H² = 1 − 32H² = 8V<sub>car</sub>² − 1</span>
 verified numerically) and 8.6.T3 (one-dimensional metric flattening; the change of
 variables verified numerically).
-<span class="tag manuscript">MANUSCRIPT ASSERTION</span> Negative Theorem 8.6.N1
+<span class="tag manuscript">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> Negative Theorem 8.6.N1
 (non-uniqueness of the interaction) and Conditional Corollary 8.6.C1 (round-metric
 selection principle) — argued completely in the text; the selection principle is a
 further declaration, not a theorem of the carrier alone.
@@ -437,13 +438,13 @@ Hodge duality, vector calculus</b> — <span class="math">d² = 0</span>,
 <span class="math">⋆₃² = +1</span>, <span class="math">⋆₄² = −1</span> (Lorentzian),
 grad/curl/div in form language. The manuscript re-derives standard material; credit
 belongs to the literature.</li>
-<li><span class="tag manuscript">MANUSCRIPT ASSERTION</span> <b>The Flower Euclidean
+<li><span class="tag manuscript">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> <b>The Flower Euclidean
 endpoint</b> — §8.1 uses the revised Flower construction "through its revised Euclidean
 endpoint." The Volume I ledger records the synthetic Flower proofs (Book 4) as read but
 not machine-checked. Book 8's use is honest about this: no lattice structure is retained
 as a preferred substrate, and the twelve-neighbor Laplacian appears in §8.7C.3 only as
 an unpromoted hypothetical.</li>
-<li><span class="tag manuscript">MANUSCRIPT ASSERTION</span> <b>FlatWave Čech data</b> —
+<li><span class="tag manuscript">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> <b>FlatWave Čech data</b> —
 §8.3's <span class="math">ε<sub>ij</sub> ∈ {±1}</span> with
 <span class="math">ε<sub>ij</sub>ε<sub>jk</sub>ε<sub>ki</sub> = 1</span> rests on the
 Book 3 transition-cocycle computations, which the ledger records as read but not
@@ -496,18 +497,18 @@ The prediction-difference set remains empty (§8.7C.3).</li>
 <tr><td>8.1.T2 Euclidean Hodge duality; 8.1.C1 vector-calculus equivalence</td><td><span class="tag standard">STANDARD IMPORTED THEOREM</span></td><td>Direct matrix check <span class="math">⋆₃²=+1</span></td></tr>
 <tr><td>8.2.E1 fourth direction; 8.2.E2 Lorentzian metric</td><td><span class="tag assumption">ASSUMPTION / DECLARED EXTENSION</span></td><td>Explicitly declared; not derived from the Flower construction</td></tr>
 <tr><td><span class="math">⋆₄²=−1</span> on 2-forms (given E2)</td><td><span class="tag standard">STANDARD IMPORTED THEOREM</span></td><td>Explicit 6×6 matrix verification</td></tr>
-<tr><td>Constitutive boundary (<span class="math">G=λ⋆₄F</span>, <span class="math">dG=J</span> not forced)</td><td><span class="tag manuscript">MANUSCRIPT ASSERTION</span></td><td>Status discipline stated in text</td></tr>
+<tr><td>Constitutive boundary (<span class="math">G=λ⋆₄F</span>, <span class="math">dG=J</span> not forced)</td><td><span class="tag manuscript">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span></td><td>Status discipline stated in text</td></tr>
 <tr><td>8.2.C1 current closure <span class="math">dJ=0</span></td><td><span class="tag proved">CHECKED PROOF</span></td><td><span class="math">d²=0</span> applied to the admitted equation</td></tr>
 <tr><td>8.3.N1 Z₂ does not generate local U(1); 8.3.C1–C2</td><td><span class="tag proved">CHECKED PROOF</span></td><td>Definitional argument, complete as given</td></tr>
 <tr><td>8.4.E1 local phase redundancy declared</td><td><span class="tag assumption">ASSUMPTION / DECLARATION</span></td><td>The essential added premise, labeled as such</td></tr>
 <tr><td>8.4.L1 derivative obstruction; 8.4.T1 Abelian connection forced</td><td><span class="tag proved">CHECKED PROOF</span></td><td>Symbolic verification: covariance, <span class="math">D²ψ=−iqFψ</span>, <span class="math">dF=0</span></td></tr>
 <tr><td>8.5.C candidate class; 8.5.L1 quadratic 4-forms</td><td><span class="tag standard">STANDARD IMPORTED THEOREM</span> + <span class="tag assumption">DECLARED CLASS</span></td><td>Standard invariant theory inside a declared boundary</td></tr>
 <tr><td>8.5.L2 theta term is a boundary term</td><td><span class="tag symbolic">COMPLETED SYMBOLIC CHECK</span></td><td><span class="math">F∧F=d(A∧F)</span> verified symbolically</td></tr>
-<tr><td>8.5.T1 Maxwell uniqueness in class; 8.5.C1 source coupling</td><td><span class="tag manuscript">MANUSCRIPT ASSERTION</span> (conditional)</td><td>Proof ingredients standard; class boundary declared; not a derivation of physical Maxwell theory</td></tr>
+<tr><td>8.5.T1 Maxwell uniqueness in class; 8.5.C1 source coupling</td><td><span class="tag manuscript">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> (conditional)</td><td>Proof ingredients standard; class boundary declared; not a derivation of physical Maxwell theory</td></tr>
 <tr><td>8.6.E1 compact scalar lift declared</td><td><span class="tag assumption">ASSUMPTION / DECLARATION</span></td><td>Independent Lorentzian spacetime supplied</td></tr>
 <tr><td>8.6.T1 two-derivative action class, E–L, stress tensor</td><td><span class="tag symbolic">COMPLETED SYMBOLIC CHECK</span></td><td>Equation and <span class="math">T<sub>μν</sub></span> verified symbolically</td></tr>
 <tr><td>8.6.T2 discrete-symmetry restriction; 8.6.T3 metric flattening</td><td><span class="tag proved">CHECKED PROOF</span></td><td>Fourier argument; change of variables verified numerically</td></tr>
-<tr><td>8.6.N1 symmetry does not select the interaction; 8.6.C1 round-metric principle</td><td><span class="tag manuscript">MANUSCRIPT ASSERTION</span></td><td>Follows from T2; selection principle is a further declaration</td></tr>
+<tr><td>8.6.N1 symmetry does not select the interaction; 8.6.C1 round-metric principle</td><td><span class="tag manuscript">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span></td><td>Follows from T2; selection principle is a further declaration</td></tr>
 <tr><td>8.7.T1 free field &amp; Noether current; 8.7.T2 winding</td><td><span class="tag standard">STANDARD IMPORTED THEOREM</span></td><td>Standard scalar field theory after declared premises</td></tr>
 <tr><td>8.7.T3 carrier wave identity</td><td><span class="tag symbolic">COMPLETED SYMBOLIC CHECK</span></td><td><span class="math">□Z=2iZ□φ−4Z(dφ)²</span> verified symbolically</td></tr>
 <tr><td>8.7.T4 null carrier sector (5 items)</td><td><span class="tag proved">CHECKED PROOF</span></td><td>Each item verified; remains scalar structure, not EM</td></tr>
@@ -554,7 +555,7 @@ sourced Maxwell dynamics from the reciprocal scalar calculus alone — not deriv
 preferred charge sign or helicity — not derived; nonempty Projection-specific
 empirical prediction set — not yet earned.</div>
 
-<div class="formal"><span class="tag manuscript">MANUSCRIPT ASSERTION</span>
+<div class="formal"><span class="tag manuscript">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span>
 <b>Dependency lock Book 8 → Book 9</b> (from the source): Book 9 may inherit the
 carrier, projective geometry, rank obstructions, and the distinction between scalar
 phase, coframe, connection, and curvature. Lorentzian spacetime and gravitational field
