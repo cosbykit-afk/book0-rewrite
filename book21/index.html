@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fermion Composition, Color Closure, and Bound-State Geometry — Volume 0</title>
+<style>
+  :root { --ink:#1a1a1a; --muted:#5a5a5a; --accent:#1b5faa; --paper:#fff; --wash:#f6f8fb; --line:#dfe5ec; }
+  body { font-family: -apple-system, "Segoe UI", Georgia, serif; color:var(--ink); background:var(--paper);
+         max-width: 860px; margin:0 auto; padding: 24px 20px 80px; line-height:1.65; }
+  h1 { font-size:1.9em; line-height:1.25; margin-bottom:.2em; }
+  h2 { font-size:1.45em; margin-top:2.2em; border-bottom:2px solid var(--line); padding-bottom:.3em; }
+  h3 { font-size:1.15em; margin-top:1.8em; color:var(--accent); }
+  .sub { color:var(--muted); font-size:1.05em; margin-top:0; }
+  .about { background:var(--wash); border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:1.5em 0; }
+  .about p { margin:.5em 0; }
+  .intuition { border-left:3px solid var(--accent); padding:.2em 0 .2em 1em; margin:1em 0; }
+  .formal { background:var(--wash); border:1px solid var(--line); border-radius:8px; padding:12px 18px; margin:1.2em 0; }
+  .thm { border:1px solid var(--accent); border-radius:8px; padding:14px 18px; margin:1.4em 0; background:#fbfdff; }
+  .thm .tname { font-weight:700; color:var(--accent); }
+  .ledger { font-family: ui-monospace, Menlo, monospace; font-size:.85em; background:#0f1720; color:#d7e3f0;
+            border-radius:8px; padding:14px 18px; overflow-x:auto; white-space:pre-wrap; margin:1.2em 0; }
+  .tag { display:inline-block; font-size:.75em; font-weight:700; letter-spacing:.06em; border-radius:4px;
+         padding:.15em .6em; margin-right:.4em; vertical-align:middle; }
+  .tag.exact { background:#e6f4ea; color:#146c2e; border:1px solid #b7dfc0; }
+  .tag.cond { background:#e8f0fe; color:#1b5faa; border:1px solid #bcd6f5; }
+  .tag.imp { background:#f3e8fd; color:#6a1fb0; border:1px solid #d9c2f2; }
+  .tag.neg { background:#fdecea; color:#a32b1e; border:1px solid #f2c4bd; }
+  .tag.decl { background:#fff4e0; color:#8a5a00; border:1px solid #ecd9a8; }
+  code, .math { font-family: ui-monospace, Menlo, monospace; }
+  .math { background:#f2f5f9; padding:.1em .35em; border-radius:4px; font-size:.95em; }
+  ul.tight li { margin:.35em 0; }
+  .nav { display:flex; flex-wrap:wrap; gap:.5em; margin:1.2em 0 2em; }
+  .nav a { text-decoration:none; border:1px solid var(--line); border-radius:20px; padding:.3em 1em;
+           font-size:.9em; color:var(--accent); background:var(--wash); }
+  footer { margin-top:3em; color:var(--muted); font-size:.9em; border-top:1px solid var(--line); padding-top:1em; }
+  footer a { color:var(--accent); }
+</style>
+<!-- SITENAV-START -->
+<style>
+.sitenav{font-family:Georgia,serif;font-size:.88em;background:#f4f4f0;border:1px solid #bbb;
+ border-radius:4px;padding:8px 14px;margin:0 0 1.5em;display:flex;flex-wrap:wrap;
+ align-items:center;gap:8px 16px;line-height:1.4}
+.sitenav a{color:#0645ad;text-decoration:none;white-space:nowrap}
+.sitenav a:hover{text-decoration:underline}
+.sitenav .sitenav-brand{font-weight:bold;color:#1a1a1a}
+.sitenav .sitenav-links{display:flex;flex-wrap:wrap;gap:8px 14px}
+.sitenav-search{margin-left:auto;display:flex;gap:6px;align-items:center}
+.sitenav-search input{font-family:Georgia,serif;font-size:.95em;padding:4px 8px;
+ border:1px solid #999;border-radius:3px;width:170px;background:#fff;color:#1a1a1a}
+.sitenav-search button{font-family:Georgia,serif;font-size:.95em;padding:4px 12px;
+ border:1px solid #666;border-radius:3px;background:#eee;cursor:pointer;color:#1a1a1a}
+</style>
+<!-- SITENAV-END -->
+</head>
+<body>
+<!-- SITENAV-NAV-START -->
+<nav class="sitenav" aria-label="Site navigation">
+<a class="sitenav-brand" href="../">R Theory — Rewrite</a>
+<span class="sitenav-links">
+<a href="../#hard">Hard&nbsp;science</a><a href="../#theoretical">Theoretical</a><a href="../vol0/">Vol&nbsp;0</a><a href="../vol4/">Vol&nbsp;IV</a><a href="../tables/">Tables</a>
+</span>
+<form class="sitenav-search" action="https://www.google.com/search" method="get" target="_blank" role="search"
+ onsubmit="if(!this.q.value.trim())return false;this.q.value='site:cosbykit-afk.github.io/r-theory-rewrite '+this.q.value">
+<input type="text" name="q" placeholder="Search this site&#8230;" aria-label="Search this site">
+<button type="submit">Search</button>
+</form>
+</nav>
+<!-- SITENAV-NAV-END -->
+
+<h1>Fermion Composition, Color Closure, and Bound-State Geometry</h1>
+<p class="sub">Volume 0. How fermionic systems compose once one fermion is no longer enough —
+rebuilt dependency-first, with the failures kept on the record.</p>
+<p><a href="../pdf/volume-0-book21.pdf">Download this book as PDF</a> (frozen snapshot, generated 2026-09-19).</p>
+
+<div class="about">
+<p><b>About this book.</b> Rebuilt as standalone R Theory from the former T5 essay-book,
+which was itself a "clean dependency-first reconstruction" of an earlier research draft.
+Each section states its inputs up front; no later section retroactively supplies an
+assumption an earlier result needed. The book's two architectures — <b>color</b> and
+<b>mass/binding</b> — are proved logically independent of each other.</p>
+<p><b>Status key.</b> <span class="tag exact">EXACT</span> proved mathematics ·
+<span class="tag cond">CONDITIONAL</span> exact after a declared import or contract ·
+<span class="tag decl">DECLARED</span> a mathematical extension, labeled as such ·
+<span class="tag imp">IMPORT</span> accepted physics taken as input ·
+<span class="tag neg">OBSTRUCTION / NEGATIVE</span> a proved or retained negative result.</p>
+<p><b>Depends on:</b> <a href="../book0/">Book 0</a> (composition rank, Clifford structure);
+<a href="../book20/">Book 20</a> (the half-angle witness); the internal radial
+Dirac–Coulomb paper (§5).</p>
+</div>
+
+<div class="nav">
+<a href="#s1">§1 Firewall</a><a href="#s2">§2 Color</a><a href="#s3">§3 QCD</a>
+<a href="#s4">§4 Two fermions</a><a href="#s5">§5 Bound states</a><a href="#s6">§6 Tests</a>
+<a href="#s7">§7 Failures</a><a href="#s8">§8 E8</a><a href="#s9">§9 Audit</a>
+</div>
+
+<h2 id="s1">§1 — The composition firewall</h2>
+
+<div class="intuition">
+<p>Before color, mass, or binding: what does it mean to compose two systems? For real
+finite-dimensional carriers there is an exact decomposition</p>
+<p class="math">Sym(V_A⊗V_B) = [Sym(V_A)⊗Sym(V_B)] ⊕ [Alt(V_A)⊗Alt(V_B)]</p>
+<p>— the locally symmetric product span is <i>not</i> generically the whole composite
+symmetric sector. A globally symmetric sector (Alt⊗Alt) can be invisible to any
+reconstruction restricted to local symmetric factors. Consequence, kept as a standing
+obstruction: <b>a list of locally visible subsystem coordinates cannot be assumed to
+determine the full composite state</b> unless local tomography is separately
+established. No later success in this book may be used to erase this rank
+obstruction.</p>
+</div>
+
+<div class="formal"><span class="tag exact">EXACT</span> <b>Composition firewall.</b>
+New axioms: 0. New physics imports: 0. The color weight diagram is not the whole state
+of a hadron; pair coordinates are not the whole two-fermion state; a constituent list
+is not a complete interacting record.</div>
+
+<h2 id="s2">§2 — Three states, roots, and su(3): the correct logical order</h2>
+
+<div class="intuition">
+<p>Declare one mathematical extension: <span class="tag decl">DECLARED</span>
+<span class="math">V₃ = ℂ³</span> — not derived from Book 0, declared. From it alone:
+the centered weights <span class="math">w_i</span> form an equilateral triangle in the
+sum-zero plane; their pairwise differences form the A₂ root system (Cartan matrix
+[[2,−1],[−1,2]], six roots, regular hexagon); and the commutator chain from one
+su(2) plus one bridge closes to all of su(3). One bridge is minimal <i>within the
+declared candidate class</i> — this is not a theorem that nature must realize color
+this way.</p>
+<p>Then the demotion that fixes the logical order: the tetrahedral metric
+<span class="math">G = ½(I+J)</span> restricts to a scalar multiple of the Euclidean
+metric on the A₂ sum-zero plane, so it is an <b>exact compatible realization</b> of
+the A₂ geometry — but A₂ does not uniquely select it and it does not uniquely select
+A₂. The correct order is <b>C³ → weights → A₂ → su(3)</b>, with tetrahedral geometry
+as an optional realization layer, never a foundation.</p>
+</div>
+
+<div class="thm"><span class="tname">Three-state closure</span> <span class="tag exact">EXACT</span>
+<p>A declared complex three-state carrier has a canonical weight triangle, the A₂ root
+system, and su(3) Lie closure from one bridge. <span class="tag neg">OBSTRUCTION</span>
+Tetrahedral nonuniqueness: the tetrahedral metric is compatible, not foundational.
+<span class="tag neg">OBSTRUCTION</span> su(3)-isomorphic mathematics does not derive
+physical QCD.</p>
+</div>
+
+<h2 id="s3">§3 — The QCD import: color map, singlets, and what is not derived</h2>
+
+<div class="intuition">
+<p>Now the physics enters by explicit import. <span class="tag imp">IMPORT</span> Standard
+QCD: quarks in the 3, antiquarks in the 3̄, gluons in the 8, su(3)-valued connection —
+plus a <span class="tag cond">CONDITIONAL</span> projection contract identifying the
+abstract V₃ carrier with the QCD fundamental color carrier. After the import, the
+weight triangle becomes the red/green/blue Cartan weights (30°, 150°, 270°), anticolors
+are antipodes, and the color/anticolor hexagon interlaces the root hexagon with an
+exact 30° offset. The standard singlet channels follow exactly:
+<span class="math">3⊗3̄ = 1⊕8</span>, <span class="math">3⊗3⊗3 = 1⊕8⊕8⊕10</span>,
+with the ε-contraction exactly color-invariant.</p>
+<p>Two firewalls stay attached. First, the polar color map lives in the internal
+(T₃,T₈) Cartan plane — its angles are representation coordinates, <b>not</b> spatial
+directions; no diagram-shape resemblance licenses identifying color axes with x, y, z.
+Second, and crucially: <b>singlet representation theory does not derive
+confinement.</b> The tensors δ and ε prove invariant channels; they do not prove a
+linear potential, mass gap, asymptotic freedom, or the absence of colored asymptotic
+states. Confinement, g_s, Λ_QCD, and the Hamiltonian are imported dynamics.</p>
+</div>
+
+<div class="formal"><span class="tag cond">CONDITIONAL</span> <b>Triadic color closure.</b>
+Conditional on the QCD import, three fundamental color carriers possess an exact
+antisymmetric singlet channel — representation-theoretic closure, not dynamical
+confinement. <span class="tag neg">OBSTRUCTION</span> Neither confinement, nor
+couplings, nor a Hamiltonian follows from the Lie algebra.</div>
+
+<h2 id="s4">§4 — Two fermions: the exact invariant and its independence</h2>
+
+<div class="intuition">
+<p>Independently of color — this path uses none of §§1–3 — bring two supplied masses
+into the half-angle coordinate language. With mass rapidity
+<span class="math">λ_m = ln(m₁/m₂)</span>, <span class="math">q_m = tanh(λ_m/2)</span>,
+relative rapidity η, and <span class="math">q_v = tanh(η/2)</span>, ordinary on-shell
+relativity gives the exact invariant</p>
+<p class="math">s = 2m₁m₂(cosh λ_m + cosh η)</p>
+<p>equivalently <span class="math">s/(m₁m₂) = [R(q_m)+R(q_m)⁻¹] + [R(q_v)+R(q_v)⁻¹]</span>
+with <span class="math">R(q) = (1+q)/(1−q)</span>: the same reciprocal transfer
+architecture appears twice inside one Lorentz scalar — mass asymmetry and relative
+motion. Two honesty guards are load-bearing: <b>q_m and q_v are independent physical
+data</b> (identifying them would be an extra ansatz, not a consequence), and
+<b>writing m₁/m₂ = R(q_m) is a coordinate change, not a mass-generation
+mechanism</b> — it explains nothing about why the ratio has its observed value.</p>
+</div>
+
+<div class="thm"><span class="tname">Two-fermion invariant</span> <span class="tag exact">EXACT</span>
+<p>From supplied masses and ordinary special relativity — no color, no QCD, no
+tetrahedral geometry. q_m is not a Lorentz rapidity; repeated Cayley form does not
+reduce physical rank; no force, potential, or binding law appears; no particle mass
+is predicted.</p>
+</div>
+
+<h2 id="s5">§5 — Below threshold: the bound-mass coordinate and its conditional convergence</h2>
+
+<div class="intuition">
+<p>Continue the invariant below the free two-particle threshold on a declared analytic
+branch <span class="tag decl">DECLARED</span> <span class="math">η → iθ</span>, and set
+<span class="math">u = tan(θ/2)</span>. Solving gives the exact bound-mass coordinate</p>
+<p class="math">u² = [(m₁+m₂)² − M²] / [M² − (m₁−m₂)²],&nbsp;&nbsp;
+M² = (m₁−m₂)² + 4m₁m₂/(1+u²)</p>
+<p>— an invertible reparameterization of a supplied subthreshold mass, from which no
+force, spectrum, or binding dynamics follows. Weak binding gives
+<span class="math">u² = B/(2μ) + O(B²)</span>, so the reduced mass appears as the
+leading conversion scale with no separate ansatz. The heavy-source limit gives
+<span class="math">u² → (m₂−E)/(m₂+E)</span>.</p>
+<p>Then the book's strongest structural result. Import the standard point-Coulomb Dirac
+equation and the radial Dirac–Coulomb paper's circular-state theorem: on the
+n_r = 0, κ &lt; 0 heavy-source branch, the radial spinor ratio is constant and
+<span class="math">|G/F|² = (m−E)/(m+E)</span> — the identical ratio. Hence, with no
+particle-mass ratio fitted,</p>
+<p class="math">u_pair = |G/F| = sxp(x)</p>
+<p>exactly, on a declared state family, from two independent routes. The failure domain
+is kept visible: for n_r &gt; 0 the ratio runs with radius (Prüfer phase plus
+independent amplitude), so <b>one global u cannot reconstruct a generic excited
+radial spinor</b>.</p>
+</div>
+
+<div class="thm"><span class="tname">Independent coordinate convergence</span> <span class="tag cond">CONDITIONAL</span>
+<p>Exact on the circular Dirac–Coulomb branch, conditional on imported Coulomb and
+Dirac–Coulomb physics. Not an empirical deviation from that physics. The n_r &gt; 0
+obstruction is part of the theorem's statement, not a footnote.</p>
+</div>
+
+<h2 id="s6">§6 — Observational discipline: thresholds, transitions, and verified numbers</h2>
+
+<div class="intuition">
+<p>What actually determines u? An absolute breakup threshold fixes it uniquely; a
+single transition frequency constrains only a relation between two absolute
+coordinates — and <b>increasing precision does not remove that rank
+deficiency</b>. The preferred control ladder is positronium → muonium → hydrogen →
+deuteron → heavier systems only with declared constituent masses. The numbers check
+(recomputed 2026-09-19 from the frozen inputs):</p>
+</div>
+
+<div class="ledger">Hydrogen:  q_m ≈ 0.99891135885,  u_H(1S) ≈ 0.003648720323
+           α/2 ≈ 0.003648676282  &lt;  u_H  &lt;  u_C ≈ 0.003648724858
+           (u_C = infinite-source circular Dirac coordinate)
+Deuteron:  B_d ≈ 2.22456637 MeV,  q_m ≈ 0.00068873505,
+           u_d ≈ 0.0487186123  (≈13× the atomic Coulomb scale)
+Muonium:   q_m ≈ 0.99037 (leptonic, far from positronium's 0)</div>
+
+<div class="formal"><span class="tag exact">EXACT</span> <b>Deuteron control.</b>
+The deuteron sits near q_m ≈ 0 while its u exceeds the atomic Coulomb scale by more
+than an order of magnitude — q_m and u are empirically independent, and no universal
+u = α/2 law survives. <span class="tag neg">OBSTRUCTION</span> A difference from α/2
+or the infinite-source limit is not a Projection residual until the reference theory
+is matched at the same precision. <span class="tag neg">OBSTRUCTION</span>
+Scheme-undefined light-quark constituent masses do not define an invariant u.</div>
+
+<div class="formal"><b>Preregistration rule.</b> Before testing any new mass law, record:
+constituent definition, bound-state definition, coordinate extraction, named reference
+theory, independent Projection prediction, parameter provenance, uncertainty
+propagation, invariant observable difference Δ_op, and failure criterion. Without
+these, the exercise is coordinate analysis, not empirical promotion. A residual may
+be read as a closure defect only when two independently specified theoretical routes
+produce the same observable — <b>measurement is not a second theory path</b>.</div>
+
+<h2 id="s7">§7 — The frozen failure record</h2>
+
+<div class="intuition">
+<p>The original research program behind this book tried to find mass laws and failed.
+The failures are retained here as part of the book, not tuned away:</p>
+<ul class="tight">
+<li><b>81/32 is not exact.</b> R_β = (m_n−m_p)/m_e ≈ 2.53098858276 versus 81/32 =
+2.53125 — a residual of about −133.6 eV, many standard deviations from exact
+equality. It must not be presented as an exact mass formula.</li>
+<li><b>Fifth-lattice proximity is not mass quantization.</b> Near-hits exist; negative
+lepton controls reject a universal all-masses-on-the-lattice rule, and same-isospin
+d→u tests reject the stronger claim.</li>
+<li><b>Closure defects are not musical commas.</b> Coleman–Glashow and Gell-Mann–Okubo
+defects do not reproduce a clean Pythagorean or syntonic-comma law.</li>
+<li><b>The order-five mass route failed.</b> An exact algebraic grading of chiral
+sectors does not generate observed fermion masses; restoring a Yukawa term needs
+imported scalar structure, and the grading then supplies no independent prediction.
+No new low-energy selection rule was promoted.</li>
+</ul>
+<p>These negatives are inherited by any future flavor/mass program. They may not be
+silently reversed.</p>
+</div>
+
+<h2 id="s8">§8 — Optional appendix: the higher-carrier audit (firewalled)</h2>
+
+<div class="intuition">
+<p>The E8(−24) higher-carrier work is preserved here under its own dependency
+firewall: <b>no theorem in §§1–7 depends on this appendix; deleting it changes
+nothing above.</b> The honest negatives are kept: exact matrix particle/mirror
+exchange is not a physical oscillation law without dynamics; equal cyclic order is
+not identity of automorphism action; no fermion mass spectrum has been derived.
+The positive structural claims — the 248-direction reconstruction, the zero-residual
+particle/mirror matching, the su(2,3)⊕u(1)_Y Standard Model centralizer, the
+commuting SU(5) partner — are cited to the project's Verification Ledger, <b>not
+proved in this text</b>, and cannot be stated as established until that ledger and
+its code are rerun. They are recorded here as ledger-cited, nothing more.</p>
+</div>
+
+<h2 id="s9">§9 — Closure audit</h2>
+
+<div class="ledger">Book 21 promotion audit
+─────────────────────────────────────────────
+Projection-specific new equation of motion: none.
+Independently determined coupling or mass parameter: none.
+New invariant observable beyond invertible rewrites: none.
+Quantitative deviation from a named reference theory: none predicted.
+─────────────────────────────────────────────
+Therefore Δ_op(Book 21) = ∅.  Null hypothesis C0 retained.</div>
+
+<div class="thm"><span class="tname">Book 21 closure</span> <span class="tag exact">EXACT</span>
+<p>Relative to the inherited foundations and the declared imports, this book
+establishes: the composition firewall; three-state → A₂ → su(3) closure with the
+tetrahedral metric demoted to realization; conditional triadic color closure with
+confinement kept as imported dynamics; the exact two-fermion invariant with q_m, q_v
+independent; the below-threshold coordinate with its reduced-mass and heavy-source
+limits; the conditional Dirac–Coulomb convergence u = |G/F| = sxp(x) on the circular
+branch; verified hydrogen/deuteron/muonium controls; the frozen failure record; and
+the firewalled higher-carrier audit. The color and mass architectures are logically
+independent — they do not derive one another. <span class="math">Δ_op = ∅</span>;
+C0 survives.</p>
+</div>
+
+<div class="formal"><b>Dropped in this rebuild.</b> The "closure reset" vocabulary (honestly
+labeled in the source but adding no dynamics — its own negative theorem says so) and
+the baryon–lepton "research lead" (an unpromoted hypothesis) are not carried into the
+main text. Open leads live outside the promoted ledger.</div>
+
+<footer>
+<p><a href="../">← Series index</a> · <a href="../vol0/">Volume 0 overview</a> ·
+<a href="../book20/">← Relativistic Witnesses</a> · <a href="../book22/">Next: Canonical Spin–Geometry →</a></p>
+<p>A Volume 0 book of the R Theory rewrite. Source: the former T5 essay-book (v2 reconstruction),
+rebuilt standalone. Status discipline: exact / conditional / declared / import /
+obstruction — nothing promoted beyond its support. Δ_op = ∅ throughout.</p>
+</footer>
+</body>
+</html>

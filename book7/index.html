@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book 7 — Classical Dynamics from the Certified Carrier (Restructured)</title>
+<style>
+  :root { --ink:#1a1a1a; --muted:#5a5a5a; --accent:#1b5faa; --paper:#fff; --wash:#f6f8fb; --line:#dfe5ec; }
+  body { font-family: -apple-system, "Segoe UI", Georgia, serif; color:var(--ink); background:var(--paper);
+         max-width: 860px; margin:0 auto; padding: 24px 20px 80px; line-height:1.65; }
+  h1 { font-size:1.9em; line-height:1.25; margin-bottom:.2em; }
+  h2 { font-size:1.45em; margin-top:2.2em; border-bottom:2px solid var(--line); padding-bottom:.3em; }
+  h3 { font-size:1.15em; margin-top:1.8em; color:var(--accent); }
+  .sub { color:var(--muted); font-size:1.05em; margin-top:0; }
+  .about { background:var(--wash); border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:1.5em 0; }
+  .about p { margin:.5em 0; }
+  figure.graph { margin:1.6em 0; border:1px solid var(--line); border-radius:8px; overflow:hidden; background:#fff; }
+  figure.graph .calc { width:100%; height:430px; display:none; }
+  figure.graph img.fallback { width:100%; display:block; }
+  figure.graph figcaption { padding:10px 16px; font-size:.92em; color:var(--muted); background:var(--wash);
+                            border-top:1px solid var(--line); }
+  figure.graph figcaption b { color:var(--ink); }
+  .intuition { border-left:3px solid var(--accent); padding:.2em 0 .2em 1em; margin:1em 0; }
+  .formal { background:var(--wash); border:1px solid var(--line); border-radius:8px; padding:12px 18px; margin:1.2em 0; }
+  .thm { border:1px solid var(--accent); border-radius:8px; padding:14px 18px; margin:1.4em 0; background:#fbfdff; }
+  .thm .tname { font-weight:700; color:var(--accent); }
+  .ledger { font-family: ui-monospace, Menlo, monospace; font-size:.85em; background:#0f1720; color:#d7e3f0;
+            border-radius:8px; padding:14px 18px; overflow-x:auto; white-space:pre-wrap; margin:1.2em 0; }
+  .tag { display:inline-block; font-size:.72em; font-weight:700; letter-spacing:.04em; border-radius:4px;
+         padding:.15em .6em; margin:.15em .4em .15em 0; vertical-align:middle; }
+  .tag.cert { background:#e6f4ea; color:#146c2e; border:1px solid #b7dfc0; }
+  .tag.num { background:#e8f0fe; color:#1a56db; border:1px solid #bcd0f7; }
+  .tag.sym { background:#eef2ff; color:#4338ca; border:1px solid #c9cdf7; }
+  .tag.std { background:#f3f4f6; color:#374151; border:1px solid #d1d5db; }
+  .tag.ms { background:#fff4e0; color:#8a5a00; border:1px solid #ecd9a8; }
+  .tag.ax { background:#f5e8ff; color:#6b21a8; border:1px solid #dcc3f5; }
+  .tag.bad { background:#fdecec; color:#a31212; border:1px solid #f3b8b8; }
+  .tag.inc { background:#fff7ed; color:#9a3412; border:1px solid #f5c99b; }
+  code, .math { font-family: ui-monospace, Menlo, monospace; }
+  .math { background:#f2f5f9; padding:.1em .35em; border-radius:4px; font-size:.95em; }
+  ul.tight li { margin:.35em 0; }
+  .nav { display:flex; flex-wrap:wrap; gap:.5em; margin:1.2em 0 2em; }
+  .nav a { text-decoration:none; border:1px solid var(--line); border-radius:20px; padding:.3em 1em;
+           font-size:.9em; color:var(--accent); background:var(--wash); }
+  table.audit { border-collapse:collapse; width:100%; font-size:.88em; margin:1em 0; }
+  table.audit th, table.audit td { border:1px solid var(--line); padding:.45em .6em; text-align:left; vertical-align:top; }
+  table.audit th { background:var(--wash); }
+  footer { margin-top:3em; color:var(--muted); font-size:.9em; border-top:1px solid var(--line); padding-top:1em; }
+</style>
+<!-- SITENAV-START -->
+<style>
+.sitenav{font-family:Georgia,serif;font-size:.88em;background:#f4f4f0;border:1px solid #bbb;
+ border-radius:4px;padding:8px 14px;margin:0 0 1.5em;display:flex;flex-wrap:wrap;
+ align-items:center;gap:8px 16px;line-height:1.4}
+.sitenav a{color:#0645ad;text-decoration:none;white-space:nowrap}
+.sitenav a:hover{text-decoration:underline}
+.sitenav .sitenav-brand{font-weight:bold;color:#1a1a1a}
+.sitenav .sitenav-links{display:flex;flex-wrap:wrap;gap:8px 14px}
+.sitenav-search{margin-left:auto;display:flex;gap:6px;align-items:center}
+.sitenav-search input{font-family:Georgia,serif;font-size:.95em;padding:4px 8px;
+ border:1px solid #999;border-radius:3px;width:170px;background:#fff;color:#1a1a1a}
+.sitenav-search button{font-family:Georgia,serif;font-size:.95em;padding:4px 12px;
+ border:1px solid #666;border-radius:3px;background:#eee;cursor:pointer;color:#1a1a1a}
+</style>
+<!-- SITENAV-END -->
+</head>
+<body>
+<!-- SITENAV-NAV-START -->
+<nav class="sitenav" aria-label="Site navigation">
+<a class="sitenav-brand" href="../">R Theory — Rewrite</a>
+<span class="sitenav-links">
+<a href="../#hard">Hard&nbsp;science</a><a href="../#theoretical">Theoretical</a><a href="../vol0/">Vol&nbsp;0</a><a href="../vol4/">Vol&nbsp;IV</a><a href="../tables/">Tables</a>
+</span>
+<form class="sitenav-search" action="https://www.google.com/search" method="get" target="_blank" role="search"
+ onsubmit="if(!this.q.value.trim())return false;this.q.value='site:cosbykit-afk.github.io/r-theory-rewrite '+this.q.value">
+<input type="text" name="q" placeholder="Search this site&#8230;" aria-label="Search this site">
+<button type="submit">Search</button>
+</form>
+</nav>
+<!-- SITENAV-NAV-END -->
+
+<h1>Book 7 — Classical Dynamics from the Certified Carrier</h1>
+<p class="sub">A restructured rewrite of <i>R Theory — Volume II</i>, Book 7. Pictures first, then the audit.</p>
+
+<div class="about">
+<p><b>About this rewrite.</b> This is a restructuring of Book 7, not a new result. Every theorem,
+ledger entry, and status label below comes from the original manuscript; no mathematics has been added.
+What changed is the order of presentation:</p>
+<p><b>Part I</b> shows the mathematics — graphs first, intuition second, with each picture pointing
+to the section that proves it.<br>
+<b>Part II</b> runs the audit: every claim carries exactly one scope label, and every upstream
+dependency is checked against the Volume I ledger.<br>
+<b>Part III</b> closes the book with the certified core, the explicit extension ledger, and the
+handoff to Book 8.</p>
+<p>Intuition is labeled as intuition. Theorems are labeled as theorems. One audit finding is an
+outright <b>sign error</b> in a clarification (§7.4.CL2); it is flagged, not hidden.</p>
+<p><b>On the live graphs.</b> Each figure is a live Desmos calculator with a static PNG fallback
+generated from the same formulas. Honest limitation: the audit worker has no live browser, so
+live Desmos rendering could <i>not</i> be browser-verified from this environment — only the
+container/config ID matching was machine-checked (see Part II), and every plotted expression was
+numerically verified. If a live graph fails to initialize, the verified static image shows instead.</p>
+</div>
+
+<div class="nav">
+<a href="#part1">I. See it first</a><a href="#part2">II. Then earn it</a><a href="#part3">III. Close the book</a>
+</div>
+
+<h2 id="part1">Part I — See it first</h2>
+
+<h3>§1. The sine carrier as a signed balance product</h3>
+
+<figure class="graph">
+<div class="calc" id="d1"></div>
+<img class="fallback" id="f1" src="graphs/g1_balance.png" alt="Saw balance product H = epsilon lambda (1-lambda)">
+<figcaption><b>Figure 1.</b> On the principal chart, the two bounded reciprocal channels
+<span class="math">λ</span> (green) and <span class="math">1−λ</span> (red) multiply to the
+carrier magnitude <span class="math">|H| = λ(1−λ)</span> (orange), coinciding with
+<span class="math">H = sin(2x)/4</span> (blue dashed). The bound
+<span class="math">|H| ≤ 1/4</span> is sharp, attained exactly at the balance point
+<span class="math">λ = 1/2</span>. <i>Live in Desmos.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>The double-angle sine is not introduced as a guessed amplitude. It is the <b>signed
+product of two complementary bounded channels</b>:</p>
+<p class="math">H = (saw_r · saw_x)/(saw_r + saw_x) = ελ(1−λ)</p>
+<p>where <span class="math">saw_r = 1/urx</span>, <span class="math">saw_x = 1/uxp</span>,
+<span class="math">ε = sgn(sin 2x)</span> is the FlatWave orientation sign, and
+<span class="math">λ = (1 + sin x − cos x)/2</span> on the principal chart. The algebra is
+the familiar parallel-sum formula — no resistor, intensity, or field is implied by it.</p>
+<p>Notice what the picture already tells you: the carrier is largest exactly when the two
+channels are <b>balanced</b> (<span class="math">λ = 1/2</span>), and it dies when either
+channel starves. That is the whole content of Theorem 7.1.T1, drawn.</p>
+</div>
+<div class="formal"><span class="tag cert">CHECKED PROOF</span> <span class="tag num">COMPLETED NUMERICAL CHECK</span>
+<b>Formal home:</b> §7.1.1, Theorem 7.1.T1 + Corollary 7.1.C1. The parallel-sum algebra is
+exact given <span class="math">saw_r = ελ</span>, <span class="math">saw_x = ε(1−λ)</span>
+(inherited Book 2 transfer data); the identities
+<span class="math">H = ελ(1−λ)</span>, <span class="math">|H| = λ(1−λ)</span>,
+<span class="math">0 &lt; |H| ≤ 1/4</span>, and the equivalent primitive form
+<span class="math">H = AB/((A+B)(AB−1))</span> were verified numerically to
+1.1e-13 (worst case) on four charts. No force law, time law, or observable follows from this section.</div>
+
+<h3>§2. The cosine carrier: imbalance times envelope</h3>
+
+<figure class="graph">
+<div class="calc" id="d2"></div>
+<img class="fallback" id="f2" src="graphs/g2_cosine.png" alt="Companion cosine decomposition">
+<figcaption><b>Figure 2.</b> The cosine carrier <span class="math">cos(2x)</span> (blue) equals
+directed imbalance <span class="math">ε(1−2λ)</span> times the complementary envelope
+<span class="math">√(1+4λ(1−λ))</span> (green dashed); their product (orange dashed) lands
+exactly on the blue curve. The bare imbalance <span class="math">ε(1−2λ)</span> (orange
+dotted) is <i>not</i> the cosine — the envelope factor is essential. Principal chart shown
+in the live embed; the static fallback verifies the same identity over (0, π).
+<i>Live in Desmos.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>The companion coordinate splits differently:</p>
+<p class="math">cos(2x) = ε(1−2λ)√(1+4λ(1−λ))</p>
+<p><b>directed imbalance</b> <span class="math">(1−2λ)</span> times a <b>complementary
+envelope</b>. The orange dotted curve is a warning: the bounded imbalance
+<span class="math">2λ−1</span> is an exact coordinate, but it is <i>not</i> the cosine —
+comparing it to a normalized two-state representation without the envelope factor is an
+error (Clarification 7.1.CL1).</p>
+<p>Simultaneously, <span class="math">cos(2x) = 2·dH/dx</span>: the cosine is twice the
+phase derivative of the sine carrier. One reciprocal transfer state, two complementary
+readouts.</p>
+</div>
+<div class="formal"><span class="tag num">COMPLETED NUMERICAL CHECK</span> <span class="tag ms">MANUSCRIPT ASSERTION</span>
+<b>Formal home:</b> §7.1.2, Theorem 7.1.T2 + Corollaries 7.1.C1–C2. The identity was verified
+numerically to 2.2e-13 (worst case) on all four charts. <b>Audit note:</b> the manuscript's proof asserts
+the key product <span class="math">pq = εcos(2x)</span> as supplied by the Book 2 transfer
+construction rather than deriving it; that construction is not re-derived in Book 7 and is
+not independently checked in the Volume I audit, so the <i>proof step</i> is a manuscript
+assertion even though the <i>identity</i> checks out (and is independently re-proved by the
+direct <span class="math">αβ</span> computation in §7.1.4). The derivative companion
+<span class="math">cos(2x) = 2H′</span> is ordinary calculus.</div>
+
+<h3>§3. The normalized carrier is a phasor</h3>
+
+<figure class="graph">
+<div class="calc" id="d3"></div>
+<img class="fallback" id="f3" src="graphs/g3_phasor.png" alt="Carrier phasor unit circle">
+<figcaption><b>Figure 3.</b> The normalized carrier
+<span class="math">Z = cos(2x) + i·sin(2x) = e^{2ix}</span>: one scalar phase tracing the
+unit circle. The factor of two is exact bookkeeping — <span class="math">x</span> is the
+primitive half-angle coordinate, <span class="math">φ<sub>c</sub> = 2x</span> the carrier
+phase. <i>Live in Desmos.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>Set <span class="math">C = cos(2x)</span>, <span class="math">S = sin(2x) = 4H</span>.
+Then <span class="math">C² + S² = 1</span> and</p>
+<p class="math">Z(x) = C + iS = e^{2ix}</p>
+<p>— Euler's identity, applied to coordinates the book has already earned. The "frequency
+doubling" here is pure mathematics: if <span class="math">x</span> is ever promoted to a
+time-dependent quantity, the induced carrier phase is <span class="math">2x</span>. Nothing
+here says a measured physical frequency is doubled; that needs a separate clock and
+readout contract, which this book does not supply.</p>
+</div>
+<div class="formal"><span class="tag std">STANDARD IMPORTED THEOREM</span> <span class="tag num">COMPLETED NUMERICAL CHECK</span>
+<b>Formal home:</b> §7.1.3, Theorem 7.1.T3. Euler's formula is standard background
+mathematics; the identity <span class="math">2V + i4H = e^{2ix}</span> was already
+established in Book 2 and re-verified numerically here. The quadrature oscillator
+<span class="math">S′ = 2C</span>, <span class="math">C′ = −2S</span> is exact at the
+normalized carrier level.</div>
+
+<h3>§4. The squaring map: double angle as a quadratic image</h3>
+
+<figure class="graph">
+<div class="calc" id="d4"></div>
+<img class="fallback" id="f4" src="graphs/g4_squaring.png" alt="Transfer-circle squaring map">
+<figcaption><b>Figure 4.</b> The normalized transfer pair
+<span class="math">ζ = a + ib</span> on its unit circle (blue) and its quadratic image
+<span class="math">(U, W) = (sin 2x, cos 2x)</span> (orange): the double-angle carrier is
+literally <span class="math">U + iW = εζ²</span> — the ordinary two-to-one circle squaring
+map, up to the quadrant sign. <i>Live in Desmos.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>On each open quadrant, the signed transfer pair
+<span class="math">p = αcos x − βsin x</span>, <span class="math">q = αsin x + βcos x</span>
+satisfies <span class="math">p² + q² = 2</span>. Normalize to
+<span class="math">a = q/√2</span>, <span class="math">b = p/√2</span> and square:</p>
+<p class="math">ζ² = (a²−b²) + i·2ab = ε·(sin 2x + i·cos 2x)</p>
+<p>The normalized carrier is not <i>analogous</i> to a double-angle construction — it
+<i>is</i> the quadratic image of the normalized transfer pair. On each open quadrant the
+transfer state traces an arc of <span class="math">a² + b² = 1</span>; its square traces a
+half-circle of the carrier.</p>
+<p>The negative corollary matters as much: squaring is still driven by the <b>same scalar
+<span class="math">x</span></b>. No new continuous degree of freedom appears, and no
+independent U(1) phase is created. A theory needing an independently variable relative
+phase must get it elsewhere or declare it as an extension.</p>
+</div>
+<div class="formal"><span class="tag cert">CHECKED PROOF</span> <span class="tag num">COMPLETED NUMERICAL CHECK</span>
+<b>Formal home:</b> §7.1.4, Theorem 7.1.T4 + Corollaries 7.1.C4, 7.1.N1. The
+<span class="math">αβ</span> multiplication is direct algebra; every stated identity
+(<span class="math">p²+q²=2</span>, <span class="math">pq=εcos2x</span>,
+<span class="math">U=ε(a²−b²)</span>, <span class="math">W=2εab</span>,
+<span class="math">U+iW=εζ²</span>) was verified numerically to 2.2e-13 (worst case) on all four charts.
+The link <span class="math">p = 1−2λ</span> is inherited Book 2 transfer data (numerically
+confirmed here).</div>
+
+<h3>§5. The carrier, resolved into the four primitives</h3>
+
+<figure class="graph">
+<div class="calc" id="d5"></div>
+<img class="fallback" id="f5" src="graphs/g5_primitive.png" alt="Primitive decomposition of the double-angle carrier">
+<figcaption><b>Figure 5.</b> The doubled carrier rebuilt directly from the four primordial
+reciprocal functions: <span class="math">P = 1/(urx+uxp)</span> (blue) lands exactly on
+<span class="math">sin(2x)/4</span> (blue dashed), and
+<span class="math">V = 2[1/(cxp+crx)² − 1/(srx+sxp)²]</span> (green) lands exactly on
+<span class="math">cos(2x)/2</span> (green dashed). Principal chart. <i>Live in Desmos.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>Now run the construction backward: resolve the smooth doubled carrier into the four
+primordial reciprocal functions it came from.</p>
+<p class="math">sin(2x)/4 = 1/(urx + uxp),&nbsp;&nbsp;&nbsp;&nbsp;cos(2x)/4 = 1/(cxp+crx)² − 1/(srx+sxp)²</p>
+<p>The sine channel is a reciprocal sum; the cosine channel is the <b>signed imbalance of
+two nonnegative square shares</b> (<span class="math">cos²x/4</span> and
+<span class="math">sin²x/4</span>) whose sum is fixed at 1/4. The absolute values inside
+the primitives cancel in the sum — so the reconstruction carries the <i>sign</i> of
+<span class="math">sin 2x</span> with no quadrant variable appended by hand.</p>
+<p>And the negative corollary again: several symbols, still one scalar. Rewriting one orbit
+in decomposed coordinates manufactures no independent modes, fields, or phases.</p>
+</div>
+<div class="formal"><span class="tag cert">CHECKED PROOF</span> <span class="tag num">COMPLETED NUMERICAL CHECK</span>
+<b>Formal home:</b> §7.2, Lemma 7.2.L1, Theorems 7.2.T1–T2, Corollaries 7.2.C1–C3, 7.2.N1.
+Lemma 7.2.L1 is the standard <span class="math">sec²−tan² = csc²−cot² = 1</span>; both
+decompositions are exact algebra on <span class="math">sin x ≠ 0, cos x ≠ 0</span>, verified
+numerically to 1.1e-13 (worst case) including the fully expanded primordial forms.</div>
+
+<h3>§6. The carrier as a closed flow with a conserved ellipse</h3>
+
+<figure class="graph">
+<div class="calc" id="d6"></div>
+<img class="fallback" id="f6" src="graphs/g6_flow.png" alt="Carrier flow and conserved ellipse">
+<figcaption><b>Figure 6.</b> The autonomous linear flow <span class="math">P′ = V</span>,
+<span class="math">V′ = −4P</span> preserves the ellipse
+<span class="math">V² + 4P² = 1/4</span> (blue) exactly. The static fallback shows the gray
+direction field with red orbit dots; the live embed traces the same orbit as a red
+parametric curve. After <span class="math">Q = 2P</span> this is uniform rotation on a
+circle of radius 1/2. <i>Live in Desmos (direction field in fallback only).</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>"Classical dynamics" here means exactly one thing: a deterministic first-order flow.
+With <span class="math">P = sin 2x/4</span>, <span class="math">V = cos 2x/2</span>:</p>
+<p class="math">P′ = V,&nbsp;&nbsp;&nbsp;&nbsp;V′ = −4P</p>
+<p>The flow closes — no new state variable is ever needed — and it preserves the quadratic
+form <span class="math">E = V² + 4P² = 1/4</span> exactly. Rescale to
+<span class="math">Q = 2P</span> and the ellipse becomes a circle:
+<span class="math">Q² + V² = 1/4</span>, traversed uniformly.</p>
+<p>Declare the canonical two-form <span class="math">ω = dP∧dV</span> and the same flow is
+Hamiltonian with <span class="math">H = V²/2 + 2P² = 1/8</span> on the orbit; equivalently a
+one-coordinate Lagrangian gives <span class="math">P″ + 4P = 0</span>. All exact — and all
+mathematical. The two negative theorems say what does <i>not</i> follow: no physical time,
+no physical energy, no new force law. Calling <span class="math">H</span> a Hamiltonian
+does not make it measured energy.</p>
+</div>
+<div class="formal"><span class="tag sym">COMPLETED SYMBOLIC CHECK</span> <span class="tag cert">CHECKED PROOF</span>
+<b>Formal home:</b> §7.3, Theorems 7.3.T1–T3, Corollaries 7.3.C1–C5, Negative Theorems
+7.3.N1–N2. Differentiation identities verified exactly with SymPy; the matrix identities
+<span class="math">A² = −4I</span>, <span class="math">AᵀG + GA = 0</span>, the evolution
+operator, and <span class="math">H = 1/8</span> on the orbit checked numerically to
+2.2e-16 (worst case). The Hamiltonian/Lagrangian realizations are exact <i>after the canonical
+two-form is declared</i> — the declaration is part of the result, not smuggled in.</div>
+
+<h3>§7. The hyperbolic parent, projectively linearized</h3>
+
+<figure class="graph">
+<div class="calc" id="d7"></div>
+<img class="fallback" id="f7" src="graphs/g7_hyperbola.png" alt="Hyperbolic parent and projective circle">
+<figcaption><b>Figure 7.</b> The static fallback, left: the hyperbolic parent
+<span class="math">Σ² − Δ² = 16</span> (blue/purple branches, gray asymptotes); right: its
+projective image <span class="math">(Q, S) = (Δ/Σ, 4/Σ)</span> — the doubled unit circle.
+The nonlinear parent flow projectively <i>linearizes</i> to the constant-coefficient
+rotation <span class="math">S′ = 2Q</span>, <span class="math">Q′ = −2S</span>.
+<i>Live in Desmos (hyperbola panel only).</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>The last structural link. From the primitive sum and contrast</p>
+<p class="math">Σ = urx + uxp,&nbsp;&nbsp;&nbsp;&nbsp;Δ = (srx + crx) − (sxp + cxp)</p>
+<p>one exact quadratic relation falls out:</p>
+<p class="math">Σ² − Δ² = 16,&nbsp;&nbsp;&nbsp;&nbsp;Σ + Δ = 4cot x,&nbsp;&nbsp;&nbsp;&nbsp;Σ − Δ = 4tan x</p>
+<p>Project it — <span class="math">(Σ,Δ) ↦ (Δ/Σ, 4/Σ) = (Q,S)</span> — and the hyperbola
+becomes the doubled unit circle. The parent pair even has its own closed <i>nonlinear</i>
+flow, <span class="math">Σ′ = −ΣΔ/2</span>, <span class="math">Δ′ = −Σ²/2</span>, and the
+projective map linearizes it exactly to the ω = 2 rotation. Nothing was added as a
+dynamical postulate: the canonical carrier flow <i>is</i> the projectively linearized
+primitive parent flow.</p>
+<p>The same parent factorizes reciprocally (<span class="math">L₊L₋ = 1</span> with
+<span class="math">L₊ = |cot x|</span>), takes an exponential coordinate
+<span class="math">w = ln|cot x|</span>, and yields a rational one-generator
+parameterization <span class="math">Q = (L²−1)/(L²+1)</span>,
+<span class="math">S = 2εL/(L²+1)</span> with Riccati law
+<span class="math">L′ = −ε(1+L²)</span>.</p>
+<p>The lawful extension: the same ODE on a larger initial-data space has conserved level
+<span class="math">K = Σ² − Δ²</span>, and the projective flow classifies as
+elliptic/parabolic/hyperbolic by the sign of <span class="math">K</span>. The certified
+trigonometric carrier fixes <span class="math">K = 16</span> — the extension does not make
+<span class="math">K</span> a free parameter, and no tunable physical frequency is derived
+from it.</p>
+</div>
+<div class="formal"><span class="tag sym">COMPLETED SYMBOLIC CHECK</span> <span class="tag num">COMPLETED NUMERICAL CHECK</span> <span class="tag ms">MANUSCRIPT ASSERTION</span>
+<b>Formal home:</b> §7.4, Theorems 7.4.T1–T7, Corollaries 7.4.C1–C10, Research Extension
+7.4.E1. The hyperbolic identity, projective completion, parent flow, linearization,
+reciprocal factorization, exponential and rational coordinates were verified exactly
+(SymPy) and numerically (1.1e-10 relative, worst case — absolute errors grow only where
+<span class="math">|Σ|,|Δ|</span> blow up near seams) on all charts. The <span class="math">K</span>-level
+classification is an <b>explicitly labeled lawful mathematical extension</b>, not an
+inherited theorem; the certified carrier fixes <span class="math">K = 16</span>. The link
+"constant-coefficient two-state flow of Book 5" is a <span class="tag ms">manuscript assertion</span>:
+it inherits a Book 5 result that is conditional on Axiom Zero (see Part II), not an
+independently proved upstream result.</div>
+
+<h2 id="part2">Part II — Then earn it: the audit</h2>
+
+<h3>§8. Scope labels, theorem by theorem</h3>
+<p>Exactly one label per claim, from the fixed vocabulary: <i>checked proof · completed
+symbolic check · completed numerical check · standard imported theorem · manuscript
+assertion · assumption or axiom · incorrect result · incomplete or failed computation</i>.</p>
+<table class="audit">
+<tr><th>Claim</th><th>Scope label</th><th>Basis</th></tr>
+<tr><td>7.1.T1 Saw balance-product identity</td><td><span class="tag cert">checked proof</span> <span class="tag num">completed numerical check</span></td><td>Parallel-sum algebra exact given Book 2 transfer data; identities verified to 1.1e-13 (worst case) on four charts.</td></tr>
+<tr><td>7.1.C1 endpoint/balance structure</td><td><span class="tag cert">checked proof</span></td><td><span class="math">λ(1−λ) ≤ 1/4</span> elementary; uniqueness at <span class="math">λ=1/2</span> exact.</td></tr>
+<tr><td>7.1.T2 companion cosine decomposition</td><td><span class="tag num">completed numerical check</span> <span class="tag sym">completed symbolic check</span></td><td>Identity verified independently: numerically to 2.2e-13 (worst case) on all four charts, and magnitude + sign proved symbolically on the principal chart (SymPy). The manuscript's derivation step — <span class="math">pq=εcos2x</span> as supplied by the Book 2 transfer construction — is <span class="tag ms">asserted, not derived</span>; §7.1.4's direct <span class="math">αβ</span> computation re-derives the identity from <span class="math">α=sgn(sin x)</span>, <span class="math">β=sgn(cos x)</span> without the transfer construction (see §9).</td></tr>
+<tr><td>7.1.C2 differential companion</td><td><span class="tag sym">completed symbolic check</span></td><td><span class="math">cos2x = 2H′</span> exact via SymPy.</td></tr>
+<tr><td>7.1 temporary D/N calculation</td><td><span class="tag num">completed numerical check</span></td><td><span class="math">N = 4cot2x</span> follows from Book 2's proved <span class="math">A=2cot x, B=2tan x</span>; <span class="math">D²−N²=16</span> standard.</td></tr>
+<tr><td>7.1.T3 carrier phasor theorem</td><td><span class="tag std">standard imported theorem</span> <span class="tag num">completed numerical check</span></td><td>Euler's identity; <span class="math">2V+i4H=e^{2ix}</span> already in Book 2, re-verified.</td></tr>
+<tr><td>7.1.T4 transfer–carrier quadratic map</td><td><span class="tag cert">checked proof</span> <span class="tag num">completed numerical check</span></td><td><span class="math">αβ</span> algebra direct; all identities 2.2e-13 or better (worst case) on four charts.</td></tr>
+<tr><td>7.2.L1 reciprocal conjugates</td><td><span class="tag std">standard imported theorem</span></td><td><span class="math">sec²−tan²=csc²−cot²=1</span>.</td></tr>
+<tr><td>7.2.T1 UNA reciprocal-sum decomposition</td><td><span class="tag cert">checked proof</span> <span class="tag num">completed numerical check</span></td><td>Absolute-value cancellation exact; expanded form 1.1e-13 (worst case).</td></tr>
+<tr><td>7.2.T2 reciprocal-square decomposition</td><td><span class="tag cert">checked proof</span> <span class="tag num">completed numerical check</span></td><td>Exact algebra; expanded primordial form 3.3e-16 (worst case).</td></tr>
+<tr><td>7.3.T1 closed first-order carrier flow</td><td><span class="tag sym">completed symbolic check</span></td><td>Differentiation exact via SymPy.</td></tr>
+<tr><td>7.3.T2 conserved quadratic form</td><td><span class="tag sym">completed symbolic check</span> <span class="tag num">completed numerical check</span></td><td><span class="math">dE/dx=0</span> exact; <span class="math">E=1/4</span> on orbit.</td></tr>
+<tr><td>7.3.C2–C4 generator, evolution operator, circular normalization</td><td><span class="tag cert">checked proof</span> <span class="tag num">completed numerical check</span></td><td>Matrix identities exact; evolution operator 2.2e-16 (worst case).</td></tr>
+<tr><td>7.3.T3 formal Hamiltonian realization</td><td><span class="tag cert">checked proof</span></td><td>Exact <i>conditional on the declared two-form</i> <span class="math">ω=dP∧dV</span>; declaration is explicit. <span class="tag ms">manuscript assertion</span> would be calling it physical energy — the book explicitly does not.</td></tr>
+<tr><td>7.4.T1 hyperbolic parent identity</td><td><span class="tag cert">checked proof</span> <span class="tag num">completed numerical check</span></td><td>Envelope cancellation exact; 1.1e-10 relative (worst case) on four charts. Core identities also in Volume I ledger as proved (Book 2, 2.XI.L).</td></tr>
+<tr><td>7.4.T2 projective double-angle completion</td><td><span class="tag cert">checked proof</span> <span class="tag num">completed numerical check</span></td><td>Exact algebra; 8.9e-16 (worst case).</td></tr>
+<tr><td>7.4.T3–T5 parent flow, first integral, projective linearization</td><td><span class="tag sym">completed symbolic check</span></td><td>All differentiation/quotient identities exact via SymPy.</td></tr>
+<tr><td>7.4.T6–T7, C6–C10 reciprocal factorization, exponential/rational coordinates</td><td><span class="tag sym">completed symbolic check</span> <span class="tag num">completed numerical check</span></td><td><span class="math">L₊=|cot x|</span>, <span class="math">w′=−Σ/2</span>, Riccati law exact; rational forms 2.2e-13 (worst case).</td></tr>
+<tr><td>7.4.E1 conserved-level deformation + classification</td><td><span class="tag sym">completed symbolic check</span> <span class="tag ms">manuscript assertion</span></td><td>Algebra exact; <i>status</i> is explicitly a lawful mathematical extension, not an inherited theorem. Certified carrier fixes <span class="math">K=16</span>.</td></tr>
+<tr><td>7.4.CL2 (clarification)</td><td><span class="tag bad">incorrect result</span></td><td><b>Sign error:</b> from <span class="math">λ=(1+sin x−cos x)/2</span> follows <span class="math">2λ−1 = sin x − cos x</span>, not <span class="math">cos x − sin x</span> as printed. The conclusion (<span class="math">2λ−1 ≠ cos2x</span>) is unaffected.</td></tr>
+<tr><td>Negative theorems 7.3.N1–N2, 7.4.N1, 7.1.N1, 7.2.N1; clarifications 7.1.CL1, 7.4.CL1, 7.4.CL2(coord)</td><td><span class="tag cert">checked proof</span></td><td>Scope statements; the mathematics they guard is as stated. (7.4.CL2's sign slip flagged above.)</td></tr>
+</table>
+<p>No claim in Book 7 required the label <span class="tag inc">incomplete or failed computation</span>:
+every numerical and symbolic check ran to completion (89 assertions: 29 checked-proof +
+34 numerical + 26 symbolic, all passing; worst measured error 3.7e-10 relative). No physics was imported.</p>
+
+<h3>§9. Dependency verdicts against the Volume I ledger</h3>
+<ul class="tight">
+<li><b>Book 2 reciprocal/UNA spine</b> (<span class="math">saw_r=1/urx</span>, <span class="math">saw_x=1/uxp</span>, <span class="math">H=1/(urx+uxp)=sin2x/4</span>, <span class="math">urx+uxp=4/sin2x</span>, <span class="math">ε=saw_r+saw_x=sgn(sin2x)</span>, <span class="math">Z_{car}=2V+i4H=e^{2ix}</span>, Σ²−Δ²=16 family): <span class="tag cert">earned</span> — present in the ledger as proved (independent numeric checks, ~1e-13).</li>
+<li><b>Book 2 transfer coordinate λ</b> (<span class="math">saw_r=ελ</span>, <span class="math">saw_x=ε(1−λ)</span>, <span class="math">p=1−2λ</span>, <span class="math">pq=εcos2x</span> as "supplied by the transfer construction"): <span class="tag ms">manuscript assertion</span> — the Volume I ledger records a dependency-labeling defect on the "certified" λ in Book 2 and marks the transfer-construction sections as read but not independently checked, so the upstream derivation is asserted, not derived. The identities themselves were verified numerically here on four charts (the cosine identity additionally symbolically on the principal chart), so Book 7's use is numerically grounded but the upstream certification label is unsupported.</li>
+<li><b>Principal-branch formula <span class="math">λ=(1+sin x−cos x)/2</span></b>: not itemized in the ledger; <span class="tag num">completed numerical check</span> here (matches <span class="math">ε·saw_r</span> on the principal chart to 3.3e-16).</li>
+<li><b>Book 5 constant-coefficient two-state flow / "Axiom Zero realized at doubled phase"</b> (§7.4 conclusion, 7.4.C3): <span class="tag ms">manuscript assertion</span> — the Volume I ledger does not list a Book 5 linear-flow theorem as earned; Book 5's Axiom Zero is recorded as an <i>assumption</i>. Book 7's return to the Book 5 flow is lawful inheritance, but its status is <b>conditional on Axiom Zero</b>, not an independently proved upstream result.</li>
+<li><b>Ordinary background mathematics</b> (Euler's formula, trig identities, differentiation, matrix algebra, Hamiltonian/Lagrangian formalism after declaration): <span class="tag std">standard imported theorem</span> — permitted by the volume dependency rule.</li>
+<li><b>Physics imports:</b> none. The manuscript declares none, and the negative theorems plus the signature firewall (7.4.CL1) explicitly refuse physical readings of <span class="math">x</span>, <span class="math">H</span>, <span class="math">E</span>, <span class="math">Σ²−Δ²</span>. FlatWave is never assigned probability/time/charge/chirality/helicity meaning. <span class="tag cert">Dependency rule satisfied.</span></li>
+</ul>
+
+<h3>§10. Graph verification</h3>
+<ul class="tight">
+<li><b>Container/config ID match:</b> automated test parses this page — every Desmos config target (<span class="math">d1…d7</span>) exists exactly once as a <span class="math">&lt;div class="calc"&gt;</span> container, and every fallback id (<span class="math">f1…f7</span>) matches an existing non-empty PNG. <b>Result: pass</b> (see test output below).</li>
+<li><b>Negative control:</b> the same test run against a deliberately corrupted copy (one config retargeted to a nonexistent <span class="math">e4</span>) <b>correctly fails</b>, demonstrating the test catches the Book 1-class mismatch.</li>
+<li><b>PNG fallbacks:</b> all 7 exist, non-empty, valid image dimensions.</li>
+<li><b>Plotted math:</b> every plotted expression was executed and numerically verified in
+validation/book7/verify_book7.py before rendering (worst measured error 3.7e-10 relative;
+worst among page-claim checks 1.1e-10 relative).</li>
+<li><b>Honest limitation:</b> live Desmos rendering was <i>not</i> browser-verified (no live browser available to the audit worker). Static verification + numerical verification of the plotted math is the standard applied; the page states this.</li>
+</ul>
+<div class="ledger">GRAPH EMBED TEST — run 2026-09-19, automated parse of this page
+(validation/book7/test_embeds.py)
+--- book7/index.html (as shipped) ---
+configs=7 containers=7 fallbacks=7
+RESULT: PASS
+  every config target d1..d7 exists exactly once as a container;
+  every fallback f1..f7 matches an existing non-empty PNG in graphs/;
+  every plotted formula fragment present in the embedded LaTeX.
+--- negative control (config d4 retargeted to nonexistent e4) ---
+FAIL: container 'd4' has no config targeting it
+FAIL: fallback 'f4' not referenced by any config
+RESULT: FAIL (mismatch correctly caught)
+PNG fallbacks: 7/7 present, non-empty, valid dimensions.
+Plotted expressions: executed and numerically verified (validation/book7/verify_book7.py,
+89 assertions: 29 checked-proof + 34 numerical + 26 symbolic, all passing).
+Worst measured error 3.7e-10 (relative, on the Omega editorial-convention check);
+worst among page-claim checks 1.1e-10 (relative, on Sig^2-Del^2=16).
+Live Desmos rendering: NOT browser-verified (no live browser in audit environment).</div>
+
+<h2 id="part3">Part III — Close the book</h2>
+
+<h3>§11. Exact mathematics — "certified" status as <span class="tag ms">manuscript assertion</span></h3>
+<p><span class="tag ms">manuscript assertion</span> on the status label: "certified" is the manuscript's own status term (source.txt lines 1–9) and is not earned under the Volume I ledger labels. The identities listed below were numerically rechecked here — 89 assertions (29 checked-proof + 34 numerical + 26 symbolic, all passing; worst measured error 3.7e-10 relative).</p>
+<p>Book 7 establishes: the normalized double-angle carrier from the bounded transfer variables;
+its quadratic-image relation to the normalized transfer circle; the hyperbolic parent identity
+<span class="math">Σ²−Δ²=16</span> and its projective map to the doubled unit circle; the closed
+nonlinear parent flow and conservation of <span class="math">Σ²−Δ²</span>; the reciprocal
+factorization <span class="math">Σ+Δ=4cot x</span>, <span class="math">Σ−Δ=4tan x</span>; the
+factor-of-two Riccati generator-rate bridge; the exact projective linearization to
+<span class="math">S′=2Q</span>, <span class="math">Q′=−2S</span> (equivalently
+<span class="math">H′=V</span>, <span class="math">V′=−4H</span>); the reciprocal positive
+factorization <span class="math">L₊L₋=1</span>, exponential coordinate
+<span class="math">w=ln|cot x|</span>, and hyperbolic carrier form; the rational one-generator
+carrier formulas with the doubled-coordinate Riccati law; each primitive quadrant as one
+exponential chart on an open carrier semicircle with projective completion at finite seam points;
+the primitive UNA decomposition <span class="math">sin2x/4=1/(urx+uxp)</span>; the
+reciprocal-square decomposition <span class="math">cos2x/4=1/(cxp+crx)²−1/(srx+sxp)²</span>;
+the closed first-order system and conserved quadratic form; uniform circular rotation after
+<span class="math">Q=2P</span>; the exact one-parameter evolution operator; and, after declaring
+the canonical two-form, a Hamiltonian and equivalent variational realization.</p>
+
+<h3>§12. Lawful mathematical extension — not inherited</h3>
+<p>The autonomous parent ODE studied on a larger initial-data space: conserved level
+<span class="math">K=Σ²−Δ²</span> classifies the projective flow as elliptic (K&gt;0),
+parabolic (K=0), hyperbolic (K&lt;0). The certified trigonometric construction fixes
+<span class="math">K=16</span> exactly. Any physical frequency calibration still requires an
+external or later-derived traversal/scale contract.</p>
+
+<h3>§13. Still not derived</h3>
+<p>Book 7 does not derive physical time, mass, energy, momentum, force, action as a law of
+nature, spacetime geometry, gauge structure, electromagnetism, quantum dynamics, or an
+empirical observable distinct from accepted physics. It does not create an independent U(1)
+phase: every carrier coordinate here is driven by the same scalar <span class="math">x</span>.</p>
+<div class="ledger">BOOK 7 FINAL STATUS
+FORMAL CORE: "certified" status is a <span class="tag ms">manuscript assertion</span> — not earned under the Volume I ledger labels; the underlying identities were numerically rechecked here (89 assertions: 29 checked-proof + 34 numerical + 26 symbolic, worst measured error 3.7e-10 relative). One sign slip in Clarification 7.4.CL2 flagged above; conclusion unaffected.
+EXTENSION LEDGER: 7.4.E1 classification explicit; K fixed at 16 for the certified carrier.
+PHYSICAL CONTENT DERIVED: none. PHYSICS IMPORTS: 0.
+BOOK 8 HANDOFF: inherits the exact carrier mathematics (reciprocal transfer, paired
+double-angle carrier, projective and hyperbolic representations). Book 7 supplies no
+electromagnetic field, gauge curvature, charge, spacetime field dynamics, or physical
+clock; any such structure in Book 8 requires its own declared extension or import.</div>
+
+<footer>
+<p>Rewrite of Book 7 of <i>R Theory — Volume II</i> (working manuscript, lines 71–1283).
+Restructured: pictures and intuition first (Part I), audit second (Part II). All theorems,
+ledgers, and status labels are from the original; no mathematics added. One sign error in
+Clarification 7.4.CL2 is flagged in the audit. Graphs are live Desmos calculators (not
+browser-verified from the audit environment) with numerically verified static fallbacks.</p>
+</footer>
+
+<script>
+var GRAPHS = [
+ {id:'d1', fb:'f1', vw:{left:0, right:1.57, bottom:-0.35, top:1.15}, exprs:[
+  {latex:'y=\\frac{1+\\sin(x)-\\cos(x)}{2}', color:'#2ca02c'},
+  {latex:'y=1-\\frac{1+\\sin(x)-\\cos(x)}{2}', color:'#d62728'},
+  {latex:'y=\\left(\\frac{1+\\sin(x)-\\cos(x)}{2}\\right)\\left(1-\\frac{1+\\sin(x)-\\cos(x)}{2}\\right)', color:'#ff7f0e'},
+  {latex:'y=\\frac{\\sin(2x)}{4}', color:'#1f77b4', lineStyle:'dashed'}]},
+ {id:'d2', fb:'f2', vw:{left:0, right:1.57, bottom:-1.9, top:1.9}, exprs:[
+  {latex:'L(x)=\\frac{1+\\sin(x)-\\cos(x)}{2}', color:'#999999'},
+  {latex:'y=\\cos(2x)', color:'#1f77b4'},
+  {latex:'y=\\left(1-2L(x)\\right)\\sqrt{1+4L(x)\\left(1-L(x)\\right)}', color:'#ff7f0e', lineStyle:'dashed'},
+  {latex:'y=1-2L(x)', color:'#ff7f0e', lineStyle:'dotted'},
+  {latex:'y=\\sqrt{1+4L(x)\\left(1-L(x)\\right)}', color:'#2ca02c', lineStyle:'dashed'},
+  {latex:'y=-\\sqrt{1+4L(x)\\left(1-L(x)\\right)}', color:'#2ca02c', lineStyle:'dashed'}]},
+ {id:'d3', fb:'f3', vw:{left:-1.3, right:1.3, bottom:-1.3, top:1.3}, exprs:[
+  {latex:'\\left(\\cos(2t),\\sin(2t)\\right)', color:'#1f77b4'}]},
+ {id:'d4', fb:'f4', vw:{left:-1.3, right:1.3, bottom:-1.3, top:1.3}, exprs:[
+  {latex:'A(t)=\\frac{\\left|\\sin(t)\\right|+\\left|\\cos(t)\\right|}{\\sqrt{2}}', color:'#999999'},
+  {latex:'B(t)=\\frac{\\operatorname{sign}(\\sin(t))\\cos(t)-\\operatorname{sign}(\\cos(t))\\sin(t)}{\\sqrt{2}}', color:'#999999'},
+  {latex:'\\left(A(t),B(t)\\right)', color:'#1f77b4'},
+  {latex:'\\left(\\sin(2t),\\cos(2t)\\right)', color:'#ff7f0e'}]},
+ {id:'d5', fb:'f5', vw:{left:-0.2, right:1.75, bottom:-0.7, top:0.7}, exprs:[
+  {latex:'r(x)=\\left|\\frac{1}{\\sin(x)}\\right|+\\frac{\\cos(x)}{\\sin(x)}', color:'#999999'},
+  {latex:'c(x)=\\left|\\frac{1}{\\cos(x)}\\right|+\\frac{\\sin(x)}{\\cos(x)}', color:'#999999'},
+  {latex:'y=\\frac{1}{r(x)-\\frac{1}{c(x)}+c(x)-\\frac{1}{r(x)}}', color:'#1f77b4'},
+  {latex:'y=\\frac{\\sin(2x)}{4}', color:'#1f77b4', lineStyle:'dashed'},
+  {latex:'y=2\\left(\\frac{1}{\\left(c(x)+\\frac{1}{c(x)}\\right)^{2}}-\\frac{1}{\\left(r(x)+\\frac{1}{r(x)}\\right)^{2}}\\right)', color:'#2ca02c'},
+  {latex:'y=\\frac{\\cos(2x)}{2}', color:'#2ca02c', lineStyle:'dashed'}]},
+ {id:'d6', fb:'f6', vw:{left:-0.4, right:0.4, bottom:-0.65, top:0.65}, exprs:[
+  {latex:'4x^{2}+y^{2}=\\frac{1}{4}', color:'#1f77b4'},
+  {latex:'\\left(\\frac{\\sin(2t)}{4},\\frac{\\cos(2t)}{2}\\right)', color:'#d62728'}]},
+ {id:'d7', fb:'f7', vw:{left:-9, right:9, bottom:-9, top:9}, exprs:[
+  {latex:'x^{2}-y^{2}=16', color:'#1f77b4'},
+  {latex:'y=x', color:'#999999', lineStyle:'dashed'},
+  {latex:'y=-x', color:'#999999', lineStyle:'dashed'}]}
+];
+function initAll(){
+  if(!window.Desmos || !Desmos.GraphingCalculator) return;
+  GRAPHS.forEach(function(g){
+    try{
+      var el = document.getElementById(g.id);
+      var calc = Desmos.GraphingCalculator(el,
+        {keypad:false, expressionsTopbar:false, settingsMenu:false, zoomButtons:true,
+         expressionsCollapsed:false, border:false});
+      g.exprs.forEach(function(e, i){
+        var cfg = {id:'e'+i, latex:e.latex, color:e.color};
+        if(e.lineStyle === 'dashed') cfg.lineStyle = Desmos.Styles.DASHED;
+        if(e.lineStyle === 'dotted') cfg.lineStyle = Desmos.Styles.DOTTED;
+        if(e.showLabel){ cfg.showLabel = true; cfg.label = e.label; }
+        calc.setExpression(cfg);
+      });
+      calc.setMathBounds(g.vw);
+      el.style.display = 'block';
+      var fb = document.getElementById(g.fb);
+      if(fb) fb.style.display = 'none';
+    }catch(err){ /* keep static fallback */ }
+  });
+}
+(function(){
+  var s = document.createElement('script');
+  s.src = 'https://www.desmos.com/api/v1.10/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6';
+  s.async = true;
+  s.onload = function(){ setTimeout(initAll, 300); };
+  document.head.appendChild(s);
+  setTimeout(function(){ initAll(); }, 9000);
+})();
+</script>
+</body>
+</html>

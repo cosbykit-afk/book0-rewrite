@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Canonical Spin–Geometry and the Primitive Symplectic Atlas — Volume 0</title>
+<style>
+  :root { --ink:#1a1a1a; --muted:#5a5a5a; --accent:#1b5faa; --paper:#fff; --wash:#f6f8fb; --line:#dfe5ec; }
+  body { font-family: -apple-system, "Segoe UI", Georgia, serif; color:var(--ink); background:var(--paper);
+         max-width: 860px; margin:0 auto; padding: 24px 20px 80px; line-height:1.65; }
+  h1 { font-size:1.9em; line-height:1.25; margin-bottom:.2em; }
+  h2 { font-size:1.45em; margin-top:2.2em; border-bottom:2px solid var(--line); padding-bottom:.3em; }
+  h3 { font-size:1.15em; margin-top:1.8em; color:var(--accent); }
+  .sub { color:var(--muted); font-size:1.05em; margin-top:0; }
+  .about { background:var(--wash); border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:1.5em 0; }
+  .about p { margin:.5em 0; }
+  .intuition { border-left:3px solid var(--accent); padding:.2em 0 .2em 1em; margin:1em 0; }
+  .formal { background:var(--wash); border:1px solid var(--line); border-radius:8px; padding:12px 18px; margin:1.2em 0; }
+  .thm { border:1px solid var(--accent); border-radius:8px; padding:14px 18px; margin:1.4em 0; background:#fbfdff; }
+  .thm .tname { font-weight:700; color:var(--accent); }
+  .ledger { font-family: ui-monospace, Menlo, monospace; font-size:.85em; background:#0f1720; color:#d7e3f0;
+            border-radius:8px; padding:14px 18px; overflow-x:auto; white-space:pre-wrap; margin:1.2em 0; }
+  .tag { display:inline-block; font-size:.75em; font-weight:700; letter-spacing:.06em; border-radius:4px;
+         padding:.15em .6em; margin-right:.4em; vertical-align:middle; }
+  .tag.exact { background:#e6f4ea; color:#146c2e; border:1px solid #b7dfc0; }
+  .tag.cond { background:#e8f0fe; color:#1b5faa; border:1px solid #bcd6f5; }
+  .tag.imp { background:#f3e8fd; color:#6a1fb0; border:1px solid #d9c2f2; }
+  .tag.neg { background:#fdecea; color:#a32b1e; border:1px solid #f2c4bd; }
+  code, .math { font-family: ui-monospace, Menlo, monospace; }
+  .math { background:#f2f5f9; padding:.1em .35em; border-radius:4px; font-size:.95em; }
+  ul.tight li { margin:.35em 0; }
+  .nav { display:flex; flex-wrap:wrap; gap:.5em; margin:1.2em 0 2em; }
+  .nav a { text-decoration:none; border:1px solid var(--line); border-radius:20px; padding:.3em 1em;
+           font-size:.9em; color:var(--accent); background:var(--wash); }
+  footer { margin-top:3em; color:var(--muted); font-size:.9em; border-top:1px solid var(--line); padding-top:1em; }
+  footer a { color:var(--accent); }
+</style>
+<!-- SITENAV-START -->
+<style>
+.sitenav{font-family:Georgia,serif;font-size:.88em;background:#f4f4f0;border:1px solid #bbb;
+ border-radius:4px;padding:8px 14px;margin:0 0 1.5em;display:flex;flex-wrap:wrap;
+ align-items:center;gap:8px 16px;line-height:1.4}
+.sitenav a{color:#0645ad;text-decoration:none;white-space:nowrap}
+.sitenav a:hover{text-decoration:underline}
+.sitenav .sitenav-brand{font-weight:bold;color:#1a1a1a}
+.sitenav .sitenav-links{display:flex;flex-wrap:wrap;gap:8px 14px}
+.sitenav-search{margin-left:auto;display:flex;gap:6px;align-items:center}
+.sitenav-search input{font-family:Georgia,serif;font-size:.95em;padding:4px 8px;
+ border:1px solid #999;border-radius:3px;width:170px;background:#fff;color:#1a1a1a}
+.sitenav-search button{font-family:Georgia,serif;font-size:.95em;padding:4px 12px;
+ border:1px solid #666;border-radius:3px;background:#eee;cursor:pointer;color:#1a1a1a}
+</style>
+<!-- SITENAV-END -->
+</head>
+<body>
+<!-- SITENAV-NAV-START -->
+<nav class="sitenav" aria-label="Site navigation">
+<a class="sitenav-brand" href="../">R Theory — Rewrite</a>
+<span class="sitenav-links">
+<a href="../#hard">Hard&nbsp;science</a><a href="../#theoretical">Theoretical</a><a href="../vol0/">Vol&nbsp;0</a><a href="../vol4/">Vol&nbsp;IV</a><a href="../tables/">Tables</a>
+</span>
+<form class="sitenav-search" action="https://www.google.com/search" method="get" target="_blank" role="search"
+ onsubmit="if(!this.q.value.trim())return false;this.q.value='site:cosbykit-afk.github.io/r-theory-rewrite '+this.q.value">
+<input type="text" name="q" placeholder="Search this site&#8230;" aria-label="Search this site">
+<button type="submit">Search</button>
+</form>
+</nav>
+<!-- SITENAV-NAV-END -->
+
+<h1>Canonical Spin–Geometry and the Primitive Symplectic Atlas</h1>
+<p class="sub">Volume 0. The volume's strongest exact result: the four primitives are
+canonical charts on one radial-spinor phase plane — and the audit that keeps the
+imported machinery honest.</p>
+<p><a href="../pdf/volume-0-book22.pdf">Download this book as PDF</a> (frozen snapshot, generated 2026-09-19).</p>
+
+<div class="about">
+<p><b>About this book.</b> Rebuilt as standalone R Theory from the former T6 essay-book,
+the "canonical" book of the Projection Craft series — its declared job was to make the
+primitive functions canonical coordinates on the radial-spinor phase space. That core
+is proved. Around it sits heavy imported machinery (Dirac–Coulomb theory, the
+first-order Einstein–Hilbert action, Maxwell, rotation, Einstein–Cartan, Kerr), and this
+book labels every layer: what is proved internally, what is conditional on import,
+and what is not established here. The "promotion" of earlier results is explained
+precisely: it means <i>restriction to a specialized setting and reuse of existing
+proofs</i> — never a status upgrade and never new evidence.</p>
+<p><b>Status key.</b> <span class="tag exact">EXACT</span> proved mathematics ·
+<span class="tag cond">CONDITIONAL</span> exact after a declared import or contract ·
+<span class="tag imp">IMPORT</span> accepted physics taken as input, not derived ·
+<span class="tag neg">OBSTRUCTION</span> a proved or retained negative result.</p>
+<p><b>Depends on:</b> <a href="../book0/">Book 0</a>; <a href="../book20/">Book 20</a>
+(§4's two-angle structure); the internal radial Dirac–Coulomb paper.</p>
+</div>
+
+<div class="nav">
+<a href="#s1">§1 Spin transport</a><a href="#s2">§2 Prüfer pair</a><a href="#s3">§3 Symplectic atlas</a>
+<a href="#s4">§4 Defect action</a><a href="#s5">§5 Gauge & rotation</a>
+<a href="#s6">§6 Kerr</a><a href="#s7">§7 Spin obstruction</a><a href="#s8">§8 Audit</a>
+</div>
+
+<h2 id="s1">§1 — Radial coframe and spin transport (imported machinery, labeled)</h2>
+
+<div class="intuition">
+<p>The book's canonical apparatus starts from accepted background: <span class="tag imp">IMPORT</span>
+the radial coframe e^a (flat at η=0, with defect δ_e = e^0−dr), the torsion-free spin
+connection, and the Dirac spinor Ψ in the projected chart. Two declared contracts carry
+the whole book: <b>C6a</b>, the radial two-component chart <span class="math">Ψ →
+(r, F, G, …)</span>, and <b>C6b</b>, that F and G are independent on open sets. Two
+obstructions are kept permanently: the spherical-to-Cartesian map is not a global
+diffeomorphism (origin and polar axis excluded), and C6a/C6b fix the <i>reading</i> of
+the geometry but <i>not</i> the physical meaning of F and G — importing the radial
+Dirac–Coulomb paper promotes the chart, never the book's own assumptions.</p>
+</div>
+
+<h2 id="s2">§2 — The Prüfer canonical pair (exact conditional)</h2>
+
+<div class="intuition">
+<p>The transport operator on (F, G) has exact zero trace, which yields the exact
+radial invariant</p>
+<p class="math">F F′ + G G′ = −A²/(2r)</p>
+<p>and a canonical pair: the Prüfer angle <span class="math">Θ = arg(G + iF)</span>
+and the spin density <span class="math">A² = F² + G²</span>. Under C6a/C6b the pair is
+regular on open sets and the spin phase space carries</p>
+<p class="math">ω_spin = 4 dF ∧ dG</p>
+<p>— exactly canonical. This is exact <i>after</i> importing the radial Dirac dynamics;
+the symplectic form is a conditional theorem, not a derivation of Dirac theory.</p>
+</div>
+
+<div class="thm"><span class="tname">Canonical spin phase space</span> <span class="tag cond">CONDITIONAL</span>
+<p>Under C6a/C6b and the imported radial Dirac equations, (Θ, A²) is a canonical pair
+on the radial-spinor phase plane with symplectic form 4 dF∧dG. <span class="tag neg">OBSTRUCTION</span>
+Does not derive the Dirac equation, spin-½, the spin-statistics connection, or the
+fine-structure constant.</p>
+</div>
+
+<h2 id="s3">§3 — The primitive symplectic atlas (the volume's strongest exact result)</h2>
+
+<div class="intuition">
+<p>The centerpiece. The four primitive functions are <b>canonical charts on the same
+(F, G) plane</b> — four Darboux-compatible coordinate systems with a common spin
+one-form:</p>
+<p class="math">p_sxp = 2F²,&nbsp;&nbsp; p_srx = −2G²,&nbsp;&nbsp;
+p_cxp = (F−G)²,&nbsp;&nbsp; p_crx = −(F+G)²</p>
+<p class="math">p_Q dQ = −2G dF + 2F dG</p>
+<p>and the common symplectic form <span class="math">ω_spin = 4 dF∧dG</span>, already
+established in §2. The atlas maps cover all four quadrants; the reciprocal and
+complementary identities are exact differential identities. On the circular
+Dirac–Coulomb branch the atlas charts meet the radial paper's spinor-ratio theorem,
+so the atlas variables and the spinor-ratio results are cross-checked against the
+same imported dynamics. No new physics is claimed: the primitives were already
+canonical coordinate expressions; the atlas shows they are canonical <i>together</i>.</p>
+</div>
+
+<div class="thm"><span class="tname">Primitive symplectic atlas</span> <span class="tag exact">EXACT</span>
+<p>The four primitive momentum charts with common one-form and common symplectic form
+constitute an exact internal theorem, conditional only on the declared C6a/C6b chart
+and the imported radial dynamics. The chart transition identities, reciprocal relations,
+and amplitude-ratio readings are exact. This is a representation result: it changes
+no prediction of the imported theory.</p>
+</div>
+
+<h2 id="s4">§4 — The first-order spherical defect action (conditional reconstruction)</h2>
+
+<div class="intuition">
+<p>Now the imported gravitational machinery. <span class="tag imp">IMPORT</span> the
+first-order Einstein–Hilbert action in the spherical defect variables
+<span class="math">(δ_e, δ_f, δ_ω)</span>, with a regularized radial measure
+η²(r)dr on (r_UV, ∞) and the standard asymptotically flat falloff conditions
+declared. Exact reductions under these imports: the gravitational defect kinetic
+structure; the boundary term; and the vanishing of the on-shell defect action in the
+massless flat defect-free limit. What remains outside the reduction: the
+regularization contract, the falloff conditions, and the accepted
+Einstein–Hilbert machinery itself — conditional reconstruction, not a derivation
+of GR. The mass parameter m appearing in the defect action is imported through the
+contract; the defect action does not compute it.</p>
+</div>
+
+<div class="formal"><span class="tag cond">CONDITIONAL</span> <b>Spherical defect reduction.</b>
+Exact reduction of the imported first-order Einstein–Hilbert action in the defect
+variables under declared regularization and falloff. <span class="tag neg">OBSTRUCTION</span>
+Does not derive the Einstein field equations, Newton’s constant, or the mass
+parameter.</div>
+
+<h2 id="s5">§5 — Gauge, rotation, and spin: conditional channels</h2>
+
+<div class="intuition">
+<p>Three more channels, each exact after its own import:</p>
+<ul class="tight">
+<li><b>Gauge (Maxwell as a channel):</b> after the gauge import, the radial electric
+charge appears as the cyclic radial momentum p_Φ conjugate to the radial gauge phase
+— the Maxwell field-strength dynamics and the coupling e are imported; the book
+supplies the canonical reading, not the theory.</li>
+<li><b>Rotation:</b> angular momentum enters as the canonical momentum p_Ω conjugate
+to frame dragging — exact in the imported Kerr-geometry channel.</li>
+<li><b>Spin (Einstein–Cartan):</b> the axial contorsion channel is exactly auxiliary:
+the torsion equation is algebraic and the torsion is solved out in favor of the spin
+current — so the spin sector carries no independent propagating degree beyond the
+imported one.</li>
+</ul>
+<p>Each channel is a representation of imported physics in the book's canonical
+coordinates. None derives its import.</p>
+</div>
+
+<h2 id="s6">§6 — Kerr/Kerr–Newman half-angle identities (with guards)</h2>
+
+<div class="intuition">
+<p>On the imported Kerr geometry, the horizon radii satisfy exact half-angle
+identities in the book's coordinates — and the same identities extend to
+Kerr–Newman after the electromagnetic import. The guards are part of the result:
+the identities live on the declared equatorial/chart domain (coordinate
+singularities excluded), they are consequences of the imported metric, and they
+establish no new black-hole physics. The spherical-spin obstruction (§7) is the
+reason these identities do not become a spin law.</p>
+</div>
+
+<div class="formal"><span class="tag cond">CONDITIONAL</span> <b>Kerr/Kerr–Newman identities.</b>
+Exact coordinate identities on the imported geometries, valid on the declared
+regular domain. <span class="tag neg">OBSTRUCTION</span> No new black-hole physics;
+no spin dynamics derived.</div>
+
+<h2 id="s7">§7 — The spherical-spin obstruction</h2>
+
+<div class="intuition">
+<p>The book's hardest negative, and its most load-bearing. The spherical symmetry
+used throughout forces the total spin current to integrate to zero over the sphere
+— a spherically symmetric configuration cannot carry net spin. The canonical spin
+apparatus of §§1–3 therefore <b>cannot be promoted to a theory of spin in the
+spherical sector</b>. This is not a defect of the atlas; it is a theorem about the
+domain: the spin variables are exact internal coordinates of the radial-spinor phase
+plane, and the spherical obstruction says exactly where they stop being physics.
+Any future spin program must begin by leaving spherical symmetry.</p>
+</div>
+
+<div class="formal"><span class="tag neg">OBSTRUCTION</span> <b>Spherical spin cancellation.</b>
+Spherical symmetry kills net spin current. The atlas is exact where it applies and
+silent where it cannot speak.</div>
+
+<h2 id="s8">§8 — The does-not-establish ledger and book closure</h2>
+
+<div class="intuition">
+<p>The source book's §6.XV is preserved verbatim in spirit: the does-not-establish
+ledger. This book does not derive: the Dirac equation; spin-½; the fine-structure
+constant; the Coulomb interaction; the Einstein field equations; Newton’s constant;
+the Maxwell equations; the charge e; the Kerr metric; the Einstein–Cartan spin
+coupling; particle masses; couplings; or new observables. "Promotion" of earlier
+results (Books 20–21, the radial paper) means restriction to a specialized setting
+with reuse of existing proofs — a status-preserving operation, never a status
+upgrade and never new evidence. The Yang–Mills attribution from the source preamble
+is <b>not</b> repeated: the cited result is absent from the cited text (see the
+<a href="../vol0/">Volume 0 provenance note</a>).</p>
+</div>
+
+<div class="ledger">Book 22 promotion audit
+─────────────────────────────────────────────
+Exact internal theorems:        spin invariant, Prüfer pair,
+                                primitive symplectic atlas,
+                                atlas transition identities.
+Exact after declared import:    Kerr/KN identities, defect-action
+                                reduction, gauge/rotation/spin channels.
+New equation of motion:         none.
+New coupling or mass parameter: none.
+New invariant observable:       none.
+Prediction difference:          Δ_op = ∅.  C0 retained.
+─────────────────────────────────────────────</div>
+
+<div class="thm"><span class="tname">Book 22 closure</span> <span class="tag exact">EXACT</span>
+<p>The four primitives are canonical charts on one radial-spinor phase plane — the
+primitive symplectic atlas is the strongest exact result of Volume 0, and it changes
+nothing it did not already change: it is a representation theorem inside imported
+physics. With the obstructions kept (spherical spin cancellation, coordinate-domain
+guards, the does-not-establish ledger), <span class="math">Δ_op = ∅</span> and C0 —
+<i>Projection Craft changes representation but not physics</i> — is retained,
+undefeated, and still falsifiable.</p>
+</div>
+
+<div class="formal"><b>Forward boundary.</b> The book's own reopening rule: C0 is defeated
+only by a future fully specified Class-C model with a stated measurement contract —
+a new invariant observable that survives the redundancies this volume catalogued.
+The spherical-spin obstruction marks where any spin program must start: outside
+spherical symmetry.</div>
+
+<footer>
+<p><a href="../">← Series index</a> · <a href="../vol0/">Volume 0 overview</a> ·
+<a href="../book21/">← Fermion Composition</a></p>
+<p>A Volume 0 book of the R Theory rewrite. Source: the former T6 essay-book, rebuilt standalone.
+Status discipline: exact / conditional / import / obstruction — nothing promoted beyond
+its support. Δ_op = ∅ throughout.</p>
+</footer>
+</body>
+</html>

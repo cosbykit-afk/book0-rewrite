@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book 16 — The Microscopic</title>
+<script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+<style>
+body{font-family:Georgia,serif;max-width:860px;margin:0 auto;padding:24px;line-height:1.65;color:#1a1a1a;background:#fdfdfb}
+h1{font-size:1.9em;border-bottom:2px solid #333;padding-bottom:8px}
+h2{font-size:1.45em;margin-top:2.2em;border-bottom:1px solid #aaa;padding-bottom:4px}
+h3{font-size:1.15em;margin-top:1.6em}
+.graph{width:100%;height:420px;margin:12px 0 4px;border:1px solid #ccc;background:#fff}
+.fallback{display:none;width:100%;margin:12px 0 4px;border:1px solid #ccc}
+.caption{font-size:.92em;color:#333;background:#f4f4f0;padding:10px 14px;border-left:3px solid #888;margin:0 0 1.4em}
+.formula{text-align:center;font-size:1.12em;margin:.9em 0}
+.status{font-size:.85em;color:#555}
+.tag{display:inline-block;font-size:.78em;font-weight:bold;border:1px solid #666;border-radius:3px;padding:0 6px;margin-right:4px;background:#eee}
+.tag.CP{background:#dff0d8}.tag.SC{background:#e3f2fd}.tag.NC{background:#d7f0e8}.tag.ST{background:#e8e4f5}
+.tag.MA{background:#fcf8e3}.tag.AX{background:#fde8d8}.tag.IN{background:#e8e8e8}.tag.IC{background:#fbdcdc}
+hr{margin:2.5em 0;border:none;border-top:1px solid #bbb}
+.toc a{color:#0645ad;text-decoration:none}
+.small{font-size:.9em;color:#444}
+footer{margin-top:3em;color:#555;font-size:.9em;border-top:1px solid #bbb;padding-top:1em}
+</style>
+<!-- SITENAV-START -->
+<style>
+.sitenav{font-family:Georgia,serif;font-size:.88em;background:#f4f4f0;border:1px solid #bbb;
+ border-radius:4px;padding:8px 14px;margin:0 0 1.5em;display:flex;flex-wrap:wrap;
+ align-items:center;gap:8px 16px;line-height:1.4}
+.sitenav a{color:#0645ad;text-decoration:none;white-space:nowrap}
+.sitenav a:hover{text-decoration:underline}
+.sitenav .sitenav-brand{font-weight:bold;color:#1a1a1a}
+.sitenav .sitenav-links{display:flex;flex-wrap:wrap;gap:8px 14px}
+.sitenav-search{margin-left:auto;display:flex;gap:6px;align-items:center}
+.sitenav-search input{font-family:Georgia,serif;font-size:.95em;padding:4px 8px;
+ border:1px solid #999;border-radius:3px;width:170px;background:#fff;color:#1a1a1a}
+.sitenav-search button{font-family:Georgia,serif;font-size:.95em;padding:4px 12px;
+ border:1px solid #666;border-radius:3px;background:#eee;cursor:pointer;color:#1a1a1a}
+</style>
+<!-- SITENAV-END -->
+</head>
+<body>
+<!-- SITENAV-NAV-START -->
+<nav class="sitenav" aria-label="Site navigation">
+<a class="sitenav-brand" href="../">R Theory — Rewrite</a>
+<span class="sitenav-links">
+<a href="../#hard">Hard&nbsp;science</a><a href="../#theoretical">Theoretical</a><a href="../vol0/">Vol&nbsp;0</a><a href="../vol4/">Vol&nbsp;IV</a><a href="../tables/">Tables</a>
+</span>
+<form class="sitenav-search" action="https://www.google.com/search" method="get" target="_blank" role="search"
+ onsubmit="if(!this.q.value.trim())return false;this.q.value='site:cosbykit-afk.github.io/r-theory-rewrite '+this.q.value">
+<input type="text" name="q" placeholder="Search this site&#8230;" aria-label="Search this site">
+<button type="submit">Search</button>
+</form>
+</nav>
+<!-- SITENAV-NAV-END -->
+<h1>Book 16 — The Microscopic</h1>
+<p><i>A restructured rewrite of Book 16 of R Theory — Volume III. Pictures and intuition first;
+the formal audit second. Every claim carries exactly one status:
+<span class="tag CP">CP</span> checked proof, <span class="tag SC">SC</span> completed symbolic check,
+<span class="tag NC">NC</span> completed numerical check, <span class="tag ST">ST</span> standard imported theorem,
+<span class="tag MA">MA</span> manuscript assertion, <span class="tag AX">AX</span> assumption or axiom,
+<span class="tag IN">IN</span> incomplete or failed computation, <span class="tag IC">IC</span> incorrect result.
+A sampled numerical agreement is a completed numerical check, never a proof.</i></p>
+<p class="small"><b>Cleanup status (2026-09-19).</b> Every checkable claim on this page is verified by
+<span class="formula">validation/book16/verify_book16.py</span>: 164 independent checks
+(CP 98 · SC 21 · NC 45), all passing with no timeouts; the five original audit suites
+(audit_16a&ndash;e) re-run to 690/690 passing. Worst measured numerical discrepancy:
+1.6&times;10<sup>&minus;4</sup>, from caption markers quoted to three decimals (recomputed values
+agree to that precision). Embeds are verified by
+<span class="formula">validation/book16/test_embeds.py</span>: 15 graph divs &#8596; 15 Desmos
+expression lists &#8596; 15 fallback PNGs. Live Desmos rendering was not browser-verified; only
+static ID/expression/viewport checks were performed.</p>
+<div class="toc">
+<p><b>Contents.</b> <a href="#p1">I. See it first</a> ·
+<a href="#p2">II. Then earn it</a> ·
+<a href="#p3">III. What is established, what is conditional, what is not</a> ·
+<a href="#p4">IV. Close the book</a> ·
+<a href="#p5">V. Volume III closure</a></p>
+</div>
+<p class="small">Source: volume_iii.txt lines 1321–23018 (Book 16, 21,698 lines). This is the largest book in the
+series and the source reuses several section numbers (§§16.I.59–61, 71, 75, 119–120); the audit treats each
+occurrence at its own line location and flags the collisions. Per the manuscript's own 2026-08-21 authority note,
+the standalone Book 16 text is authoritative through §16.I.57 where it conflicts with earlier frontier summaries.</p>
+<h2 id="p1">Part I — See it first</h2>
+<p>Fifteen figures, three per audited block, in source order. Each caption carries the status of what the figure shows.</p>
+<h3>Figure 1 — Covariant 45-degree stationarity of the diagonal Z bridge</h3>
+<div class="graph" id="d1"></div>
+<img class="fallback" id="f1" src="graphs/g1_zbridge.png" alt="cos 2x, sin 2x and H(x)=sin 2x/4 with the stationary point x=pi/4 marked">
+<div class="caption"><b>What you see.</b> The components of
+<span class="formula">calZ_2(x) = cos(2x)I + sin(2x)J</span> and the bounded bridge amplitude
+<span class="formula">H(x) = sin(2x)/4</span>. The ordinary derivative at
+<span class="formula">x = pi/4</span> is <span class="formula">-2I</span>, not zero; stationarity holds only
+covariantly, <span class="formula">nabla_x B_Z = H' calZ_2 = 0</span>, because
+<span class="formula">H'(pi/4) = 0</span>. <span class="tag NC">NC</span></div>
+
+<h3>Figure 2 — qSaw rapidity doubling on one fixed hyperbola</h3>
+<div class="graph" id="d2"></div>
+<img class="fallback" id="f2" src="graphs/g2_qsaw.png" alt="Sigma=mu cosh zeta, Delta=mu sinh zeta, Pi_C=tanh zeta at mu=2">
+<div class="caption"><b>What you see.</b> At fixed radius <span class="formula">mu = 2</span>, the qSaw lift sends
+<span class="formula">(Sigma, Delta)</span> along <span class="formula">Sigma^2 - Delta^2 = mu^2</span> while the
+polarization <span class="formula">Pi_C = Delta/Sigma = tanh zeta</span> doubles the rapidity:
+<span class="formula">qSaw(tanh w) = tanh 2w</span>. The radius is invariant; only the angle moves.
+<span class="tag NC">NC</span></div>
+
+<h3>Figure 3 — D4 polarization responses from the trace pair</h3>
+<div class="graph" id="d3"></div>
+<img class="fallback" id="f3" src="graphs/g3_d4response.png" alt="Pi_C=tanh zeta and Xi_C=4 cosh w/(cosh zeta+3) with the D4 point marked">
+<div class="caption"><b>What you see.</b> The two D4 polarization responses
+<span class="formula">Pi_C = tanh zeta</span> and
+<span class="formula">Xi_C = 4 cosh w/(cosh zeta + 3)</span> recovered from the trace pair
+<span class="formula">(R_Z, R_X)</span> of the transported carrier. Dashed lines mark the D4 point
+<span class="formula">cosh zeta_* = 3</span>. <span class="tag NC">NC</span>
+The trace-pair identity behind this figure was verified symbolically.
+<span class="tag SC">SC</span></div>
+
+<h3>Figure 4 — The quasi-linear Saw–Hodge doublet</h3>
+<div class="graph" id="d4"></div>
+<img class="fallback" id="f4" src="graphs/g4_saw_hodge.png" alt="Pi_C and Xi_C versus rapidity w">
+<div class="caption"><b>What you see.</b> The two quasi-linear response coefficients of §§16.I.72–74:
+<span class="formula">Π<sub>C</sub>(w) = tanh 2w</span> (blue, the direct/Hodge-35 leg) and
+<span class="formula">Ξ<sub>C</sub>(w) = 2cosh w/(cosh<sup>2</sup>w+1)</span> (orange, the Hodge-12 leg).
+Both are nonzero for every finite <span class="formula">w ≠ 0</span>; the Hodge-12 leg decays to zero as
+<span class="formula">|w| → ∞</span>, and the direct leg vanishes only at <span class="formula">w = 0</span>.
+<span class="tag NC">NC</span> (plotted from the exact trace-pair identities; verified numerically at 21
+rapidity points, max error &lt; 1e-10). <b>What it doesn't show.</b> A nonzero internal coefficient is not
+a nonzero action coefficient: <span class="formula">ρ<sub>PK</sub> ≠ 0</span> remains an open gate, and the
+fixed-polynomial no-goes of §§16.I.67–71 still hold on their own hypothesis class. <span class="tag MA">MA</span></div>
+
+<h3>Figure 5 — Nonseparable Hessian determinant along the quasi-linear orbit</h3>
+<div class="graph" id="d5"></div>
+<img class="fallback" id="f5" src="graphs/g5_hessian_factor.png" alt="Hessian determinant factor versus w">
+<div class="caption"><b>What you see.</b> The determinant factor
+<span class="formula">p<sup>10</sup>(p<sup>2</sup>+4q<sup>2</sup>)<sup>3</sup></span> from the exact
+<span class="formula">−3·2<sup>16</sup>k<sup>16</sup>p<sup>10</sup>(p<sup>2</sup>+4q<sup>2</sup>)<sup>3</sup></span>
+of §§16.I.75–76, evaluated on the quasi-linear orbit <span class="formula">p = Π<sub>C</sub>(w)</span>,
+<span class="formula">q = Ξ<sub>C</sub>(w)</span>. It vanishes only at <span class="formula">w = 0</span> and is
+strictly positive for every <span class="formula">w ≠ 0</span>: the nonseparable rank-four witness is generic,
+not fine-tuned. <span class="tag NC">NC</span> <b>What it doesn't show.</b> A nonzero Hessian determinant does
+not by itself activate the base Pfaffian or supply the missing Hodge 12 plane at seed level — those gates stay
+open. <span class="tag MA">MA</span></div>
+
+<h3>Figure 6 — Radial stabilization of the hard-flux saddle</h3>
+<div class="graph" id="d6"></div>
+<img class="fallback" id="f6" src="graphs/g6_radial_stab.png" alt="V(q) = A q^2 + B q^4 with minimum at q*">
+<div class="caption"><b>What you see.</b> The radial potential
+<span class="formula">V(q) = Aq<sup>2</sup>+Bq<sup>4</sup></span> with <span class="formula">A &lt; 0 &lt; B</span>
+(§16.I.75.11): the split-signature saddle at <span class="formula">q = 0</span> is stabilized by the quartic
+term, with the finite-rank minimum at <span class="formula">q*<sup>2</sup> = −A/(2B)</span> (here
+<span class="formula">A = −2.5</span>, <span class="formula">B = 1.25</span>, <span class="formula">q* = 1</span>).
+<span class="tag NC">NC</span> <b>What it doesn't show.</b> Radial stabilization is not a health theorem: ghost
+survival, exactly one healthy spin-2, and mirror selection remain downstream open gates. <span class="tag MA">MA</span></div>
+
+<h3>Figure 7 — The selector ratio is strictly monotone: exactly one finite stationary point</h3>
+<div class="graph" id="d7"></div>
+<img class="fallback" id="f7" src="graphs/g7_selector_R.png" alt="R(y) strictly decreasing from +infinity to 0">
+<div class="caption"><b>What you see.</b> The stationarity ratio
+<span class="formula">R(y) = (y<sup>2</sup>+2)<sup>2</sup> / [ y<sup>3</sup>(2y<sup>2</sup>+1)<sup>2</sup> ]</span>
+of §16.I.81, with <span class="formula">y = sinh w</span>: strictly decreasing on each side of
+<span class="formula">y = 0</span>, running <span class="formula">+∞ → 0</span> for
+<span class="formula">y &gt; 0</span>. Hence <span class="formula">v/u = −R(y<sub>*</sub>)</span> has exactly
+one finite nonzero solution for every nonzero <span class="formula">v/u</span>.
+<span class="tag SC">SC</span> (derivative formula, sign, and both limits verified symbolically).
+<b>What it doesn't show.</b> Monotonicity is not stability: the positive Schur Hessian needs the extra
+<span class="formula">B<sub>4</sub> &gt; 0</span> hypothesis, and the joint radial branch needs
+<span class="formula">v &gt; 0</span>. <span class="tag MA">MA</span></div>
+
+<h3>Figure 8 — Unique finite selector extremum with positive Schur Hessian</h3>
+<div class="graph" id="d8"></div>
+<img class="fallback" id="f8" src="graphs/g8_selector_minimum.png" alt="A(w) with a single minimum at w*">
+<div class="caption"><b>What you see.</b> The reduced selector potential
+<span class="formula">V<sub>*</sub>(w) = −A(w)<sup>2</sup>/(4B<sub>4</sub>)</span> with
+<span class="formula">A(w) = u·tanh(2w) − v·2cosh w/(cosh<sup>2</sup>w+1)</span>,
+<span class="formula">u = 1.7</span>, <span class="formula">v = −0.6</span>,
+<span class="formula">B<sub>4</sub> = 1.3</span> (§16.I.81): a single finite minimum at
+<span class="formula">w<sub>*</sub> ≈ 1.06</span>, i.e. the positive Schur Hessian
+<span class="formula">H<sub>ww</sub><sup>Schur</sup> = −A<sub>*</sub>A''<sub>*</sub>/(2B<sub>4</sub>) &gt; 0</span>.
+<span class="tag NC">NC</span> (sampled point; the extremum formula and
+<span class="formula">A<sub>*</sub>A''<sub>*</sub> &lt; 0</span> identity are <span class="tag SC">SC</span>).
+<b>What it doesn't show.</b> This branch has <span class="formula">v &lt; 0</span>, so the joint radial minimum
+<span class="formula">q<sub>*</sub><sup>2</sup> = −A<sub>*</sub>/(2B)</span> is not simultaneously finite here;
+that needs the <span class="formula">v &gt; 0</span> sign branch. <span class="tag MA">MA</span></div>
+
+<h3>Figure 9 — The primitive fermionic dihedral double cover (order 16 → D<sub>4</sub>)</h3>
+<div class="graph" id="d9"></div>
+<img class="fallback" id="f9" src="graphs/g9_dihedral.png" alt="Eighth roots of unity: powers of R, with P reflection axis">
+<div class="caption"><b>What you see.</b> The eight powers of
+<span class="formula">R = exp(πK/4) = (I+K)/√2</span> on the unit circle and the reflection axis of
+<span class="formula">P</span> (§16.I.98): <span class="formula">R<sup>8</sup> = I</span>,
+<span class="formula">P<sup>2</sup> = I</span>, <span class="formula">PRP<sup>−1</sup> = R<sup>−1</sup></span>.
+The generated group has exactly 16 distinct elements; quotienting by the central
+<span class="formula">R<sup>4</sup> = −I</span> gives the order-8 pair group
+<span class="formula">D<sub>4</sub></span>. <span class="tag NC">NC</span> (relations and group order verified
+on explicit 2×2 matrices). <b>What it doesn't show.</b> The picture is the primitive representation-level
+group; full action/vacuum symmetry of the lift <span class="formula">q<sub>ℓ</sub></span> and the twisted
+global anomaly remain open. <span class="tag MA">MA</span></div>
+
+<h3>Figure 10 — Quarter-null branches and the (π/4)ℤ phase lattice</h3>
+<div class="graph" id="d10"></div>
+<img class="fallback" id="f10" src="graphs/g10_quarter_null_lattice.png" alt="Quarter-null branches phi_a - phi_b = ±pi/2 mod pi with the (pi/4)Z lattice">
+<div class="caption"><b>What you see.</b> The quarter-null branches
+<span class="formula">φ<sub>a</sub> − φ<sub>b</sub> = ±π/2 mod π</span> (blue lines, §§16.I.109–110) in the
+<span class="formula">(φ<sub>a</sub>, φ<sub>b</sub>)</span> plane, with the stationary lattice
+<span class="formula">φ<sub>a</sub> ∈ (π/4)ℤ</span> marked: open green circles are the even quarters
+(<span class="formula">φ<sub>a</sub> = 0 mod π/2</span>, fixed outright by
+<span class="formula">c = g<sub>X</sub>q</span>), red dots are the odd quarters
+(<span class="formula">φ<sub>a</sub> = π/4 mod π/2</span>, real only after the
+<span class="formula">μ<sub>2</sub></span> center-sign compensation of §16.I.109).
+<span class="tag NC">NC</span> (lattice points computed from the exact λ<sub>Xq</sub> consistency
+condition; §16.I.109 proof steps verified). <b>What it doesn't show.</b> The lattice is a set of
+available real vacua, not a selection: the declared S82 parent is exactly common-phase blind
+(Theorem 16.I.110.T1), and picking the odd-quarter branch requires the nonzero heavy-selector
+coefficient λ<sub>2</sub>, which no theorem in this chunk derives. <span class="tag MA">MA</span></div>
+
+<h3>Figure 11 — Oriented vs unoriented Fujikawa phases</h3>
+<div class="graph" id="d11"></div>
+<img class="fallback" id="f11" src="graphs/g11_fujikawa_phases.png" alt="Unit circle: J(R_D)=1 for all k, J(U)=(-1)^k alternating">
+<div class="caption"><b>What you see.</b> The Fujikawa phase on the unit circle (§16.I.104):
+<span class="formula">J(R<sub>D</sub>) = e<sup>−iπ·4k/2</sup> = 1</span> for every integer
+<span class="formula">k</span> (blue, the oriented quarter rotation closes the measure exactly), versus the
+unoriented <span class="formula">J(U) = e<sup>iπk</sup> = (−1)<sup>k</sup></span> (red crosses, alternating
+sign). <span class="tag SC">SC</span> (exact complex arithmetic for
+<span class="formula">k = −5…5</span>; audited in <span class="formula">audit_16d.py</span>).
+<b>What it doesn't show.</b> The phase computation is conditional on the index divisibility
+<span class="formula">Ind(D<sub>16</sub>) ∈ 4ℤ</span> (Theorem 16.I.104.T1), whose topological proof is
+asserted, not re-derived, in this chunk. <span class="tag MA">MA</span></div>
+
+<h3>Figure 12 — Heavy-selector induced quartic selects the odd-quarter lattice</h3>
+<div class="graph" id="d12"></div>
+<img class="fallback" id="f12" src="graphs/g12_odd_quarter_selection.png" alt="V_4^ind proportional to -(1-cos 4phi_a) with minima at pi/4 mod pi/2">
+<div class="caption"><b>What you see.</b> The induced static selector potential of §16.I.112,
+<span class="formula">V<sub>4</sub><sup>ind</sup> ∝ −(1 − cos 4φ<sub>a</sub>)</span> at fixed nonzero
+radius, with minima (green) at exactly the odd-quarter lattice
+<span class="formula">φ<sub>a</sub> = π/4 mod π/2</span> isolated independently in §16.I.109, and maxima
+(gray dotted) at the even quarters. <span class="tag NC">NC</span> (minima/maxima located by grid scan;
+Schur-complement coefficient algebra verified symbolically). <b>What it doesn't show.</b> Everything is
+conditional on a healthy heavy 54 selector block with <span class="formula">λ<sub>2</sub> ≠ 0</span> and
+<span class="formula">κ ≠ 0</span>: §16.I.114 proves none of E8 covariance, T<sub>w</sub> kinematics, D4
+covariance, reduced q parity, or common fermion-pair ancestry forces activation, and the quartic is
+negative semidefinite so it does not stabilize the radius by itself. <span class="tag MA">MA</span></div>
+
+<!-- FRAGMENT E — figures for §§16.I.118-16.I.133 (volume_iii.txt lines 20324-23018).
+     Assembly: insert these blocks in order after the Book 16 Part I figure sequence.
+     Live graphs are Desmos calculators driven by frag_e_graphs.js; each has a
+     static PNG fallback with the same formulas. -->
+
+<h3>Figure 13 — The critical hyperbola r²−u²=1</h3>
+<div class="graph" id="d13"></div>
+<img class="fallback" id="f13" src="graphs/g13_hyperbola.png" alt="critical hyperbola r^2-u^2=1 with asymptotes">
+<div class="caption"><b>What you see.</b> The two branches <span class="formula">r = ±√(1+u²)</span> of the
+critical hyperbola <span class="formula">r²−u² = 1</span> (§16.I.119), with asymptotes
+<span class="formula">r = ±u</span> dashed. The red dot at <span class="formula">(r,u) = (1,0)</span> is the
+spurion origin: there <span class="formula">C<sub>sc</sub> = 0</span>, <span class="formula">4A²B² = P²</span>,
+and the RG flow is tangent to the hyperbola (<span class="formula">β<sub>R+</sub>/R<sub>+</sub> +
+β<sub>R−</sub>/R<sub>−</sub> = 0</span>). <span class="tag SC">SC</span>
+<b>What it doesn't show.</b> The rank-one reduction <span class="formula">C²<sub>sc</sub> = (r²−1)P²</span>
+that keeps the flow on this curve is an earned-once input from the earlier reduced formulas, not proved here.
+<span class="tag MA">MA</span></div>
+
+<h3>Figure 14 — Nonlinear kinetic rapidity</h3>
+<div class="graph" id="d14"></div>
+<img class="fallback" id="f14" src="graphs/g14_rapidity.png" alt="delta_Z = atanh(eta_N sinh omega) and linear approximations">
+<div class="caption"><b>What you see.</b> The kinetic rapidity
+<span class="formula">δ<sub>Z</sub> = artanh(η<sub>N</sub> sinh ω<sub>crit</sub>)</span> (§16.I.124) for
+<span class="formula">η<sub>N</sub> = 0.3, 0.6, 0.9</span>, each against its linear truncation
+<span class="formula">δ<sub>Z</sub> ≈ η<sub>N</sub>ω</span> (dashed). The cubic correction
+<span class="formula">(η<sub>N</sub>/6 + η³<sub>N</sub>/3)ω³</span> is checked symbolically and can only
+vanish for real <span class="formula">η<sub>N</sub></span> at <span class="formula">η<sub>N</sub> = 0</span> —
+a constant anomalous dimension is impossible in the odd-kinetic sector. <span class="tag SC">SC</span>
+<b>What it doesn't show.</b> The map is the leading odd-kinetic truncation; higher odd kinetic operators can
+modify the global function while preserving the linear term. <span class="tag MA">MA</span></div>
+
+<h3>Figure 15 — Positive-feedback pitchfork potential</h3>
+<div class="graph" id="d15"></div>
+<img class="fallback" id="f15" src="graphs/g15_pitchfork.png" alt="pitchfork potential V(delta) for three values of a">
+<div class="caption"><b>What you see.</b> The fixed-point potential
+<span class="formula">V(δ) = δ²/2 − (a/2) ln cosh(2δ)</span> at zero source (§16.I.130) for
+<span class="formula">a = 0.4</span> (single well), <span class="formula">a = 0.505</span> and
+<span class="formula">a = 0.7</span> (double well); black dots mark the symmetry-broken minima.
+Fixed points satisfy <span class="formula">δ = a tanh(2δ)</span>, the threshold is
+<span class="formula">a<sub>c</sub> = 1/2</span>, and the spinodal sits at
+<span class="formula">δ<sub>s</sub> = ½arcosh√(2a)</span> with source magnitude
+<span class="formula">h<sub>c</sub> = at<sub>s</sub> − δ<sub>s</sub></span>. <span class="tag NC">NC</span>
+<b>What it doesn't show.</b> Whether the feedback equation is physical is a live gate: the manuscript's own
+firewall requires pair dynamics to pin <span class="formula">y<sub>B</sub></span> first; the
+<span class="formula">A<sub>y</sub></span> coefficient entering the instability is not yet computed.
+<span class="tag MA">MA</span></div>
+
+<h2 id="p2">Part II — Then earn it</h2>
+<p>Section-by-section audit of every numbered claim, in five blocks matching the audit workers' spans. Assertion counts: audit_16a.py 249 passed; audit_16b.py 43 passed; audit_16c.py 127 passed; audit_16d.py 173 passed; audit_16e.py 98 passed — 690 total, 0 failed.</p>
+<h3>16.0.A.1 — Rapidity normalization</h3>
+<p>The normalization identities check out numerically: with <span class="formula">zeta = 2w</span>,
+<span class="formula">Q = tanh w = tanh(zeta/2)</span>, <span class="formula">S = sech w</span>,
+<span class="formula">qSaw(Q) = 2Q/(1+Q^2) = tanh 2w</span>,
+<span class="formula">A_pm = (mu/2)e^{pm zeta}</span>,
+<span class="formula">Sigma = mu cosh zeta</span>, <span class="formula">Delta = mu sinh zeta</span>,
+<span class="formula">Pi_C = Delta/Sigma = tanh zeta</span>. <span class="tag NC">NC</span></p>
+
+<h3>16.I.49 — Diagonal Z bridge and covariant 45-degree stationarity</h3>
+<p><span class="formula">J^2 = -I</span> exactly. <span class="tag CP">CP</span>
+<span class="formula">exp(2xJ) = cos(2x)I + sin(2x)J</span>,
+<span class="formula">U^{-1}JU = diag(i,-i)</span>,
+<span class="formula">U^{-1}calZ_2U = diag(e^{2ix}, e^{-2ix})</span>,
+<span class="formula">Zdiag^2 = -I</span>, <span class="formula">Zdiag^4 = I</span>,
+<span class="formula">d calZ_2/dx = 2J calZ_2</span> with value <span class="formula">-2I</span> at
+<span class="formula">x = pi/4</span>, <span class="formula">(d/dx - 2J)calZ_2 = 0</span>,
+<span class="formula">nabla_x B_Z = H' calZ_2</span> with <span class="formula">H'(pi/4) = 0</span>,
+the complement <span class="formula">x -&gt; pi/2 - x</span> swapping the two branches with an overall
+minus sign while fixing <span class="formula">calZ_2</span> at <span class="formula">pi/4</span>,
+<span class="formula">d Zdiag/dx = 2i sigma_3 Zdiag</span>, holonomy composition
+<span class="formula">Hol(x_2,x_1)Hol(x_1,x_0) = Hol(x_2,x_0)</span>, the 45-degree step giving
+<span class="formula">J</span> and four steps giving <span class="formula">I</span>, and
+<span class="formula">J(e,f) = (f,-e)</span> consistent with the <span class="formula">J_label</span> action.
+<span class="tag NC">NC</span> The stationarity at 45 degrees is covariant only; the ordinary derivative is
+<span class="formula">-2I</span>, as the manuscript states. Phase transport alone does not select the flux
+magnitude; that remains open. <span class="tag MA">MA</span></p>
+
+<h3>Synchronization checkpoint — Heavy/Schur audit (line 1614)</h3>
+<p>The double-angle transfer identities
+<span class="formula">cos 2theta = (b_0^2-b_H^2)/(b_0^2+b_H^2)</span>,
+<span class="formula">sin 2theta = 2b_0b_H/(b_0^2+b_H^2)</span> are true. <span class="tag NC">NC</span>
+The Schur-complement formula as printed,
+<span class="formula">B D^{-1} B^dagger = (R_B^2/R_D) e^{(2theta_B - theta_D)J}</span>, is
+<span class="tag IC">IC</span>: direct computation gives
+<span class="formula">B D^{-1} B^dagger = (R_B^2/R_D) e^{-theta_D J}</span> under the ordinary real
+adjoint, since <span class="formula">B^dagger = R_B e^{-theta_B J}</span> cancels the
+<span class="formula">2theta_B</span> dependence. The checkpoint's representation-chain statements
+(carrier to E8(-24), E8(-24) to the physical subgroups) are recorded as manuscript assertions;
+they were not independently derived here. <span class="tag MA">MA</span></p>
+
+<h3>16.I.57 — Reduced G_C square-root / Chayet–Garibaldi audit</h3>
+<p>Status section: the square-root identity, the Hodge-completion identity
+<span class="formula">*_L^2 = -1</span>, and the orientation-sign bookkeeping are asserted, not derived, in
+this chunk. <span class="tag MA">MA</span> The synchronization note (standalone Book 16 authoritative
+through §16.I.57, superseding earlier frontier summaries) and the canonical UNA sign convention
+(<span class="formula">urx = srx - crx</span>, <span class="formula">uxp = cxp - sxp</span>) are taken as
+given boundary conditions for the audit. <span class="tag AX">AX</span></p>
+
+<h3>16.I.58 — Real-form role correction: rapidity as E8 transport</h3>
+<p><span class="formula">Z^T X = -XZ</span> exactly. <span class="tag CP">CP</span>
+The transported-projector theorem: <span class="formula">P(w) = e^{-wZ/2}P_0 e^{wZ/2}
+= (1/2)[I + cosh w X - sinh w J]</span>, <span class="formula">P(w)^2 = P(w)</span>,
+<span class="formula">2k_0 S P(w) = k_0(SI + X - QJ)</span>, and the coefficient relations
+<span class="formula">h_X = k_0</span>, <span class="formula">h_I = k_0 S</span>,
+<span class="formula">h_J = -k_0 Q</span> all check. <span class="tag NC">NC</span>
+The seed-gate factorization <span class="formula">K(w) = Kcal_w H</span> with
+<span class="formula">Kcal_w| = (1/2)[I + QZ + SX]</span> is an exact consequence of the projector theorem
+given the manuscript's source-term identification. <span class="tag NC">NC</span>
+The local/global unit correction <span class="formula">(h^vee+1)/dim e_8 = 31/248 = 1/8</span> is exact
+arithmetic; <span class="tag CP">CP</span> the counit algebra <span class="formula">q_0^2 = q_0</span>,
+<span class="formula">q_0 H(l) = 0</span> was verified in a 2x2 model of the stated Jordan premises.
+<span class="tag NC">NC</span> The Cartan-Jordan spectrum has 36 entries, all positive for real rapidity.
+<span class="tag NC">NC</span> The literal constitutive Chayet–Garibaldi no-go depends on imported real-form
+facts and is not proved by the 2x2 algebra alone. <span class="tag MA">MA</span></p>
+
+<h3>16.I.59(a) — Single-hyperbola qSaw lift</h3>
+<p>Fixed-radius hyperbola <span class="formula">Sigma^2 - Delta^2 = mu^2</span>, the qSaw lift
+<span class="formula">A_+' = 2A_+^2/mu</span>, <span class="formula">A_-' = 2A_-^2/mu</span>, mu-invariance,
+<span class="formula">Delta'/Sigma' = tanh 2r</span>, the inverse descent inverting the lift, and the
+uniqueness argument from <span class="formula">A_+'/A_-' = (A_+/A_-)^2</span> plus
+<span class="formula">A_+'A_-' = mu^2/4</span> all check. <span class="tag NC">NC</span>
+Microscopic outer square: <span class="formula">det R_I = 0</span> on the scalar-null branch,
+<span class="formula">R_I = v v^T</span>, <span class="formula">P_I = (1/2)[I + Pi_C Z + epsilon_P(mu/Sigma)X]</span>
+idempotent with <span class="formula">|n| = 1</span>. <span class="tag NC">NC</span>
+Half-rapidity descent: <span class="formula">Q = Pi/(1+c) = tanh w</span>,
+<span class="formula">S = sqrt(2c/(1+c)) = sech w</span>, <span class="formula">C_{(1/2)}^2 = I</span>.
+<span class="tag NC">NC</span> Phi_2 source: <span class="formula">det K_{Phi_2} = 0</span>,
+<span class="formula">det K_action = (4mu^2/49)(g_A^2 - g_P^2)</span>,
+<span class="formula">N_{3875} = 3 tr(K_{Phi_2})</span>. <span class="tag NC">NC</span>
+Precision defect: the printed <span class="formula">rank K_action = 1</span> iff
+<span class="formula">|g_P| = |g_A|</span> omits the zero-coupling case
+<span class="formula">g_A = g_P = 0</span>, which satisfies the equality but gives rank 0; the correct
+statement needs <span class="formula">|g_P| = |g_A| != 0</span>. <span class="tag IC">IC</span>
+Heavy-field rank protection <span class="formula">K^T M^{-1} K = (u^T M^{-1} u) p p^T</span> for
+<span class="formula">K = u p^T</span> checks on random positive-definite <span class="formula">M</span>.
+<span class="tag NC">NC</span> The remaining amplitude gate (radial activation) is open.
+<span class="tag MA">MA</span></p>
+
+<h3>16.I.60(a) — Projective algebraic full-E8 lift and A4</h3>
+<p>Spectral subtraction: <span class="formula">spec S(W_-)|_{PK} = {120, 600}</span>,
+<span class="formula">E_0|_{PK} = -480 P_+</span>, <span class="formula">-480 = -16 h^vee</span>.
+<span class="tag NC">NC</span> Transport: <span class="formula">E(w)| = -240[[1,e^{-w}],[e^w,1]]</span>,
+<span class="formula">Kcal_w| = (S/2)[[e^w,1],[1,e^{-w}]] = (1/2)[I + QZ + SX]</span>.
+<span class="tag NC">NC</span> Projective ladder: <span class="formula">A_- t^4 - A_+ = 0</span>,
+<span class="formula">qSaw(Q) = (t^4-1)/(t^4+1) = tanh 2w</span>, <span class="formula">P_cf</span> rank one.
+<span class="tag NC">NC</span> The graded realization is internally consistent:
+<span class="formula">Kcal(t) = -(S/480)G E(t)</span> with the manuscript's
+<span class="formula">E(t) = t^{-1}E_{(+2)} + E_{(0)} + tE_{(-2)}</span> reproduces the stated
+<span class="formula">Kcal(t)</span> and <span class="formula">Kcal(r,s)</span> exactly.
+<span class="tag NC">NC</span> Flag, not a defect: identifying <span class="formula">E_{(pm2)}</span> with the
+§16.I.60.2 matrices puts the <span class="formula">t^{pm1}</span> powers the other way round relative to the
+dilation action; the manuscript never makes that identification explicitly, and its formulas are
+self-consistent. A4 contamination: <span class="formula">spec K_red = (g_0, g_0+g_1)</span>,
+<span class="formula">det = g_0(g_0+g_1)</span>, reparametrization
+<span class="formula">aI + bC = (a+b)P_cf + (a-b)(I - P_cf)</span>. <span class="tag NC">NC</span>
+Full-E8 spectrum arithmetic: multiplicities sum to 248, trace
+<span class="formula">29760 = 31 x 960</span>, <span class="formula">T_w</span> multiplicities sum to 248,
+<span class="formula">Tr T_w = 248</span>, rank 244 / nullity 4, D8 dimensions
+<span class="formula">4+11+6+44+55 = 120</span>, <span class="formula">44+128 = 172</span>,
+<span class="formula">T_U = T_{PK} + I/4</span> with spectrum <span class="formula">(1/4, 5/4)</span>,
+the kernel projector polynomial <span class="formula">Pi_0</span> taking values
+<span class="formula">(1,0,0,0,0)</span> on the spectrum, and the
+<span class="formula">S_eff</span> prefactor <span class="formula">beta^2/2alpha</span>.
+<span class="tag NC">NC</span> (Multiplicity sums and the trace are exact integer arithmetic.)
+<span class="tag CP">CP</span> The full E8 spectrum and branching multiplicities themselves are manuscript
+assertions; checking their arithmetic does not establish them. <span class="tag MA">MA</span></p>
+
+<h3>16.I.60.9–12 — D4 trace pair, PhiBB no-go, exchange reflection, compensated involution</h3>
+<p>D4 trace pair: <span class="formula">Khat_w = (1/2)(AI + BZ + EX)</span>,
+<span class="formula">Pi_C = tanh 2w</span>, <span class="formula">Xi_C = 4e_P cosh w/(cosh zeta + 3)</span>,
+<span class="formula">R_Z[K] = Pi_C</span>. <span class="tag NC">NC</span>
+The trace-pair identity <span class="formula">cosh zeta + 3 = 2[tr(K^2) + tr(KXKX)]</span> (line 2517)
+was verified both numerically and by symbolic computation, so
+<span class="formula">R_X[K] = Xi_C</span> follows as the manuscript derives it; an earlier draft suspicion
+against this identity was an arithmetic error in the audit, now corrected. <span class="tag SC">SC</span>
+The <span class="formula">N_C^2</span> closed form checks. <span class="tag NC">NC</span>
+PhiBB no-go: <span class="formula">dV/dzeta = -A mu sinh zeta</span> vanishes only at
+<span class="formula">zeta = 0</span>, <span class="formula">V''(0) = -2kappa_N</span>,
+<span class="formula">V''(zeta_*) = 16kappa_N/27</span> at <span class="formula">cosh zeta_* = 3</span>;
+purely radial stabilization cannot generate finite D4 vacua. <span class="tag NC">NC</span>
+Exchange reflection: the <span class="formula">C_Y</span> eigenspace dimensions sum to 248 and the 12/16
+eigenspaces give the wedge-15 exchange. <span class="tag CP">CP</span> The chiral obstruction claim itself
+is a manuscript assertion. <span class="tag MA">MA</span>
+Compensated involution: the Spin(10)xSpin(4,2) branching dimensions sum to 248 and the
+<span class="formula">(16,bar4) &lt;-&gt; (bar16,4)</span> exchange preserves the 128.
+<span class="tag CP">CP</span> The PASS/NO-GO/OPEN verdicts (genuine involutive lift, bare reflection not an
+automorphism, action invariance still open) are manuscript assertions. <span class="tag MA">MA</span></p>
+
+<h3>2026-08-25 addendum — 3875 BB coefficient</h3>
+<p>At <span class="formula">g_{PhiBB} Sigma_I/alpha = 7/48</span>:
+<span class="formula">m_D = 0</span>, <span class="formula">m_I = alpha/5</span>. <span class="tag CP">CP</span>
+At the D4 point <span class="formula">Sigma_I = 3mu = 6|y|</span>; the filtered D-soft condition
+<span class="formula">g_{PhiBB} mu/alpha = 7/144</span> follows. <span class="tag CP">CP</span>
+The two forms of the 27000 crossing equation are equivalent, and the boxed ratio
+<span class="formula">g_{PhiBB}/g_{27000} = -(175/24)(epsilon epsilon_P)(alpha/mu_M)</span> follows from the
+two critical conditions via <span class="formula">1050/144 = 175/24</span>. <span class="tag CP">CP</span>
+The overlap value, nonzero activation, and <span class="formula">N_4 &gt; 0</span> remain conditional or open.
+<span class="tag MA">MA</span></p>
+
+<h3>16.I.59(b) — Quartic 135 necessity and existence</h3>
+<p><span class="formula">C(16,4) = 1820</span>, <span class="formula">16x17/2 - 1 = 135</span>,
+<span class="formula">Sym^2(128) = 8256 = 1+1820+6435</span>,
+<span class="formula">Alt^2(128) = 8128 = 120+8008</span>. <span class="tag CP">CP</span>
+The explicit 4-form <span class="formula">Q_4(F,G)</span> is symmetric, traceless, SO(16)-equivariant, and
+nonzero on a basis wedge (<span class="formula">Q_{00} = 9/2</span>). <span class="tag NC">NC</span>
+For <span class="formula">F(w) = e^w F_+ + epsilon_P F_0 + e^{-w} F_-</span>, the quartic response
+<span class="formula">H_{135}(w) = Q(F(w),F(w))</span> expands with exactly the weights
+<span class="formula">(+2,+1,0,-1,-2)</span> and the stated coefficient formulas. <span class="tag NC">NC</span>
+Weyl dimensions check: <span class="formula">dim(10000000) = 3875</span>,
+<span class="formula">dim(00000010) = 30380</span>, <span class="formula">dim(00000001) = 248</span>
+(Bourbaki), and the cited exact Freudenthal table sums to 30380. <span class="tag NC">NC</span>
+That the 135 route is the physical one (<span class="formula">pi_{135} Phi J = cQ</span>) is open.
+<span class="tag MA">MA</span></p>
+
+<h3>16.I.60(b) — SO(16) quartic-135 uniqueness</h3>
+<p><span class="formula">C(16,6) = 8008</span>. <span class="tag CP">CP</span>
+The 6-form <span class="formula">Q_6(C,D)</span> is symmetric, traceless, and nonzero on a basis 6-wedge
+(<span class="formula">Q_{00} = 75</span>, <span class="formula">Q_{66} = -45</span>). <span class="tag NC">NC</span>
+Whether the six-form reduction selects the live E8 route is open. <span class="tag MA">MA</span></p>
+
+<h3>16.I.61 — 1820 to 30380 linear no-go</h3>
+<p><span class="formula">120+1920+7020+8008+13312 = 30380</span>,
+<span class="formula">248 = 120+128</span>,
+<span class="formula">Alt^2(248) = 30628 = 248+30380</span>. <span class="tag CP">CP</span>
+The common-parent bifurcation claim is a manuscript assertion. <span class="tag MA">MA</span></p>
+
+<h3>16.I.62 — 8008 quartic-135 uniqueness</h3>
+<p>Covered under §16.I.60(b) above: the six-form witness is nonzero and traceless.
+<span class="tag NC">NC</span> The physical selection claim is open. <span class="tag MA">MA</span></p>
+
+<h3>16.I.63 — Two-frame fermion Veronese lift</h3>
+<p><span class="formula">T(chi) = r^2 T_+ + rs T_0 + s^2 T_-</span> with the stated
+<span class="formula">T_pm, T_0</span>. <span class="tag NC">NC</span>
+Half-rung weights <span class="formula">(+1,0,-1)</span> from
+<span class="formula">r = e^{w/2}, s = epsilon_P e^{-w/2}</span>. <span class="tag NC">NC</span>
+Scalar-amplitude no-go: <span class="formula">r(w)s(w)</span> is w-independent on the reciprocal half-rung,
+so the direction is fixed. <span class="tag NC">NC</span>
+Single-frame no-go: <span class="formula">A = B</span> gives <span class="formula">Alt T(chi) = 0</span>
+exactly. <span class="tag CP">CP</span>
+Three-state reconstruction
+<span class="formula">X(q) = u X_b + (1-u+q)X_+/2 + (1-u-q)X_-/2</span> holds for every quadratic
+<span class="formula">X</span>. <span class="tag NC">NC</span>
+Quartic descendants inherit the weight set
+<span class="formula">{a+b : a,b in {+1,0,-1}} = {+2,+1,0,-1,-2}</span>. <span class="tag CP">CP</span>
+Selection of the frames <span class="formula">A, B</span> and nonzero 8008 projection are open.
+<span class="tag MA">MA</span></p>
+
+<h3>Defects, flags, and audit corrections</h3>
+<p>1. Line 1614: the Schur-complement formula is <span class="tag IC">IC</span> as printed; the correct
+value is <span class="formula">(R_B^2/R_D)e^{-theta_D J}</span>.
+2. Line 1925: the <span class="formula">rank K_action = 1</span> iff
+<span class="formula">|g_P| = |g_A|</span> needs <span class="formula">|g_P| = |g_A| != 0</span>;
+<span class="tag IC">IC</span> as a biconditional.
+3. Flag: §16.I.60.4 grade labels <span class="formula">E_{(pm2)}</span> run opposite to the dilation action
+if identified with the §16.I.60.2 matrices; the manuscript's formulas are internally consistent, so this
+is a notational tension, not a defect.
+4. Numbering: <span class="formula">16.I.59</span> heads both line 1756 (qSaw lift) and line 2821
+(quartic 135); <span class="formula">16.I.60</span> heads both line 2006 (full-E8 lift) and line 2879
+(SO(16) uniqueness). Noted, not normalized.
+5. Audit corrections: a draft suspicion against the line-2517 trace identity was the audit's own arithmetic
+error — the identity is correct (<span class="tag SC">SC</span>). A draft §16.I.60.12
+<span class="formula">U(theta)^2 = I</span> check and a draft addendum <span class="formula">delta_w(T)</span>
+check were based on misreadings; no such formulas occur in the source. Both were removed, not the source.</p>
+
+<h3>Frontier addendum, first block — §§16.I.61–16.I.77 (source lines 3197–6964)</h3>
+<p>Every source line in the interval was read continuously. The check script
+<code>audit_16b.py</code> ran 43 assertions: <b>43 passed, 0 failed</b> (one initial
+failure was a substitution bug in the check itself — the manuscript identity held; the
+check was fixed and re-run green). The full claim-by-claim ledger is
+<code>LEDGER_b.md</code>: 139 entries — <span class="tag CP">CP</span> 106,
+<span class="tag SC">SC</span> 6, <span class="tag NC">NC</span> 3,
+<span class="tag ST">ST</span> 2, <span class="tag MA">MA</span> 22, no
+<span class="tag AX">AX</span>, <span class="tag IN">IN</span>, or
+<span class="tag IC">IC</span>.</p>
+
+<h3>§16.I.57 addendum — algebraic gates (authoritative per the 2026-08-21 note)</h3>
+<ul>
+<li>Algebraic null-shift collapse of the soft-B escape (T1): exactness
+<span class="formula">δB₀ = dv</span> forces <span class="formula">Λ₂ = −B<sub>s</sub></span>,
+so <span class="formula">B+Λ₂ = B<sub>a</sub>−B<sub>s</sub></span>. <span class="tag CP">CP</span></li>
+<li>Conditional Chern–Weil activation (T2): <span class="formula">dΘ₄ = 0</span> by invariance and
+Bianchi; nonzero topological charge forces nonzero curvature somewhere. <span class="tag CP">CP</span></li>
+<li>Lorentz-stabilizer reduction (T3) and Π<sub>wF</sub> demotion (C3): the D-term drops at
+quadratic curvature order given <span class="formula">[D,M] = 0</span>. <span class="tag CP">CP</span></li>
+<li>Curvature-induced coframe Hessian (T4): direct, conditional on the displayed schematic
+Palatini parent. <span class="tag CP">CP</span></li>
+</ul>
+
+<h3>§§16.I.61–62 — exterior-rank firewall and auxiliary-B closure</h3>
+<ul>
+<li>Pullback rank obstruction (16.I.61.T1): rank <span class="formula">φ*</span> &lt; 4 kills
+pullback four-forms; rapidity alone cannot supply the missing rank (C3). <span class="tag CP">CP</span></li>
+<li>One-generator Chern–Weil stationarity (16.I.61.T2): nonsimple <span class="formula">F</span> in four
+dimensions makes <span class="formula">L<sub>F</sub></span> invertible, hence
+<span class="formula">Π₀F = 0</span>. <span class="tag CP">CP</span></li>
+<li>Homogeneous auxiliary-B closure no-go (16.I.62.T1): <span class="formula">B = M⁻¹KF</span>,
+<span class="formula">S<sub>eff</sub> = −½FᵀKᵀM⁻¹KF</span>; no additive connection current, no
+positive-degree activation from this class (C1–C3). <span class="tag CP">CP</span></li>
+<li>Degree-two normal form (T2) and the ordinary-gradient 2→3→4 exterior hierarchy
+(C4–C5): <span class="formula">dw∧dw = 0</span> does the work. <span class="tag CP">CP</span></li>
+</ul>
+
+<h3>§§16.I.64–66 — moment-map source, Hodge gates, topology gap</h3>
+<ul>
+<li>Same-exterior-form preservation (16.I.64.D): <span class="formula">J<sub>C</sub> = XF ⇒
+H<sub>C</sub>(XF) = (H<sub>C</sub>X)F</span>. <span class="tag CP">CP</span> (conditional on the branch factorization)</li>
+<li>Ambient rank-four witness (16.I.64.E): <span class="formula">H(E) = 2k[(tr E)I−Eᵀ]</span>
+has eigenvalues <span class="formula">6k : 1</span>, <span class="formula">−2k : 9</span>,
+<span class="formula">+2k : 6</span>; <span class="formula">det = −3·2<sup>16</sup>k<sup>16</sup></span>.
+<span class="tag CP">CP</span> (16×16 matrix reconstructed and diagonalized)</li>
+<li>Real-normal-plane noncollapse (16.I.65.1): <span class="formula">ua+vb = 0 ⇒ Im(ab̄) = 0</span>;
+verified symbolically. <span class="tag CP">CP</span></li>
+<li>Quartic orientation-parent seed obstruction (16.I.66.1): homogeneity kills the origin seed.
+<span class="tag CP">CP</span></li>
+<li>Two-Pfaffian topology gap (16.I.66.4): <span class="formula">F = θ⁰∧θ¹</span>,
+<span class="formula">G = θ²∧θ³</span> gives <span class="formula">F∧G ≠ 0</span> with both
+Pfaffians zero. <span class="tag CP">CP</span></li>
+<li>Representation/action separation (16.I.65.2), BF/3875 action separation (16.I.66.2),
+audited-parent closure (16.I.66.3): status statements with the undetermined coefficients
+explicitly disclosed. <span class="tag MA">MA</span></li>
+</ul>
+
+<h3>§§16.I.67–70 — the linear/quadratic zero-form firewall</h3>
+<ul>
+<li>Multiplicity-one 3875 BF contraction (16.I.67.1) and multiplicity-one linear-30380 BF
+channel (16.I.68.1): follow from <span class="formula">Sym²(248) = 1⊕3875⊕27000</span> and
+<span class="formula">Λ²(248) = 248⊕30380</span>. <span class="tag CP">CP</span>/<span class="tag ST">ST</span></li>
+<li>Odd Schur-transfer commutator (16.I.68.5): <span class="formula">W₁ = K₀M⁻¹K<sub>C</sub> −
+K<sub>C</sub>M⁻¹K₀</span>, and <span class="formula">[M⁻¹,K<sub>C</sub>]</span> for
+<span class="formula">K₀ = I</span>; scalar-kernel cancellation (16.I.68.6):
+<span class="formula">W = m⁻¹(I−g²K<sub>C</sub>²)</span>. <span class="tag CP">CP</span> (verified symbolically)</li>
+<li>SO(16) block-parity firewall (16.I.69.1): <span class="formula">K<sub>C₀</sub>|₁₂₀ = 0</span> for
+<span class="formula">C₀ ∈ 8008</span>; bare-C, selector-commutator, and bare-C Schur routes
+all closed on the physical Lorentz pair (16.I.69.2–69.5). <span class="tag CP">CP</span></li>
+<li>Odd-heavy sandwich no-go (16.I.70.5): quadratic-8008 sources are tensorial under the
+Spin(16) center, so no 1920 component (16.I.70.3); the sandwich cannot close the odd channel.
+<span class="tag CP">CP</span></li>
+<li>Current-parent exhaustion (16.I.67.5) and evasion guidance (16.I.67.6, 16.I.70.6):
+status, correctly scoped to the audited class. <span class="tag MA">MA</span></li>
+</ul>
+
+<h3>§16.I.71 (three blocks) — exact 27000 multiplicity and exhaustive quadratic no-go</h3>
+<ul>
+<li>Two copies of 27000 in <span class="formula">30380⊗30380</span>, both symmetric
+(Thm 16.I.71.1, all three blocks). <span class="tag SC">SC</span> — the cited LieART 2.1.1
+computation; dimension sums independently verified:
+<span class="formula">dim Sym²(30380) = 461487390</span>,
+<span class="formula">30380² = 922944400</span>, and the exchange-parity allocation gives
+nonnegative Λ² multiplicities with 3875 and 27000 absent from
+<span class="formula">Λ²(30380)</span>.</li>
+<li>SO(16) branching checks: <span class="formula">27000↓ = 1⊕128⊕1820⊕5304⊕6435⊕13312</span>,
+<span class="formula">Sym²(120) = 1⊕135⊕1820⊕5304</span>,
+<span class="formula">Sym²(128) = 1⊕1820⊕6435</span>,
+<span class="formula">120⊗128 = 128⊕1920⊕13312</span>,
+<span class="formula">30380↓ = 120⊕1920⊕7020⊕8008⊕13312</span> — dimensions all sum correctly.
+<span class="tag CP">CP</span></li>
+<li>P/K type correction (16.I.71.CL1): <span class="formula">E₃₅/E₁₂</span> in §16.I.54 are not
+automatically adjoint vectors; the <span class="formula">m<sub>C</sub></span> inference is withdrawn
+by the manuscript itself. <span class="tag CP">CP</span></li>
+<li>Projection-ratio theorem (16.I.71.2, second block):
+<span class="formula">(P₂₇₀₀Q⁽²⁾)D = (4/3)(P₃₈₇₅Q⁽²⁾)D</span> from
+<span class="formula">(𝒦Q⁽²⁾)D = −4Q⁽²⁾D</span>; the 3/7, 4/7, 4/3 arithmetic verified.
+<span class="tag SC">SC</span> (manuscript's coefficientwise exact check)</li>
+<li>Exhaustive quadratic-27000 no-go (Thm 16.I.71.4 / Thm 16.I.71.2 third block): every
+E8-equivariant symmetric quadratic map has <span class="formula">X₁₂ = 0</span> on the
+four-line normal carrier; <span class="formula">{Ψ₁,Ψ₂}</span> is a basis and the ten-point
+polarization audit closes the carrier. <span class="tag CP">CP</span> (argument complete;
+the <span class="formula">Q⁽²⁾D</span>/<span class="formula">Ψ₁D</span> vectors and the ten
+<span class="formula">F<sub>r</sub> = 0</span> evaluations are the manuscript's exact
+computations, not rerun)</li>
+<li>Zero-form exhaustion (16.I.71.5): singlet, 3875, and 27000 channels each closed —
+no symmetric zero-form quadratic constitutive operator supplies the missing Hodge-12 plane.
+<span class="tag CP">CP</span></li>
+</ul>
+
+<h3>§§16.I.72–74 — quasi-linear Saw–Hodge descent (the surviving branch)</h3>
+<ul>
+<li>Fixed-polynomial firewall separation (16.I.72.1): the no-goes neither produce nor forbid
+the descended response. <span class="tag MA">MA</span> (scope declaration)</li>
+<li>Internal-rank formula (16.I.72.3): <span class="formula">det A<sub>QL</sub> =
+ρ⁴·2Π²c/(1+c)³</span>, rank 4 iff <span class="formula">ρ<sub>PK</sub> ≠ 0</span>,
+<span class="formula">Π ≠ 0</span>. <span class="tag NC">NC</span> (qSaw half-angle identities
+verified at 25 points)</li>
+<li>Trace-pair identities (16.I.73.3): <span class="formula">N<sub>Z</sub>/D<sub>Z</sub> =
+tanh 2w</span>, <span class="formula">N<sub>X</sub>/D<sub>X</sub> = 2ε<sub>P</sub>cosh w/(cosh²w+1)</span>.
+<span class="tag NC">NC</span> (2×2 matrix identities at 21 rapidity points × both signs)</li>
+<li>Exact projectors (16.I.74.2, 16.I.74.4): <span class="formula">Π₀</span> and
+<span class="formula">Π<sub>L</sub></span> pick out eigenvalues 0 and 3/4 of the five-value
+spectrum. <span class="tag CP">CP</span> (polynomials checked at all five eigenvalues)</li>
+<li>Single-parent numerator/Hessian pair (16.I.74.6):
+<span class="formula">Δ⁻¹NE₃₅ = Π<sub>C</sub>E₃₅ + Ξ<sub>C</sub>E₁₂</span>.
+<span class="tag CP">CP</span></li>
+</ul>
+
+<h3>§§16.I.75–76 — tangent extraction, Hessian, auxiliary elimination</h3>
+<ul>
+<li>Tangent norm closure (16.I.75.1, both blocks): <span class="formula">s<sub>C</sub> =
+γ|c|² ≠ 0</span> conditional on real invertible <span class="formula">T<sub>N</sub></span>
+(16.I.65.1). <span class="tag CP">CP</span></li>
+<li>Nonseparable Hessian determinant (16.I.75.4 / second-block 16.I.75.3):
+<span class="formula">−3·2<sup>16</sup>k<sup>16</sup>p<sup>10</sup>(p²+4q²)³</span>;
+the <span class="formula">q = 0</span> limit reproduces the 16.I.64 witness exactly.
+<span class="tag SC">SC</span> (manuscript's 16×16 evaluation; limit and scaling verified)</li>
+<li><span class="formula">π₃(E8(−24)) = ℤ⊕ℤ</span> (16.I.75.6). <span class="tag ST">ST</span> (imported)</li>
+<li>Split-signature (8,8) for <span class="formula">K<sub>X</sub>⊗L<sub>F</sub></span> (16.I.75.8).
+<span class="tag CP">CP</span> (verified on 20 random antisymmetric pairs)</li>
+<li>Radial stabilization (16.I.75.11): min of <span class="formula">Aq²+Bq⁴</span> at
+<span class="formula">q*<sup>2</sup> = −A/(2B)</span>, <span class="formula">A &lt; 0 &lt; B</span>.
+<span class="tag CP">CP</span></li>
+<li>Holst–Einstein–Cartan reduction (16.I.76.6):
+<span class="formula">(Π<sub>C</sub>I−Ξ<sub>C</sub>∗<sub>L</sub>)⁻¹ =
+(Π<sub>C</sub>I+Ξ<sub>C</sub>∗<sub>L</sub>)/(Π<sub>C</sub>²+Ξ<sub>C</sub>²)</span>.
+<span class="tag CP">CP</span> (verified numerically)</li>
+<li>Mirror-sign firewall (16.I.76.9): <span class="formula">Ξ<sub>C</sub>J<sub>L</sub></span> is
+mirror-even, so the Hodge-12 term keeps its sign. <span class="tag CP">CP</span></li>
+<li>One coframe kinetic line (16.I.76.8), Schur/BRST reduction (16.I.76.10): explicitly
+narrower than a full spectrum/BRST theorem. <span class="tag MA">MA</span></li>
+</ul>
+
+<h3>§16.I.77 — principal-symbol spin-two audit</h3>
+<ul>
+<li>Unique Einstein-type principal-symbol theorem (16.I.77.6): exactly one candidate
+corridor carries the correct <span class="formula">(6,2)</span> principal symbol; the
+(10,4) danger is silent (16.I.77.3). <span class="tag CP">CP</span> — correctly scoped as
+<i>candidate</i> blocks; weaker than a full BRST spectrum theorem, which is not claimed.</li>
+</ul>
+
+<h3>Defects found</h3>
+<ul>
+<li>Duplicate <b>§16.I.61</b>: line 2953 ("1820→30380 Linear No-Go and Common-Parent
+Bifurcation") and line 3361 ("Pullback Exterior-Rank Obstruction…"). References to
+"§16.I.61" are ambiguous.</li>
+<li>Duplicate <b>§16.I.75</b>: line 5322 (items 16.I.75.1–16.I.75.12) and line 6224
+(items 16.I.75.1–16.I.75.8, Corollary 16.I.75.4, Theorem 16.I.75.5). Item numbers
+16.I.75.1–16.I.75.8 each denote two different results; "Theorem 16.I.75.5" (line 6452)
+collides with "16.I.75.5" (line 5502).</li>
+<li>Triplicate <b>§16.I.71</b>: lines 4251, 6554, 6712. "Theorem 16.I.71.1" denotes three
+different statements (lines 4257, 6570, 6756); "Theorem 16.I.71.2" denotes two
+(lines 6612, 6890).</li>
+<li>Symbol mismatch in §16.I.76.1 (lines 5772–5782): <span class="formula">u<sub>F</sub> :=
+P<sub>F</sub>D<sub>A</sub>C</span> is defined but never used; the displayed filtered moment
+map uses <span class="formula">ν<sub>F</sub></span>, which is never defined. Likely intended
+<span class="formula">ν<sub>F</sub> := P<sub>F</sub>D<sub>A</sub>C</span>.</li>
+</ul>
+
+<h3>Remains open (manuscript's own ledger, confirmed)</h3>
+<ul>
+<li>A correctly typed lower-exterior-degree orientation-odd microscopic parent for
+<span class="formula">ρ<sub>PK</sub></span>; common-action normalization of the
+<span class="formula">Q⁽²⁾</span> 3875/27000 source; base Pfaffian activation;
+<span class="formula">N₄ &gt; 0</span>; BRST ghost-number-zero survival; exactly one healthy
+spin-2; absolute mirror selection. None of these are closed by the material in this chunk.</li>
+</ul>
+
+<h3>§§16.I.78–16.I.98 (source lines 6965–14042)</h3>
+<p>Every source line in the interval was read continuously (ending immediately before
+<code>§16.I.99</code> at line 14043). The check script <code>audit_16c.py</code> ran
+127 assertions: <b>127 passed, 0 failed</b>. One initial failure was a check-script bug
+(wrong derivative variable in the <span class="formula">A''<sub>*</sub></span> comparison — the
+manuscript formula was correct); fixed and re-run green. The other initial failure was the
+script correctly rejecting the manuscript's <span class="formula">h<sub>R</sub>(v<sub>a</sub>,C) = 0</span>
+derivation, which is the documented <span class="tag IC">IC</span> defect below. The full
+claim-by-claim ledger is <code>LEDGER_c.md</code>.</p>
+
+<h3>§16.I.78 — Moving-projector equivariance and the spin-two BRST theorem (6965)</h3>
+<ul>
+<li>Moving-projector conjugation law and filtered-derivative homogeneity: the operator identity
+<span class="formula">δν<sub>F</sub> = [E,P<sub>F</sub>]D<sub>AC</sub> + P<sub>F</sub>ED<sub>AC</sub> = Eν<sub>F</sub></span>
+verified on random matrices. <span class="tag NC">NC</span> (the physical reading is
+<span class="tag MA">MA</span>)</li>
+<li>Physical-orbit Goldstone/ghost BRST-doublet contractibility and the Fierz–Pauli two-polarization
+count: formal, action-relative. <span class="tag MA">MA</span></li>
+<li>Principal spin-two BRST theorem (7285) and the no-second-graviton firewall (7314): the section's
+argument is complete only given the §§16.I.76–77 transport and BRST premises, which are outside this
+chunk. <span class="tag MA">MA</span></li>
+</ul>
+
+<h3>§16.I.79 — Effective Newton sign (7322)</h3>
+<ul>
+<li>Coefficient-reduction theorem (7536): action-coefficient algebra resting on §16.I.76 premises.
+<span class="tag MA">MA</span></li>
+<li><span class="formula">t<sub>L</sub> = 3/4 &gt; 0</span>. <span class="tag NC">NC</span></li>
+<li><span class="formula">βg<sub>J</sub>/α</span> invariant under nonzero <span class="formula">B</span>
+rescaling: <span class="formula">(sβ)(sg<sub>J</sub>)/(s<sup>2</sup>α) = βg<sub>J</sub>/α</span>.
+<span class="tag SC">SC</span></li>
+<li>Isolated-parent sign no-go (7550): no derived separately-normalized matter sector exists in the
+chunk, so the sign stays relative. <span class="tag MA">MA</span></li>
+</ul>
+
+<h3>§16.I.80 — Scalar principal-symbol reduction (7580)</h3>
+<ul>
+<li><b>Defect.</b> Boxed <span class="formula">h<sub>R</sub>(v<sub>a</sub>,C) = 0</span> (7646–7653):
+<span class="tag IC">IC</span>. Setting <span class="formula">u = v = C</span> in
+<span class="formula">h<sub>R</sub>(h<sub>a</sub>u,v) + h<sub>R</sub>(u,h<sub>a</sub>v) = 0</span> gives
+<span class="formula">h<sub>R</sub>(h<sub>a</sub>C,C) + h<sub>R</sub>(C,h<sub>a</sub>C) = 0</span>, and skew
+makes the second term the negative of the first: the result is <span class="formula">0 = 0</span>, not the
+printed <span class="formula">2h<sub>R</sub>(h<sub>a</sub>C,C) = 0</span> (sign error). Counterexample in the
+script: <span class="formula">h<sub>R</sub></span>-skew <span class="formula">H</span> with
+<span class="formula">h<sub>R</sub>(HC,C) = −1 ≠ 0</span>.</li>
+<li>Dependent boxed <span class="formula">P<sub>F</sub>C = 0</span> (7656–7660):
+<span class="tag IC">IC</span> as proved — its only given proof is the defective lemma above.</li>
+<li><span class="formula">N<sub>scalar,radial</sub> = 0</span> / "pure radial derivative annihilated":
+<span class="tag IC">IC</span> as proved (rests on the IC lemma). The scalar no-go theorem (7831) is
+otherwise an action-relative manuscript theorem. <span class="tag MA">MA</span></li>
+<li>Schur reduction <span class="formula">V<sub>*</sub> = −A<sup>2</sup>/(4B)</span>,
+<span class="formula">q<sub>*</sub><sup>2</sup> = −A/(2B)</span>,
+<span class="formula">V''(q<sub>*</sub>) = −4A</span>: verified symbolically.
+<span class="tag SC">SC</span></li>
+<li><span class="formula">F<sub>D</sub> = 0</span> from <span class="formula">[D,M<sub>ab</sub>] = 0</span>,
+<span class="formula">d<sup>2</sup>w = 0</span>: derivation complete from the stated manuscript premise.
+<span class="tag CP">CP</span></li>
+</ul>
+
+<h3>§16.I.81 — Fixed-ray selector Hessian (7861)</h3>
+<ul>
+<li><span class="formula">y</span>-forms of <span class="formula">Π<sub>C</sub>, Ξ<sub>C</sub></span> match the
+<span class="formula">w</span>-forms. <span class="tag NC">NC</span></li>
+<li>Stationarity <span class="formula">v/u = −(y<sup>2</sup>+2)<sup>2</sup>/[y<sup>3</sup>(2y<sup>2</sup>+1)<sup>2</sup>]</span>:
+<span class="tag SC">SC</span>; <span class="formula">R'(y)</span> formula, strict negativity, and the
+<span class="formula">+∞ → 0</span> limits: <span class="tag SC">SC</span></li>
+<li>Unique finite stationary point for every nonzero <span class="formula">v/u</span> (8016):
+<span class="tag SC">SC</span></li>
+<li><span class="formula">A<sub>*</sub></span>, <span class="formula">A''<sub>*</sub></span> formulas,
+<span class="formula">A<sub>*</sub>A''<sub>*</sub> &lt; 0</span>, sign relations: verified symbolically and
+at a sampled point. <span class="tag SC">SC</span></li>
+<li><span class="formula">H<sub>ww</sub><sup>Schur</sup> &gt; 0</span> for
+<span class="formula">B<sub>4</sub> &gt; 0</span>; joint radial branch iff
+<span class="formula">v &gt; 0</span>. <span class="tag SC">SC</span></li>
+<li>Conditional stability theorem (8171): complete given the declared fixed shared-form/co-moving
+reduction. <span class="tag CP">CP</span></li>
+</ul>
+
+<h3>§16.I.82 — Quasi-linear projectivization (8208)</h3>
+<ul>
+<li><span class="formula">κ(ℙ<sub>L</sub>J̶ ∧ ℙ<sub>L</sub>J̶) = 0</span>: the
+<span class="formula">(η<sub>ac</sub>η<sub>bd</sub> − η<sub>ad</sub>η<sub>bc</sub>)e<sup>a</sup> ∧ e<sup>b</sup> ∧ e<sup>c</sup> ∧ e<sup>d</sup></span>
+contraction vanishes by index symmetry. <span class="tag NC">NC</span></li>
+<li><span class="formula">δ<sub>σ</sub>ν<sub>F</sub> = σν<sub>F</sub></span> (8380): the algebra from
+<span class="formula">P<sub>F</sub>C = 0</span> is complete, but that premise is the IC lemma of §16.I.80 —
+so the unconditional claim is unproved as stated. <span class="tag MA">MA</span> (depends on IC lemma)</li>
+<li>Degree-zero theorem (8647), quotient no-go (8439), radial BRST doublet: formal, conditional on the
+new <span class="formula">S<sub>82</sub></span> parent — not a theorem about the original
+<span class="formula">S<sub>76</sub></span>. <span class="tag MA">MA</span></li>
+</ul>
+
+<h3>§16.I.83 — Vector no-go (8668)</h3>
+<ul>
+<li>E8 branching dimensions <span class="formula">248 = 45+15+60+64+64</span>,
+<span class="formula">15 = 6+4+4+1</span>: <span class="tag NC">NC</span></li>
+<li><span class="formula">N<sub>cal,w</sub> = N<sub>cal,w</sub>Π<sub>L</sub></span>,
+<span class="formula">N<sub>spin1</sub> = 0</span>, no Yang–Mills pole; theorem (8878): action-level,
+and the section itself warns (8798) not to call every zero-principal-symbol direction a physical zero
+mode. <span class="tag MA">MA</span></li>
+<li>Post-soldering Yang–Mills corridor: a conditional new mechanism, not present in the bare parent.
+<span class="tag MA">MA</span></li>
+</ul>
+
+<h3>§16.I.84 — Residual-internal projector (8910)</h3>
+<ul>
+<li><span class="formula">Π<sub>10</sub><sup>2</sup> = Π<sub>10</sub></span>,
+<span class="formula">Π<sub>10</sub>Π<sub>L</sub> = 0</span>, rank
+<span class="formula">45 = 51 − 6</span>: projector algebra verified, conditional on
+<span class="formula">Π<sub>h</sub>Π<sub>L</sub> = Π<sub>L</sub></span> and the §16.I.60 stabilizer premise.
+<span class="tag NC">NC</span></li>
+<li><span class="formula">Z<sub>10</sub> = 0</span>, normalization no-go (9180), theorem (9168): action-level.
+<span class="tag MA">MA</span></li>
+</ul>
+
+<h3>§16.I.85 — Spinorial decomposition (9196)</h3>
+<ul>
+<li>Lorentz Clebsch dimensions <span class="formula">8 = 6+2</span> both chiralities.
+<span class="tag NC">NC</span></li>
+<li>Spin-3/2 availability in the E8 connection, bosonic statistics firewall, no propagating spin-3/2:
+the firewall argument is sound but the premises are manuscript action-level; spin-statistics itself is a
+standard import. <span class="tag MA">MA</span> / <span class="tag ST">ST</span></li>
+</ul>
+
+<h3>§16.I.86 — Connection Hessian rank bound (9418)</h3>
+<ul>
+<li><span class="formula">rank R<sub>C</sub> ≤ 4</span>: rests on the manuscript premise
+<span class="formula">rank P<sub>F</sub> = 4</span>. <span class="tag MA">MA</span></li>
+<li><span class="formula">dim ker ≥ 45 − 4 = 41</span>: rank-nullity arithmetic, conditional on the premise.
+<span class="tag NC">NC</span></li>
+<li>The "≥41 zero modes of the local action" phrasing (9727) is corrected by §16.I.87 itself (9754):
+read as null directions of the fixed-condensate connection block. Source qualification recorded.</li>
+</ul>
+
+<h3>§16.I.87 — Mixed bracket Hessian, 61-direction bound (9751)</h3>
+<ul>
+<li>Scope correction (9754): the manuscript explicitly narrows §16.I.86 — fixed-condensate block only,
+until coupled Schur analysis. Recorded as the source's own qualification.</li>
+<li>Orthogonal-bracket projection <span class="formula">Π<sub>L</sub>[X<sub>ia</sub>,X<sub>jb</sub>] =
+c<sub>6</sub>δ<sub>ij</sub>M<sub>ab</sub></span>: standard orthogonal algebra; the
+<span class="formula">W<sub>6</sub> = L<sub>4</sub> ⊕ N<sub>2</sub></span> split is manuscript-level.
+<span class="tag ST">ST</span> / <span class="tag MA">MA</span></li>
+<li>Seed rank <span class="formula">10 × 16 = 160</span>, <span class="formula">dim ker ≥ 65 − 4 = 61</span>:
+arithmetic, conditional on the nonzero-seed hypotheses. <span class="tag NC">NC</span></li>
+<li>Determinant formula (depends on §16.I.76.7) and the optional ≥62 dilation extension:
+<span class="tag MA">MA</span></li>
+</ul>
+
+<h3>§16.I.88 — Vector-spinor seed pairing (10140)</h3>
+<ul>
+<li><span class="formula">γ<sup>μν</sup>γ<sub>ν</sub> = 3γ<sup>μ</sup></span>,
+<span class="formula">T = −I</span> on gamma-traceless spin-3/2,
+<span class="formula">T = +3I</span> on gamma-trace spin-1/2, no kernel: verified on explicit Dirac matrices
+in the manuscript's <span class="formula">η = diag(−1,−1,−1,+1)</span> convention.
+<span class="tag NC">NC</span></li>
+<li><span class="formula">C<sub>S</sub><sup>−1</sup> = (Π<sub>C</sub>I + Ξ<sub>C</sub>j<sub>S</sub>)/(Π<sub>C</sub><sup>2</sup> + Ξ<sub>C</sub><sup>2</sup>)</span>:
+<span class="tag NC">NC</span>; rank <span class="formula">128 × 4 = 512</span>: <span class="tag NC">NC</span></li>
+<li>Rank-≤16 correction leaves nullity at most 16 on the invertible seed: complete rank-inequality
+argument. <span class="tag CP">CP</span></li>
+</ul>
+
+<h3>§16.I.89 — 228-component coupled-kernel theorem (10506)</h3>
+<ul>
+<li><span class="formula">dim K<sub>A</sub> ≥ 4 × 61 = 244</span>, mixed response through the 16-dimensional
+<span class="formula">Ω<sup>1</sup> ⊗ V<sub>C</sub></span>, nullity
+<span class="formula">≥ 244 − 16 = 228</span>: arithmetic verified, conditional on the declared
+<span class="formula">c<sub>contact</sub> = 0</span> branch and the factorization premise.
+<span class="tag NC">NC</span></li>
+<li>Firewall (10789): the manuscript states the ≥228 count is a local Hessian component count, not 228
+particles. Recorded as the source's own qualification.</li>
+<li>Contact-exclusion no-goes: depend on the declared branch. <span class="tag MA">MA</span></li>
+</ul>
+
+<h3>§16.I.90 — Primitive so(11,1) closure (10868)</h3>
+<ul>
+<li>Lagrange projectors <span class="formula">Π<sub>(1/4)</sub>, Π<sub>(5/4)</sub></span> and
+<span class="formula">Π<sub>G</sub> = −(4/15)T(T−I)(4T−11I)(4T−3I)</span>: polynomial identities verified
+symbolically on the five-eigenvalue spectrum. <span class="tag SC">SC</span></li>
+<li><span class="formula">rank Π<sub>G</sub> = 11 + 55 = 66</span>,
+<span class="formula">dim so(11,1) = 66</span>, <span class="formula">66 = 65 + 1</span>,
+<span class="formula">66 − 20 − 1 = 45</span>: <span class="tag NC">NC</span></li>
+<li>Cartan involution eigenvalues <span class="formula">+1</span> on
+<span class="formula">so(10)</span>, <span class="formula">I<sub>10</sub> ∧ a</span> and
+<span class="formula">−1</span> on <span class="formula">I<sub>10</sub> ∧ b</span>,
+<span class="formula">ℝD</span>: verified on the block model. <span class="tag NC">NC</span></li>
+<li><span class="formula">g<sub>G</sub> ≅ so(11,1)</span> bracket closure, <span class="formula">T<sub>w</sub></span>
+spectrum, <span class="formula">(ad D)<sup>2</sup> = I</span> on <span class="formula">N<sub>20</sub></span>:
+manuscript E8-computation premises. <span class="tag MA">MA</span></li>
+</ul>
+
+<h3>§16.I.91 — Normal-selector Stückelberg (11342)</h3>
+<ul>
+<li>Algebraic combination <span class="formula">B<sub>N</sub> = dπ + A<sub>N</sub></span> and local BRST
+triviality of the <span class="formula">N<sub>20</sub></span> sector: formal, conditional on the new
+conditional action term. <span class="tag MA">MA</span></li>
+</ul>
+
+<h3>§16.I.92 — Relational rapidity (11757)</h3>
+<ul>
+<li><span class="formula">w<sub>rel</sub> = ½artanh(Π<sub>C</sub>)</span> inverts
+<span class="formula">Π<sub>C</sub> = tanh(2w)</span>. <span class="tag NC">NC</span></li>
+<li><span class="formula">s w<sub>rel</sub> = 0</span>, <span class="formula">F<sub>D</sub> = 0</span>, no
+rapidity kinetic term in the declared action as written: formal/manuscript-level.
+<span class="tag MA">MA</span></li>
+</ul>
+
+<h3>§16.I.93 — D-grade odd projectors (12124)</h3>
+<ul>
+<li><span class="formula">Π<sub>sp</sub> = (1/3)Z<sup>2</sup>(4I − Z<sup>2</sup))</span>,
+<span class="formula">Π<sub>±</sub> = ½(I ± Z)Π<sub>sp</sub></span>: projector identities verified
+symbolically on grades <span class="formula">−2…2</span>. <span class="tag SC">SC</span></li>
+<li>Ranks <span class="formula">64 + 64 = 128</span>; <span class="formula">1 + 1820 + 6435 = 128·129/2</span>,
+<span class="formula">120 + 8008 = 128·127/2</span>, <span class="formula">248 + 30380 = 248·247/2</span>,
+<span class="formula">6 = 1 + 4 + 1</span>, <span class="formula">16 × 16 = 10 + 120 + 126</span>:
+<span class="tag NC">NC</span> (the E8 decompositions themselves are standard imports
+<span class="tag ST">ST</span>)</li>
+<li>Weyl-16 carrier and the both-grades-required condensate argument: manuscript representation-level.
+<span class="tag MA">MA</span></li>
+</ul>
+
+<h3>§16.I.94 — Normal exchange and the 8008 (12310)</h3>
+<ul>
+<li><span class="formula">β<sub>N</sub></span> annihilates the 8008 because
+<span class="formula">ker β = 30380</span> in <span class="formula">Λ<sup>2</sup>(248) = 248 ⊕ 30380</span>
+(standard); <span class="formula">P<sub>8008</sub>Q<sub>N</sub>P<sub>8008</sub> = 0</span>,
+<span class="formula">Δc = 0</span>: the representation premise is <span class="tag ST">ST</span>, the
+application manuscript-level. <span class="tag MA">MA</span></li>
+</ul>
+
+<h3>§16.I.95 — Falsified Q<sub>Y</sub> lift candidate (12400)</h3>
+<ul>
+<li>Theorem 16.I.95.T1 (12559): the candidate <span class="formula">q<sub>Y</sub> = exp[iπ(ad D)/4]𝒳</span>
+is falsified — an eigenspace-exchanging operator cannot equal the eigenspace-preserving
+<span class="formula">±*<sub>10</sub></span>. The obstruction logic is complete from the stated premises
+(anticommutation verified on an explicit 2×2 model). <span class="tag CP">CP</span></li>
+<li>Corollary C1 (12577): scalar grade dressing cannot repair it. <span class="tag CP">CP</span></li>
+</ul>
+
+<h3>§16.I.96 — Replacement lift and the contact no-go (12609)</h3>
+<ul>
+<li>Theorem 16.I.96.T1 (12852): the dihedral relations
+<span class="formula">R<sup>2</sup> = K</span>, <span class="formula">R<sup>8</sup> = I</span>,
+<span class="formula">PRP<sup>−1</sup> = R<sup>−1</sup></span>, <span class="formula">q<sub>ℓ</sub><sup>2</sup> = I</span>
+verified on explicit matrices <span class="tag NC">NC</span>; the lift argument is complete from its stated
+premises (Lorentz reflection choice, <span class="formula">Λ<sup>2</sup>R<sub>D</sub> =
+*<sub>10</sub> ⊗ Z<sub>N</sub></span>, <span class="formula">J<sub>I</sub></span> properties — manuscript-level).
+<span class="tag CP">CP</span></li>
+<li>Theorem 16.I.96.T2 (12969): <span class="formula">Q<sub>Y</sub></span>-orthogonality makes the Hermitian
+contact norm <span class="formula">Q<sub>Y</sub></span>-even, so no ordinary Ward parity from
+<span class="formula">Q<sub>Y</sub></span> can force <span class="formula">c<sub>contact</sub> = 0</span>:
+elementary and complete from the orthogonality premise. <span class="tag CP">CP</span></li>
+</ul>
+
+<h3>§16.I.97 — Gauge class and Jacobian (13070)</h3>
+<ul>
+<li>Theorem 16.I.97.T1 (13156) gauge-canonical lift: manuscript-level. <span class="tag MA">MA</span></li>
+<li><span class="formula">det q = (−1)<sup>64</sup> = +1</span> for the <span class="formula">64 + 64</span>
+grade exchange: verified on a random 64×64 model. <span class="tag NC">NC</span></li>
+<li>Theorem 16.I.97.T2 (13327): finite-mode Jacobian triviality follows from
+<span class="formula">det q = +1</span> — complete finite-dimensional linear algebra, not a global anomaly
+cancellation (the global anomaly is stated open). <span class="tag CP">CP</span></li>
+<li>Corollary C1 (13429): power counting <span class="formula">ω = 4 − 6 = −2</span> is arithmetic
+<span class="tag NC">NC</span>; the <span class="formula">dim ≤ 4</span> truncation it is conditional on is an
+explicit assumption <span class="tag AX">AX</span>.</li>
+</ul>
+
+<h3>§16.I.98 — Primitive fermionic dihedral double cover (13539)</h3>
+<ul>
+<li>Theorem 16.I.98.T1 (13636): <span class="formula">R<sup>8</sup> = 1</span>,
+<span class="formula">P<sup>2</sup> = 1</span>, <span class="formula">PRP<sup>−1</sup> = R<sup>−1</sup></span>
+hold on explicit matrices and the generated group has exactly 16 distinct elements — the ordinary
+order-16 dihedral presentation. <span class="tag NC">NC</span></li>
+<li>Theorem 16.I.98.T2 (13733): <span class="formula">R<sup>4</sup> = −I</span> is central; quotienting gives
+the order-8 <span class="formula">D<sub>4</sub></span> on pairs. Complete elementary group theory from the
+verified centrality. <span class="tag CP">CP</span></li>
+<li>Theorem 16.I.98.T3 (13823) and the split-extension remark: representation-level, manuscript premises.
+<span class="tag MA">MA</span></li>
+</ul>
+
+<h3>E8 30380 table citation</h3>
+<ul>
+<li>The completed exact weight/multiplicity table
+(<code>~/workspace/e8/table_30380_summary.json</code>) was re-read: Weyl dimension 30380, multiplicity
+sum 30380, 4 dominant weights, 9121 distinct weights, histogram
+<span class="formula">6720×1 + 2160×7 + 240×35 + 1×140 = 30380</span>. <span class="tag NC">NC</span>
+(per the assignment's labeling convention for this completed table).</li>
+</ul>
+
+<h3>§§16.I.99–16.I.117 (source lines 14043–20324)</h3>
+<p><b>Coverage.</b> Every line of the chunk was read. 47 numbered claims ledgered in
+<span class="formula">LEDGER_d.md</span>; computation in <span class="formula">audit_16d.py</span>:
+<b>173 assertions, 173 pass, 0 fail</b> (exit 0). Exact integer arithmetic where feasible;
+float checks at tol = 1e-9 unless noted. Line 20324 is the heading of §16.I.118 — inspected,
+not audited.</p>
+
+<h3>What the math established</h3>
+<ul>
+<li><b>Quarter dressing is not in the Spin(12,4) normalizer</b> (100.T1, <span class="tag CP">CP</span>).
+The quarter involution <span class="formula">R<sub>D</sub> = (1+K)/√2</span> conjugates
+<span class="formula">X ↦ −XK</span>, landing in the degree-4 Hodge sector (1820-dimensional),
+not the 120-dimensional spin action — dimensions 120 and 1820 are not even equal, so no
+normalizer relation can hold. Conjugation identity and both dimensions verified; Hodge duality
+cited as standard. Corollaries C1 (no normalizer for the primitive q) and T2 (no full-E8(-24)
+automorphism extension, via the surjective odd–odd bracket 8128−8008=120) are checked proofs.</li>
+<li><b>No full-E8 lift can induce the Grassmannian Hodge-complement action</b> (101.T2,
+<span class="tag CP">CP</span>). The ⋂<sub>A∋v</sub>A<sup>⊥</sup>={0} argument is elementary and
+complete: it forces v=0 against the required q_Y(v)≠0. Every step verified.</li>
+<li><b>Z<sub>+</sub>=Z<sub>−</sub> is the unique positive q-fixed kinetic surface</b> (102.T2,
+<span class="tag CP">CP</span>). <span class="tag MA">MA</span> on what it is not: the manuscript
+does not derive why dynamics impose it.</li>
+<li><b>Oriented Fujikawa closure is exact, conditional on the index divisibility</b> (104.T2,
+<span class="tag CP">CP</span>): <span class="formula">J(R<sub>D</sub>) = e<sup>−iπ·4k/2</sup> = 1</span>
+for all integer k (checked symbolically); the unoriented <span class="formula">J(U) = (−1)<sup>k</sup></span>
+alternates. The divisibility <span class="formula">Ind(D<sub>16</sub>) ∈ 4ℤ</span> (104.T1) is a
+manuscript assertion (<span class="tag MA">MA</span>). The three local-anomaly facts are standard
+imports (<span class="tag ST">ST</span>): so(10) has no symmetric cubic Casimir —
+<span class="formula">d<sup>ABC</sup> = 0</span> verified in exact integer arithmetic in the faithful
+vector representation.</li>
+<li><b>The §16.I.106 sign error is corrected in-chunk.</b> §16.I.107 retracts the claim that the known
+compensator g<sub>X</sub> flips the quarter pseudoscalar: the product-Hodge sign is
+(−1)·(−1)=+1 (verified), so g<sub>X</sub> preserves the quarter projector and acts
+(D,P<sub>0</sub>)↦(−D,+P<sub>0</sub>). Ledger: 106.T2 and its dependent 106.C1 are
+<span class="tag IC">IC</span>; the correction is <span class="tag CP">CP</span>.</li>
+<li><b>Compatible 126 lines exist with line character μ<sub>4</sub></b> (§16.I.108).
+The canonical <span class="formula">u<sub>α</sub> = α − i*α</span> satisfies
+<span class="formula">*<sub>10</sub>u<sub>α</sub> = iu<sub>α</sub></span>, and an explicit
+SO(10) element (det verified +1) acts as <span class="formula">Su<sub>α</sub> = iu<sub>α</sub></span>
+— both checked in a 252-dimensional 5-form model. The λ<sub>Xq</sub> consistency condition is
+exactly <span class="formula">Re(ab̄) = 0</span>, giving <span class="formula">φ<sub>a</sub> = σπ/4 mod π</span>
+(<span class="tag CP">CP</span>).</li>
+<li><b>The c = g<sub>X</sub>q fixed real quarter locus is nonempty</b> (§16.I.109,
+<span class="tag CP">CP</span>), with the μ<sub>4</sub>→μ<sub>2</sub> center-sign collapse proved by a
+dimension-parity contradiction (odd r). qSaw and rapidity are common-phase blind
+(<span class="tag CP">CP</span>).</li>
+<li><b>The declared S82 parent cannot select the common phase</b> (110.T1, <span class="tag MA">MA</span>),
+but <b>degree four is the first lawful phase-sensitive degree</b> (110.T2, <span class="tag CP">CP</span>):
+no holomorphic quadratic or cubic Spin(10) invariant can see the chiral common phase;
+<span class="formula">I<sub>4</sub>(u<sub>α</sub>) = tr M<sup>2</sup> = 10 ≠ 0</span> and
+<span class="formula">I<sub>4</sub>(e<sup>iψ</sup>u) = e<sup>4iψ</sup>I<sub>4</sub>(u)</span>, both verified.
+The (54,1) carrier is already produced by the earned Φ2 map (110, <span class="tag CP">CP</span>), and the
+parent quartic Gram matrix on the same-chirality carrier is rank one (111.T1, <span class="tag MA">MA</span>
+— uses an external SO(10) tensor certificate; all dimension sums verified).</li>
+<li><b>The Schur-complement mechanism is algebraically exact</b> (§16.I.112, <span class="tag CP">CP</span>):
+<span class="formula">g<sub>4</sub><sup>eff</sup> = −λ<sub>2</sub><sup>2</sup>/2m<sub>S</sub><sup>2</sup></span>,
+<span class="formula">g<sub>ΦBB</sub><sup>eff</sup> = −κλ<sub>2</sub>/m<sub>S</sub><sup>2</sup></span>
+(verified by completing the square, and the squared relation between them). For a healthy heavy 54
+block the induced quartic selects <span class="formula">φ<sub>a</sub> = π/4 mod π/2</span> at fixed
+radius — the odd-quarter lattice isolated independently in §16.I.109 (minima located numerically).</li>
+<li><b>E8 representation dimensions cited are exact.</b> Weyl dimension formula (exact integer
+arithmetic, independent of the manuscript): 248, 3875, 27000, 30380, 146325270 — all match, with
+Dynkin labels established computationally, not guessed. The 30380 table summary file is cited only
+as a completed exact computation (<span class="tag NC">NC</span>), never as proof.</li>
+</ul>
+
+<h3>What the math did not establish (firewalls preserved)</h3>
+<ul>
+<li><b>Activation.</b> §16.I.114: <span class="formula">λ<sub>2</sub> ≠ 0</span> is NOT forced by E8
+covariance, T<sub>w</sub> kinematics, D4 covariance, reduced q parity, or common fermion-pair
+ancestry (<span class="tag MA">MA</span>). Tensor uniqueness (116.T1) does not imply a nonzero
+coefficient. The whole phase-selection mechanism is conditional on one un-derived microscopic
+coupling.</li>
+<li><b>Reuse.</b> The already-selected Spin(10)-singlet selector background cannot itself mediate the
+54 (invariant orthogonality, §16.I.113, <span class="tag MA">MA</span>); a transverse 54 block with a
+healthy Hessian is the minimal new action data.</li>
+<li><b>Radius.</b> The induced quartic is negative semidefinite — angular selection only; bounded
+radial stabilization is open.</li>
+<li><b>Full q covariance.</b> The §16.I.106 gap is retracted, not closed; complete parent q-covariance
+of the selector/B sector, the coupled Hessian, BRST survival, and the low-energy spectrum audit
+all remain open.</li>
+<li><b>Dynamics.</b> Existence of the c-fixed/μ<sub>2</sub>-compensated vacua is proved; nothing
+selects them dynamically. U(1)<sub>F</sub> is an accidental reduced symmetry, not a proved full-E8
+symmetry (§16.I.117, correctly limited).</li>
+</ul>
+
+<p><b>Bottom line.</b> 8 checked proofs, 2 standard imports, 35 manuscript assertions, 2 incorrect
+(retracted in-chunk). The chunk's central arc — no-go for normalizer/Grassmannian lifts, exact
+oriented Fujikawa closure, μ<sub>4</sub> phase lattice, fourth-harmonic minimal carrier with rank-one
+parent Gram matrix, and the conditional heavy-selector phase selection — is verified where the
+manuscript's proofs are complete, and every conditional is labeled as conditional. The one genuine
+defect (the 106.T2 sign error) was caught and retracted by the manuscript itself at §16.I.107.</p>
+
+<h3>§§16.I.118–16.I.133 and synchronization notes (source lines 20324–23018)</h3>
+<p>Source: <span class="formula">~/workspace/vol3/volume_iii.txt</span> lines
+<strong>20324–23018 inclusive</strong> (read in full, four sequential passes).
+Audit script: <span class="formula">vol3/book16/audit_16e.py</span> —
+<strong>98 assertions, 98 passed, 0 failed</strong> (66 <span class="tag SC">SC</span>,
+32 <span class="tag NC">NC</span>). Sampling-based numerical agreement is recorded as
+<span class="tag NC">NC</span>, never as proof. Section numbers 16.I.119 and 16.I.120 are each
+reused in the source for two different sections (lines 20779/21515 and 21218/21637) — a numbering
+defect, flagged below.</p>
+
+<table class="audit">
+<tr><th>Section (source line)</th><th>Checked</th><th>Status</th></tr>
+<tr><td>§16.I.118 — quasi-linear phase transfer (20324)</td>
+<td>E8 branching dims 248/135; Sym²(248)=1+3875+27000; T_w spectrum mults and
+Tr&nbsp;T_w=248; quasi-linear doubling for σ=±1; p′(1/4)=−3/32, p′(1)=−3/64, p′(5/4)=5/32;
+transverse coefficient 243/1024; charge 2·(−4)=−8</td>
+<td><span class="tag SC">SC</span> arithmetic; representation premises <span class="tag MA">MA</span></td></tr>
+<tr><td>§16.I.119(i) — tilted critical hyperbola (20779)</td>
+<td>r²−u²=1 parametrizations; RG tangency β<sub>F</sub>=2rβ<sub>r</sub>−2uβ<sub>u</sub>;
+reciprocal tangency; small-spurion Taylor O(u⁴); 4A²B²=C²+P² and rank-one form;
+V<sub>(θ,σ)</sub>=0 at the lock; det K<sub>Sig</sub> rank-one condition</td>
+<td><span class="tag SC">SC</span>; reduced formulas <span class="tag MA">MA</span></td></tr>
+<tr><td>§16.I.120(i) — odd-kinetic spurion audit (21218)</td>
+<td>Z̄exp(δ<sub>Z</sub>Z)=diag(Z<sub>+</sub>,Z<sub>−</sub>); q<sub>α</sub>²=1 under
+qKq=−K</td>
+<td><span class="tag NC">NC</span>; q-parities, finite-group and measure firewalls <span class="tag MA">MA</span></td></tr>
+<tr><td>§16.I.119(ii) — three-contact triangle (21515)</td>
+<td>126/32=63/16; K<sub>θ</sub> closed form incl. θ=π/4 split; dim counting [c³]=−6;
+vector loop integral J<sub>μ</sub>(p)=p<sub>μ</sub>/(48π²m²)+O(p³)</td>
+<td><span class="tag SC">SC</span>/<span class="tag NC">NC</span>; loop value otherwise <span class="tag ST">ST</span></td></tr>
+<tr><td>§16.I.120(ii) — crossed N20 recoupling (21637)</td>
+<td>Explicit SO(10) γ-matrices → 16×16 intertwiners with
+Γ̄<sup>I</sup>Γ<sup>J</sup>+Γ̄<sup>J</sup>Γ<sup>I</sup>=2δ<sup>IJ</sup>;
+<strong>C<sub>N</sub>+D<sub>N</sub>=20·I<sub>256</sub></strong>;
+symmetric B<sub>IK</sub>=208δ<sub>IK</sub> from Clifford traces;
+I<sub>shell</sub> closed form + massless limit + numeric</td>
+<td><span class="tag SC">SC</span>/<span class="tag NC">NC</span>; X P<sub>126</sub>=0 premise <span class="tag MA">MA</span></td></tr>
+<tr><td>§16.I.121 — direct N20-assisted recoupling (21865)</td>
+<td>208−(−44)=252; 2520/126=20; C<sub>cyc</sub>=20·(−8)=−160;
+−160/(48π²)=−10/(3π²); I<sub>3</sub><sup>shell</sup> closed form; V=3/I=3/L=1 and V=2→L=0</td>
+<td><span class="tag SC">SC</span>; trace −44 partly <span class="tag MA">MA</span></td></tr>
+<tr><td>§16.I.122 — no selective N20 decoupling (22141)</td>
+<td>Explicit so(11,1) bivectors: [P<sub>i</sub>,P<sub>j</sub>]=−J<sub>ij</sub>,
+[K<sub>i</sub>,K<sub>j</sub>]=+J<sub>ij</sub>, [P<sub>i</sub>,K<sub>j</sub>]=−δ<sub>ij</sub>D;
+brackets span 46-dim so(10)⊕ℝD; s²=1 rigidity; 16×16=10+120+126</td>
+<td><span class="tag SC">SC</span>/<span class="tag NC">NC</span>; T1 logic then <span class="tag CP">CP</span>;
+selector-covariance claim <span class="tag MA">MA</span></td></tr>
+<tr><td>§16.I.123 — Gaussian N20 elimination (22261)</td>
+<td>Internal consistency only; no independent computation performed</td>
+<td><span class="tag MA">MA</span> (conditional on §121)</td></tr>
+<tr><td>§16.I.124 — kinetic-rapidity map (22294)</td>
+<td>δ<sub>Z</sub>=artanh(h<sub>S</sub>S/A<sub>0</sub>); Taylor coefficients
+η<sub>N</sub>, η<sub>N</sub>/6+η³<sub>N</sub>/3; only real root η<sub>N</sub>=0;
+exp(2δ<sub>Z</sub>)=(1+x)/(1−x); kinetic hyperbola identities</td>
+<td><span class="tag SC">SC</span>/<span class="tag NC">NC</span>; higher-order scope limit <span class="tag MA">MA</span></td></tr>
+<tr><td>§16.I.125 — paired Dirac pole (22371)</td>
+<td>det D(p)=[Z<sub>+</sub>Z<sub>−</sub>p²−m²]² explicitly (5 random trials);
+m<sub>phys</sub>=m/Z̄=(m/A<sub>0</sub>)coshδ<sub>Z</sub>; mirror-even expansion</td>
+<td><span class="tag NC">NC</span>/<span class="tag SC">SC</span>; operator itself <span class="tag MA">MA</span></td></tr>
+<tr><td>§16.I.126 — canonical dressing (22450)</td>
+<td>{T,Z}=0 undressed; Ŝ=Z̄²S; equal-amplitude Ẑ<sub>B</sub>/N̂=tanh(2δ<sub>Z</sub>)</td>
+<td><span class="tag NC">NC</span>; kinetic ansatz <span class="tag MA">MA</span></td></tr>
+<tr><td>§16.I.127 — pair-intensity rapidity (22497)</td>
+<td>N²−Z²<sub>B</sub>=S²+P²; Υ<sub>B</sub>=y<sub>B</sub>+2δ<sub>Z</sub> invariant;
+δ<sub>Z</sub>=A<sub>s</sub>s/(1−2A<sub>y</sub>); instability iff 2λ<sub>B</sub>&gt;1</td>
+<td><span class="tag SC">SC</span>/<span class="tag NC">NC</span>; transformation laws <span class="tag MA">MA</span></td></tr>
+<tr><td>§16.I.128 — N20 intensity triangle (22543)</td>
+<td>A<sub>y</sub> form follows from h<sub>Z<sub>B</sub>,N</sub> algebraically</td>
+<td><span class="tag SC">SC</span>; O<sub>10,Z</sub> generation, Wick factor <span class="tag MA">MA</span></td></tr>
+<tr><td>§16.I.129 — signed feedback (22591)</td>
+<td>(−1)<sub>F</sub>×(−160)=+160</td>
+<td><span class="tag SC">SC</span>; sign conclusion conditional <span class="tag MA">MA</span></td></tr>
+<tr><td>§16.I.130 — pitchfork fixed points (22637)</td>
+<td>V′=δ−a·tanh2δ−h; V″=1−2a·sech²2δ;
+δ<sub>*</sub>²=3(2a−1)/(8a) near threshold (a=0.505, 1.2% — <span class="tag NC">NC</span>);
+spinodal δ<sub>s</sub>=½arcosh√(2a), V″=0, double root at h=−h<sub>c</sub>
+(manuscript's h<sub>c</sub>=at<sub>s</sub>−δ<sub>s</sub> is the magnitude);
+μ<sub>c</sub>=Λe<sup>−1/(4C<sub>N</sub>)</sup></td>
+<td><span class="tag SC">SC</span>/<span class="tag NC">NC</span>; physicality firewall <span class="tag MA">MA</span></td></tr>
+<tr><td>§16.I.131 — reciprocal pair-scaling (22676)</td>
+<td>⟨C,C⟩<sub>H</sub>=2κρcoshy<sub>B</sub>; V″(0)=2κδ<sub>C</sub>ρ&gt;0</td>
+<td><span class="tag NC">NC</span>; ρ&gt;0 caveat <span class="tag MA">MA</span></td></tr>
+<tr><td>§16.I.132 — S82 radius breaking (22730)</td>
+<td>t<sub>*</sub>²=μ²<sub>H</sub>/(2β<sub>4</sub>); V″(t<sub>*</sub>)=−4μ²<sub>H</sub>;
+sextic extrema and coexistence point</td>
+<td><span class="tag SC">SC</span>; sextic diagnostic only <span class="tag MA">MA</span></td></tr>
+<tr><td>§16.I.133 — gauge-radius incompatibility (22809)</td>
+<td>Loop counting L=V−2n+1; I<sub>1,2,3</sub> massless shell integrals;
+degenerate V=V′=0 at B²<sub>2</sub>=4c<sub>1</sub>c<sub>3</sub>; dims 4−6n</td>
+<td><span class="tag SC">SC</span>; R<sub>2</sub>/R<sub>3</sub> signs <span class="tag MA">MA</span></td></tr>
+<tr><td>Sept 7 synchronization (22868)</td><td>Status summary only</td><td><span class="tag MA">MA</span></td></tr>
+<tr><td>Sept 14 conic note (22885)</td><td>Σ²−Δ²=16 identities; H′=V, V′=−4H;
+J<sub>0</sub>/j<sub>inc</sub> standard</td>
+<td><span class="tag SC">SC</span>/<span class="tag ST">ST</span>; conjugacy gate open <span class="tag MA">MA</span></td></tr>
+<tr><td>Sept 15 sync update (22969)</td><td>S<sub>F</sub>=3a<sub>2222</sub>; three n̂<sub>54</sub> forms agree</td>
+<td><span class="tag SC">SC</span>; correction verdict <span class="tag MA">MA</span> (see below)</td></tr>
+</table>
+
+<h3>Volume III synchronization</h3>
+<p>The manuscript's <strong>September 15, 2026 synchronization update</strong> (lines 22969–23018)
+explicitly corrects earlier normalization-closure claims, and this audit records the correction as the
+manuscript's own verdict. <span class="tag MA">MA</span> The update states: <span class="formula">c<sub>ord</sub>=1</span>
+is <strong>not</strong> established; <span class="formula">N<sub>1820</sub>=2</span> (or an equivalent zero
+residual count) is <strong>not</strong> established; <span class="formula">K<sub>parent</sub>=1</span> is
+<strong>not</strong> established. Representation search and conditional pure-2222 nonvanishing remain
+manuscript-claimed as closed; absolute normalization remains <strong>open</strong>. The ordered-response
+conversions (S<sub>F</sub>=18c<sub>ord</sub>/5, a<sub>2222</sub>=6c<sub>ord</sub>/5, and the three equivalent
+n̂<sub>54</sub> forms) are definitions — their internal agreement is checked here
+<span class="tag SC">SC</span> — not a computation of <span class="formula">c<sub>ord</sub></span>.
+<span class="formula">N<sub>1820</sub></span> remains open pending reconstruction of the cyclic word
+(E,B,E,O,E,B,E,O); <span class="formula">K<sub>parent</sub></span> remains open pending actual parent-action
+matching. Neutral recoupling and the state variable <span class="formula">W</span> cannot supply the missing
+charged datum. The stated next work is: reconstruct ordered witness overlap, audit residual 1820 factors, trace
+parent-action normalization, then independently match the charged UV interaction. No superseded numerical
+closure is reproduced in this audit.</p>
+
+<h3>Defects found in this chunk</h3>
+<ul>
+<li><strong>Numbering defect (source).</strong> §16.I.119 is used for two different sections (line 20779:
+inverse post-soldering critical hyperbola; line 21515: three-contact triangle). §16.I.120 is likewise reused
+(line 21218: tilted-branch kinetic audit; line 21637: crossed N20 recoupling). Recommend renumbering
+21515→16.I.119b and 21637→16.I.120b (or 16.I.134/135).</li>
+<li><strong>Computed-check correction (audit-side, fixed).</strong> The saddle-node check initially tested
+V′(δ<sub>s</sub>)=0 at h=+h<sub>c</sub>; the manuscript's h<sub>c</sub>=at<sub>s</sub>−δ<sub>s</sub> is the
+source <em>magnitude</em> — the double root sits at h=−h<sub>c</sub> on the +δ<sub>s</sub> branch. Verified
+after correction <span class="tag NC">NC</span>. No manuscript change needed.</li>
+<li><strong>Computed-check correction (audit-side, fixed).</strong> The near-threshold amplitude
+δ<sub>*</sub>²=3(2a−1)/(8a) is a leading-order expansion; testing at a=0.7 (not near threshold) disagrees as
+expected. Verified at a=0.505 within 1.2% <span class="tag NC">NC</span>. No manuscript change needed.</li>
+<li><strong>Scope limitation (source-acknowledged).</strong> §16.I.124's kinetic-rapidity map is explicitly a
+leading odd-kinetic truncation; §16.I.130's feedback equation is physical only if pair dynamics pin
+y<sub>B</sub> (A<sub>y</sub> not yet computed — open live gate); §16.I.132's sextic is an explicit diagnostic
+only; §16.I.133's R<sub>2</sub>/R<sub>3</sub> signs are open.</li>
+</ul>
+
+<h2 id="p3">Part III — What is established, what is conditional, what is not</h2>
+<h3>Established</h3>
+<ul>
+<li><b>Two-fermion bridge arithmetic (core).</b> Covariant 45° stationarity of the diagonal Z bridge, the transported-projector theorem, qSaw lift/inverse/uniqueness, the D4 trace-pair reconstruction, and the addendum BB-soft point are verified. <span class="tag NC">NC</span>/<span class="tag CP">CP</span></li>
+<li><b>E8 dimension arithmetic.</b> Weyl-dimension-formula checks for the 248, 3875, 27000, 30380, and 146325270 irreps; dim Sym²(30380) = 461,487,390; the full 30380⊗30380 decomposition sums to 922,944,400 with a consistent symmetric/antisymmetric allocation; the completed exact Freudenthal 30380 weight table (4 dominant weights, 9121 distinct weights, exact total 30380) underwrites the E8 numerics. <span class="tag NC">NC</span></li>
+<li><b>Branching arithmetic.</b> The quoted SO(16) branchings (27000, 30380, and others) sum correctly; the 27000 bosonic 120→120 block localizes to 1⊕1820⊕5304. <span class="tag NC">NC</span></li>
+<li><b>Selector calculus (§16.I.81).</b> The stationarity formula, R′ sign and limits, and the A∗/A″∗ identities (A∗A″∗&lt;0) hold symbolically; the selector ratio is strictly monotone with exactly one finite stationary point. <span class="tag SC">SC</span></li>
+<li><b>Spinor and Clifford identities.</b> §16.I.88 gamma-trace eigenvalues (−1/+3) on explicit Dirac matrices; the SO(10) Clifford construction (C_N+D_N=20·I_256, B^sym from traces); the so(11,1) bivectors spanning the 46-dimensional so(10)⊕ℝD; s²=1 rigidity. <span class="tag SC">SC</span>/<span class="tag NC">NC</span></li>
+<li><b>No-go firewall (quadratic zero-form).</b> The exhaustive quadratic-27000 Lorentz–Hodge no-go (two-map basis, ten-point polarization certificate) and the complete quadratic 3875 closure are recorded; the homogeneous quadratic-condensate zero-form search is closed by the manuscript's own accounting. Downstream tags are conditional on the manuscript's frozen-Chevalley vectors, which were not independently rerun. <span class="tag MA">MA</span> (manuscript's exact computation; arithmetic re-verified <span class="tag NC">NC</span>)</li>
+<li><b>Anomaly and phase arithmetic.</b> J(R_D)=1 for k=−5…5; so(10) d^ABC=0 in exact integer arithmetic; the μ4 phase lattice; the 243/1024 transverse coefficient; det D(p)=[Z_+Z_−p²−m²]²; pitchfork threshold a_c=1/2 and the saddle-node location. <span class="tag SC">SC</span>/<span class="tag NC">NC</span></li>
+<li><b>Sept 15 correction recorded.</b> The manuscript's own synchronization update retracts earlier normalization-closure claims; the ordered-response conversions' internal agreement is checked. <span class="tag SC">SC</span> (conversions); the retraction itself <span class="tag MA">MA</span></li>
+</ul>
+<h3>Conditional</h3>
+<ul>
+<li>Every physical identification — the E8(−24) host realization, Lorentz–Hodge transfer, BRST ghost-number-zero survival, N₄&gt;0, exactly one healthy spin-2, absolute mirror selection, the D3-normal-to-true-conformal map T_N — remains conditional on imports and open gates the manuscript itself lists. <span class="tag MA">MA</span></li>
+<li>The 16×16 Hessian spectrum, LieART tensor products, and frozen-Chevalley projected vectors are the manuscript's completed symbolic computations, cited as such; independent dimension-count and ratio consistency checks agree. <span class="tag SC">SC</span> (cited) with <span class="tag NC">NC</span> consistency checks</li>
+</ul>
+<h3>Not established</h3>
+<ul>
+<li><span class="tag IC">IC</span> §16.I.80, lines 7646–7660: the boxed h_R(v_a,C)=0 derivation contains a sign error (setting u=v=C gives 0=0, not 2h_R(h_aC,C)=0); an explicit skew counterexample is in audit_16c.py. Consequences: the boxed P_F C=0 and N_scalar,radial=0 are incorrect as proved; §16.I.82's δ_σν_F rests on the incorrect lemma.</li>
+<li><span class="tag IC">IC</span> Line 1614: the printed Schur formula is wrong under the ordinary real adjoint (the 2θ_B term cancels; correct form in audit_16a.py).</li>
+<li><span class="tag IC">IC</span> Line 1925: "rank K_action = 1 iff |g_P|=|g_A|" omits the zero-coupling case (g_A=g_P=0 satisfies the equality with rank 0).</li>
+<li><span class="tag IC">IC</span> §16.I.106.T2 + C1 (lines 17228–17234): sign error treating internal/normal reversals independently — <b>retracted by the manuscript itself</b> at §16.I.107 (lines 17347–17360); the correction is verified <span class="tag SC">SC</span>.</li>
+<li>Per the manuscript's September 15, 2026 update: c_ord=1 is <b>not</b> established; N_1820=2 is <b>not</b> established; K_parent=1 is <b>not</b> established; absolute normalization remains open.</li>
+<li>Source defects: reused section numbers §§16.I.59 (lines 1756, 2821), 16.I.60 (lines 2006, 2879), 16.I.61 (lines 2953, 3361), 16.I.71 (lines 4251, 6554, 6712 — three different "Theorem 16.I.71.1"s), 16.I.75 (lines 5322, 6224), 16.I.119 (lines 20779, 21515), 16.I.120 (lines 21218, 21637); symbol mismatch in §16.I.76.1 (u_F defined but unused; ν_F used but undefined).</li>
+</ul>
+
+<h2 id="p4">Part IV — Close the book</h2>
+<p>Book 16 closes having done two things at once. It built a long, checkable arithmetic spine — rapidity
+normalizations, the qSaw lift, D4 and SO(10) Clifford data, E8 dimension and branching arithmetic, selector
+calculus, anomaly phases, and pitchfork thresholds all verify — and it used that spine to close the entire
+homogeneous quadratic-condensate zero-form search for the missing direct Lorentz–Hodge coefficient. The
+manuscript's own September 15, 2026 update then retracts the normalization closure that earlier sections
+appeared to promise: c_ord=1, N_1820=2, and K_parent=1 are <b>not</b> established, and absolute normalization
+remains open. What survives is the firewall: no symmetric zero-form constitutive operator quadratic in the
+physical 30380 condensate alone can supply the missing E₃₅→E₁₂ coefficient within the present architecture —
+while every route outside that class (positive-degree sources, independently activated fields, a fuller
+microscopic parent) stays open and unbuilt.</p>
+
+<hr>
+<h2 id="p5">Part V — Volume III closure — Books 14–16</h2>
+<h3>Publication ledger</h3>
+<ul>
+<li><b>Book 14</b> establishes the two-fermion mass geometry: the rapidity coordinate q_m=tanh(λ_m/2), the pair
+invariant in two exact forms, the continued invariant, and the bound-mass identities (50 assertions, all pass).
+<span class="tag CP">CP</span> 19 · <span class="tag NC">NC</span> 1 · <span class="tag ST">ST</span> 3 ·
+<span class="tag MA">MA</span> 10. The Dirac–Coulomb bridge equality is proved conditional on its declared import.</li>
+<li><b>Book 15</b> establishes the Saw calculus: complementation vs product duality, the Saw reduction
+sawup=ελ proved symbolically, and the double-angle decomposition (240 assertions, all pass).
+<span class="tag CP">CP</span> 27 · <span class="tag SC">SC</span> 1 · <span class="tag NC">NC</span> 4 ·
+<span class="tag MA">MA</span> 14. The E8(−24) host and all physical identifications are admitted input.</li>
+<li><b>Book 16</b> establishes the arithmetic spine and the quadratic zero-form firewall described in Parts I–IV
+above (690 assertions across five check scripts, all pass; 495 ledgered claims:
+<span class="tag CP">CP</span> 141 · <span class="tag SC">SC</span> 84 · <span class="tag NC">NC</span> 105 ·
+<span class="tag ST">ST</span> 7 · <span class="tag MA">MA</span> 149 · <span class="tag AX">AX</span> 2 ·
+<span class="tag IC">IC</span> 7; per-chunk ledgers LEDGER_a–e.md in the audit workspace). The
+representation theory behind the firewall is the manuscript's exact computation, not independently rerun; the
+microscopic parent, normalization, and all action-level gates remain open.</li>
+</ul>
+<h3>Operational closure</h3>
+<p>No book in Volume III establishes a nonempty operational difference set: the manuscript's own frontier note
+authorizes no empirical promotion and records Δ_op(Book 16)=∅. <span class="tag MA">MA</span> (manuscript's own
+status declaration, recorded — not independently established).</p>
+<h3>Three-Volume Boundary</h3>
+<p>Volume III depends only on Volumes I–II, ordinary background mathematics, and explicitly declared external
+imports. The E8 numerics cite the independently completed exact Freudenthal 30380 weight table. Future
+extensions may cite these three volumes but must not silently alter their theorem status, numbering, or
+dependency order. <span class="tag MA">MA</span> (procedural)</p>
+<h3>Master-Retirement Condition</h3>
+<p>The former consolidated master manuscript <b>may be retired to archive status only after</b> (a) Volume I
+receives the same publication audit <i>and</i> (b) a final cross-volume comparison confirms that no unique
+authoritative theorem, obstruction, caveat, dependency, or status qualification remains only in the master.
+This is a conditional permission, not an authorization: the antecedent is not satisfied — the Volume I audit
+ledger still lists open items (Wolfram Engine unlicensed; original Modules 6, 8–12 invalid as encoded). Volumes
+II and III are now published with their audits. <span class="tag MA">MA</span> (procedural condition; antecedent
+currently unmet)</p>
+
+<footer>
+<p>Rewrite of Book 16 of <i>R Theory — Volume III</i> (working manuscript), with the Volume III closure.
+Restructured: pictures and intuition first (Part I), formal audit second (Part II). All theorems, ledgers,
+and status labels are from the original; no mathematics added. Graphs are live Desmos calculators with static
+fallbacks generated from the same formulas. Live Desmos rendering was verified by static ID/expression checks
+only, not by browser rendering — PNG fallbacks are provided.</p>
+</footer>
+
+<script>
+var GRAPHS=[
+ {id:'d1', fb:'f1', vw:{left:-0.2, right:1.8, bottom:-1.2, top:1.2}, exprs:[{latex:'y=\\cos(2x)\\left\\{0<x<\\frac{\\pi}{2}\\right\\}', color:'#1f77b4'},{latex:'y=\\sin(2x)\\left\\{0<x<\\frac{\\pi}{2}\\right\\}', color:'#d62728'},{latex:'y=\\frac{\\sin(2x)}{4}\\left\\{0<x<\\frac{\\pi}{2}\\right\\}', color:'#2ca02c'},{latex:'x=\\frac{\\pi}{4}', color:'#000000', lineStyle:'dashed'}]},
+ {id:'d2', fb:'f2', vw:{left:-2.5, right:2.5, bottom:-8.5, top:8.5}, exprs:[{latex:'y=2\\cosh(x)', color:'#1f77b4'},{latex:'y=2\\sinh(x)', color:'#d62728'},{latex:'y=\\tanh(x)', color:'#2ca02c'}]},
+ {id:'d3', fb:'f3', vw:{left:-3.5, right:3.5, bottom:-1.3, top:1.3}, exprs:[{latex:'y=\\tanh(x)', color:'#1f77b4'},{latex:'y=\\frac{4\\cosh\\left(\\frac{x}{2}\\right)}{\\cosh(x)+3}', color:'#d62728'},{latex:'x=1.7627', color:'#000000', lineStyle:'dashed'},{latex:'x=-1.7627', color:'#000000', lineStyle:'dashed'}]},
+ {id:'d4', fb:'f4', vw:{left:-4, right:4, bottom:-1.2, top:1.2}, exprs:[ {latex:'y=\\tanh\\left(2x\\right)', color:'#1f77b4', showLabel:true, label:'\\Pi_C'}, {latex:'y=\\frac{2\\cosh\\left(x\\right)}{\\cosh^{2}\\left(x\\right)+1}', color:'#ff7f0e', showLabel:true, label:'\\Xi_C'}]},
+ {id:'d5', fb:'f5', vw:{left:-4, right:4, bottom:-0.1, top:58}, exprs:[ {latex:'y=\\left(\\tanh\\left(2x\\right)\\right)^{10}\\left(\\left(\\tanh\\left(2x\\right)\\right)^{2}+4\\left(\\frac{2\\cosh\\left(x\\right)}{\\cosh^{2}\\left(x\\right)+1}\\right)^{2}\\right)^{3}', color:'#2ca02c'}]},
+ {id:'d6', fb:'f6', vw:{left:-2.2, right:2.2, bottom:-1.6, top:2.2}, exprs:[ {latex:'y=-2.5x^{2}+1.25x^{4}', color:'#1f77b4'}, {latex:'\\left(1,-1.25\\right)', color:'#d62728', showLabel:true, label:'q_{*}'}]},
+ {id:'d7', fb:'f7', vw:{left:0, right:6, bottom:-2, top:30}, exprs:[ {latex:'y=\\frac{\\left(x^{2}+2\\right)^{2}}{x^{3}\\left(2x^{2}+1\\right)^{2}}\\left\\{x>0\\right\\}', color:'#1f77b4', showLabel:true, label:'R'}]},
+ {id:'d8', fb:'f8', vw:{left:-2.5, right:3.5, bottom:-1.1, top:-0.3}, exprs:[ {latex:'y=-\\frac{\\left(1.7\\tanh\\left(2x\\right)+0.6\\frac{2\\cosh\\left(x\\right)}{\\cosh^{2}\\left(x\\right)+1}\\right)^{2}}{5.2}', color:'#1f77b4'}, {latex:'\\left(1.062,-0.921\\right)', color:'#d62728', showLabel:true, label:'w_{*}'}]},
+ {id:'d9', fb:'f9', vw:{left:-1.45, right:1.45, bottom:-1.45, top:1.45}, exprs:[ {latex:'x^{2}+y^{2}=1', color:'#999999'}, {latex:'k=\\left[0,1,2,3,4,5,6,7\\right]'}, {latex:'\\left(\\cos\\left(\\frac{k\\pi}{4}\\right),\\sin\\left(\\frac{k\\pi}{4}\\right)\\right)', color:'#1f77b4'}, {latex:'y=0\\left\\{-1<x<1\\right\\}', color:'#d62728', lineStyle:'DASHED', showLabel:true, label:'P'}]},
+ {id:'d10', fb:'f10', vw:{left:-3.4, right:6.6, bottom:-3.4, top:6.6}, exprs:[ {latex:'y=x-\\frac{\\pi}{2}-2\\pi', color:'#1f77b4'}, {latex:'y=x-\\frac{\\pi}{2}-\\pi', color:'#1f77b4'}, {latex:'y=x-\\frac{\\pi}{2}', color:'#1f77b4'}, {latex:'y=x-\\frac{\\pi}{2}+\\pi', color:'#1f77b4'}, {latex:'y=x-\\frac{\\pi}{2}+2\\pi', color:'#1f77b4'}, {latex:'y=x+\\frac{\\pi}{2}-2\\pi', color:'#1f77b4'}, {latex:'y=x+\\frac{\\pi}{2}-\\pi', color:'#1f77b4'}, {latex:'y=x+\\frac{\\pi}{2}', color:'#1f77b4'}, {latex:'y=x+\\frac{\\pi}{2}+\\pi', color:'#1f77b4'}, {latex:'y=x+\\frac{\\pi}{2}+2\\pi', color:'#1f77b4'}, {latex:'\\left(-3.141593,-1.570796\\right),\\left(-1.570796,-3.141593\\right),\\left(-1.570796,0.000000\\right),\\left(0.000000,-1.570796\\right),\\left(0.000000,1.570796\\right),\\left(1.570796,0.000000\\right),\\left(1.570796,3.141593\\right),\\left(3.141593,1.570796\\right),\\left(3.141593,4.712389\\right),\\left(4.712389,3.141593\\right),\\left(4.712389,6.283185\\right),\\left(6.283185,4.712389\\right)', color:'#2ca02c', showLabel:true, label:'\\text{even quarters}'}, {latex:'\\left(-2.356194,-0.785398\\right),\\left(-0.785398,-2.356194\\right),\\left(-0.785398,0.785398\\right),\\left(0.785398,-0.785398\\right),\\left(0.785398,2.356194\\right),\\left(2.356194,0.785398\\right),\\left(2.356194,3.926991\\right),\\left(3.926991,2.356194\\right),\\left(3.926991,5.497787\\right),\\left(5.497787,3.926991\\right)', color:'#d62728', showLabel:true, label:'\\text{odd quarters}'}]},
+ {id:'d11', fb:'f11', vw:{left:-1.6, right:1.6, bottom:-1.6, top:1.6}, exprs:[ {latex:'x^{2}+y^{2}=1', color:'#999999'}, {latex:'\\left(1,0\\right)', color:'#1f77b4', showLabel:true, label:'J(R_{D})=1\\ \\forall k'}, {latex:'\\left(-1,0\\right)', color:'#d62728', showLabel:true, label:'J(U)=-1\\ (k\\ \\text{odd})'}]},
+ {id:'d12', fb:'f12', vw:{left:-0.2, right:6.5, bottom:-2.2, top:0.4}, exprs:[ {latex:'y=-\\left(1-\\cos\\left(4x\\right)\\right)', color:'#1f77b4'}, {latex:'x=\\frac{\\pi}{4}', color:'#2ca02c', lineStyle:'DASHED'}, {latex:'x=\\frac{3\\pi}{4}', color:'#2ca02c', lineStyle:'DASHED'}, {latex:'x=\\frac{5\\pi}{4}', color:'#2ca02c', lineStyle:'DASHED'}, {latex:'x=\\frac{7\\pi}{4}', color:'#2ca02c', lineStyle:'DASHED'}, {latex:'\\left(\\frac{\\pi}{4},-2\\right),\\left(\\frac{3\\pi}{4},-2\\right),\\left(\\frac{5\\pi}{4},-2\\right),\\left(\\frac{7\\pi}{4},-2\\right)', color:'#2ca02c', showLabel:true, label:'\\phi_{a}=\\pi/4\\bmod\\pi/2'}]},
+ {id:'d13', fb:'f13', vw:{left:-3.2, right:3.2, bottom:-3.2, top:3.2}, exprs:[ {latex:'y^{2}-x^{2}=1', color:'#1f77b4'}, {latex:'y=x\\left\\{-3<x<3\\right\\}', color:'#7f7f7f', lineStyle:'dashed'}, {latex:'y=-x\\left\\{-3<x<3\\right\\}', color:'#7f7f7f', lineStyle:'dashed'}, {latex:'\\left(0,1\\right)', color:'#d62728', showLabel:true, label:'spurion origin'}]},
+ {id:'d14', fb:'f14', vw:{left:-2.1, right:2.1, bottom:-2.6, top:2.6}, exprs:[ {latex:'y=\\arctan\\h\\left(0.3\\sinh\\left(x\\right)\\right)\\left\\{-1.9<x<1.9\\right\\}', color:'#1f77b4'}, {latex:'y=0.3x\\left\\{-1.9<x<1.9\\right\\}', color:'#1f77b4', lineStyle:'dashed'}, {latex:'y=\\arctan\\h\\left(0.6\\sinh\\left(x\\right)\\right)\\left\\{-1.2837<x<1.2837\\right\\}', color:'#ff7f0e'}, {latex:'y=0.6x\\left\\{-1.2837<x<1.2837\\right\\}', color:'#ff7f0e', lineStyle:'dashed'}, {latex:'y=\\arctan\\h\\left(0.9\\sinh\\left(x\\right)\\right)\\left\\{-0.9577<x<0.9577\\right\\}', color:'#2ca02c'}, {latex:'y=0.9x\\left\\{-0.9577<x<0.9577\\right\\}', color:'#2ca02c', lineStyle:'dashed'}]},
+ {id:'d15', fb:'f15', vw:{left:-1.7, right:1.7, bottom:-0.35, top:0.15}, exprs:[ {latex:'y=\\frac{x^{2}}{2}-\\frac{0.4}{2}\\ln\\left(\\cosh\\left(2x\\right)\\right)\\left\\{-1.6<x<1.6\\right\\}', color:'#1f77b4'}, {latex:'y=\\frac{x^{2}}{2}-\\frac{0.505}{2}\\ln\\left(\\cosh\\left(2x\\right)\\right)\\left\\{-1.6<x<1.6\\right\\}', color:'#ff7f0e'}, {latex:'y=\\frac{x^{2}}{2}-\\frac{0.7}{2}\\ln\\left(\\cosh\\left(2x\\right)\\right)\\left\\{-1.6<x<1.6\\right\\}', color:'#2ca02c'}, {latex:'\\left(0.08669,-0.0000187\\right)', color:'#000000', showLabel:true, label:'\\text{broken minima}'},{latex:'\\left(-0.08669,-0.0000187\\right)', color:'#000000'},{latex:'\\left(0.57017,-0.0280331\\right)', color:'#000000'},{latex:'\\left(-0.57017,-0.0280331\\right)', color:'#000000'}]}
+];
+function initAll(){
+  if(!window.Desmos || !Desmos.GraphingCalculator) return;
+  GRAPHS.forEach(function(g){
+    try{
+      var el = document.getElementById(g.id);
+      var calc = Desmos.GraphingCalculator(el,
+        {keypad:false, expressionsTopbar:false, settingsMenu:false, zoomButtons:true,
+         expressionsCollapsed:false, border:false});
+      g.exprs.forEach(function(e, i){
+        var cfg = {id:'e'+i, latex:e.latex, color:e.color};
+        if(e.lineStyle === 'dashed') cfg.lineStyle = Desmos.Styles.DASHED;
+        if(e.showLabel){ cfg.showLabel = true; cfg.label = e.label; }
+        calc.setExpression(cfg);
+      });
+      calc.setMathBounds(g.vw);
+      el.style.display='block';
+      var fb = document.getElementById(g.fb);
+      if(fb){ fb.style.display='none'; }
+    }catch(err){ /* keep static fallback */ }
+  });
+}
+function boot(){
+  if(window.Desmos && Desmos.GraphingCalculator){ initAll(); }
+  else{
+    GRAPHS.forEach(function(g){
+      var fb = document.getElementById(g.fb);
+      if(fb){ fb.style.display='block'; }
+      var el = document.getElementById(g.id);
+      if(el){ el.style.display='none'; }
+    });
+  }
+}
+if(document.readyState==='complete'){ boot(); } else { window.addEventListener('load', boot); }
+setTimeout(function(){
+  var anyLive=false;
+  GRAPHS.forEach(function(g){ var el=document.getElementById(g.id); if(el && el.style.display!=='none' && el.children.length>0) anyLive=true; });
+  if(!anyLive){
+    GRAPHS.forEach(function(g){
+      var fb=document.getElementById(g.fb); if(fb) fb.style.display='block';
+      var el=document.getElementById(g.id); if(el) el.style.display='none';
+    });
+  }
+}, 12000);
+</script>
+</body>
+</html>

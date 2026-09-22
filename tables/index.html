@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pre-computed Tables — R Theory Rewrite Series</title>
+<style>
+body{font-family:Georgia,serif;max-width:900px;margin:0 auto;padding:24px;line-height:1.65;color:#1a1a1a;background:#fdfdfb}
+h1{font-size:1.9em;border-bottom:2px solid #333;padding-bottom:8px}
+h2{font-size:1.45em;margin-top:2.2em;border-bottom:1px solid #aaa;padding-bottom:4px}
+table{border-collapse:collapse;width:100%;margin:1em 0;font-size:.9em}
+th,td{border:1px solid #bbb;padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#f0f0ec}
+.tag{display:inline-block;font-size:.78em;font-weight:bold;border:1px solid #666;border-radius:3px;padding:0 6px;margin-right:4px;background:#eee}
+.tag.CP{background:#dff0d8}.tag.SC{background:#e3f2fd}.tag.NC{background:#d7f0e8}.tag.ST{background:#e8e4f5}
+.tag.MA{background:#fcf8e3}.tag.AX{background:#fde8d8}.tag.IN{background:#e8e8e8}.tag.IC{background:#fbdcdc}
+.small{font-size:.9em;color:#444}
+pre{background:#f4f4f1;border:1px solid #ccc;border-radius:4px;padding:12px 14px;font-size:.85em;overflow-x:auto}
+code{font-size:.88em}
+footer{margin-top:3em;color:#555;font-size:.9em;border-top:1px solid #bbb;padding-top:1em}
+a{color:#0645ad}
+</style>
+<!-- SITENAV-START -->
+<style>
+.sitenav{font-family:Georgia,serif;font-size:.88em;background:#f4f4f0;border:1px solid #bbb;
+ border-radius:4px;padding:8px 14px;margin:0 0 1.5em;display:flex;flex-wrap:wrap;
+ align-items:center;gap:8px 16px;line-height:1.4}
+.sitenav a{color:#0645ad;text-decoration:none;white-space:nowrap}
+.sitenav a:hover{text-decoration:underline}
+.sitenav .sitenav-brand{font-weight:bold;color:#1a1a1a}
+.sitenav .sitenav-links{display:flex;flex-wrap:wrap;gap:8px 14px}
+.sitenav-search{margin-left:auto;display:flex;gap:6px;align-items:center}
+.sitenav-search input{font-family:Georgia,serif;font-size:.95em;padding:4px 8px;
+ border:1px solid #999;border-radius:3px;width:170px;background:#fff;color:#1a1a1a}
+.sitenav-search button{font-family:Georgia,serif;font-size:.95em;padding:4px 12px;
+ border:1px solid #666;border-radius:3px;background:#eee;cursor:pointer;color:#1a1a1a}
+</style>
+<!-- SITENAV-END -->
+</head>
+<body>
+<!-- SITENAV-NAV-START -->
+<nav class="sitenav" aria-label="Site navigation">
+<a class="sitenav-brand" href="../">R Theory — Rewrite</a>
+<span class="sitenav-links">
+<a href="../#hard">Hard&nbsp;science</a><a href="../#theoretical">Theoretical</a><a href="../vol0/">Vol&nbsp;0</a><a href="../vol4/">Vol&nbsp;IV</a><a href="../tables/">Tables</a>
+</span>
+<form class="sitenav-search" action="https://www.google.com/search" method="get" target="_blank" role="search"
+ onsubmit="if(!this.q.value.trim())return false;this.q.value='site:cosbykit-afk.github.io/r-theory-rewrite '+this.q.value">
+<input type="text" name="q" placeholder="Search this site&#8230;" aria-label="Search this site">
+<button type="submit">Search</button>
+</form>
+</nav>
+<!-- SITENAV-NAV-END -->
+<h1>Pre-computed Tables</h1>
+<p><i>Every large numerical object the audit built and checked, ready to load — so no
+result below has to be recomputed before it can be used. The E8 30380 weight table and the
+so(16) generator critical-subset table are downloadable here; the larger binaries (~800&nbsp;MB total) live in the audit workspace
+and are available on request. Each entry carries the status the audit actually earned it.</i></p>
+
+<p class="small"><b>Scope discipline</b> (same as the whole series): <span class="tag CP">CP</span>
+checked proof · <span class="tag SC">SC</span> completed symbolic check ·
+<span class="tag NC">NC</span> completed numerical check · <span class="tag MA">MA</span>
+manuscript assertion · <span class="tag AX">AX</span> assumption or axiom ·
+<span class="tag IN">IN</span> incomplete or failed computation ·
+<span class="tag IC">IC</span> incorrect result. A downloaded table is exactly the
+array the check ran on; it inherits the check's status, nothing more.</p>
+
+<h2>E8 weight table — the 30380</h2>
+<p>The full weight/multiplicity table for the E8 irreducible representation of dimension
+30380, highest Dynkin label (0,0,0,0,0,0,1,0), Bourbaki labeling
+(chain 1-3-4-5-6-7-8, node 2 on 4). Computed by exact big-integer Freudenthal recursion.</p>
+<ul>
+<li><a href="table_30380_full.csv">table_30380_full.csv</a> — 9,121 distinct weights, multiplicities summing to exactly 30380</li>
+<li><a href="table_30380_dominant.csv">table_30380_dominant.csv</a> — the 4 dominant weights</li>
+<li><a href="table_30380_summary.json">table_30380_summary.json</a> — summary: histogram, orbit sizes, labeling</li>
+</ul>
+<p class="small">Status <span class="tag SC">SC</span>: tripwires passed at every Freudenthal step
+(exact divisibility and positivity), Weyl dimension formula = 30380, dominant enumeration
+complete by box bound bA⁻¹bᵀ ≤ (λ,λ) = 6. Dominant multiplicities:
+λ→1, (1,0,0,0,0,0,0,0)→7, (0,0,0,0,0,0,0,1)→35, 0→140; orbit sizes
+6720/2160/240/1 independently re-verified via |W|/|W<sub>stab</sub>|
+(stabilizers E6×A1, D7, E7, E8). Two failed constructions along the way are recorded
+in the audit log and establish nothing.</p>
+
+<h2>Clifford / so(16) / Casimir constructions</h2>
+<table>
+<tr><th>Table</th><th>Shape</th><th>Status</th><th>What it is</th></tr>
+<tr><td><code>gammas.npy</code></td><td>16 × 256 × 256</td><td><span class="tag NC">NC</span></td><td>The 16 Clifford generators. <b>Tuning note:</b> the manuscript's Wolfram module as written is algebraically wrong (Clifford violation 2.0 at pair (1,3) against its own 1e-10 tolerance). These use the one-line fix — the standard one-sided σ₃ string — giving Clifford violation 0, BγB⁻¹ = −γᵀ violation 0, γ₁₇² = I violation 0. <b>Critical subset, downloadable:</b> <a href="gammas_critical.csv">gammas_critical.csv</a> — every nonzero entry of all 16 generators (4,096 rows, 76&nbsp;KB; lossless, rebuilds the 16.8&nbsp;MB binary exactly). Each γ is a signed permutation: exactly one nonzero per row and column, values ±1, ±i.</td></tr>
+<tr><td><code>Pi_plus.npy</code>, <code>Pi_minus.npy</code></td><td>256 × 256</td><td><span class="tag NC">NC</span></td><td>Chiral projectors (1 ± γ₁₇)/2. <b>Critical subset, downloadable:</b> <a href="Pi_pm_critical.csv">Pi_pm_critical.csv</a> — the 256 diagonal entries with chirality (256 rows, 2&nbsp;KB; lossless). Clean even/odd split: Π₊ on even indices, Π₋ on odd, disjoint and covering.</td></tr>
+<tr><td><code>B.npy</code></td><td>256 × 256</td><td><span class="tag NC">NC</span></td><td>Charge conjugation. Preserves S⁺ (~9e-16); B₊ is a symmetric involution. <b>Critical subset, downloadable:</b> <a href="B_critical.csv">B_critical.csv</a> — every nonzero entry (256 rows, 4&nbsp;KB; lossless, rebuilds the 1&nbsp;MB binary exactly). Purely off-diagonal signed permutation, values exactly ±1, B² = I verified.</td></tr>
+<tr><td><code>U_Splus.npy</code></td><td>256 × 128</td><td><span class="tag NC">NC</span></td><td>Orthonormal basis of the chiral spinor space S⁺. <b>Caution (audit issue U-7):</b> this is <i>not</i> the splus coordinate basis (max|U−E| = 1.0); mixing the two conventions produces symmetry violations of order 2.0. <b>Critical subset, downloadable:</b> <a href="U_Splus_critical.csv">U_Splus_critical.csv</a> — the 128 unit entries as (splus_col, coord_row) pairs (128 rows, 1&nbsp;KB; lossless). Pins down exactly which 256-coordinate each S⁺ basis vector selects: the concrete form of the U-7 convention.</td></tr>
+<tr><td><code>M_so16.npy</code></td><td>120 × 128 × 128</td><td><span class="tag NC">NC</span></td><td>The 120 so(16) generators acting on S⁺, in the U basis. Every ρ(M) anti-Hermiticity-checked. <b>Critical subset, downloadable:</b> <a href="M_so16_critical.csv">M_so16_critical.csv</a> — every nonzero entry of every generator (15,360 rows, 315&nbsp;KB; lossless, rebuilds the 30&nbsp;MB binary exactly). Each generator has exactly 128 nonzeros (values ±1/2, ±i/2); 8 generators (the (2k,2k+1) pairs) are purely diagonal, the other 112 purely off-diagonal.</td></tr>
+<tr><td><code>C.npz</code> (sparse)</td><td>8256 × 8256</td><td><span class="tag NC">NC</span></td><td>The corrected Casimir on Sym²(128): C = −Σρ(M)² built directly in an orthonormal basis — no post-hoc symmetrization. Spectrum {0:1, 48:1820, 64:6435}; C(C−48I)(C−64I) = 0 on all 8256 basis vectors. Odd-subspace invariance 0.0; so(16) commutator violation 0.0; centrality ~2.8e-14.</td></tr>
+<tr><td><code>P1.npz</code>, <code>P1820.npz</code>, <code>P6435.npz</code> (sparse)</td><td>8256 × 8256</td><td><span class="tag NC">NC</span></td><td>Casimir eigenspace projectors. Hermitian, idempotent, orthogonal, complete; traces 1 / 1820 / 6435.</td></tr>
+<tr><td><code>basis_1820.npy</code></td><td>1820 × 16384</td><td><span class="tag NC">NC</span></td><td>The 1820 B-mapped four-forms in the full 128² coordinate basis. <b>Removed 2026-09-19:</b> superseded by the canonical <code>E1820_basis.npy</code> + <code>fourform_Bmapped.npy</code>; binary (477&nbsp;MB) moved to recoverable trash. Diagonal entries preserved in the workspace as <code>basis_1820_diagonals.csv</code> (232,960 entries, 12&nbsp;MB; diagonals carry on average 1.5% of each basis vector's squared norm — the off-diagonal part is discarded with the binary).</td></tr>
+<tr><td><code>fourform_Bmapped.npy</code></td><td>1820 × 8256</td><td><span class="tag NC">NC</span></td><td>The same 1820 four-forms in the Sym²(128) basis. Every one lies in the Casimir 48-eigenspace (worst violation 6.3e-15) and they span it (rank 1820 = tr P₁₈₂₀). Basis bug found and fixed during construction: coordinate-basis four-forms must be conjugated as G<sub>I</sub> = UᵀΓ⁴U before mixing with U-basis operators.</td></tr>
+<tr><td><code>singlet.npy</code></td><td>16384-vector</td><td><span class="tag NC">NC</span></td><td>The true Casimir singlet: the B₊ bilinear, |⟨B₊|singlet⟩| = 1.000000000000. The naive guess (1/√128)Σ|a,a⟩ is refuted — it lies in the 64-eigenspace (measured ||Cs|| = 64). <b>Critical subset, downloadable:</b> <a href="singlet_critical.csv">singlet_critical.csv</a> — the 128 significant entries (128 rows, 4&nbsp;KB), every one exactly ±1/√128; all remaining entries are numerical dust below 5×10⁻¹⁷.</td></tr>
+</table>
+
+<h2>Deliberately absent</h2>
+<p class="small">These are not pre-computable — the inputs do not exist in any source the audit
+could reach, or exist only as a mock: M<sub>e</sub>, O<sub>prop</sub>, P₅₄
+(a hardcoded T<sub>diag</sub> = [1,1,−1/4×8] plus a seeded-random mock, not derived),
+the C8 contraction, and the S_F / N₁₈₂₀ closure. They are recorded as missing inputs
+in the dependency chain, not as missing computation.</p>
+
+<h2>Loading them</h2>
+<pre>import numpy as np, csv
+# E8 30380 (this page)
+rows = list(csv.DictReader(open('table_30380_full.csv')))
+assert sum(int(r['mult']) for r in rows) == 30380   # 9,121 rows
+
+# large binaries (audit workspace, available on request)
+g = np.load('gammas.npy')          # (16,256,256)
+P = np.load('P1820.npz')           # CSR arrays: indices / indptr / data
+from scipy.sparse import csr_matrix
+P1820 = csr_matrix((P['data'], P['indices'], P['indptr']),
+                   shape=tuple(P['shape']))
+</pre>
+
+<footer>
+<p>Part of the R Theory rewrite series. Tables are the exact arrays the audit's checks ran
+on; they inherit each check's status and nothing more. <a href="../">← Series index</a></p>
+</footer>
+</body>
+</html>

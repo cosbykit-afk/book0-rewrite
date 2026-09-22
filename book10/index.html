@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book 10 — Quantum Kinematics and the Measurement Boundary (Restructured)</title>
+<style>
+  :root { --ink:#1a1a1a; --muted:#5a5a5a; --accent:#1b5faa; --paper:#fff; --wash:#f6f8fb; --line:#dfe5ec; }
+  body { font-family: -apple-system, "Segoe UI", Georgia, serif; color:var(--ink); background:var(--paper);
+         max-width: 860px; margin:0 auto; padding: 24px 20px 80px; line-height:1.65; }
+  h1 { font-size:1.9em; line-height:1.25; margin-bottom:.2em; }
+  h2 { font-size:1.45em; margin-top:2.2em; border-bottom:2px solid var(--line); padding-bottom:.3em; }
+  h3 { font-size:1.15em; margin-top:1.8em; color:var(--accent); }
+  .sub { color:var(--muted); font-size:1.05em; margin-top:0; }
+  .about { background:var(--wash); border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:1.5em 0; }
+  .about p { margin:.5em 0; }
+  figure.graph { margin:1.6em 0; border:1px solid var(--line); border-radius:8px; overflow:hidden; background:#fff; }
+  figure.graph .calc { width:100%; height:430px; display:none; }
+  figure.graph img.fallback { width:100%; display:block; }
+  figure.graph figcaption { padding:10px 16px; font-size:.92em; color:var(--muted); background:var(--wash);
+                            border-top:1px solid var(--line); }
+  figure.graph figcaption b { color:var(--ink); }
+  .intuition { border-left:3px solid var(--accent); padding:.2em 0 .2em 1em; margin:1em 0; }
+  .formal { background:var(--wash); border:1px solid var(--line); border-radius:8px; padding:12px 18px; margin:1.2em 0; }
+  .thm { border:1px solid var(--accent); border-radius:8px; padding:14px 18px; margin:1.4em 0; background:#fbfdff; }
+  .thm .tname { font-weight:700; color:var(--accent); }
+  .ledger { font-family: ui-monospace, Menlo, monospace; font-size:.85em; background:#0f1720; color:#d7e3f0;
+            border-radius:8px; padding:14px 18px; overflow-x:auto; white-space:pre-wrap; margin:1.2em 0; }
+  .tag { display:inline-block; font-size:.75em; font-weight:700; letter-spacing:.06em; border-radius:4px;
+         padding:.15em .6em; margin-right:.4em; vertical-align:middle; }
+  .tag.ok  { background:#e6f4ea; color:#146c2e; border:1px solid #b7dfc0; }
+  .tag.imp { background:#e8f0fe; color:#1b5faa; border:1px solid #bcd6f5; }
+  .tag.man { background:#fff4e0; color:#8a5a00; border:1px solid #ecd9a8; }
+  .tag.axm { background:#f3e8fd; color:#6b21a8; border:1px solid #d9bdf2; }
+  .tag.bad { background:#fde8e8; color:#a02020; border:1px solid #f2b8b8; }
+  .tag.inc { background:#fff; color:#a02020; border:1px dashed #e08a8a; }
+  .tag.niv { background:#ffe9c9; color:#7a4a00; border:1px solid #e0a83e; }
+  code, .math { font-family: ui-monospace, Menlo, monospace; }
+  .math { background:#f2f5f9; padding:.1em .35em; border-radius:4px; font-size:.95em; }
+  ul.tight li { margin:.35em 0; }
+  table.scope { border-collapse:collapse; width:100%; font-size:.88em; margin:1em 0; }
+  table.scope th, table.scope td { border:1px solid var(--line); padding:.45em .6em; text-align:left; vertical-align:top; }
+  table.scope th { background:var(--wash); }
+  .nav { display:flex; flex-wrap:wrap; gap:.5em; margin:1.2em 0 2em; }
+  .nav a { text-decoration:none; border:1px solid var(--line); border-radius:20px; padding:.3em 1em;
+           font-size:.9em; color:var(--accent); background:var(--wash); }
+  footer { margin-top:3em; color:var(--muted); font-size:.9em; border-top:1px solid var(--line); padding-top:1em; }
+</style>
+<!-- SITENAV-START -->
+<style>
+.sitenav{font-family:Georgia,serif;font-size:.88em;background:#f4f4f0;border:1px solid #bbb;
+ border-radius:4px;padding:8px 14px;margin:0 0 1.5em;display:flex;flex-wrap:wrap;
+ align-items:center;gap:8px 16px;line-height:1.4}
+.sitenav a{color:#0645ad;text-decoration:none;white-space:nowrap}
+.sitenav a:hover{text-decoration:underline}
+.sitenav .sitenav-brand{font-weight:bold;color:#1a1a1a}
+.sitenav .sitenav-links{display:flex;flex-wrap:wrap;gap:8px 14px}
+.sitenav-search{margin-left:auto;display:flex;gap:6px;align-items:center}
+.sitenav-search input{font-family:Georgia,serif;font-size:.95em;padding:4px 8px;
+ border:1px solid #999;border-radius:3px;width:170px;background:#fff;color:#1a1a1a}
+.sitenav-search button{font-family:Georgia,serif;font-size:.95em;padding:4px 12px;
+ border:1px solid #666;border-radius:3px;background:#eee;cursor:pointer;color:#1a1a1a}
+</style>
+<!-- SITENAV-END -->
+</head>
+<body>
+<!-- SITENAV-NAV-START -->
+<nav class="sitenav" aria-label="Site navigation">
+<a class="sitenav-brand" href="../">R Theory — Rewrite</a>
+<span class="sitenav-links">
+<a href="../#hard">Hard&nbsp;science</a><a href="../#theoretical">Theoretical</a><a href="../vol0/">Vol&nbsp;0</a><a href="../vol4/">Vol&nbsp;IV</a><a href="../tables/">Tables</a>
+</span>
+<form class="sitenav-search" action="https://www.google.com/search" method="get" target="_blank" role="search"
+ onsubmit="if(!this.q.value.trim())return false;this.q.value='site:cosbykit-afk.github.io/r-theory-rewrite '+this.q.value">
+<input type="text" name="q" placeholder="Search this site&#8230;" aria-label="Search this site">
+<button type="submit">Search</button>
+</form>
+</nav>
+<!-- SITENAV-NAV-END -->
+
+<h1>Book 10 — Quantum Kinematics and the Measurement Boundary</h1>
+<p class="sub">A restructured rewrite of <i>R Theory — Volume II</i>, Book 10. Pictures first, then the audit.</p>
+
+<div class="about">
+<p><b>About this rewrite.</b> This is a restructuring of Book 10, not a new result. Every theorem,
+import, contract, and status label below comes from the original manuscript; no mathematics has
+been added. <b>Part I</b> shows the mathematics — graphs first, intuition second, each picture
+pointing to the section that proves it. <b>Part II</b> runs the formal audit: dependency check
+against the Volume I ledger, then a claim-by-claim scope ledger. <b>Part III</b> states the two
+firewall theorems (deliberately figure-free). <b>Part IV</b> closes the book.</p>
+<p>The book's question: <i>how far can the certified Projection carrier be carried into quantum
+kinematics before quantum probability, measurement, and field ontology have to be imported?</i>
+Its answer, in advance: to the representation boundary — and not one step past it.</p>
+<p>Each graph below is a <b>live Desmos calculator</b> — drag, zoom, and trace it. If Desmos
+can't load, a static image is shown instead, generated from the same formulas. <b>Honesty
+note:</b> live Desmos rendering was <i>not</i> verified in a browser from the build machine
+(no live browser is available to this worker); the static PNGs carry the verified numbers,
+and every plotted expression was executed and numerically checked — see the audit in Part II.</p>
+</div>
+
+<div class="nav">
+<a href="#part1">I. See it first</a><a href="#part2">II. Then earn it</a>
+<a href="#part3">III. The firewalls</a><a href="#part4">IV. Close the book</a>
+</div>
+
+<h2 id="part1">Part I — See it first</h2>
+
+<h3>§1. One coordinate is not two</h3>
+
+<figure class="graph">
+<div class="calc" id="d1"></div>
+<img class="fallback" id="f1" src="graphs/g1_rank.png" alt="Real meridian line versus the full CP1 chart rectangle">
+<figcaption><b>Figure 1.</b> The <span class="math">(x, φ)</span> chart of
+<span class="math">ℂP¹</span> (shaded rectangle: two real coordinates) and the real Projection
+meridian <span class="math">q = tan(x/2)</span> inside it (blue line: one real coordinate).
+A line cannot cover a rectangle. <i>Live in Desmos.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>A real half-angle coordinate <span class="math">q = tan(x/2)</span> determines one point on a
+real projective meridian — one continuous degree of freedom. A generic normalized two-component
+complex state,</p>
+<p class="math">ψ = (cos(x/2), e^{iφ} sin(x/2))<sup>T</sup>,</p>
+<p>needs a population coordinate <i>and</i> an independent relative phase <span class="math">φ</span>.
+Figure&nbsp;1 draws the situation: the full chart is a rectangle; the <span class="math">q</span>-only
+subfamily is a horizontal line. The phase <span class="math">φ</span> is independent of
+<span class="math">q</span> unless an additional relation is declared — and declaring it is an
+explicit extension, not a theorem squeezed from the one-parameter curve.</p>
+</div>
+<div class="formal"><span class="tag ok">CHECKED PROOF</span>
+<b>Theorem 10.II.T1 — Projective-rank obstruction.</b> <span class="math">ℂP¹</span> has two real
+local coordinates; the real meridian supplies one; therefore a generic complex projective state
+requires an additional independent relative phase. The rank claim was checked numerically: the
+Jacobian of the meridian map has singular values <span class="math">[0.5]</span> (rank 1) while
+the <span class="math">(x,φ)</span> chart has <span class="math">[0.5, 0.479]</span> (rank 2).
+<b>Corollary 10.II.C1</b> <span class="tag ok">CHECKED PROOF</span>: writing a two-component
+complex state with <span class="math">q</span> alone selects a one-dimensional subfamily or
+silently supplies a phase rule. A representation-rank statement, not a quantum-probability one.</div>
+
+<h3>§2. The spinor ratio, read two ways</h3>
+
+<figure class="graph">
+<div class="calc" id="d2"></div>
+<img class="fallback" id="f2" src="graphs/g2_rapidity.png" alt="tanh(alpha/2) curve with sampled pc/(E+mc^2) points">
+<figcaption><b>Figure 2.</b> The standard free-Dirac lower/upper ratio
+<span class="math">pc/(E+mc²) = tanh(α/2)</span> (blue curve; orange points sampled from random
+mass-shell pairs). The top axis reads the same number as the Projection half-angle
+<span class="math">x = 2·arctan(r)</span>, where <span class="math">sxp(x) = tan(x/2)</span>
+reproduces every sampled <span class="math">r</span> to 1.5e-15. <i>Live in Desmos.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>Import the standard free Dirac equation and its positive-energy spinors
+(<b>Physics Import 10.III.P1</b>). The lower/upper component ratio magnitude is the textbook
+<span class="math">pc/(E+mc²)</span> — equivalently <span class="math">tanh(α/2)</span> on the
+rapidity chart <span class="math">E = mc²cosh α</span>. Now declare the projection contract
+(<b>10.III.PC1</b>): identify the half-angle coordinate with the rapidity chart so that
+<span class="math">q = sxp = pc/(E+mc²)</span>. Under that identification the inherited
+reciprocal coordinate <span class="math">sxp(x) = tan(x/2)</span> reads the relativistic
+spinor ratio exactly. Figure&nbsp;2 shows the two readings of one number: rapidity below,
+half-angle above.</p>
+</div>
+<div class="formal"><span class="tag imp">STANDARD IMPORTED THEOREM</span>
+<b>Physics Import 10.III.P1</b> — the free Dirac equation and its positive-energy spinors.
+The ratio identities <span class="math">pc/(E+mc²) = √((E−mc²)/(E+mc²)) = tanh(α/2)</span>
+were verified numerically to ~2e-16 on 500 random mass-shell pairs.
+<span class="tag axm">ASSUMPTION OR AXIOM</span>
+<b>Projection Contract 10.III.PC1</b> — the declared identification of <span class="math">q</span>
+with the rapidity chart. A contract, not a derivation.
+<span class="tag ok">COMPLETED NUMERICAL CHECK</span>
+<b>Theorem 10.III.T1 — Exact free-spinor ratio correspondence.</b> Under the stated import and
+contract, <span class="math">sxp = pc/(E+mc²)</span> is an exact coordinate identity for the
+ratio magnitude (max error 1.5e-15 over 300 samples; canonical identity
+<span class="math">sxp(x) = tan(x/2)</span> on <span class="math">(0,π)</span> checked to
+6e-14). This does <i>not</i> derive the Dirac equation, the mass shell, spin one-half, or any
+interpretation of the components. Conditional on the import — as the manuscript states.</div>
+
+<h3>§3. The ground sector sits at one fixed angle</h3>
+
+<figure class="graph">
+<div class="calc" id="d3"></div>
+<img class="fallback" id="f3" src="graphs/g3_ground.png" alt="Dirac-Coulomb ground state F and rescaled G coinciding; constant G/F ratio">
+<figcaption><b>Figure 3.</b> <i>Top:</i> the imported circular Dirac–Coulomb ground-sector
+components <span class="math">F(r)</span> (large) and <span class="math">−G(r)/|G/F|</span>
+rescaled — the curves coincide because <span class="math">G/F</span> is
+<span class="math">r</span>-independent. <i>Bottom:</i> the ratio itself:
+<span class="math">G/F = −Zα/(1+γ) = −0.00364872</span> (<span class="math">α</span> the
+fine-structure constant), i.e. half-angle
+<span class="math">x = 2·arctan(|G/F|) = 0.007297</span> rad with
+<span class="math">sxp(x) = |G/F|</span> (max err 1e-14). <i>Live in Desmos.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>Import the standard radial Dirac equation for a Coulomb potential
+(<b>Physics Import 10.IV.P1</b>). In the circular ground sector the large and small components
+<span class="math">F(r)</span>, <span class="math">G(r)</span> share one radial shape, so their
+ratio is a constant — the textbook <span class="math">−Zα/(1+γ)</span>
+(<span class="math">α</span> the fine-structure constant here, not the rapidity
+<span class="math">α</span> of §2). A constant positive
+number is exactly what <span class="math">tan(x/2) = sxp(x)</span> parameterizes. So the same
+reciprocal coordinate that reads the free relativistic ratio also reads the ground-sector
+radial ratio, at the fixed half-angle <span class="math">x ≈ 0.007297</span> rad.</p>
+</div>
+<div class="formal"><span class="tag imp">STANDARD IMPORTED THEOREM</span>
+<b>Physics Import 10.IV.P1</b> — the radial Dirac–Coulomb system and its conventional
+<span class="math">F</span>, <span class="math">G</span>. The ground-sector constant ratio
+<span class="math">|G/F| = Zα/(1+γ)</span> was verified numerically (relative spread 3.4e-16
+over six decades of <span class="math">r</span>).
+<span class="tag ok">COMPLETED NUMERICAL CHECK</span>
+<b>Theorem 10.IV.T1 — Ground-sector half-angle correspondence.</b>
+<span class="math">|G/F| = tan(x/2) = sxp(x)</span> under the half-angle parameterization —
+conditional on the import, exact to 1e-14.</div>
+
+<h3>§4. Excited states need a running phase</h3>
+
+<figure class="graph">
+<div class="calc" id="d4"></div>
+<img class="fallback" id="f4" src="graphs/g4_prufer.png" alt="Excited Dirac state with node, non-constant ratio, running Prufer angle">
+<figcaption><b>Figure 4.</b> The imported <span class="math">n=2, κ=−1</span> radial state
+(computed by direct integration of the radial Dirac system; the integrator reproduces the
+analytic ground state to 7e-11). <i>Top:</i> <span class="math">F(r)</span> has one node
+(<span class="math">r ≈ 274</span>). <i>Middle:</i> the raw ratio <span class="math">G/F</span>
+is non-constant with a pole at the node. <i>Bottom:</i> the Prüfer pair stays regular —
+<span class="math">Θ(r)</span> (blue) runs <span class="math">3.14 ≈ π</span> rad through the
+sign change while <span class="math">A(r)</span> (orange) stays smooth. <i>Live in Desmos:
+the top panel (F and G) as subsampled points; the middle and bottom panels are in the
+static image.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>Generic excited radial states have nodes, and at a node the raw ratio
+<span class="math">G/F</span> blows up — no fixed half-angle can capture the spectrum. The
+Prüfer variables <span class="math">F = A cos Θ</span>, <span class="math">G = A sin Θ</span>,
+<span class="math">P = A²</span> separate radial orientation from radial amplitude and stay
+regular through the sign change: where the ratio has a pole, the angle simply keeps turning.
+Figure&nbsp;4 shows all three views of one computed excited state: the node, the inconvenient
+ratio, and the regular running phase. The manuscript's point is negative as well as positive:
+Projection supplies an adapted chart, but the imported radial differential equations determine
+how <span class="math">Θ</span> and <span class="math">A</span> evolve with
+<span class="math">r</span>.</p>
+</div>
+<div class="formal"><span class="tag man">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span>
+<b>Negative Theorem 10.IV.N1 — No universal constant half-angle for excited states.</b>
+The <span class="math">n=2, κ=−1</span> case was confirmed numerically: one node in
+<span class="math">F</span>, <span class="math">G/F</span> ranging over
+<span class="math">[−0.0450, 0.0414]</span> (std/mean 1.65) — no fixed angle works. The
+<i>generic</i> qualifier matters: circular excited states (<span class="math">n_r=0</span>,
+e.g. <span class="math">2P_{3/2}</span>) have constant but <i>state-dependent</i> ratios, so
+the universal fixed-angle law still fails. The conclusion is unaffected.
+<span class="tag imp">STANDARD IMPORTED THEOREM</span>
+<b>Theorem 10.V.T1 — Prüfer completion.</b> The Prüfer transformation is standard ODE theory.
+Reconstruction <span class="math">F = A cos Θ</span>, <span class="math">G = A sin Θ</span>
+verified exactly (1e-9) on both states; <span class="math">tan Θ = G/F</span> wherever finite;
+<span class="math">min A² &gt; 0</span> on the computed grids, so <span class="math">Θ</span>
+is well-defined through the sign changes. Ground state: <span class="math">Θ</span> constant
+(range 0.000 rad) — the fixed angle of §3, recovered.</div>
+
+<h3>§5. Four charts, one area element</h3>
+
+<figure class="graph">
+<div class="calc" id="d5"></div>
+<img class="fallback" id="f5" src="graphs/g5_symplectic.png" alt="Area scaling under (F-G,F+G) and the four primitive quadratic charts">
+<figcaption><b>Figure 5.</b> <i>Left/center:</i> the unit square in the
+<span class="math">(F,G)</span> plane maps under
+<span class="math">(u,v) = (F−G, F+G)</span> to a parallelogram of area 2 —
+<span class="math">du∧dv = 2·dF∧dG</span> exactly, so
+<span class="math">4·dF∧dG = 2·du∧dv</span>. <i>Right:</i> the four primitive quadratic
+charts <span class="math">2F², −2G², (F−G)², −(F+G)²</span> along a circle in the
+<span class="math">(F,G)</span> plane — four presentations of the same data, one shared
+area element. <i>Live in Desmos: the four charts (right panel); the area-map panels
+are in the static image.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>From the imported radial pair <span class="math">(F,G)</span>, form the four primitive
+quadratic charts <span class="math">p_{sxp} = 2F²</span>,
+<span class="math">p_{srx} = −2G²</span>, <span class="math">p_{cxp} = (F−G)²</span>,
+<span class="math">p_{crx} = −(F+G)²</span>. They are four coordinate presentations of the same
+two-component radial data, so they share the ambient two-form
+<span class="math">ω_{spin} = 4·dF∧dG</span> — the same local oriented area element, whatever
+presentation you read it in. Figure&nbsp;5 shows the area element transforming honestly
+(area 1 → 2, exactly the Jacobian) and the four charts as four curves over one circle.</p>
+</div>
+<div class="formal"><span class="tag ok">COMPLETED SYMBOLIC CHECK</span>
+<b>Theorem 10.VI.T1 — Shared symplectic form.</b> The Jacobian of
+<span class="math">(F,G) → (F−G, F+G)</span> has determinant exactly 2 (SymPy, exact), hence
+<span class="math">du∧dv = 2·dF∧dG</span> and <span class="math">4·dF∧dG = 2·du∧dv</span>.
+Scope note: the theorem's substantive content — chart-independence of the ambient area
+element — is close to definitional, since every chart is a function on the same
+<span class="math">(F,G)</span> plane. The manuscript claims no more than this, and
+explicitly disclaims a quantum commutator, Planck's constant, canonical quantization, or a
+path-integral measure.</div>
+
+<h2 id="part2">Part II — Then earn it: the audit</h2>
+
+<h3>§6. What the book is allowed to use</h3>
+<div class="formal"><span class="tag ok">GOVERNING RULES (Volume II front matter)</span>
+<p>Volume II inherits <b>only</b> results already earned in Volume I (Books 0–6), plus
+ordinary background mathematics and explicitly named physics imports. A familiar physical
+structure reached after an explicit import is a <b>conditional reconstruction</b> unless the
+physical law itself was derived upstream. FlatWave carries the discrete orientation sign and
+must not be conflated with helicity, charge sign, mirror orientation, or any other
+downstream physical label without a declared contract. A physical promotion requires a
+nonempty operational difference set <span class="math">Δ_op</span>.</p></div>
+
+<p>Dependency verdicts against the Volume I audit ledger
+(<span class="math">/home/hatch/workspace/wolfram/theorem_ledger.md</span>):</p>
+<ul class="tight">
+<li><b>"Finite-dimensional and complex carrier after the earlier completion"</b> (10.I) —
+<span class="tag ok">SUPPORTED</span>. Ledger: Book 2 complex carrier
+<span class="math">Z_{car} = e^{2ix}</span> <b>CHECKED (independent numeric, 0.0 exact)</b>;
+Book 5 complex rank 5 via <span class="math">I_ι² = −I_{10}</span> <b>MANUSCRIPT</b>
+(the rank claim's content is the axiom A0.1/A0.2 itself; the surrounding matrix
+arithmetic was independently checked exact).</li>
+<li><b>"The inherited reciprocal half-angle coordinate" sxp</b> (10.III–10.IV) —
+<span class="tag ok">SUPPORTED</span>. Ledger: Book 2 algebraic spine incl.
+<span class="math">srx·sxp = 1</span> <b>CHECKED (independent numeric, 1.3e-13)</b>; the half-angle form
+<span class="math">sxp(x) = tan(x/2)</span> on <span class="math">(0,π)</span> checked in this
+audit (max error 5.7e-14, 20,001 points; exact trig identity).</li>
+<li><b>Physics imports explicitly named</b> —
+<span class="tag ok">SUPPORTED</span>: 10.III.P1 (free Dirac equation + positive-energy
+spinors), 10.IV.P1 (radial Dirac–Coulomb + <span class="math">F, G</span>), 10.VII.P1
+(left-chiral projector + V–A). No unnamed physics enters.</li>
+<li><b>Projection contract 10.III.PC1</b> — declared as a contract, correctly labeled
+<span class="tag axm">ASSUMPTION OR AXIOM</span>, not smuggled in as a theorem.</li>
+<li><b>Dependency lock Book 10 → Book 11</b> ("certified complex carrier and exact
+spinorial/projective coordinate architecture") — <span class="tag ok">SUPPORTED</span>.
+Ledger: Module 1 Clifford construction <b>PROVED (independent)</b> after the approved fix;
+Book 2 spine <b>CHECKED (independent numeric, ~1e-13)</b>; Book 3 projective phase
+<b>mixed</b> (Möbius algebra PROVED independent-symbolic; w1/Spin results STANDARD;
+separation theorems MANUSCRIPT). The lock correctly
+<i>withholds</i> measurement rules, QFT ontology, chirality, and dynamics — consistent with
+10.VII.N1 and 10.VIII.N1.</li>
+<li><b>FlatWave conflation check</b> — <span class="tag ok">CLEAN</span>. The book never
+identifies FlatWave's orientation sign with probability, phase, charge, or chirality;
+10.VII explicitly firewalls orientation/cophase/FlatWave signs from the weak-interaction
+chirality choice.</li>
+</ul>
+<div class="ledger">BOOK 10 DEPENDENCY VERDICT
+INHERITED-AND-EARNED: complex carrier (Bk2 CHECKED numeric); complex rank 5
+  (Bk5 MANUSCRIPT, matrix arithmetic checked exact); reciprocal half-angle
+  coordinate (Bk2 CHECKED numeric + this audit, checked).
+EXPLICIT IMPORTS: 3 (10.III.P1, 10.IV.P1, 10.VII.P1).  DECLARED CONTRACTS: 1 (10.III.PC1).
+CLAIMED-INHERITED-BUT-MISSING-FROM-LEDGER: none.
+UNNAMED PHYSICS: none.  FLATWAVE CONFLATIONS: none.</div>
+
+<h3>§7. Claim-by-claim scope ledger</h3>
+<table class="scope">
+<tr><th>Claim</th><th>Scope label</th><th>Basis</th></tr>
+<tr><td>10.II.T1 projective-rank obstruction</td><td><span class="tag ok">checked proof</span></td><td>dimension count; SVD rank check (1 vs 2)</td></tr>
+<tr><td>10.II.C1 one-dimensional subfamily</td><td><span class="tag ok">checked proof</span></td><td>corollary of T1</td></tr>
+<tr><td>10.III.P1 Dirac import</td><td><span class="tag imp">standard imported theorem</span></td><td>named import; ratio identities verified ~2e-16</td></tr>
+<tr><td>10.III.PC1 rapidity contract</td><td><span class="tag axm">assumption or axiom</span></td><td>declared projection contract</td></tr>
+<tr><td>10.III.T1 free-spinor ratio correspondence</td><td><span class="tag ok">completed numerical check</span></td><td>exact to 1.4e-15 <i>conditional on P1 + PC1</i></td></tr>
+<tr><td>10.IV.P1 radial Dirac–Coulomb import</td><td><span class="tag imp">standard imported theorem</span></td><td>named import; constant ratio verified (rel. spread 3e-16)</td></tr>
+<tr><td>10.IV.T1 ground-sector correspondence</td><td><span class="tag ok">completed numerical check</span></td><td>exact to 1e-14 <i>conditional on P1</i></td></tr>
+<tr><td>10.IV.N1 no universal constant half-angle</td><td><span class="tag man">manuscript assertion</span> <span class="tag niv">not independently verified</span></td><td>n=2, κ=−1 case numerically confirmed; "generic" carries the general claim</td></tr>
+<tr><td>10.V.T1 Prüfer completion</td><td><span class="tag imp">standard imported theorem</span></td><td>standard ODE theory; reconstruction/regularity numerically checked</td></tr>
+<tr><td>10.VI.T1 shared symplectic form</td><td><span class="tag ok">completed symbolic check</span></td><td>det = 2 exact (SymPy); claim close to definitional — see §8</td></tr>
+<tr><td>10.VII.P1 chiral/V–A import</td><td><span class="tag imp">standard imported theorem</span></td><td>named import, used only for comparison</td></tr>
+<tr><td>10.VII.N1 chirality not selected upstream</td><td><span class="tag man">manuscript assertion</span> <span class="tag niv">not independently verified</span></td><td>structural observation about the dependency chain — see §8</td></tr>
+<tr><td>10.VIII.N1 representation ≠ measurement ontology</td><td><span class="tag man">manuscript assertion</span> <span class="tag niv">not independently verified</span></td><td>structural observation about the dependency chain — see §8</td></tr>
+<tr><td>10.IX closure; Δ_op(Book 10) = ∅</td><td><span class="tag man">manuscript assertion</span> <span class="tag niv">not independently verified</span></td><td>status bookkeeping, consistent with the firewalls</td></tr>
+</table>
+<p>No claim in the book required the <span class="tag bad">incorrect result</span> or
+<span class="tag inc">incomplete or failed computation</span> labels. Every computation in
+this audit ran to completion; nothing timed out.</p>
+
+<h3>§8. Gaps, precision notes, and what was not proved</h3>
+<ul class="tight">
+<li><b>10.IV.N1's "generic".</b> Circular excited states (<span class="math">n_r = 0</span>,
+e.g. <span class="math">2P_{3/2}</span>) also have <span class="math">r</span>-independent
+<span class="math">G/F</span> — but a <i>state-dependent</i> constant, so no universal
+fixed-angle law is rescued. The theorem's conclusion stands; the premise is true exactly as
+stated for generic (non-circular) excited states. Precision note, not an error.</li>
+<li><b>10.VI.T1 is close to definitional.</b> "The four charts share the two-form" follows
+from all four being functions on the same <span class="math">(F,G)</span> plane. The
+checkable content — the wedge scaling <span class="math">du∧dv = 2·dF∧dG</span> — is exact.
+The manuscript claims nothing stronger, and its explicit disclaimers (no commutator, no
+<span class="math">ℏ</span>, no quantization) are honored.</li>
+<li><b>The negative theorems are not proved impossibility results.</b> 10.VII.N1 and
+10.VIII.N1 state that no derivation of chirality selection / measurement ontology was
+<i>supplied</i> — a true observation about the manuscript's dependency chain, not a
+mathematical proof that no such derivation could exist. The manuscript's wording
+("cannot be used to derive") is correctly scoped to the chain; it does not overclaim.</li>
+<li><b>10.II's ψ parameterization.</b> The state is written with <span class="math">x/2</span>
+but the <span class="math">x</span>-range is left unspecified; the rank theorem does not
+depend on it. Notational observation, not an error.</li>
+<li><b>No incorrect results</b> were found among the checkable identities, and <b>no
+computation failed or timed out</b> in this audit.</li>
+</ul>
+
+<h2 id="part3">Part III — The firewalls</h2>
+
+<p>Two sections of Book 10 have no figures, deliberately: they are delimiting statements, and
+a picture of them would be decorative rather than mathematical.</p>
+
+<h3>§9. Chirality is not selected upstream (10.VII)</h3>
+<div class="thm">
+<p class="tname">Negative Theorem 10.VII.N1 — Chirality is not selected upstream</p>
+<p>The symmetric Projection carrier does not select <span class="math">P_L</span> over
+<span class="math">P_R</span>. A successful coordinate representation of left-chiral
+weighting therefore cannot be used to derive the physical chirality choice that was imported
+to make the comparison. The same firewall applies to any attempt to infer the observed weak
+interaction from an orientation sign, cophase label, or FlatWave sign alone.</p>
+</div>
+<div class="formal"><span class="tag imp">STANDARD IMPORTED THEOREM</span>
+<b>Physics Import 10.VII.P1</b> — the left-chiral projector and V–A structure, imported only
+<i>when a comparison with weak chirality is desired</i>.
+<span class="tag man">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> <b>10.VII.N1</b> as above: representation of
+chiral weighting is lawful; derivation of the chirality choice from it is not.</div>
+
+<h3>§10. Measurement, probability, and QFT ontology (10.VIII)</h3>
+<p>Not derived in Book 10: the Born rule; repeated-preparation probability; state-vector
+collapse; decoherence; empirical uncertainty relations; entanglement preparation or
+measurement protocols; a path-integral measure; Grassmann variables; fermionic statistics;
+the spin-statistics theorem; a quantum-field vacuum; physical spin-one-half dynamics from
+Projection mathematics alone.</p>
+<div class="thm">
+<p class="tname">Negative Theorem 10.VIII.N1 — Representation does not imply measurement ontology</p>
+<p>No finite-dimensional carrier isomorphism or spinor coordinate identity fixes how
+laboratory outcomes are sampled. Therefore a nonempty operational prediction set cannot be
+obtained from the representation correspondence alone.</p>
+</div>
+<div class="formal"><span class="tag man">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> <b>10.VIII.N1</b> as
+above. Corollaries used onward: a normalized complex vector may be compared with a quantum
+state only after a quantum-state contract is declared; squared component magnitudes become
+experimental probabilities only after the Born rule is imported. Linear complex structure is
+not, by itself, quantum mechanics.</div>
+
+<h2 id="part4">Part IV — Close the book</h2>
+
+<h3>§11. What Book 10 retains</h3>
+<ol>
+<li>The real half-angle coordinate covers a real projective meridian, not generic
+<span class="math">ℂP¹</span> — <span class="tag ok">checked proof</span>.</li>
+<li>A generic two-component complex state requires an independent relative phase —
+<span class="tag ok">checked proof</span>.</li>
+<li>After the Dirac/relativistic import, <span class="math">sxp = pc/(E+mc²)</span> is the
+exact free-spinor component-ratio magnitude —
+<span class="tag ok">completed numerical check</span>, conditional.</li>
+<li>In the imported circular Dirac–Coulomb ground sector, <span class="math">|G/F| = sxp</span> —
+<span class="tag ok">completed numerical check</span>, conditional.</li>
+<li>Excited radial states require a running Prüfer phase and amplitude —
+<span class="tag man">manuscript assertion</span> <span class="tag niv">not independently verified</span> (n=2 case numerically confirmed).</li>
+<li>The Prüfer pair <span class="math">(Θ, P=A²)</span> is an adapted representation of the
+imported radial system — <span class="tag imp">standard imported theorem</span>.</li>
+<li>The four primitive quadratic momentum charts share
+<span class="math">ω_{spin} = 4·dF∧dG</span> —
+<span class="tag ok">completed symbolic check</span>.</li>
+<li>V–A or left-chiral weighting remains conditional on the imported chirality law —
+<span class="tag man">manuscript assertion</span> <span class="tag niv">not independently verified</span>.</li>
+</ol>
+<p>No Born rule, collapse law, quantum-field ontology, fermionic statistics, or new spin
+dynamics is obtained.</p>
+<div class="ledger">BOOK 10 FINAL STATUS
+PHYSICS IMPORTS: 3 (explicitly named).  PROJECTION CONTRACTS: 1 (declared).
+NEW OPERATIONAL PREDICTIONS: none.
+Δ_op(Book 10) = ∅.
+Therefore Book 10 closes as a quantum-kinematic and representation bridge.</div>
+
+<h3>§12. Dependency lock — Book 10 → Book 11</h3>
+<div class="formal"><span class="tag ok">DEPENDENCY LOCK</span>
+Book 11 may inherit the certified complex carrier and exact spinorial/projective coordinate
+architecture. Book 10 does <b>not</b> supply measurement rules, quantum-field ontology,
+preferred chirality, or particle dynamics. Those structures enter Book 11 only through the
+explicit comparison imports stated there.</div>
+
+<p class="status">Rewrite status: every checkable claim on this page was re-verified —
+40 real assertions in validation/book10/verify_book10.py, all passing, no timeouts;
+worst measured error 6.6e-11 on the radial-Dirac integrator versus the analytic ground
+state (integrator accuracy, not an identity; every exact identity verifies to ≤6e-14).
+Part II §6 dependency labels quote the Volume I ledger exactly (Book 2 spine CHECKED
+numeric; complex rank 5 MANUSCRIPT). Embed consistency checked by
+validation/book10/test_embeds.py. Pictures illustrate checked statements; they are not
+the proofs. Live Desmos rendering was not browser-verified from the build machine.</p>
+
+<footer>
+<p>Rewrite of Book 10 of <i>R Theory — Volume II</i> (working manuscript). Restructured:
+pictures and intuition first (Part I), formal audit second (Part II). All theorems, imports,
+contracts, and status labels are from the original; no mathematics added. Graphs are live
+Desmos calculators with static fallbacks generated from the same formulas; every plotted
+number was numerically verified (Part II, §6–8). Live Desmos rendering was not
+browser-verified from the build machine.</p>
+</footer>
+
+<script>
+var GRAPHS = [
+ {id:'d1', fb:'f1', vw:{left:-1, right:7.5, bottom:-1, top:7.5}, exprs:[
+  {latex:'y=\\pi\\left\\{0<x<2\\pi\\right\\}', color:'#1f77b4'},
+  {latex:'x=0\\left\\{0<y<2\\pi\\right\\}', color:'#999999'},
+  {latex:'x=2\\pi\\left\\{0<y<2\\pi\\right\\}', color:'#999999'},
+  {latex:'y=2\\pi\\left\\{0<x<2\\pi\\right\\}', color:'#999999'}]},
+ {id:'d2', fb:'f2', vw:{left:-0.3, right:5.3, bottom:-0.08, top:1.08}, exprs:[
+  {latex:'y=\\tanh\\left(\\frac{x}{2}\\right)', color:'#1f77b4'},
+  {latex:'(2.2401,0.8076),(2.5406,0.8539),(2.4176,0.8363),(1.4995,0.6350),(1.6896,0.6883),(2.5179,0.8508),(0.2507,0.1247),(2.4655,0.8434),(2.4404,0.8397),(2.0124,0.7642),(1.6962,0.6901),(1.6384,0.6746),(1.5795,0.6583),(1.9744,0.7562)', color:'#ff7f0e'}]},
+ {id:'d3', fb:'f3', vw:{left:-60, right:1500, bottom:-0.15, top:1.15}, exprs:[
+  {latex:'y=0.0198389x^{0.99997337}e^{-0.00729735x}', color:'#1f77b4'},
+  {latex:'y=0.0198389x^{0.99997337}e^{-0.00729735x}', color:'#ff7f0e', lineStyle:'dashed'}]},
+ {id:'d4', fb:'f4', vw:{left:-50, right:1450, bottom:-1.15, top:1.15}, exprs:[
+  {latex:'(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0000),(0.0,0.0001),(0.0,0.0001),(0.0,0.0001),(0.0,0.0001),(0.0,0.0001),(0.0,0.0001),(0.0,0.0001),(0.0,0.0001),(0.0,0.0002),(0.0,0.0002),(0.0,0.0002),(0.0,0.0003),(0.0,0.0003),(0.0,0.0003),(0.0,0.0004),(0.0,0.0005),(0.0,0.0005),(0.1,0.0006),(0.1,0.0007),(0.1,0.0008),(0.1,0.0009),(0.1,0.0010),(0.1,0.0012),(0.1,0.0014),(0.1,0.0016),(0.2,0.0018),(0.2,0.0021),(0.2,0.0024),(0.2,0.0027),(0.3,0.0031),(0.3,0.0036),(0.3,0.0041),(0.4,0.0047),(0.5,0.0054),(0.5,0.0062),(0.6,0.0071),(0.7,0.0082),(0.8,0.0094),(0.9,0.0108),(1.1,0.0124),(1.2,0.0142),(1.4,0.0163),(1.6,0.0186),(1.8,0.0214),(2.1,0.0245),(2.4,0.0281),(2.8,0.0321),(3.2,0.0368),(3.7,0.0421),(4.2,0.0482),(4.8,0.0551),(5.5,0.0629),(6.4,0.0718),(7.3,0.0818),(8.4,0.0932),(9.6,0.1060),(11.1,0.1205),(12.7,0.1367),(14.6,0.1547),(16.8,0.1749),(19.3,0.1970),(22.1,0.2214),(25.4,0.2479),(29.1,0.2765),(33.5,0.3071),(38.4,0.3391),(44.1,0.3721),(50.7,0.4054),(58.2,0.4376),(66.8,0.4675),(76.7,0.4931),(88.1,0.5119),(101.2,0.5210),(116.2,0.5172),(133.4,0.4969),(153.2,0.4562),(175.9,0.3916),(201.9,0.3003),(231.9,0.1808),(266.3,0.0339),(305.7,-0.1367),(351.2,-0.3242),(403.3,-0.5155),(463.1,-0.6961),(531.7,-0.8481),(610.5,-0.9539),(701.0,-0.9990),(805.0,-0.9762),(924.3,-0.8883),(1061.3,-0.7490),(1218.6,-0.5813),(1400.0,-0.4107)', color:'#1f77b4'},
+  {latex:'(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.0,-0.0000),(0.1,-0.0000),(0.1,-0.0000),(0.1,-0.0000),(0.1,-0.0000),(0.1,-0.0000),(0.1,-0.0000),(0.1,-0.0000),(0.1,-0.0000),(0.2,-0.0000),(0.2,-0.0000),(0.2,-0.0000),(0.2,-0.0000),(0.3,-0.0000),(0.3,-0.0000),(0.3,-0.0000),(0.4,-0.0000),(0.5,-0.0000),(0.5,-0.0000),(0.6,-0.0000),(0.7,-0.0000),(0.8,-0.0000),(0.9,-0.0000),(1.1,-0.0000),(1.2,-0.0001),(1.4,-0.0001),(1.6,-0.0001),(1.8,-0.0001),(2.1,-0.0001),(2.4,-0.0001),(2.8,-0.0001),(3.2,-0.0001),(3.7,-0.0002),(4.2,-0.0002),(4.8,-0.0002),(5.5,-0.0002),(6.4,-0.0003),(7.3,-0.0003),(8.4,-0.0003),(9.6,-0.0004),(11.1,-0.0004),(12.7,-0.0005),(14.6,-0.0006),(16.8,-0.0007),(19.3,-0.0007),(22.1,-0.0008),(25.4,-0.0010),(29.1,-0.0011),(33.5,-0.0012),(38.4,-0.0013),(44.1,-0.0015),(50.7,-0.0016),(58.2,-0.0018),(66.8,-0.0020),(76.7,-0.0021),(88.1,-0.0023),(101.2,-0.0025),(116.2,-0.0026),(133.4,-0.0027),(153.2,-0.0027),(175.9,-0.0027),(201.9,-0.0026),(231.9,-0.0025),(266.3,-0.0022),(305.7,-0.0019),(351.2,-0.0015),(403.3,-0.0011),(463.1,-0.0006),(531.7,-0.0001),(610.5,0.0003),(701.0,0.0007),(805.0,0.0009),(924.3,0.0009),(1061.3,0.0009),(1218.6,0.0008),(1400.0,0.0006)', color:'#ff7f0e'}]},
+ {id:'d5', fb:'f5', vw:{left:-0.5, right:6.8, bottom:-2.3, top:2.3}, exprs:[
+  {latex:'y=2\\cos^{2}\\left(x\\right)', color:'#1f77b4'},
+  {latex:'y=-2\\sin^{2}\\left(x\\right)', color:'#ff7f0e'},
+  {latex:'y=\\left(\\cos\\left(x\\right)-\\sin\\left(x\\right)\\right)^{2}', color:'#2ca02c'},
+  {latex:'y=-\\left(\\cos\\left(x\\right)+\\sin\\left(x\\right)\\right)^{2}', color:'#d62728', lineStyle:'dashed'}]}
+];
+function initAll(){
+  if(!window.Desmos || !Desmos.GraphingCalculator) return;
+  GRAPHS.forEach(function(g){
+    try{
+      var el = document.getElementById(g.id);
+      var calc = Desmos.GraphingCalculator(el,
+        {keypad:false, expressionsTopbar:false, settingsMenu:false, zoomButtons:true,
+         expressionsCollapsed:false, border:false});
+      g.exprs.forEach(function(e, i){
+        var cfg = {id:'e'+i, latex:e.latex, color:e.color};
+        if(e.lineStyle === 'dashed') cfg.lineStyle = Desmos.Styles.DASHED;
+        if(e.showLabel){ cfg.showLabel = true; cfg.label = e.label; }
+        calc.setExpression(cfg);
+      });
+      calc.setMathBounds(g.vw);
+      el.style.display = 'block';
+      var fb = document.getElementById(g.fb);
+      if(fb) fb.style.display = 'none';
+    }catch(err){ /* keep static fallback */ }
+  });
+}
+(function(){
+  var s = document.createElement('script');
+  s.src = 'https://www.desmos.com/api/v1.10/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6';
+  s.async = true;
+  s.onload = function(){ setTimeout(initAll, 300); };
+  document.head.appendChild(s);
+  setTimeout(function(){ initAll(); }, 9000);
+})();
+</script>
+</body>
+</html>

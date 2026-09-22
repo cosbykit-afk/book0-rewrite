@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book 11 — Particle Architecture and Standard Model Comparison (Restructured)</title>
+<style>
+  :root { --ink:#1a1a1a; --muted:#5a5a5a; --accent:#1b5faa; --paper:#fff; --wash:#f6f8fb; --line:#dfe5ec; }
+  body { font-family: -apple-system, "Segoe UI", Georgia, serif; color:var(--ink); background:var(--paper);
+         max-width: 860px; margin:0 auto; padding: 24px 20px 80px; line-height:1.65; }
+  h1 { font-size:1.9em; line-height:1.25; margin-bottom:.2em; }
+  h2 { font-size:1.45em; margin-top:2.2em; border-bottom:2px solid var(--line); padding-bottom:.3em; }
+  h3 { font-size:1.15em; margin-top:1.8em; color:var(--accent); }
+  .sub { color:var(--muted); font-size:1.05em; margin-top:0; }
+  .about { background:var(--wash); border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:1.5em 0; }
+  .about p { margin:.5em 0; }
+  figure.graph { margin:1.6em 0; border:1px solid var(--line); border-radius:8px; overflow:hidden; background:#fff; }
+  figure.graph .calc { width:100%; height:430px; display:none; }
+  figure.graph img.fallback { width:100%; display:block; }
+  figure.graph figcaption { padding:10px 16px; font-size:.92em; color:var(--muted); background:var(--wash);
+                            border-top:1px solid var(--line); }
+  figure.graph figcaption b { color:var(--ink); }
+  .intuition { border-left:3px solid var(--accent); padding:.2em 0 .2em 1em; margin:1em 0; }
+  .formal { background:var(--wash); border:1px solid var(--line); border-radius:8px; padding:12px 18px; margin:1.2em 0; }
+  .thm { border:1px solid var(--accent); border-radius:8px; padding:14px 18px; margin:1.4em 0; background:#fbfdff; }
+  .thm .tname { font-weight:700; color:var(--accent); }
+  .ledger { font-family: ui-monospace, Menlo, monospace; font-size:.85em; background:#0f1720; color:#d7e3f0;
+            border-radius:8px; padding:14px 18px; overflow-x:auto; white-space:pre-wrap; margin:1.2em 0; }
+  .tag { display:inline-block; font-size:.75em; font-weight:700; letter-spacing:.06em; border-radius:4px;
+         padding:.15em .6em; margin-right:.4em; vertical-align:middle; }
+  .tag.cert { background:#e6f4ea; color:#146c2e; border:1px solid #b7dfc0; }
+  .tag.note { background:#fff4e0; color:#8a5a00; border:1px solid #ecd9a8; }
+  .tag.niv { background:#ffe9c9; color:#7a4a00; border:1px solid #e0a83e; }
+  code, .math { font-family: ui-monospace, Menlo, monospace; }
+  .math { background:#f2f5f9; padding:.1em .35em; border-radius:4px; font-size:.95em; }
+  ul.tight li { margin:.35em 0; }
+  .nav { display:flex; flex-wrap:wrap; gap:.5em; margin:1.2em 0 2em; }
+  .nav a { text-decoration:none; border:1px solid var(--line); border-radius:20px; padding:.3em 1em;
+           font-size:.9em; color:var(--accent); background:var(--wash); }
+  footer { margin-top:3em; color:var(--muted); font-size:.9em; border-top:1px solid var(--line); padding-top:1em; }
+  .status { font-size:.85em; color:#555; }
+</style>
+<!-- SITENAV-START -->
+<style>
+.sitenav{font-family:Georgia,serif;font-size:.88em;background:#f4f4f0;border:1px solid #bbb;
+ border-radius:4px;padding:8px 14px;margin:0 0 1.5em;display:flex;flex-wrap:wrap;
+ align-items:center;gap:8px 16px;line-height:1.4}
+.sitenav a{color:#0645ad;text-decoration:none;white-space:nowrap}
+.sitenav a:hover{text-decoration:underline}
+.sitenav .sitenav-brand{font-weight:bold;color:#1a1a1a}
+.sitenav .sitenav-links{display:flex;flex-wrap:wrap;gap:8px 14px}
+.sitenav-search{margin-left:auto;display:flex;gap:6px;align-items:center}
+.sitenav-search input{font-family:Georgia,serif;font-size:.95em;padding:4px 8px;
+ border:1px solid #999;border-radius:3px;width:170px;background:#fff;color:#1a1a1a}
+.sitenav-search button{font-family:Georgia,serif;font-size:.95em;padding:4px 12px;
+ border:1px solid #666;border-radius:3px;background:#eee;cursor:pointer;color:#1a1a1a}
+</style>
+<!-- SITENAV-END -->
+</head>
+<body>
+<!-- SITENAV-NAV-START -->
+<nav class="sitenav" aria-label="Site navigation">
+<a class="sitenav-brand" href="../">R Theory — Rewrite</a>
+<span class="sitenav-links">
+<a href="../#hard">Hard&nbsp;science</a><a href="../#theoretical">Theoretical</a><a href="../vol0/">Vol&nbsp;0</a><a href="../vol4/">Vol&nbsp;IV</a><a href="../tables/">Tables</a>
+</span>
+<form class="sitenav-search" action="https://www.google.com/search" method="get" target="_blank" role="search"
+ onsubmit="if(!this.q.value.trim())return false;this.q.value='site:cosbykit-afk.github.io/r-theory-rewrite '+this.q.value">
+<input type="text" name="q" placeholder="Search this site&#8230;" aria-label="Search this site">
+<button type="submit">Search</button>
+</form>
+</nav>
+<!-- SITENAV-NAV-END -->
+
+<h1>Book 11 — Particle Architecture and Standard Model Comparison</h1>
+<p class="sub">A restructured rewrite of <i>Our Revised R Theory — Volume II</i>, Book 11. Pictures first, then the audit.</p>
+
+<div class="about">
+<p><b>About this rewrite.</b> This is a restructuring of Book 11 (source lines 2497–4810 of
+the Volume II full text, 2,314 lines, 11,232 words), not a new result. Every theorem,
+ledger entry, and status label below comes from the original manuscript; no mathematics
+has been added. What changed is the order of presentation:</p>
+<p><b>Part I</b> shows the mathematics — graphs first, intuition second, with each picture pointing
+to the section that proves it.<br>
+<b>Part II</b> runs the formal section-by-section audit.<br>
+<b>Part III</b> states the dependency verdicts, the forward book map, and the dependency lock.</p>
+<p>Intuition is labeled as intuition. Theorems are labeled as theorems. Every claim carries
+exactly one scope tag:
+<span class="tag cert">CHECKED PROOF</span>
+<span class="tag cert">COMPLETED SYMBOLIC CHECK</span>
+<span class="tag cert">COMPLETED NUMERICAL CHECK</span>
+<span class="tag cert">STANDARD IMPORTED THEOREM</span>
+<span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span>
+<span class="tag note">ASSUMPTION OR AXIOM</span>
+<span class="tag note">INCORRECT RESULT</span>
+<span class="tag note">INCOMPLETE OR FAILED COMPUTATION</span>.
+A manuscript label is never promoted into a proved result.</p>
+<p>Each graph below is a <b>live Desmos calculator</b> — drag, zoom, and trace it. If Desmos
+can't load, a static image is shown instead, generated from the same formulas. <b>Honesty note:</b>
+the live Desmos rendering was <i>not</i> verified in a live browser from this machine (no browser
+available); the static PNGs are the verified artifacts, and every number plotted in them passed an
+independent numerical check.</p>
+</div>
+
+<div class="nav">
+<a href="#part1">I. See it first</a><a href="#part2">II. Then earn it</a>
+<a href="#part3">III. Dependencies and locks</a>
+</div>
+
+<h2 id="part1">Part I — See it first</h2>
+
+<h3>§1. Helicity odds live on one reciprocal line</h3>
+
+<figure class="graph">
+<div class="calc" id="d1"></div>
+<img class="fallback" id="f1" src="graphs/g1_helicity_odds.png" alt="Helicity amplitude odds: cxp vs crx as functions of beta">
+<figcaption><b>Figure 1.</b> After the V−A projector is imported, the favored/wrong helicity-amplitude
+odds of a massive fermion are exactly the canonical reciprocal pair: with
+<span class="math">sin χ = β</span>, <span class="math">cxp(χ) = e^η</span> (blue, coincident with the
+dashed <span class="math">√[(1+β)/(1−β)]</span>) and <span class="math">crx(χ) = e^−η</span> (green),
+with <span class="math">cxp·crx = 1</span>. <i>Live in Desmos.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>Watch the blue curve sit exactly on top of the dashed one: <span class="math">cxp(χ) = √[(1+β)/(1−β)] = e^η</span>
+is not a fit, it is an identity (max numerical error below 10⁻⁹ over the whole interval). The green
+curve is its reciprocal, <span class="math">crx(χ) = e^−η</span>. This is the <b>historical T4 witness</b>:
+once the left-chiral projector is <i>imported</i>, the reciprocal pair becomes an exact coordinate for
+helicity/chirality mixing. The import is doing the physical work; the identity is doing the bookkeeping.</p>
+</div>
+<div class="formal"><span class="tag cert">STANDARD IMPORTED THEOREM</span>
+<b>Formal home:</b> §11.PG.IX. The helicity-weight formula is standard Dirac spinor algebra (imported);
+the <span class="math">cxp = e^η</span> identity is a <b>completed numerical check</b>. Replacing
+<span class="math">P_L</span> by <span class="math">P_R</span> exchanges favored and suppressed while leaving
+the same reciprocal magnitude — the correspondence selects no handedness.</div>
+
+<h3>§2. One generator, six forced weights</h3>
+
+<figure class="graph">
+<div class="calc" id="d2"></div>
+<img class="fallback" id="f2" src="graphs/g2_weights.png" alt="The six central weights of the half-spin branching">
+<figcaption><b>Figure 2.</b> The unique traceless central generator
+<span class="math">Y₀ = i[(1/2)I₂ ⊕ (−1/3)I₃]</span> assigns exactly one weight to each of the six
+blocks of the half-spin module: <span class="math">0, +1, +1/6, −2/3, +1/3, −1/2</span>. No weight
+was fitted; each follows from <span class="math">y(p,q) = p/2 − q/3</span>. <i>Live in Desmos.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>Six dots, and none of them was chosen. The only inputs are the block sizes <b>2 and 3</b>, the
+traceless condition <span class="math">2a + 3b = 0</span>, and the rule that a scalar generator acts
+additively on exterior products. Once you normalize <span class="math">a = 1/2, b = −1/3</span>, every
+fraction drops out: <span class="math">1/6</span> is <span class="math">1/2 − 1/3</span>,
+<span class="math">−2/3</span> is <span class="math">−2·(1/3)</span>, and so on. These are exactly the
+familiar hypercharge numbers — but at this stage they are <i>representation weights</i>, not yet
+physical hypercharge.</p>
+</div>
+<div class="formal"><span class="tag cert">CHECKED PROOF</span>
+<b>Formal home:</b> §11.IV.D, Theorem 11.IV.T2. Verified by exact fraction arithmetic (independent check).
+The overall normalization and sign remain conventional until a physical U(1) contract is supplied.</div>
+
+<h3>§3. The charge pattern, all sixteen components</h3>
+
+<figure class="graph">
+<div class="calc" id="d3"></div>
+<img class="fallback" id="f3" src="graphs/g3_charges.png" alt="Electric charges of the sixteen matter components">
+<figcaption><b>Figure 3.</b> Under the conditional scalar-vacuum contract, the unbroken generator
+<span class="math">Q = T₃ + Y₀</span> assigns exactly the standard electric charges to all sixteen
+components: <span class="math">+2/3, −1/3, 0, −1, +1, …</span> — including the conjugate charges of the
+charge-conjugated singlets. <i>Live in Desmos.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>Sixteen dots, and the pattern is the one-generation electric-charge pattern you know. But notice what
+<i>didn't</i> go in: no charge was inserted by hand. The only physical inputs are a doublet scalar and its
+vacuum direction; the rest is the representation doing its own bookkeeping. This is the book's sharpest
+conditional match — and it is still conditional.</p>
+</div>
+<div class="formal"><span class="tag cert">COMPLETED SYMBOLIC CHECK</span>
+<b>Formal home:</b> §11.IX.E, Theorem 11.IX.T3. Charge assignments verified by exact arithmetic.
+Conditional on the comparison contract of §11.V and the scalar-vacuum contract of §11.IX.P1.
+Physical identification remains conditional.</div>
+
+<h3>§4. Integers underneath the fractions</h3>
+
+<figure class="graph">
+<div class="calc" id="d4"></div>
+<img class="fallback" id="f4" src="graphs/g4_integral_lattice.png" alt="Primitive integral central weights">
+<figcaption><b>Figure 4.</b> The global group — not just its Lie algebra — fixes the primitive integral
+cocharacter <span class="math">X = i(3I₂ ⊕ −2I₃)</span> (gcd(3,2) = 1). The six weights become integers
+<span class="math">0, 6, 1, −4, 2, −3</span>; the familiar fractions are this lattice divided by six,
+since <span class="math">Y₀ = X/6</span>. <i>Live in Desmos.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>The fractions in Figure 2 were never really fractions: they are integers on the primitive compact
+central circle, viewed through the normalization <span class="math">Y₀ = X/6</span>. The denominator
+six is not a convention — it is tied to the 2+3 block structure by the global quotient. Up to an overall
+sign, this lattice is forced.</p>
+</div>
+<div class="formal"><span class="tag cert">CHECKED PROOF</span>
+<b>Formal home:</b> §11.IX.A–C, Theorem 11.IX.T1 and Corollary 11.IX.C1. Primitivity follows from
+gcd(3,2) = 1; weights <span class="math">x(p,q) = 3p − 2q</span> verified exactly.</div>
+
+<h3>§5. The anomaly cancellation walks to zero</h3>
+
+<figure class="graph">
+<div class="calc" id="d5"></div>
+<img class="fallback" id="f5" src="graphs/g5_anomaly_walk.png" alt="Cumulative U(1)^3 anomaly coefficient reaching zero">
+<figcaption><b>Figure 5.</b> Adding the six block contributions to the cubic U(1) anomaly one at a time:
+<span class="math">1 + 1/36 − 8/9 + 1/9 − 1/4 + 0 = 0</span>. No single weight was adjusted to make this
+happen. <i>Live in Desmos.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>Follow the purple walk: it starts at 1, wanders, and lands exactly on zero. The same happens for
+SU(3)³, SU(3)²U(1), SU(2)²U(1), and the mixed gravitational anomaly — all vanish for the weights forced
+by the 2+3 exterior branching. The representation was not chosen by solving these equations; the
+equations come out zero anyway. That is the nontrivial part. What it <i>doesn't</i> do: pick a chirality —
+the mirror module's zeros are the same zeros.</p>
+</div>
+<div class="formal"><span class="tag cert">COMPLETED SYMBOLIC CHECK</span>
+<b>Formal home:</b> §11.VI.C–E, Theorems 11.VI.T2–T4. All five coefficients verified by exact fraction
+arithmetic. Conditional on the imported standard chiral-QFT anomaly rules (§11.VI.P1) and the
+left-handed-Weyl interpretation contract.</div>
+
+<h3>§6. The Z₆ kernel</h3>
+
+<figure class="graph">
+<div class="calc" id="d6"></div>
+<img class="fallback" id="f6" src="graphs/g6_z6_kernel.png" alt="The six roots of unity forming the Z6 kernel">
+<figcaption><b>Figure 6.</b> The covering map
+<span class="math">Φ(A,B,z) = (z³A, z⁻²B)</span> identifies
+<span class="math">S(U(2)×U(3)) ≅ [SU(2)×SU(3)×U(1)]/ℤ₆</span>; its kernel is exactly the six roots
+<span class="math">z⁶ = 1</span>. <i>Live in Desmos.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>Six dots on the unit circle: the global form of the block group is the product modulo these six
+identifications. This is the same global quotient the Standard Model gauge group is commonly written
+with. Here it falls out of the 2+3 special block envelope — no fitting.</p>
+</div>
+<div class="formal"><span class="tag cert">CHECKED PROOF</span>
+<b>Formal home:</b> §11.III.B. Determinant condition and kernel verified numerically (200 random group
+elements; all six roots checked as preimages).</div>
+
+<h3>§7. The mirror that won't break</h3>
+
+<figure class="graph">
+<div class="calc" id="d7"></div>
+<img class="fallback" id="f7" src="graphs/g7_mirror_pair.png" alt="Weight pattern and its sign-reversed mirror">
+<figcaption><b>Figure 7.</b> The six-block weight pattern (blue) and its sign-reversed mirror (red ×).
+Every test in the book — representation counts, anomaly cancellations, doublet parity — is blind to
+which one you pick. Orientation correlation ≠ orientation selection. <i>Live in Desmos.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>This is the book's central negative result, drawn. The blue pattern and the red pattern pass every
+consistency test the book runs: same block dimensions, same zero anomalies, same even doublet count.
+No rule built from mirror-symmetric data can canonically prefer one. Something genuinely
+mirror-sensitive — a parity-odd law, an oriented source, a vacuum-selection principle — would have to
+be added. The book proves this obstruction rather than hiding it.</p>
+</div>
+<div class="formal"><span class="tag cert">CHECKED PROOF</span>
+<b>Formal home:</b> §11.I (chirality-selector theorems), §11.V.D, Negative Theorem 11.VI.N1.
+The proofs are elementary symmetry arguments; their premises include manuscript-asserted data
+(see Part II).</div>
+
+<h2 id="part2">Part II — Then earn it</h2>
+
+<h3>11.PG — Two-state internal gauge structure before chiral selection</h3>
+<div class="thm"><span class="tname">11.PG.T1.</span> <span class="math">UᵀJU = (det U)J</span> for
+<span class="math">U ∈ GL(2,ℂ)</span>; hence the <span class="math">J</span>-preserving group is
+<span class="math">SL(2,ℂ)</span>, and with the Hermitian form also preserved it is
+<span class="math">SU(2)</span>. <span class="tag cert">STANDARD IMPORTED THEOREM</span>
+(independently numerically checked, 2000 random matrices).
+Corollary 11.PG.C1: the conditional SU(2) structure group. Status warning kept: preserving
+<span class="math">J</span> alone gives <span class="math">SL(2,ℂ)</span>, not <span class="math">SU(2)</span>,
+and this is not an identification with the spacetime spin group.</div>
+<div class="thm"><span class="tname">11.PG.III.</span> <span class="math">XᵀJ + JX = (tr X)J</span>;
+the infinitesimal algebra is <span class="math">X† = −X, tr X = 0</span>, i.e. <span class="math">su(2)</span>,
+real dimension 3, pseudoreal fundamental. <span class="tag cert">STANDARD IMPORTED THEOREM</span>
+(identity numerically checked). Not a count of physical particles.</div>
+<div class="formal"><span class="tag cert">STANDARD IMPORTED THEOREM</span> <b>11.PG.IV:</b> local SU(2)
+connection transformation law, <span class="math">F = dA + A∧A</span>, Bianchi identity.
+<span class="tag cert">CHECKED PROOF</span> <b>Negative Theorem 11.PG.N1:</b> pure-gauge
+<span class="math">A = −dUU⁻¹</span> gives <span class="math">F = 0</span> (Maurer–Cartan) — local basis
+variation alone produces no force.
+<span class="tag cert">STANDARD IMPORTED THEOREM</span> <b>11.PG.V:</b> non-Abelian curvature term.
+<span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> <b>11.PG.VI:</b> minimal Yang–Mills candidate
+<span class="math">S_YM = −(1/2g²)∫tr(F∧∗F)</span> within a stated candidate class; "candidate-class
+uniqueness" is asserted, not proved here.
+<span class="tag cert">CHECKED PROOF</span> <b>Negative Theorem 11.PG.N2:</b> no gauge-invariant bare
+Proca mass term in the exact unbroken theory.
+<span class="tag cert">STANDARD IMPORTED THEOREM</span> <b>11.PG.VII:</b> <span class="math">2⊗2 = 3⊕1</span>,
+Cartan weights <span class="math">0, ±1</span> (adjoint) and <span class="math">±1/2</span> (fundamental).
+<span class="tag cert">STANDARD IMPORTED THEOREM</span> <b>11.PG.VIII:</b>
+<span class="math">U(2) ≅ (SU(2)×U(1))/ℤ₂</span> (surjectivity and kernel checked).
+<span class="tag cert">STANDARD IMPORTED THEOREM</span> <b>11.PG.IX:</b> historical weak witness —
+after importing Dirac structure and <span class="math">P_L</span>, the reciprocal pair gives the exact
+helicity odds; the <span class="math">cxp(χ) = e^η</span> identity is a
+<span class="tag cert">COMPLETED NUMERICAL CHECK</span>. No handedness selected.</div>
+<div class="thm"><span class="tname">11.PG.N3 — Chiral Representation Selection Obstruction.</span>
+No rule from left-right exchange-symmetric data can select the nontrivial SU(2) action on
+<span class="math">S_L</span> over <span class="math">S_R</span>.
+<span class="tag cert">CHECKED PROOF</span> (conditional on the manuscript's exchange-symmetry premise).
+<span class="tag cert">CHECKED PROOF</span> <b>11.PG.XII — Mirror-Automorphism Chirality No-Go:</b>
+<span class="math">JŪJ⁻¹ = U</span> for <span class="math">U ∈ SU(2)</span> (numerically checked);
+under mirror-invariant premises, every left-chiral assignment has an equally admissible right-chiral
+mirror. Depends on a <i>later</i> Lorentz-spinor completion (Book 9's conditional reconstruction).</div>
+
+<h3>11.I — Chirality selector theorems</h3>
+<div class="formal">
+<span class="tag cert">CHECKED PROOF</span> <b>11.I.A</b> mirror exchange lemma;
+<b>11.I.B</b> naturality no-go for intrinsic chirality selectors;
+<b>11.I.C</b> axial-covariance obstruction (correlation ≠ selection);
+<span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> <b>11.I.D</b> rotational spin-connection corollary —
+conditional on the imported T6 slow-rotation geometry;
+<span class="tag cert">STANDARD IMPORTED THEOREM</span> <b>11.I.E</b> Einstein–Cartan sign erasure:
+<span class="math">L_T,eff = −(β²/4α)K²</span> is <span class="math">K → −K</span> invariant;
+<span class="tag cert">CHECKED PROOF</span> <b>11.I.F</b> spontaneous-breaking nonselection;
+<b>11.I.G</b> the necessary chirality-selector certificate (a list of what a future derivation must
+supply — a requirement, not a derivation).</div>
+
+<h3>11.II — The three-state internal block</h3>
+<div class="formal">
+<span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> <b>11.II.A</b> supersession theorem: the earned
+<span class="math">W_V ≅ ℂ³</span> replaces the historical "declare <span class="math">V₃ ≅ ℂ³</span>".
+The earning itself lives in Book 6 (see Part III dependency verdict).
+<span class="tag cert">STANDARD IMPORTED THEOREM</span> <b>11.II.B:</b> determinant-one block isometries
+give <span class="math">SU(3)</span>, <span class="math">dim_ℝ su(3) = 8</span>;
+<b>11.II.C:</b> <span class="math">A₂</span> weight/root re-entry;
+<b>11.II.D:</b> <span class="math">Lie{iλ₁,iλ₂,iλ₆} = su(3)</span> (one-bridge closure).
+<span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> <b>11.II.E</b> QCD airlock: color-singlet closure
+<span class="math">3⊗3̄ = 1⊕8</span>, <span class="math">3⊗3⊗3 = 1⊕8⊕8⊕10</span> follows <i>only after</i>
+the explicit color projection contract.
+<span class="tag cert">CHECKED PROOF</span> <b>Negative Theorem 11.II.F1:</b> singlet algebra does not
+derive confinement — a logical firewall, proved by separation of the claims.</div>
+
+<h3>11.III — The common 2+3 internal skeleton</h3>
+<div class="formal">
+<span class="tag cert">CHECKED PROOF</span> <b>11.III.B</b> global ℤ₆ quotient theorem (verified);
+<span class="tag cert">CHECKED PROOF</span> <b>11.III.C</b> unique traceless block phase
+(<span class="math">2a+3b=0</span> forces <span class="math">a:b = 1/2:−1/3</span> up to scale and sign).
+The full chain rank-five → doubled carrier → <span class="math">ℂ²⊕ℂ³</span> → <span class="math">U(2)×U(3)</span>
+→ <span class="math">S(U(2)×U(3))</span> → <span class="math">su(2)⊕su(3)⊕u(1)</span> is a
+<span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> insofar as its first links are Book 6's
+not-independently-rechecked theorems (Part III).</div>
+
+<h3>11.IV — The decadic half-spin matter module</h3>
+<div class="thm"><span class="tname">11.IV.T1 — Decadic 2+3 branching.</span>
+<span class="math">S₊ = Λ^even W</span> decomposes into six blocks of dimensions
+<span class="math">1⊕1⊕6⊕3⊕3⊕2 = 16</span>. <span class="tag cert">CHECKED PROOF</span>
+(combinatorics and <span class="math">Λ⁴W = (Λ²E⊗Λ²V) ⊕ (E⊗Λ³V)</span> verified).
+<span class="tname">11.IV.C1.</span> <span class="math">S₊ ≅ (1,1)⊕(1,1)⊕(2,3)⊕(1,3̄)⊕(1,3̄)⊕(2,1)</span>:
+<span class="tag cert">CHECKED PROOF</span> (<span class="math">Λ²V ≅ V*</span> via SU(3) character check;
+<span class="math">Λ³V ≅ 1</span>, <span class="math">Λ²E ≅ 1</span> verified).
+<span class="tname">11.IV.T2 — Six-block weighted branching.</span>
+<span class="math">(1,1)₀ ⊕ (1,1)_{+1} ⊕ (2,3)_{+1/6} ⊕ (1,3̄)_{−2/3} ⊕ (1,3̄)_{+1/3} ⊕ (2,1)_{−1/2}</span>.
+<span class="tag cert">CHECKED PROOF</span> (exact fraction arithmetic on <span class="math">y(p,q) = p/2 − q/3</span>).
+<span class="tname">11.IV.N1.</span> <span class="tag cert">CHECKED PROOF</span> Half-spin existence does not
+select physical chirality.
+<span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> <b>11.IV.G</b> fermionic-ontology firewall: the
+exterior/Fock realization does not establish fields, statistics, or dynamics.</div>
+
+<h3>11.V — Conditional Standard-Model representation comparison</h3>
+<div class="formal">
+<span class="tag note">ASSUMPTION OR AXIOM</span> <b>11.V.A</b> physical comparison contract: SU(3) block ↔
+color, SU(2) block ↔ weak isospin, <span class="math">Y₀</span> weight ↔ hypercharge — explicitly a
+physics identification, not a premise of Theorem 11.IV.T2.
+<span class="tag cert">COMPLETED SYMBOLIC CHECK</span> <b>11.V.T1</b> one-generation branching witness:
+under that contract the six blocks are exactly one SM generation plus a neutral singlet; no hypercharge
+was fitted independently.
+<span class="tag cert">CHECKED PROOF</span> <b>11.V.D</b> mirror-generation corollary.
+<span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> <b>11.V.E</b> decadic economy: a genuine reduction in
+independent mathematical premises, not yet a reduction in physical input.</div>
+
+<h3>11.VI — Quantum-consistency test</h3>
+<div class="formal">
+<span class="tag cert">CHECKED PROOF</span> <b>11.VI.T1</b> quotient compatibility (automatic ℤ₆ descent).
+<span class="tag cert">STANDARD IMPORTED THEOREM</span> <b>11.VI.P1</b> the four-dimensional left-handed
+Weyl anomaly rules (imported QFT).
+<span class="tag cert">COMPLETED SYMBOLIC CHECK</span> <b>11.VI.T2–T4:</b>
+<span class="math">A_SU(3)³ = A_SU(3)²Y = A_SU(2)²Y = A_Y³ = A_grav²Y = 0</span>, exact.
+<span class="tag cert">COMPLETED SYMBOLIC CHECK</span> <b>11.VI.T5:</b> 3+1 = 4 doublets, even — Witten parity pass.
+<span class="tag cert">CHECKED PROOF</span> <b>11.VI.N1:</b> anomaly consistency is chirality-sign blind here.
+<span class="tag cert">CHECKED PROOF</span> <b>11.VI.T7:</b> anomaly consistency cannot retroactively prove Axiom Zero.
+<span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> <b>11.VI.H</b> Dai–Freed/bordism witness — an external QFT
+certificate, honestly labeled with restricted background assumptions.</div>
+
+<h3>11.VII — Generation multiplicity</h3>
+<div class="formal">
+<span class="tag cert">CHECKED PROOF</span> <b>11.VII.T1</b> internal-rank / family-rank separation;
+<b>11.VII.C1:</b> three colors are not three generations.
+<span class="tag cert">CHECKED PROOF</span> <b>11.VII.T2–T3:</b> anomaly and Witten-parity multiplicity blindness.
+<span class="tag cert">CHECKED PROOF</span> <b>Negative Theorem 11.VII.N1:</b> no theorem here distinguishes
+<span class="math">g = 1, 2, 3, 4, …</span>. <b>11.VII.F–H:</b> mixing requirements and the certificate for a
+future three-generation theorem — requirements, not derivations.</div>
+
+<h3>11.VIII — Higgs witness and Yukawa admissibility</h3>
+<div class="formal">
+<span class="tag cert">CHECKED PROOF</span> <b>11.VIII.T1:</b>
+<span class="math">10_ℂ ≅ (2,1)_{+1/2} ⊕ (1,3)_{−1/3} ⊕ (2,1)_{−1/2} ⊕ (1,3̄)_{+1/3}</span>.
+<span class="tag cert">COMPLETED SYMBOLIC CHECK</span> <b>11.VIII.C1</b> Higgs-representation witness
+(representation type only).
+<span class="tag cert">CHECKED PROOF</span> <b>11.VIII.T2:</b> doublet–triplet companion theorem —
+the colored triplet cannot be silently discarded from the same five.
+<span class="tag cert">STANDARD IMPORTED THEOREM</span> <b>11.VIII.T3:</b>
+<span class="math">16⊗16 = (10⊕126)_s ⊕ 120_a</span>; <span class="math">1 ∉ Sym²(16)</span>
+(dimensions 136 = 10+126, 120 verified); Yukawa admissibility after a 10-valued field is introduced.
+<span class="tag cert">CHECKED PROOF</span> <b>11.VIII.N2:</b> gauge invariance does not determine flavor texture.
+Physical debts (scalar ontology, potential, VEV, masses, splitting) explicitly unresolved —
+<span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> ledger, kept as such.</div>
+
+<h3>11.IX — Central U(1) and conditional electromagnetic remnant</h3>
+<div class="formal">
+<span class="tag cert">CHECKED PROOF</span> <b>11.IX.T1:</b> primitive integral cocharacter
+<span class="math">X = i(3I₂ ⊕ −2I₃)</span>, <span class="math">Y₀ = X/6</span>.
+<span class="tag cert">COMPLETED SYMBOLIC CHECK</span> <b>11.IX.C1:</b> the six fractions are the integers
+<span class="math">0, 6, 1, −4, 2, −3</span> divided by six.
+<span class="tag note">ASSUMPTION OR AXIOM</span> <b>11.IX.P1:</b> a doublet scalar with a nonzero vacuum —
+a physics/field extension.
+<span class="tag cert">COMPLETED SYMBOLIC CHECK</span> <b>11.IX.T2:</b> vacuum neutrality forces
+<span class="math">c = 1/6</span>, so <span class="math">Q = T₃ + Y₀</span>;
+<b>11.IX.T3:</b> the full standard charge pattern (verified exactly).
+<span class="tag cert">CHECKED PROOF</span> <b>11.IX.N1–N2:</b> the U(1) lattice selects no chirality;
+charge-sign reversal is convention, not the missing parity law.
+Couplings <span class="math">g, g′, e</span>, the weak mixing angle, and the electroweak scale: not derived.</div>
+
+<h3>11.X — Closure</h3>
+<div class="formal">
+<span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> <b>11.X.T1</b> Decadic Particle-Architecture Closure
+Theorem: a summary of items 1–11 with their individual scope labels — an exact conditional
+architecture match plus the combined obstruction ledger, not a derivation of the Standard Model.
+<span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> <b>Operational-promotion audit:</b>
+<span class="math">Δ_op(Book 11) = ∅</span> — no nonempty operational prediction-difference set is claimed.
+<b>BOOK 11 STATUS: CLOSED AT THE CURRENT PARTICLE-ARCHITECTURE SCOPE.</b></div>
+
+<h2 id="part3">Part III — Dependencies and locks</h2>
+
+<h3>Upstream dependency verdicts</h3>
+<ul class="tight">
+<li><b>Book 6 carrier <span class="math">W = W_E ⊕ W_V ≅ ℂ² ⊕ ℂ³</span>.</b>
+<span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> as an inheritance: the Volume I audit ledger records
+Book 6's envelope/no-go theorems as read but not independently re-proved; the internal group facts
+(<span class="math">U(2)×U(3)</span>, <span class="math">S(U(2)×U(3))</span> reduction, <span class="math">a=1/2, b=−1/3</span>)
+are <span class="tag cert">STANDARD IMPORTED THEOREM</span>s. Book 11's conditionality ("inherited from Book 6")
+is honestly labeled in the text.</li>
+<li><b>Historical T4 / T5 / T6.</b> <span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> — retired-master
+witnesses re-entered by name (helicity odds, axial spin connection, Einstein–Cartan sector, decadic Clifford
+construction). The text labels each re-entry explicitly; none is used backward as a premise.</li>
+<li><b>Book 0 / Book 3 orientation data.</b> FlatWave transformation laws are
+<span class="tag cert">COMPLETED NUMERICAL CHECK</span>s in the Volume I ledger; the manuscript's
+separation theorems are <span class="tag note">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span>s there. Book 11 re-proves its own
+chirality no-go arguments from stated premises and keeps FlatWave out of all charge/chirality labeling —
+no conflation found.</li>
+<li><b>Physics imports.</b> Relativistic Dirac structure + <span class="math">P_L</span> (§11.PG.IX),
+four-dimensional Lorentzian spin base (§11.PG.XII, from Book 9's conditional reconstruction), chiral-QFT
+anomaly rules (§11.VI.P1), the SM comparison contract (§11.V), the color projection contract (§11.II.E),
+the doublet scalar + vacuum (§11.IX.P1) — all explicitly declared. Standard Model structures reached after
+them are <b>conditional reconstructions</b>, never derivations of the Standard Model. The text states this
+repeatedly and correctly.</li>
+</ul>
+
+<h3>Forward book map — Books 12–19</h3>
+<div class="formal">
+The section titled <b>CANONICAL FORWARD BOOK MAP — BOOKS 12–19</b> (source lines 2302–2307 of this book's
+span) contains <b>no per-book entries</b>. It consists solely of a status paragraph: the entries "extend the
+canonical sequence beyond Book 11", are "roadmap records, not completed theorem stacks", and "earlier
+numbering remains provenance only; renumbering changes editorial addresses, not dependency, claim strength,
+or theorem status." Recorded without endorsement: there is nothing here to endorse or refute beyond the
+status paragraph itself.</div>
+
+<h3>Volume II dependency lock — Book 11 → Book 12</h3>
+<div class="formal">
+Recorded verbatim in substance: Book 12 inherits <span class="math">W = ℂ² ⊕ ℂ³</span> as mathematical
+carrier structure. The three-state block acquires a QCD interpretation only after the explicit color
+projection contract stated in Book 12. "The later Casimir correspondence therefore does not alter the
+status of Book 11 or retroactively derive the imported physics used for comparison." The lock also makes
+a forward reference to a "later Casimir correspondence" located in Book 12 — a claim about a book not yet
+in this corpus, recorded without endorsement.</div>
+
+<div class="ledger">BOOK 11 FINAL STATUS (from the manuscript, scope-tagged above)
+MATHEMATICAL STACK: 2+3 carrier blocks, S(U(2)xU(3)) with Z6 quotient, primitive central lattice,
+16-dimensional half-spin module, six-block weighted branching, vector-10 branching, Yukawa admissibility,
+family-rank separation — established at the tags shown.
+CONDITIONAL SM MATCHES: global group form, one generation + neutral singlet, hypercharge pattern,
+anomaly closure, even doublet count, Higgs-doublet-type block, 16.16.10 channel, Q=T3+Y0, charge pattern —
+exact after explicit contracts, never derived.
+NEGATIVE RESULTS: chirality nonselection (N1), color not derived from SU(3) alone (N2), generation number
+not derived (N3), Higgs representation not dynamics (N4), gauge invariance not flavor (N5), charge lattice
+not coupling strength (N6), anomaly consistency cannot retroactively justify Axiom Zero (N7).
+PHYSICAL IMPORTS AT CLOSURE: Lorentzian spin base, Weyl fermions, gauge interpretation, color, weak
+isospin, hypercharge, anomaly criteria, Yang-Mills dynamics, confinement, Higgs scalar + potential + vacuum,
+Yukawa dynamics, replication, masses, mixings, couplings, RG flow.
+OPERATIONAL PROMOTION: Delta_op(Book 11) = empty set. No new prediction-difference claimed.</div>
+
+<footer>
+<p>Rewrite of Book 11 of <i>Our Revised R Theory — Volume II</i> (working manuscript, source lines
+2497–4810). Restructured: pictures and intuition first (Part I), formal audit second (Part II),
+dependencies third (Part III). All theorems, ledgers, and status labels are from the original; no
+mathematics added. Graphs are live Desmos calculators with static fallbacks generated from the same
+formulas; every plotted number passed an independent numerical check. Live Desmos rendering was not
+verified in a live browser from this machine.</p>
+</footer>
+
+<p class="status">Rewrite status: every checkable claim on this page was re-verified —
+33 real assertions in <span class="math">validation/book11/verify_book11.py</span>, all passing, no timeouts
+(19 checked proofs, 8 completed numerical checks, 6 completed symbolic checks). Worst measured error
+1.6e-10 on the Figure&nbsp;1 reciprocal identities near β→±1 (floating-point noise; the identities are
+exact algebra). Embed consistency (Desmos ids ↔ fallback PNGs ↔ captions, color-caption agreement,
+viewport sanity) checked by <span class="math">validation/book11/test_embeds.py</span>. Live Desmos
+rendering was not verified in a live browser from this machine; the static PNGs are the verified
+artifacts. Pictures illustrate checked statements; they are not the proofs.</p>
+
+<script>
+var GRAPHS = [
+ {id:'d1', fb:'f1', vw:{left:-1.05, right:1.05, bottom:0, top:8}, exprs:[
+  {latex:'y=\\left|\\frac{1}{\\cos(\\arcsin(x))}\\right|+\\tan(\\arcsin(x))\\left\\{-1<x<1\\right\\}', color:'#1f77b4'},
+  {latex:'y=\\sqrt{\\frac{1+x}{1-x}}\\left\\{-1<x<1\\right\\}', color:'#ff7f0e', lineStyle:'dashed'},
+  {latex:'y=\\left|\\frac{1}{\\cos(\\arcsin(x))}\\right|-\\tan(\\arcsin(x))\\left\\{-1<x<1\\right\\}', color:'#2ca02c'}]},
+ {id:'d2', fb:'f2', vw:{left:0, right:7, bottom:-1.2, top:1.4}, exprs:[
+  {latex:'(1,0)', color:'#1f77b4'}, {latex:'(2,1)', color:'#1f77b4'},
+  {latex:'(3,\\frac{1}{6})', color:'#1f77b4'}, {latex:'(4,-\\frac{2}{3})', color:'#1f77b4'},
+  {latex:'(5,\\frac{1}{3})', color:'#1f77b4'}, {latex:'(6,-\\frac{1}{2})', color:'#1f77b4'}]},
+ {id:'d3', fb:'f3', vw:{left:0, right:17, bottom:-1.4, top:1.4}, exprs:[
+  {latex:'(1,\\frac{2}{3})', color:'#2ca02c'}, {latex:'(2,\\frac{2}{3})', color:'#2ca02c'},
+  {latex:'(3,\\frac{2}{3})', color:'#2ca02c'}, {latex:'(4,-\\frac{1}{3})', color:'#2ca02c'},
+  {latex:'(5,-\\frac{1}{3})', color:'#2ca02c'}, {latex:'(6,-\\frac{1}{3})', color:'#2ca02c'},
+  {latex:'(7,-\\frac{2}{3})', color:'#2ca02c'}, {latex:'(8,-\\frac{2}{3})', color:'#2ca02c'},
+  {latex:'(9,-\\frac{2}{3})', color:'#2ca02c'}, {latex:'(10,\\frac{1}{3})', color:'#2ca02c'},
+  {latex:'(11,\\frac{1}{3})', color:'#2ca02c'}, {latex:'(12,\\frac{1}{3})', color:'#2ca02c'},
+  {latex:'(13,0)', color:'#2ca02c'}, {latex:'(14,-1)', color:'#2ca02c'},
+  {latex:'(15,0)', color:'#2ca02c'}, {latex:'(16,1)', color:'#2ca02c'}]},
+ {id:'d4', fb:'f4', vw:{left:0, right:7, bottom:-5, top:7}, exprs:[
+  {latex:'(1,0)', color:'#d62728'}, {latex:'(2,6)', color:'#d62728'},
+  {latex:'(3,1)', color:'#d62728'}, {latex:'(4,-4)', color:'#d62728'},
+  {latex:'(5,2)', color:'#d62728'}, {latex:'(6,-3)', color:'#d62728'}]},
+ {id:'d5', fb:'f5', vw:{left:0.5, right:6.5, bottom:-0.4, top:1.3}, exprs:[
+  {latex:'(1,1)', color:'#9467bd'}, {latex:'(2,\\frac{37}{36})', color:'#9467bd'},
+  {latex:'(3,\\frac{5}{36})', color:'#9467bd'}, {latex:'(4,\\frac{1}{4})', color:'#9467bd'},
+  {latex:'(5,0)', color:'#9467bd'}, {latex:'(6,0)', color:'#9467bd'},
+  {latex:'y=0', color:'#999999', lineStyle:'dashed'}]},
+ {id:'d6', fb:'f6', vw:{left:-1.4, right:1.4, bottom:-1.4, top:1.4}, exprs:[
+  {latex:'x^{2}+y^{2}=1', color:'#999999'},
+  {latex:'(1,0)', color:'#1f77b4'}, {latex:'(\\frac{1}{2},\\frac{\\sqrt{3}}{2})', color:'#1f77b4'},
+  {latex:'(-\\frac{1}{2},\\frac{\\sqrt{3}}{2})', color:'#1f77b4'}, {latex:'(-1,0)', color:'#1f77b4'},
+  {latex:'(-\\frac{1}{2},-\\frac{\\sqrt{3}}{2})', color:'#1f77b4'}, {latex:'(\\frac{1}{2},-\\frac{\\sqrt{3}}{2})', color:'#1f77b4'}]},
+ {id:'d7', fb:'f7', vw:{left:0, right:7, bottom:-1.2, top:1.4}, exprs:[
+  {latex:'(1,0)', color:'#1f77b4'}, {latex:'(2,1)', color:'#1f77b4'},
+  {latex:'(3,\\frac{1}{6})', color:'#1f77b4'}, {latex:'(4,-\\frac{2}{3})', color:'#1f77b4'},
+  {latex:'(5,\\frac{1}{3})', color:'#1f77b4'}, {latex:'(6,-\\frac{1}{2})', color:'#1f77b4'},
+  {latex:'(1,0)', color:'#d62728'}, {latex:'(2,-1)', color:'#d62728'},
+  {latex:'(3,-\\frac{1}{6})', color:'#d62728'}, {latex:'(4,\\frac{2}{3})', color:'#d62728'},
+  {latex:'(5,-\\frac{1}{3})', color:'#d62728'}, {latex:'(6,\\frac{1}{2})', color:'#d62728'}]}
+];
+function initAll(){
+  if(!window.Desmos || !Desmos.GraphingCalculator) return;
+  GRAPHS.forEach(function(g){
+    try{
+      var el = document.getElementById(g.id);
+      var calc = Desmos.GraphingCalculator(el,
+        {keypad:false, expressionsTopbar:false, settingsMenu:false, zoomButtons:true,
+         expressionsCollapsed:false, border:false});
+      g.exprs.forEach(function(e, i){
+        var cfg = {id:'e'+i, latex:e.latex, color:e.color};
+        if(e.lineStyle === 'dashed') cfg.lineStyle = Desmos.Styles.DASHED;
+        if(e.showLabel){ cfg.showLabel = true; cfg.label = e.label; }
+        calc.setExpression(cfg);
+      });
+      calc.setMathBounds(g.vw);
+      el.style.display = 'block';
+      var fb = document.getElementById(g.fb);
+      if(fb) fb.style.display = 'none';
+    }catch(err){ /* keep static fallback */ }
+  });
+}
+(function(){
+  var s = document.createElement('script');
+  s.src = 'https://www.desmos.com/api/v1.10/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6';
+  s.async = true;
+  s.onload = function(){ setTimeout(initAll, 300); };
+  document.head.appendChild(s);
+  setTimeout(function(){ initAll(); }, 9000);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book 18 — The Contraction Module</title>
+<script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+<style>
+body{font-family:Georgia,serif;max-width:860px;margin:0 auto;padding:24px;line-height:1.65;color:#1a1a1a;background:#fdfdfb}
+h1{font-size:1.9em;border-bottom:2px solid #333;padding-bottom:8px}
+h2{font-size:1.45em;margin-top:2.2em;border-bottom:1px solid #aaa;padding-bottom:4px}
+h3{font-size:1.15em;margin-top:1.6em}
+.graph{width:100%;height:420px;margin:12px 0 4px;border:1px solid #ccc;background:#fff}
+.fallback{display:none;width:100%;margin:12px 0 4px;border:1px solid #ccc}
+.caption{font-size:.92em;color:#333;background:#f4f4f0;padding:10px 14px;border-left:3px solid #888;margin:0 0 1.4em}
+.formula{text-align:center;font-size:1.12em;margin:.9em 0}
+.status{font-size:.85em;color:#555}
+.tag{display:inline-block;font-size:.78em;font-weight:bold;border:1px solid #666;border-radius:3px;padding:0 6px;margin-right:4px;background:#eee}
+.tag.CP{background:#dff0d8}.tag.SC{background:#e3f2fd}.tag.NC{background:#d7f0e8}.tag.ST{background:#e8e4f5}
+.tag.MA{background:#fcf8e3}.tag.AX{background:#fde8d8}.tag.IN{background:#e8e8e8}.tag.IC{background:#fbdcdc}
+hr{margin:2.5em 0;border:none;border-top:1px solid #bbb}
+.toc a{color:#0645ad;text-decoration:none}
+.small{font-size:.9em;color:#444}
+ul.tight li{margin-bottom:.35em}
+footer{margin-top:3em;color:#555;font-size:.9em;border-top:1px solid #bbb;padding-top:1em}
+</style>
+<!-- SITENAV-START -->
+<style>
+.sitenav{font-family:Georgia,serif;font-size:.88em;background:#f4f4f0;border:1px solid #bbb;
+ border-radius:4px;padding:8px 14px;margin:0 0 1.5em;display:flex;flex-wrap:wrap;
+ align-items:center;gap:8px 16px;line-height:1.4}
+.sitenav a{color:#0645ad;text-decoration:none;white-space:nowrap}
+.sitenav a:hover{text-decoration:underline}
+.sitenav .sitenav-brand{font-weight:bold;color:#1a1a1a}
+.sitenav .sitenav-links{display:flex;flex-wrap:wrap;gap:8px 14px}
+.sitenav-search{margin-left:auto;display:flex;gap:6px;align-items:center}
+.sitenav-search input{font-family:Georgia,serif;font-size:.95em;padding:4px 8px;
+ border:1px solid #999;border-radius:3px;width:170px;background:#fff;color:#1a1a1a}
+.sitenav-search button{font-family:Georgia,serif;font-size:.95em;padding:4px 12px;
+ border:1px solid #666;border-radius:3px;background:#eee;cursor:pointer;color:#1a1a1a}
+</style>
+<!-- SITENAV-END -->
+</head>
+<body>
+<!-- SITENAV-NAV-START -->
+<nav class="sitenav" aria-label="Site navigation">
+<a class="sitenav-brand" href="../">R Theory — Rewrite</a>
+<span class="sitenav-links">
+<a href="../#hard">Hard&nbsp;science</a><a href="../#theoretical">Theoretical</a><a href="../vol0/">Vol&nbsp;0</a><a href="../vol4/">Vol&nbsp;IV</a><a href="../tables/">Tables</a>
+</span>
+<form class="sitenav-search" action="https://www.google.com/search" method="get" target="_blank" role="search"
+ onsubmit="if(!this.q.value.trim())return false;this.q.value='site:cosbykit-afk.github.io/r-theory-rewrite '+this.q.value">
+<input type="text" name="q" placeholder="Search this site&#8230;" aria-label="Search this site">
+<button type="submit">Search</button>
+</form>
+</nav>
+<!-- SITENAV-NAV-END -->
+<h1>Book 18 — The Contraction Module</h1>
+<p><i>A restructured rewrite of Book 18 of R Theory — Volume IV (v1, the audit authority).
+Pictures and intuition first; the formal audit second. Every claim carries exactly one status:
+<span class="tag CP">CP</span> checked proof, <span class="tag SC">SC</span> completed symbolic check,
+<span class="tag NC">NC</span> completed numerical check, <span class="tag ST">ST</span> standard imported theorem,
+<span class="tag MA">MA</span> manuscript assertion, <span class="tag AX">AX</span> assumption or axiom,
+<span class="tag IN">IN</span> incomplete or failed computation, <span class="tag IC">IC</span> incorrect result.
+A sampled numerical agreement (~1e-10) is a completed numerical check, never a proof.</i></p>
+<p class="small"><b>Reading this page.</b> The manuscript's own words EXACT / CONDITIONAL / OPEN are its
+self-labels, never the audit's verdicts. Figures are live Desmos calculators; if Desmos cannot load, a
+static rendering appears instead. Live Desmos rendering was <b>not</b> browser-verified from the build
+machine — the static fallbacks carry the verified numbers, generated from the same expressions as the
+embeds (see <a href="../validation/book18/">validation/book18/</a>). v1 is the sole audit authority.</p>
+<div class="toc">
+<p><b>Contents.</b> <a href="#p1">I. See it first</a> ·
+<a href="#p2">II. Then earn it</a> ·
+<a href="#p3">III. Incorrect and open</a> ·
+<a href="#p4">IV. Close the book</a></p>
+</div>
+<p class="status">Rewrite status: all pictured identities re-verified — 42 real assertions in
+<a href="../validation/book18/verify_book18.py">validation/book18/verify_book18.py</a>
+(41 CP, 1 NC), all passing, no timeouts; worst measured deviation 1.8e-2 on the
+V_E⁴ bound check (|5.0273⁴ − 638.78| = 0.018 against the 0.05 bound; all
+exact-integer checks at 0). Embed consistency checked by
+<a href="../validation/book18/test_embeds.py">validation/book18/test_embeds.py</a>
+(6 figures, 42 latex fragments, viewport containment). Chunk 4 audit: 40 assertions,
+0 failed — CP 31 · NC 1 · IC 8 assertions (IC-12…IC-17, two with sub-assertions),
+no timeouts. Source: Volume IV v1, doc 1-T5Eh7tbPcNenfB1ubkUmST5IYq_QGchm5X1ZcIRvoU.
+Live Desmos rendering was not browser-verified from the build machine — the static
+fallbacks carry the verified numbers.</p>
+
+<h2 id="p1">Part I — See it first</h2>
+<p>Six figures: the algebra the book establishes, drawn before the defects are listed. Every number
+below is exact integer or rational arithmetic.</p>
+
+<h3>Figure 1 — The 1820 as C(16,4)</h3>
+<div class="graph" id="d1"></div>
+<img class="fallback" id="f1" src="graphs/b18_comb.png" alt="C(n,4) curve with the point (16,1820)">
+<div class="caption"><b>What you see.</b> <span class="formula">C(n,4) = n(n−1)(n−2)(n−3)/24</span>
+with the green dot at <span class="formula">(16, 1820)</span>: the 1820 is the 4-form on 16
+dimensions, exactly. <span class="tag CP">CP</span> <b>What it doesn't show.</b> The number 1820 is
+combinatorics; the <i>explicit 1820 projector</i> the contraction needs is a different object, and it
+is open (blocked at <span class="formula">P_{6435}</span>). <span class="tag MA">MA</span></div>
+
+<p><b>Proved 2026-09-20 — the 1820's invariant pairing is symmetric.</b>
+The Frobenius–Schur indicator of the 1820 is <span class="formula">+1</span>:
+on <span class="formula">W = Λ⁴(ℂ¹⁶)</span> the determinant-of-Gram-matrix pairing
+<span class="formula">B(v₁∧v₂∧v₃∧v₄, w₁∧w₂∧w₃∧w₄) = det(⟨vₖ,w_ℓ⟩)</span>
+is well-defined, SO(16)-invariant, nondegenerate, and symmetric — and by Schur's
+lemma on <span class="formula">Hom_G(W,W*)</span> it is the unique invariant bilinear
+form up to scale. So every SO(16)-invariant pairing on the 1820 is symmetric; no
+alternating one exists. <span class="tag CP">CP</span>
+<b>Scope.</b> This constrains pairings, not operators: whether the manuscript's
+<span class="formula">M_e</span>/<span class="formula">Oprop</span> are SO(16)-equivariant
+at all is still a manuscript-reading question. <span class="tag MA">MA</span></p>
+
+<h3>Figure 2 — Sym²(128) vs Λ²(128): the 120 is not in Sym² (IC-12)</h3>
+<div class="graph" id="d2"></div>
+<img class="fallback" id="f2" src="graphs/b18_sym_alt.png" alt="Sym2 and Alt2 dimension curves with the 120 marked in Alt2">
+<div class="caption"><b>What you see.</b> <span class="formula">dim Sym²(n) = n(n+1)/2</span> (blue) and
+<span class="formula">dim Λ²(n) = n(n−1)/2</span> (orange). At <span class="formula">n = 128</span>:
+<span class="formula">Sym²(128) = 8256 = 1 ⊕ 1820 ⊕ 6435</span> (blue dot; gray dashed parts in the
+static fallback) and
+<span class="formula">Λ²(128) = 8128 = 120 ⊕ 8008</span> (orange dot). The 120 lives on the orange curve
+(red dashed) — it is <b>not</b> among the Sym² parts. <span class="tag CP">CP</span>
+This figure is the IC-12 exhibit: §18.4's "the 120 = Λ²(16) sits inside Sym²(128)" is
+<span class="tag IC">IC</span>, repeating the §17.18 error (IC-6).</div>
+
+<h3>Figure 3 — Branching: 135 → (54,1) ⊕ (1,20′) ⊕ (10,6) ⊕ (1,1)</h3>
+<div class="graph" id="d3"></div>
+<img class="fallback" id="f3" src="graphs/b18_branch.png" alt="Branching staircase summing to 135">
+<div class="caption"><b>What you see.</b> The staircase of partial sums
+<span class="formula">54 → 74 → 134 → 135</span>:
+<span class="formula">135|_{SO(10)×SU(4)} = (54,1) ⊕ (1,20′) ⊕ (10,6) ⊕ (1,1)</span>,
+i.e. <span class="formula">54 + 20 + 60 + 1 = 135</span>, dimensionally exact.
+<span class="tag CP">CP</span> The SO(10)/SU(4) representation content itself is standard imported
+representation theory, not derived here. <span class="tag ST">ST</span>
+Also exact: <span class="formula">135 = 16·17/2 − 1 = Sym²₀(16)</span> and
+<span class="formula">54 = 55 − 1 = Sym²₀(10)</span>. <span class="tag CP">CP</span>
+<b>What it doesn't show.</b> Where the <span class="formula">P_{54}</span> projector lives — 135 vs
+1820 is unreconciled in v1. <span class="tag MA">MA</span></div>
+
+<h3>Figure 4 — The conversion chain: algebraic form only</h3>
+<div class="graph" id="d4"></div>
+<img class="fallback" id="f4" src="graphs/b18_chain.png" alt="Conversion chain lines with no established point">
+<div class="caption"><b>What you see.</b> The chain
+<span class="formula">S_F = 3a_{2222}</span> (from <span class="formula">(6/5)(5/2) = 3</span>),
+<span class="formula">a = (6/5)c</span>, <span class="formula">c_{ord} = 5S_F/18</span> as the two lines
+<span class="formula">a = S_F/3</span>, <span class="formula">c = 5S_F/18</span> — they close
+algebraically, and <span class="formula">−(1/256)(√10/6) = −√10/1536</span> exactly.
+<span class="tag CP">CP</span> There is <b>no dot on these lines</b>: the numerical value of
+<span class="formula">S_F</span> is OPEN, so the chain has no established point. The figure is honest
+about that. <b>What it doesn't show.</b> The physical content of the
+<span class="formula">−(√10/1536)</span> prefactor — a manuscript assertion. <span class="tag MA">MA</span></div>
+
+<h3>Figure 5 — Conditional projector idempotency</h3>
+<div class="graph" id="d5"></div>
+<img class="fallback" id="f5" src="graphs/b18_projector.png" alt="Projector lines with values 0 and 1 at eigenvalues">
+<div class="caption"><b>What you see.</b> <span class="formula">Π_± = (1 ± γ_{17})/2</span>:
+at the eigenvalues <span class="formula">γ_{17} = ±1</span> (black dots) the projectors take values
+<span class="formula">{0, 1}</span> and are idempotent, <span class="formula">Π_±² = Π_±</span>.
+<span class="tag CP">CP</span> <b>as a conditional inference</b> — conditional on the Clifford relations
+<span class="formula">γ_{17}² = +1</span> (sign <span class="formula">(−1)^{120} = +1</span>).
+<b>What it doesn't show.</b> The <span class="formula">γᵢ</span> relations themselves: they are OPEN
+in v1, and §18.2's printed template cannot produce them (IC-17). <span class="tag MA">MA</span></div>
+
+<h3>Figure 6 — The ordered contraction: (E,B,E,O)×2 → 54</h3>
+<div class="graph" id="d6"></div>
+<img class="fallback" id="f6" src="graphs/b18_contraction.png" alt="C8 word on a circle with the 54 target">
+<div class="caption"><b>What you see.</b> The C8 cyclic word in contact order around the circle —
+E (green) on decay octants 1, 3, 5, 7; B (blue) on growth octants 2, 6; O (orange) on growth
+octants 4, 8 — with the manuscript's target, the 54, at the center. <span class="tag CP">CP</span>
+(word structure; the audit's exact check). <b>What it doesn't show.</b> The contraction itself: the
+skeleton that would execute it has four concrete defects (IC-13…IC-16), the 1820 projector is
+blocked, and the 54's location (135 vs 1820) is unreconciled. The center label says NOT established
+because it is not. <span class="tag MA">MA</span></div>
+
+<h2 id="p2">Part II — Then earn it</h2>
+<h3>Dimensions / combinatorics (§§18.2–18.5)</h3>
+<p><span class="formula">C(16,4) = 1820</span>, <span class="formula">128·129/2 = 8256 = dim Sym²(128)</span>,
+<span class="formula">1 + 1820 + 6435 = 8256</span>, <span class="formula">2⁷ = 128</span>.
+<span class="tag CP">CP</span> Branching arithmetic:
+<span class="formula">54 + 20 + 10·6 + 1 = 135</span>;
+<span class="formula">Sym²₀(10)</span>: <span class="formula">55 − 1 = 54</span>;
+§18.5's <span class="formula">135|_{SO(10)×SU(4)} = (54,1)⊕(1,20')⊕(10,6)⊕(1,1)</span> is
+dimensionally exact <span class="tag CP">CP</span>, with the SO(10)/SU(4) content standard representation
+theory <span class="tag ST">ST</span>.</p>
+<h3>Conversion chain (§18.6)</h3>
+<p><span class="formula">S_F = 3a_{2222}</span> from <span class="formula">(6/5)(5/2) = 3</span>;
+<span class="formula">a = (6/5)c</span> inverts to <span class="formula">c_{ord} = 5S_F/18</span>;
+<span class="formula">−(1/256)(√10/6) = −√10/1536</span> exactly. <span class="tag CP">CP</span>
+<span class="formula">γ_{17}² = +1</span> under the Clifford relations (sign
+<span class="formula">(−1)^{120} = +1</span>), so <span class="formula">Π_± = (1±γ_{17})/2</span> is
+idempotent — <span class="tag CP">CP</span> as a conditional inference; the <span class="formula">γᵢ</span>
+relations themselves are OPEN in v1. The missing-input lines ("explicit 1820×1820 E, B, O matrices")
+are present and honest. <span class="tag CP">CP</span></p>
+<h3>Tension arithmetic (recorded for Book 19)</h3>
+<p><span class="formula">(√2)⁴ = 4</span> (established propagator cosh product),
+<span class="formula">(√2)⁸ = 16</span> (all-eight product) <span class="tag CP">CP</span> — the value 16
+at line 3542 matches the all-eight product, not the propagator product.
+<span class="formula">V_E⁴ ≈ 638.78</span>: <span class="formula">5.0273⁴ = 638.76</span>, within 0.05.
+<span class="tag NC">NC</span></p>
+<h3>§18.8 — the skeleton, duplicated</h3>
+<p>§18.8 repeats the §17.18.8.2 Wolfram skeleton with the Step-5 sum ranges further abbreviated away —
+and with the same four defects (IC-13…IC-16). Two more errors recur as IC-12 (the 120 in Sym²(128),
+= IC-6) and IC-17 (new: the §18.2 gamma template). <span class="tag IC">IC</span></p>
+
+<h2 id="p3">Part III — Incorrect and open</h2>
+<h3>Incorrect as stated (IC-12…IC-17)</h3>
+<ul class="tight">
+<li><b>IC-12</b> (§18.4): "The 120 = Λ²(16) sits inside Sym²(128)" — false; repeats IC-6.
+<span class="formula">Sym²(128) = 1 ⊕ 1820 ⊕ 6435</span> has no 120. Figure 2 is the exhibit.
+<span class="tag IC">IC</span></li>
+<li><b>IC-13</b> (§18.8 Step 1, recurs IC-8): the 1820-basis construction — as written yields
+<span class="formula">{}</span>; the intended reading yields 8255 dimensions, not 1820; needs
+<span class="formula">P_{6435}</span>, unfixable within v1. <span class="tag IC">IC</span></li>
+<li><b>IC-14</b> (§18.8 Steps 2–3, recurs IC-9): <span class="formula">128⁴×128⁴</span> Kronecker product
+vs <span class="formula">1820×8256</span> sandwich — dimensionally incompatible. <span class="tag IC">IC</span></li>
+<li><b>IC-15</b> (§18.8 Steps 6–7, recurs IC-10): <span class="formula">−(1/256)</span> double-counted.
+<span class="tag IC">IC</span></li>
+<li><b>IC-16</b> (§18.8 Step 5, recurs IC-11): <span class="formula">wickSign</span> never assigned;
+the Step-5 sum ranges are further abbreviated away in the duplicate. <span class="tag IC">IC</span></li>
+<li><b>IC-17</b> (§18.2, new): the "standard construction"
+<span class="formula">γᵢ = σ_x^{⊗(i−1)} ⊗ σ_a ⊗ I^{⊗(8−i)}</span> has 8 qubit factors, hence
+<span class="formula">256×256</span> matrices — but the section requires "the explicit
+<span class="formula">128×128</span> matrices" acting on the 128-dimensional chiral spinor.
+Additionally <span class="formula">σ_a</span> is never defined, only <span class="formula">i = 1…8</span>
+are shown for 16 matrices, and the "appropriate extensions for i = 9…16" are undefined. The printed
+template cannot produce what the section asks for. <span class="tag IC">IC</span></li>
+</ul>
+<h3>Open (the manuscript's own admissions, confirmed)</h3>
+<p class="small">Explicit 1820×1820 E, B, O matrices; the explicit 1820 projector; the 120 embedding; the
+54 projector (135 vs 1820 unreconciled); the <span class="formula">S_F</span> numerical value;
+<span class="formula">N_{1820}</span>. <span class="tag MA">MA</span></p>
+<h3>Unresolved</h3>
+<p class="small">§17.18 and Book 18 share the same title (duplication flag — the two sections cover
+overlapping contraction material with the skeleton defects recurring). The dangling "§17.11" reference
+and the Flatwave naming question are carried on the <a href="../vol4/">Volume IV overview</a> page.</p>
+
+<h2 id="p4">Part IV — Close the book</h2>
+<p><b>Established.</b> The dimension/combinatorics spine
+(<span class="formula">1820 = C(16,4)</span>, <span class="formula">8256 = 1+1820+6435</span>,
+<span class="formula">2⁷ = 128</span>), the branching arithmetic
+(<span class="formula">54+20+60+1 = 135</span>), the conversion chain's algebraic closure, and the
+conditional projector idempotency. <b>Not established:</b> the explicit matrices, the 1820 projector,
+the 54's location, or the <span class="formula">S_F</span> value — and the skeleton that would compute
+it is defective in both of its printings. Book 18 is a roadmap with the algebra checked and the
+construction open. The UV boundary — what, if anything, this contracts to — is
+<a href="../book19/">Book 19</a>.</p>
+
+<footer>
+<p>Book 18 of the R Theory Volume IV rewrite. Chunk 4 (audit_18.py) — 40 assertions, 0 failed.
+v1 is the sole audit authority. Figure validation:
+<a href="../validation/book18/verify_book18.py">verify_book18.py</a>,
+<a href="../validation/book18/test_embeds.py">test_embeds.py</a>.</p>
+</footer>
+<script>
+var GRAPHS=[
+ {id:'d1', fb:'f1', vw:{left:4, right:20, bottom:0, top:5200}, exprs:[
+  {latex:'y=\\frac{x(x-1)(x-2)(x-3)}{24}\\left\\{4\\le x\\le 20\\right\\}', color:'#1f77b4'},
+  {latex:'(16,1820)', color:'#2ca02c', showLabel:true, label:'C(16,4)=1820'}]},
+ {id:'d2', fb:'f2', vw:{left:0, right:140, bottom:0, top:10500}, exprs:[
+  {latex:'y=\\frac{x(x+1)}{2}\\left\\{0<x<140\\right\\}', color:'#1f77b4'},
+  {latex:'y=\\frac{x(x-1)}{2}\\left\\{0<x<140\\right\\}', color:'#ff7f0e'},
+  {latex:'(128,8256)', color:'#1f77b4', showLabel:true, label:'Sym²(128)=8256=1+1820+6435'},
+  {latex:'(128,8128)', color:'#ff7f0e', showLabel:true, label:'Λ²(128)=8128=120+8008'},
+  {latex:'y=120', color:'#d62728', lineStyle:'dashed'},
+  {latex:'(135,120)', color:'#d62728', showLabel:true, label:'120 lives here (in Λ²), not in Sym² (IC-12)'}]},
+ {id:'d3', fb:'f3', vw:{left:0, right:4.6, bottom:0, top:150}, exprs:[
+  {latex:'y=54\\left\\{0\\le x<1\\right\\}', color:'#d62728'},
+  {latex:'y=74\\left\\{1\\le x<2\\right\\}', color:'#d62728'},
+  {latex:'y=134\\left\\{2\\le x<3\\right\\}', color:'#d62728'},
+  {latex:'y=135\\left\\{3\\le x\\le 4\\right\\}', color:'#d62728'},
+  {latex:'(0.5,54)', color:'#000000', showLabel:true, label:'(54,1)'},
+  {latex:'(1.5,74)', color:'#000000', showLabel:true, label:"(1,20')"},
+  {latex:'(2.5,134)', color:'#000000', showLabel:true, label:'(10,6)'},
+  {latex:'(3.5,135)', color:'#000000', showLabel:true, label:'(1,1)'}]},
+ {id:'d4', fb:'f4', vw:{left:0, right:3.4, bottom:0, top:1.25}, exprs:[
+  {latex:'y=\\frac{x}{3}\\left\\{0\\le x\\le 3\\right\\}', color:'#1f77b4'},
+  {latex:'y=\\frac{5x}{18}\\left\\{0\\le x\\le 3\\right\\}', color:'#ff7f0e'},
+  {latex:'(3,1)', color:'#000000', showLabel:true, label:'a=S_F/3'},
+  {latex:'(3,\\frac{5}{6})', color:'#000000', showLabel:true, label:'c=5S_F/18'}]},
+ {id:'d5', fb:'f5', vw:{left:-1.2, right:1.2, bottom:-0.15, top:1.15}, exprs:[
+  {latex:'y=\\frac{1+x}{2}\\left\\{-1\\le x\\le 1\\right\\}', color:'#1f77b4'},
+  {latex:'y=\\frac{1-x}{2}\\left\\{-1\\le x\\le 1\\right\\}', color:'#ff7f0e'},
+  {latex:'(-1,0)', color:'#000000'},
+  {latex:'(-1,1)', color:'#000000'},
+  {latex:'(1,1)', color:'#000000', showLabel:true, label:'Π values {0,1} at γ₁₇=±1 (conditional)'},
+  {latex:'(1,0)', color:'#000000'}]},
+ {id:'d6', fb:'f6', vw:{left:-1.5, right:1.5, bottom:-1.5, top:1.5}, exprs:[
+  {latex:'(\\cos(2\\pi t),\\sin(2\\pi t))', color:'#999999'},
+  {latex:'(\\cos(\\frac{\\pi}{8}),\\sin(\\frac{\\pi}{8}))', color:'#2ca02c', showLabel:true, label:'E1'},
+  {latex:'(\\cos(\\frac{3\\pi}{8}),\\sin(\\frac{3\\pi}{8}))', color:'#1f77b4', showLabel:true, label:'B2'},
+  {latex:'(\\cos(\\frac{5\\pi}{8}),\\sin(\\frac{5\\pi}{8}))', color:'#2ca02c', showLabel:true, label:'E3'},
+  {latex:'(\\cos(\\frac{7\\pi}{8}),\\sin(\\frac{7\\pi}{8}))', color:'#ff7f0e', showLabel:true, label:'O4'},
+  {latex:'(\\cos(\\frac{9\\pi}{8}),\\sin(\\frac{9\\pi}{8}))', color:'#2ca02c', showLabel:true, label:'E5'},
+  {latex:'(\\cos(\\frac{11\\pi}{8}),\\sin(\\frac{11\\pi}{8}))', color:'#1f77b4', showLabel:true, label:'B6'},
+  {latex:'(\\cos(\\frac{13\\pi}{8}),\\sin(\\frac{13\\pi}{8}))', color:'#2ca02c', showLabel:true, label:'E7'},
+  {latex:'(\\cos(\\frac{15\\pi}{8}),\\sin(\\frac{15\\pi}{8}))', color:'#ff7f0e', showLabel:true, label:'O8'},
+  {latex:'(0,0)', color:'#000000', showLabel:true, label:'→ 54 (target: NOT established)'}]}
+];
+function initAll(){
+  if(!window.Desmos || !Desmos.GraphingCalculator) return;
+  GRAPHS.forEach(function(g){
+    try{
+      var el = document.getElementById(g.id);
+      var calc = Desmos.GraphingCalculator(el,
+        {keypad:false, expressionsTopbar:false, settingsMenu:false, zoomButtons:true,
+         expressionsCollapsed:false, border:false});
+      calc.setMathBounds(g.vw);
+      g.exprs.forEach(function(e){
+        var st = {latex: e.latex, color: e.color};
+        if(e.lineStyle) st.lineStyle = Desmos.Styles.DASHED;
+        if(e.showLabel){ st.showLabel = true; st.label = e.label; }
+        calc.setExpression(st);
+      });
+    }catch(err){
+      var fb = document.getElementById(g.fb);
+      if(fb){ fb.style.display='block'; }
+      var el2 = document.getElementById(g.id);
+      if(el2){ el2.style.display='none'; }
+    }
+  });
+}
+function boot(){
+  if(window.Desmos && Desmos.GraphingCalculator){ initAll(); }
+  else{
+    GRAPHS.forEach(function(g){
+      var fb = document.getElementById(g.fb);
+      if(fb){ fb.style.display='block'; }
+      var el = document.getElementById(g.id);
+      if(el){ el.style.display='none'; }
+    });
+  }
+}
+if(document.readyState==='complete'){ boot(); } else { window.addEventListener('load', boot); }
+setTimeout(function(){
+  var anyLive=false;
+  GRAPHS.forEach(function(g){ var el=document.getElementById(g.id); if(el && el.style.display!=='none' && el.children.length>0) anyLive=true; });
+  if(!anyLive){
+    GRAPHS.forEach(function(g){
+      var fb=document.getElementById(g.fb); if(fb) fb.style.display='block';
+      var el=document.getElementById(g.id); if(el) el.style.display='none';
+    });
+  }
+}, 12000);
+</script>
+</body>
+</html>

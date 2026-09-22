@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book 1 — Mathematical Constitution</title>
+<script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+<style>
+body{font-family:Georgia,serif;max-width:860px;margin:0 auto;padding:24px;line-height:1.65;color:#1a1a1a;background:#fdfdfb}
+h1{font-size:1.9em;border-bottom:2px solid #333;padding-bottom:8px}
+h2{font-size:1.45em;margin-top:2.2em;border-bottom:1px solid #aaa;padding-bottom:4px}
+h3{font-size:1.15em;margin-top:1.6em}
+.graph{width:100%;height:420px;margin:12px 0 4px;border:1px solid #ccc;background:#fff}
+.fallback{display:none;width:100%;margin:12px 0 4px;border:1px solid #ccc}
+.caption{font-size:.92em;color:#333;background:#f4f4f0;padding:10px 14px;border-left:3px solid #888;margin:0 0 1.4em}
+.formula{text-align:center;font-size:1.12em;margin:.9em 0}
+.status{font-size:.85em;color:#555}
+.tag{display:inline-block;font-size:.78em;font-weight:bold;border:1px solid #666;border-radius:3px;padding:0 6px;margin-right:4px;background:#eee}
+.tag.P{background:#dff0d8}.tag.S{background:#d9edf7}.tag.M{background:#fcf8e3}.tag.D{background:#e8e8e8}
+hr{margin:2.5em 0;border:none;border-top:1px solid #bbb}
+.toc a{color:#0645ad;text-decoration:none}
+.small{font-size:.9em;color:#444}
+</style>
+<!-- SITENAV-START -->
+<style>
+.sitenav{font-family:Georgia,serif;font-size:.88em;background:#f4f4f0;border:1px solid #bbb;
+ border-radius:4px;padding:8px 14px;margin:0 0 1.5em;display:flex;flex-wrap:wrap;
+ align-items:center;gap:8px 16px;line-height:1.4}
+.sitenav a{color:#0645ad;text-decoration:none;white-space:nowrap}
+.sitenav a:hover{text-decoration:underline}
+.sitenav .sitenav-brand{font-weight:bold;color:#1a1a1a}
+.sitenav .sitenav-links{display:flex;flex-wrap:wrap;gap:8px 14px}
+.sitenav-search{margin-left:auto;display:flex;gap:6px;align-items:center}
+.sitenav-search input{font-family:Georgia,serif;font-size:.95em;padding:4px 8px;
+ border:1px solid #999;border-radius:3px;width:170px;background:#fff;color:#1a1a1a}
+.sitenav-search button{font-family:Georgia,serif;font-size:.95em;padding:4px 12px;
+ border:1px solid #666;border-radius:3px;background:#eee;cursor:pointer;color:#1a1a1a}
+</style>
+<!-- SITENAV-END -->
+</head>
+<body>
+<!-- SITENAV-NAV-START -->
+<nav class="sitenav" aria-label="Site navigation">
+<a class="sitenav-brand" href="../">R Theory — Rewrite</a>
+<span class="sitenav-links">
+<a href="../#hard">Hard&nbsp;science</a><a href="../#theoretical">Theoretical</a><a href="../vol0/">Vol&nbsp;0</a><a href="../vol4/">Vol&nbsp;IV</a><a href="../tables/">Tables</a>
+</span>
+<form class="sitenav-search" action="https://www.google.com/search" method="get" target="_blank" role="search"
+ onsubmit="if(!this.q.value.trim())return false;this.q.value='site:cosbykit-afk.github.io/r-theory-rewrite '+this.q.value">
+<input type="text" name="q" placeholder="Search this site&#8230;" aria-label="Search this site">
+<button type="submit">Search</button>
+</form>
+</nav>
+<!-- SITENAV-NAV-END -->
+<h1>Book 1 — Mathematical Constitution</h1>
+<p><i>A restructured rewrite of Book 1 of R Theory — Volume I. Pictures and intuition first; the formal audit second. Every claim carries its status: <span class="tag P">P</span> proved in text, <span class="tag S">S</span> standard imported result, <span class="tag M">M</span> manuscript assertion / stipulation, <span class="tag D">D</span> definition.</i></p>
+<div class="toc">
+<p><b>Contents.</b> <a href="#p1">I. See it first</a> · <a href="#p2">II. Then earn it</a> · <a href="#p3">III. Certification</a> · <a href="#p4">IV. Close the book</a></p>
+</div>
+
+<hr>
+<h2 id="p1">Part I — See it first</h2>
+<p>Seven pictures. Each one is a theorem of Book 1 drawn before it is proved. The graphs below are live Desmos calculators (drag to pan, scroll to zoom); if Desmos cannot load, a static rendering appears instead.</p>
+
+<h3>Figure 1 — The four factors on their common domain</h3>
+<div class="graph" id="d1"></div>
+<img class="fallback" id="f1" src="graphs/b1_four.png" alt="Four reciprocal-conjugate factors">
+<div class="caption"><b>What you see.</b> The four neutral factors
+<span class="formula">F<sub>s</sub><sup>±</sup> = |csc x| ± cot x, &nbsp; F<sub>c</sub><sup>±</sup> = |sec x| ± tan x</span>
+on D = ℝ ∖ {kπ/2}, strictly positive everywhere, with poles exactly at the seam set Σ. Each sine-channel pole is a cosine-channel regular point and vice versa — the channels take turns being singular. <b>What it doesn't show.</b> No value is assigned at the seams themselves; the picture suggests one-sided behavior only.</div>
+
+<h3>Figure 2 — The principal chart: everything becomes monotone</h3>
+<div class="graph" id="d2"></div>
+<img class="fallback" id="f2" src="graphs/b1_chart.png" alt="Half-angle chart on Q0">
+<div class="caption"><b>What you see.</b> On Q<sub>0</sub> = (0, π/2) the absolute values can be dropped <i>legally</i>, and the factors become elementary:
+<span class="formula">F<sub>s</sub><sup>+</sup> = cot(x/2),&nbsp; F<sub>s</sub><sup>−</sup> = tan(x/2),&nbsp; F<sub>c</sub><sup>+</sup> = tan(π/4+x/2),&nbsp; F<sub>c</sub><sup>−</sup> = tan(π/4−x/2)</span>
+four monotone branches in the ranges (1,∞) and (0,1), meeting pairwise at x = π/4 with the exact values √2+1 and √2−1 (black dots). <b>The trap.</b> These formulas are chart-local. At x = 5π/4, F<sub>s</sub><sup>+</sup> = √2+1 while cot(5π/8) = 1−√2 &lt; 0. Globalizing the principal chart without the parity atlas is the text's #1 error mode.</div>
+
+<h3>Figure 3 — The branch signs: ε is a lossy compression</h3>
+<div class="graph" id="d3"></div>
+<img class="fallback" id="f3" src="graphs/b1_signs.png" alt="Branch sign step functions">
+<div class="caption"><b>What you see.</b> α = sgn(sin x), β = sgn(cos x), ε = αβ = sgn(sin 2x) (vertically separated for legibility; true values are ±1). The sign cycle over Q<sub>0</sub>…Q<sub>3</sub> is (+,+,+), (+,−,−), (−,−,+), (−,+,−). <b>The point.</b> ε = +1 on <i>both</i> Q<sub>0</sub> (+,+) and Q<sub>2</sub> (−,−): ε alone can never recover the ordered pair (α,β). The π quotient keeps ε but erases simultaneous sign reversal — a first, tiny information firewall.</div>
+
+<h3>Figure 4 — Reciprocal conjugacy as a hyperbola</h3>
+<div class="graph" id="d4"></div>
+<img class="fallback" id="f4" src="graphs/b1_hyperbola.png" alt="Reciprocal locus on hyperbola">
+<div class="caption"><b>What you see.</b> The dashed hyperbola uv = 1 and, riding it, the traced pair (F<sub>s</sub><sup>+</sup>(x), F<sub>s</sub><sup>−</sup>(x)) for x ∈ Q<sub>0</sub>. The identity F<sub>s</sub><sup>+</sup>·F<sub>s</sub><sup>−</sup> = 1 is not an approximation the curve approaches — the curve <i>is</i> the hyperbola branch, exactly. (Drawn via a display reparametrization of the same locus, so the full quadrant is traced regardless of Desmos's parametric-domain handling.) <b>Scope.</b> Interior identity only; at own-channel seams the "0·∞" product is assigned no value.</div>
+
+<h3>Figure 5 — Octant ordering: the diagonal crossing</h3>
+<div class="graph" id="d5"></div>
+<img class="fallback" id="f5" src="graphs/b1_diagonal.png" alt="Cross-channel comparison locus">
+<div class="caption"><b>What you see.</b> (F<sub>s</sub><sup>+</sup>(x), F<sub>c</sub><sup>+</sup>(x)) for x ∈ Q<sub>0</sub>, crossing the diagonal u = v exactly once, at (√2+1, √2+1) when x = π/4. On the first octant F<sub>s</sub><sup>+</sup> &gt; F<sub>c</sub><sup>+</sup>; on the second the inequality reverses; equality holds only at the midpoint. The quadrant midpoint is a genuine distinguished point of the chart, not a decorative mark. (Same display-parametrization note as Figure 4.)</div>
+
+<h3>Figure 6 — The seam, close up: zero–pole exchange</h3>
+<div class="graph" id="d6"></div>
+<img class="fallback" id="f6" src="graphs/b1_boundary.png" alt="Boundary behavior at sine-zero seam">
+<div class="caption"><b>What you see.</b> Near the sine-zero seam x = 0: from the left, (F<sub>s</sub><sup>+</sup>, F<sub>s</sub><sup>−</sup>, F<sub>c</sub><sup>+</sup>, F<sub>c</sub><sup>−</sup>) → (0, +∞, 1, 1); from the right, → (+∞, 0, 1, 1). The singular pair exchanges directional roles 0 ↔ +∞ — there is no finite continuous extension of the own-channel factors. Meanwhile the <i>opposite</i> channel sits calmly at the regular value 1: the seam is an artifact of the common domain, not a singularity of that channel. <b>Rule this earns.</b> A seam-safe composite never regularizes its singular constituents.</div>
+
+<h3>Figure 7 — The phase circle and its seam classes</h3>
+<div class="graph" id="d7"></div>
+<img class="fallback" id="f7" src="graphs/b1_circle.png" alt="Phase circle with seam classes">
+<div class="caption"><b>What you see.</b> The 2π circle with its four seam classes [0], [π/2], [π], [3π/2] marked; the quadrants Q<sub>k</sub> live between them, Q<sub>0</sub> highlighted. Folding this circle two-to-one onto the π circle erases the half-turn class deterministically — no quotient-level data recovers it. That erasure is proved, not conjectured.</div>
+
+<hr>
+<h2 id="p2">Part II — Then earn it</h2>
+<p>The formal audit, section by section, condensed. Notation: τ<sub>a</sub>(x) = x+a, ι(x) = −x, ι<sub>d</sub>(x) = π/2−x, Σ = {kπ/2}, D = ℝ∖Σ, Q<sub>k</sub> = (kπ/2,(k+1)π/2), O<sub>j</sub> = (jπ/4,(j+1)π/4), m<sub>k</sub> = (2k+1)π/4, ξ<sub>k</sub>(x) = x−kπ/2.</p>
+
+<h3>1.I — Scope and the status grammar <span class="tag D">D</span></h3>
+<p>Book 1 freezes the Book 0 corpus M0–M4 as its source boundary (Declaration 1.I.D1) and fixes a proof-status grammar: inherited declaration, definition, lemma, theorem, corollary, extension/obstruction theorem, added axiom, physics import, projection contract, conjecture, empirical fit, retired claim — each with bracket domain tags [R],[D],[Q],[O],[C],[B],[S],[E] and a narrowest-valid-domain rule. <span class="tag P">P</span> Status nonpromotion (1.I.T1), domain inheritance (T2), collision-cleanup neutrality (T3), and Book 1 formal isolation (T4) are proved. The no-smuggling rules R1–R5 are <span class="tag M">M</span> constitutional stipulations — declared, not derived. Representation firewall: display dimension ≠ intrinsic dimension, enforced from here on.</p>
+
+<h3>1.II — Phase spaces <span class="tag P">P</span></h3>
+<p>The lifted phase line x ∈ ℝ (not physical time), translation group τ<sub>a</sub>∘τ<sub>b</sub> = τ<sub>a+b</sub> <span class="tag P">P</span>; the full-turn fiber theorem: (cos,sin) agree at x,y iff x−y ∈ 2πℤ <span class="tag P">P</span> (ordinary trig periodicity <span class="tag S">S</span> at the base step). Quotients 𝕋<sub>2π</sub> = ℝ/2πℤ and 𝕋<sub>π</sub> = ℝ/πℤ; the folding map κ([x]<sub>2π</sub>) = [x]<sub>π</sub> is two-to-one <span class="tag P">P</span>. No deterministic recovery of the half-turn class from the π quotient (N1), nor of the lift from any periodic class (N2) <span class="tag P">P</span>. Quarter-turn has order 4 on 𝕋<sub>2π</sub> but order 2 on 𝕋<sub>π</sub> <span class="tag P">P</span>; the quotient-information firewall 1.II.T10 <span class="tag P">P</span>. Descent of τ<sub>a</sub>, ι, ι<sub>d</sub> to the quotients <span class="tag P">P</span>.</p>
+
+<h3>1.III — Seams, quadrants, octants <span class="tag P">P</span></h3>
+<p>Σ<sub>s</sub> = {kπ}, Σ<sub>c</sub> = {π/2+kπ}, alternating and disjoint, Σ = Σ<sub>s</sub> ∪ Σ<sub>c</sub> <span class="tag P">P</span>. D = ℝ∖Σ is the largest common domain of tan, cot, sec, csc <span class="tag P">P</span>; D = ⨆Q<sub>k</sub>, each Q<sub>k</sub> split by its midpoint into two octants <span class="tag P">P</span>. Exact symmetry transport of seams, quadrants, and octants under τ<sub>π/2</sub>, τ<sub>π</sub>, ι, ι<sub>d</sub> <span class="tag P">P</span>: e.g. ι(Q<sub>k</sub>) = Q<sub>−k−1</sub>, ι<sub>d</sub>(Q<sub>k</sub>) = Q<sub>−k</sub>. Four seam classes on 𝕋<sub>2π</sub>, two on 𝕋<sub>π</sub> <span class="tag P">P</span>. Analytic seam ≠ physical discontinuity (N2) <span class="tag P">P</span> — 1.III.D9 carries no physical content, so none can leak through the seam.</p>
+
+<h3>1.IV — Branch signs <span class="tag P">P</span></h3>
+<p>α = sgn(sin x), β = sgn(cos x), ε = αβ = sgn(sin 2x), each ±1 and locally constant on quadrants <span class="tag P">P</span>; |csc x| = α/sin x, |sec x| = β/cos x; sgn(tan x) = sgn(cot x) = ε <span class="tag P">P</span>. Branch-explicit rational forms, e.g. |csc x|±cot x = (α±cos x)/sin x = (1±ε|cos x|)/|sin x| <span class="tag P">P</span>. Exact conditions for dropping |·| (T11) <span class="tag P">P</span> — and dropping it elsewhere <i>changes the function</i> (N2, witnesses x = 5π/4, 3π/4) <span class="tag P">P</span>. Half-turn sends (α,β) → (−α,−β) while ε survives (T13) <span class="tag P">P</span>; no π-periodic scalar recovers (α,β) (N3) <span class="tag P">P</span>. Smoothness holds on each Q<sub>k</sub> separately (T12) <span class="tag P">P</span>.</p>
+
+<h3>1.V — The reciprocal-conjugate family <span class="tag P">P</span></h3>
+<p>Neutral factors F<sub>s</sub><sup>±</sup> = |csc x|±cot x, F<sub>c</sub><sup>±</sup> = |sec x|±tan x on D: strictly positive <span class="tag P">P</span> (envelope inequality via csc²−cot² = 1 <span class="tag S">S</span>); reciprocal conjugacy F<sub>s</sub><sup>+</sup>F<sub>s</sub><sup>−</sup> = F<sub>c</sub><sup>+</sup>F<sub>c</sub><sup>−</sup> = 1 <span class="tag P">P</span>; sum/difference reconstruction of 2|csc x|, 2cot x, etc. <span class="tag P">P</span>. Unit-threshold classification: F<sub>s</sub><sup>+</sup> &gt; 1 ⇔ cot x &gt; 0 (equality never occurs on D); "plus" labels the defining sum, not magnitude — on ε = −1 quadrants the plus factors lie in (0,1) <span class="tag P">P</span>. Reflection conjugates ± within a channel (= inversion), complementary reflection swaps channels keeping ±, quarter-turn exchanges channel-conjugately <span class="tag P">P</span>. π-periodicity with two proofs; descent to the admissible π quotient <span class="tag P">P</span>. The quadruple is pairwise algebraically redundant with a one-dimensional common source <span class="tag P">P</span>. Naming neutrality (T12) <span class="tag P">P</span>: Book 2's naming will add no mathematics.</p>
+
+<h3>1.VI — Half-angle charts <span class="tag P">P</span></h3>
+<p>On Q<sub>0</sub>: F<sub>s</sub><sup>+</sup> = cot(x/2), F<sub>s</sub><sup>−</sup> = tan(x/2), F<sub>c</sub><sup>+</sup> = tan(π/4+x/2), F<sub>c</sub><sup>−</sup> = tan(π/4−x/2) <span class="tag P">P</span> (standard half-angle/addition identities <span class="tag S">S</span>). Ranges (1,∞)/(0,1), strict monotonicity (F<sub>s</sub><sup>+</sup> decreasing, F<sub>s</sub><sup>−</sup> increasing, F<sub>c</sub><sup>+</sup> increasing, F<sub>c</sub><sup>−</sup> decreasing on every Q<sub>k</sub>) <span class="tag P">P</span>. Even quadrants reuse the principal formulas in ξ<sub>k</sub>; odd quadrants use the swapped chart (T4/T5) — only two chart types, indexed by parity/ε <span class="tag P">P</span>. Midpoint values F<sub>s</sub><sup>+</sup>(m<sub>k</sub>) = F<sub>c</sub><sup>+</sup>(m<sub>k</sub>) = √2+ε, minus-versions √2−ε <span class="tag P">P</span> (cot(π/8) = √2+1 <span class="tag S">S</span>). Octant ordering (T9) <span class="tag P">P</span>. The principal package does not globalize (N1, x = 5π/4 witness) <span class="tag P">P</span>.</p>
+
+<h3>1.VII — Boundaries and gluing <span class="tag P">P</span> / <span class="tag S">S</span></h3>
+<p>Channel-natural domains D<sub>s</sub> = ℝ∖Σ<sub>s</sub>, D<sub>c</sub> = ℝ∖Σ<sub>c</sub>, D = D<sub>s</sub>∩D<sub>c</sub> <span class="tag P">P</span>. Opposite-seam regular values are exactly 1 (T2) <span class="tag P">P</span> — a removable omission, not a singularity. Own-channel seams: directional 0 ↔ +∞ exchange with no finite continuous extension (C4) <span class="tag P">P</span>; extension does not commute with inversion (N1, a(x) = 1/x) <span class="tag P">P</span>; a seam-safe composite never regularizes its constituents (C7) <span class="tag P">P</span>. Uniqueness of continuous extension on dense sets is standard analysis <span class="tag S">S</span> (T6). Split-boundary domain D̂ = ⨆Q̄<sub>k</sub> with directional copies b̂<sub>k</sub><sup>±</sup> (superscripts = side, not sign); D̂/∼<sub>g</sub> ≅ ℝ <span class="tag P">P</span>, but there is NO canonical raw crossing map b̂<sub>k</sub><sup>−</sup> → b̂<sub>k</sub><sup>+</sup> (N2) <span class="tag P">P</span> — any crossing law is extra structure. Gluing criterion: the regular channel glues at 1; the singular channel cannot glue finite (T11) <span class="tag P">P</span>.</p>
+
+<h3>1.VIII — Minimality and representation <span class="tag P">P</span> / <span class="tag S">S</span></h3>
+<p>Four minimalities — display, generator, axiomatic, interpretive — pairwise non-equivalent (T1) <span class="tag P">P</span>; "minimal" without a named task is meaningless. The four-factor curve E<sub>k</sub>: Q<sub>k</sub> → ℝ⁴ has one-dimensional smooth image (T4) <span class="tag P">P</span>: display 4, intrinsic local dimension 1. No continuous injective 𝕋 → ℝ (T5) <span class="tag P">P</span> via standard circle topology <span class="tag S">S</span>. Task factorization: χ preserves task u exactly iff u is constant on χ-fibers (T6) <span class="tag P">P</span>; lossy can be task-sufficient (C8); more outputs cannot undo a prior noninjective compression (N1) <span class="tag P">P</span>. Diffeomorphism preserves intrinsic manifold dimension <span class="tag S">S</span> (T3). No universally minimal representation (T11) <span class="tag P">P</span>; axiom-free ≠ assumption-free (T9); mathematical closure ≠ physical closure (T10) <span class="tag P">P</span>.</p>
+
+<h3>1.IX — Certification <span class="tag P">P</span> / <span class="tag M">M</span></h3>
+<p>Dependency order is acyclic, 1.I → … → 1.IX (T1) <span class="tag P">P</span>; the no-smuggling theorem blocks eight invalid promotions — domain, branch, quotient, boundary, coordinate, dimensional, interpretive, source (T3) <span class="tag P">P</span> (cases 6–8 rest on the declared rules). The constitution theorem collects 18 established items (T6) <span class="tag P">P</span>; zero new axioms (T7), zero external imports (T8) <span class="tag P">P</span> by ledger audit; the four factors possess all listed properties as theorems <i>before</i> Book 2 naming — pre-naming sufficiency (T9) <span class="tag P">P</span>. Physical nonclosure: 14 things NOT derived (N1) <span class="tag P">P</span> from absence of introduced structure. The source-provenance theorem (T4) is proved in text <span class="tag P">P</span> from the section closure ledgers; the zero-axiom (T7) and zero-import (T8) counts are likewise proved <span class="tag P">P</span> by ledger audit. The airlock condition permits Book 2 naming as a purely definitional act.</p>
+
+<hr>
+<h2 id="p3">Part III — What Book 1 establishes, and what it doesn't</h2>
+<h3>Established (18-item constitution, abridged)</h3>
+<p class="small">Phase line with translation group; 2π/π quotients with proved information firewalls; seam set Σ with alternating decomposition; common domain D with quadrant/octant atlas and exact symmetry transport; branch signs with reconstruction formulas and loss tables; four positive reciprocal-conjugate factors with conjugacy, threshold, reflection/complementary/quarter-turn laws, π-periodicity; two chart types with ranges, monotonicity, midpoint values, octant ordering; boundary profiles with zero–pole exchange and gluing criterion; split-boundary domain with D̂/∼<sub>g</sub> ≅ ℝ; four minimalities distinguished; task-factorization criterion. Statuses: proved in text unless marked <span class="tag S">S</span> above.</p>
+<h3>Not derived (14 items, abridged)</h3>
+<p class="small">No physical time, no equation of motion or action principle, no probability or Born rule, no quantum state space, no spin or fermionic statistics, no electric charge or gauge fields, no parity violation or preferred physical chirality, no spacetime dimension, Lorentz signature, or metric field, no curvature or gravitation, no mass, frequency, or dimensional calibration, no thermodynamic entropy or arrow of time, no cosmological dynamics, no physical seam-crossing law, no empirical prediction. Book 1 is mathematically closed and physically uncommitted — that is the certification, not a gap.</p>
+
+<hr>
+<h2 id="p4">Part IV — Close the book</h2>
+<p><b>Zero counts.</b> New axioms: 0. External imports: 0. Projection contracts: 0. Canonical R-operator names: 0. Physical claims: 0.</p>
+<p><b>Airlock.</b> Book 2 may now name the factors — naming is definitional (1.V.T12, 1.IX.T9) and must inherit the absolute-valued global formulas; later derived signs (differences, FlatWave, carrier) are not fixed by Book 1. Nothing proved here selects a physical chirality, a preferred lift, or a spacetime. The mathematics is closed; the physics has not started.</p>
+<p class="status">Rewrite status: all pictured identities were re-verified numerically (reciprocal conjugacy, half-angle charts, midpoint values √2±1, threshold law, octant ordering, boundary limits, ε-lossiness) — 111 real assertions in validation/book1/verify_book1.py, all passing, no timeouts; worst measured error 8.6e-10 on reciprocal conjugacy near seams (floating-point noise; the identity is exact algebra). Embed consistency checked by validation/book1/test_embeds.py. Pictures illustrate proved statements; they are not the proofs.</p>
+
+<script>
+var GRAPHS=[
+ {id:'d1', fb:'f1', vw:{left:-7, right:7, bottom:-0.5, top:6}, exprs:[
+  {latex:'y=\\left|\\frac{1}{\\sin(x)}\\right|+\\frac{\\cos(x)}{\\sin(x)}', color:'#1f77b4'},
+  {latex:'y=\\left|\\frac{1}{\\sin(x)}\\right|-\\frac{\\cos(x)}{\\sin(x)}', color:'#ff7f0e'},
+  {latex:'y=\\left|\\frac{1}{\\cos(x)}\\right|+\\frac{\\sin(x)}{\\cos(x)}', color:'#2ca02c'},
+  {latex:'y=\\left|\\frac{1}{\\cos(x)}\\right|-\\frac{\\sin(x)}{\\cos(x)}', color:'#d62728'}]},
+ {id:'d2', fb:'f2', vw:{left:-0.1, right:1.7, bottom:-0.2, top:7}, exprs:[
+  {latex:'y=\\frac{\\cos(x/2)}{\\sin(x/2)}', color:'#1f77b4'},
+  {latex:'y=\\frac{\\sin(x/2)}{\\cos(x/2)}', color:'#ff7f0e'},
+  {latex:'y=\\frac{\\sin(\\pi/4+x/2)}{\\cos(\\pi/4+x/2)}', color:'#2ca02c'},
+  {latex:'y=\\frac{\\sin(\\pi/4-x/2)}{\\cos(\\pi/4-x/2)}', color:'#d62728'},
+  {latex:'(\\frac{\\pi}{4},\\sqrt{2}+1)', color:'#000000', showLabel:true, label:'sqrt2+1'},
+  {latex:'(\\frac{\\pi}{4},\\sqrt{2}-1)', color:'#000000', showLabel:true, label:'sqrt2-1'}]},
+ {id:'d3', fb:'f3', vw:{left:-7, right:7, bottom:-3.6, top:3.6}, exprs:[
+  {latex:'y=\\operatorname{sign}(\\sin(x))+2.2', color:'#1f77b4'},
+  {latex:'y=\\operatorname{sign}(\\cos(x))', color:'#ff7f0e'},
+  {latex:'y=\\operatorname{sign}(\\sin(2x))-2.2', color:'#2ca02c'}]},
+ {id:'d4', fb:'f4', vw:{left:0.8, right:8, bottom:-0.1, top:2.5}, exprs:[
+  {latex:'xy=1', color:'#999999', lineStyle:'dashed'},
+  {latex:'\\left(\\left|\\frac{1}{\\sin(\\pi t/2)}\\right|+\\frac{\\cos(\\pi t/2)}{\\sin(\\pi t/2)},\\left|\\frac{1}{\\sin(\\pi t/2)}\\right|-\\frac{\\cos(\\pi t/2)}{\\sin(\\pi t/2)}\\right)', color:'#1f77b4'}]},
+ {id:'d5', fb:'f5', vw:{left:0.8, right:8, bottom:0.8, top:8}, exprs:[
+  {latex:'y=x', color:'#999999', lineStyle:'dashed'},
+  {latex:'\\left(\\left|\\frac{1}{\\sin(\\pi t/2)}\\right|+\\frac{\\cos(\\pi t/2)}{\\sin(\\pi t/2)},\\left|\\frac{1}{\\cos(\\pi t/2)}\\right|+\\frac{\\sin(\\pi t/2)}{\\cos(\\pi t/2)}\\right)', color:'#d62728'}]},
+ {id:'d6', fb:'f6', vw:{left:-1.2, right:1.2, bottom:-0.3, top:6}, exprs:[
+  {latex:'y=\\left|\\frac{1}{\\sin(x)}\\right|+\\frac{\\cos(x)}{\\sin(x)}', color:'#1f77b4'},
+  {latex:'y=\\left|\\frac{1}{\\sin(x)}\\right|-\\frac{\\cos(x)}{\\sin(x)}', color:'#ff7f0e'},
+  {latex:'y=\\left|\\frac{1}{\\cos(x)}\\right|+\\frac{\\sin(x)}{\\cos(x)}', color:'#2ca02c'},
+  {latex:'y=\\left|\\frac{1}{\\cos(x)}\\right|-\\frac{\\sin(x)}{\\cos(x)}', color:'#d62728'}]},
+ {id:'d7', fb:'f7', vw:{left:-1.45, right:1.45, bottom:-1.45, top:1.45}, exprs:[
+  {latex:'x^{2}+y^{2}=1', color:'#333333'},
+  {latex:'\\left(\\cos(t),\\sin(t)\\right)\\left\\{0\\le t\\le\\frac{\\pi}{2}\\right\\}', color:'#1f77b4'},
+  {latex:'(1,0)', color:'#d62728', showLabel:true, label:'[0]'},
+  {latex:'(0,1)', color:'#d62728', showLabel:true, label:'[pi/2]'},
+  {latex:'(-1,0)', color:'#d62728', showLabel:true, label:'[pi]'},
+  {latex:'(0,-1)', color:'#d62728', showLabel:true, label:'[3pi/2]'}]}
+];
+function initAll(){
+  if(!window.Desmos || !Desmos.GraphingCalculator) return;
+  GRAPHS.forEach(function(g){
+    try{
+      var el = document.getElementById(g.id);
+      var calc = Desmos.GraphingCalculator(el,
+        {keypad:false, expressionsTopbar:false, settingsMenu:false, zoomButtons:true,
+         expressionsCollapsed:false, border:false});
+      calc.setMathBounds(g.vw);
+      g.exprs.forEach(function(e){
+        var st = {latex: e.latex, color: e.color};
+        if(e.lineStyle) st.lineStyle = Desmos.Styles.DASHED;
+        if(e.showLabel){ st.showLabel = true; st.label = e.label; }
+        calc.setExpression(st);
+      });
+    }catch(err){
+      var fb = document.getElementById(g.fb);
+      if(fb){ fb.style.display='block'; }
+      var el2 = document.getElementById(g.id);
+      if(el2){ el2.style.display='none'; }
+    }
+  });
+}
+function boot(){
+  if(window.Desmos && Desmos.GraphingCalculator){ initAll(); }
+  else{
+    GRAPHS.forEach(function(g){
+      var fb = document.getElementById(g.fb);
+      if(fb){ fb.style.display='block'; }
+      var el = document.getElementById(g.id);
+      if(el){ el.style.display='none'; }
+    });
+  }
+}
+if(document.readyState==='complete'){ boot(); } else { window.addEventListener('load', boot); }
+setTimeout(function(){
+  var anyLive=false;
+  GRAPHS.forEach(function(g){ var el=document.getElementById(g.id); if(el && el.style.display!=='none' && el.children.length>0) anyLive=true; });
+  if(!anyLive){
+    GRAPHS.forEach(function(g){
+      var fb=document.getElementById(g.fb); if(fb) fb.style.display='block';
+      var el=document.getElementById(g.id); if(el) el.style.display='none';
+    });
+  }
+}, 12000);
+</script>
+</body>
+</html>

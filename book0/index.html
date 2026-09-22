@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book 0 — Source Boundary and the Orientation Question (Restructured)</title>
+<style>
+  :root { --ink:#1a1a1a; --muted:#5a5a5a; --accent:#1b5faa; --paper:#fff; --wash:#f6f8fb; --line:#dfe5ec; }
+  body { font-family: -apple-system, "Segoe UI", Georgia, serif; color:var(--ink); background:var(--paper);
+         max-width: 860px; margin:0 auto; padding: 24px 20px 80px; line-height:1.65; }
+  h1 { font-size:1.9em; line-height:1.25; margin-bottom:.2em; }
+  h2 { font-size:1.45em; margin-top:2.2em; border-bottom:2px solid var(--line); padding-bottom:.3em; }
+  h3 { font-size:1.15em; margin-top:1.8em; color:var(--accent); }
+  .sub { color:var(--muted); font-size:1.05em; margin-top:0; }
+  .about { background:var(--wash); border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:1.5em 0; }
+  .about p { margin:.5em 0; }
+  figure.graph { margin:1.6em 0; border:1px solid var(--line); border-radius:8px; overflow:hidden; background:#fff; }
+  figure.graph .calc { width:100%; height:430px; display:none; }
+  figure.graph img.fallback { width:100%; display:block; }
+  figure.graph figcaption { padding:10px 16px; font-size:.92em; color:var(--muted); background:var(--wash);
+                            border-top:1px solid var(--line); }
+  figure.graph figcaption b { color:var(--ink); }
+  .intuition { border-left:3px solid var(--accent); padding:.2em 0 .2em 1em; margin:1em 0; }
+  .formal { background:var(--wash); border:1px solid var(--line); border-radius:8px; padding:12px 18px; margin:1.2em 0; }
+  .thm { border:1px solid var(--accent); border-radius:8px; padding:14px 18px; margin:1.4em 0; background:#fbfdff; }
+  .thm .tname { font-weight:700; color:var(--accent); }
+  .ledger { font-family: ui-monospace, Menlo, monospace; font-size:.85em; background:#0f1720; color:#d7e3f0;
+            border-radius:8px; padding:14px 18px; overflow-x:auto; white-space:pre-wrap; margin:1.2em 0; }
+  .tag { display:inline-block; font-size:.75em; font-weight:700; letter-spacing:.06em; border-radius:4px;
+         padding:.15em .6em; margin-right:.4em; vertical-align:middle; }
+  .tag.cert { background:#e6f4ea; color:#146c2e; border:1px solid #b7dfc0; }
+  .tag.note { background:#fff4e0; color:#8a5a00; border:1px solid #ecd9a8; }
+  code, .math { font-family: ui-monospace, Menlo, monospace; }
+  .math { background:#f2f5f9; padding:.1em .35em; border-radius:4px; font-size:.95em; }
+  ul.tight li { margin:.35em 0; }
+  .nav { display:flex; flex-wrap:wrap; gap:.5em; margin:1.2em 0 2em; }
+  .nav a { text-decoration:none; border:1px solid var(--line); border-radius:20px; padding:.3em 1em;
+           font-size:.9em; color:var(--accent); background:var(--wash); }
+  footer { margin-top:3em; color:var(--muted); font-size:.9em; border-top:1px solid var(--line); padding-top:1em; }
+</style>
+<!-- SITENAV-START -->
+<style>
+.sitenav{font-family:Georgia,serif;font-size:.88em;background:#f4f4f0;border:1px solid #bbb;
+ border-radius:4px;padding:8px 14px;margin:0 0 1.5em;display:flex;flex-wrap:wrap;
+ align-items:center;gap:8px 16px;line-height:1.4}
+.sitenav a{color:#0645ad;text-decoration:none;white-space:nowrap}
+.sitenav a:hover{text-decoration:underline}
+.sitenav .sitenav-brand{font-weight:bold;color:#1a1a1a}
+.sitenav .sitenav-links{display:flex;flex-wrap:wrap;gap:8px 14px}
+.sitenav-search{margin-left:auto;display:flex;gap:6px;align-items:center}
+.sitenav-search input{font-family:Georgia,serif;font-size:.95em;padding:4px 8px;
+ border:1px solid #999;border-radius:3px;width:170px;background:#fff;color:#1a1a1a}
+.sitenav-search button{font-family:Georgia,serif;font-size:.95em;padding:4px 12px;
+ border:1px solid #666;border-radius:3px;background:#eee;cursor:pointer;color:#1a1a1a}
+</style>
+<!-- SITENAV-END -->
+</head>
+<body>
+<!-- SITENAV-NAV-START -->
+<nav class="sitenav" aria-label="Site navigation">
+<a class="sitenav-brand" href="../">R Theory — Rewrite</a>
+<span class="sitenav-links">
+<a href="../#hard">Hard&nbsp;science</a><a href="../#theoretical">Theoretical</a><a href="../vol0/">Vol&nbsp;0</a><a href="../vol4/">Vol&nbsp;IV</a><a href="../tables/">Tables</a>
+</span>
+<form class="sitenav-search" action="https://www.google.com/search" method="get" target="_blank" role="search"
+ onsubmit="if(!this.q.value.trim())return false;this.q.value='site:cosbykit-afk.github.io/r-theory-rewrite '+this.q.value">
+<input type="text" name="q" placeholder="Search this site&#8230;" aria-label="Search this site">
+<button type="submit">Search</button>
+</form>
+</nav>
+<!-- SITENAV-NAV-END -->
+
+<h1>Book 0 — Source Boundary and the Orientation Question</h1>
+<p class="sub">A restructured rewrite of <i>R Theory — Volume I</i>, Book 0. Pictures first, then the audit.</p>
+
+<div class="about">
+<p><b>About this rewrite.</b> This is a restructuring of Book 0, not a new result. Every theorem,
+ledger entry, and status label below comes from the original manuscript; no mathematics has been added.
+What changed is the order of presentation:</p>
+<p><b>Part I</b> shows the mathematics — graphs first, intuition second, with each picture pointing
+to the section that proves it.<br>
+<b>Part II</b> runs the formal T0–T3 inheritance audit.<br>
+<b>Part III</b> states the book's two orientation theorems.<br>
+<b>Part IV</b> closes the book with the extension ledger.</p>
+<p>Intuition is labeled as intuition. Theorems are labeled as theorems. Status tags
+(<span class="tag cert">CERTIFIED</span> etc.) are preserved from the original.</p>
+<p>Each graph below is a <b>live Desmos calculator</b> — drag, zoom, and trace it. If Desmos
+can't load, a static image is shown instead, generated from the same formulas.</p>
+</div>
+
+<div class="nav">
+<a href="#part1">I. See it first</a><a href="#part2">II. Then earn it</a>
+<a href="#part3">III. The two theorems</a><a href="#part4">IV. Close the book</a>
+</div>
+
+<h2 id="part1">Part I — See it first</h2>
+
+<h3>§1. Four curves that started everything</h3>
+
+<figure class="graph">
+<div class="calc" id="d1"></div>
+<img class="fallback" id="f1" src="graphs/g1_primitives.png" alt="The four primitives srx, sxp, cxp, crx">
+<figcaption><b>Figure 1.</b> The four primitive operators on their domain
+<span class="math">D = ℝ \ {kπ/2}</span>. Seams (gray in the static image) at every multiple of π/2; everything stays
+nonnegative; <span class="math">srx·sxp = 1</span> and <span class="math">cxp·crx = 1</span> pair them as
+reciprocals; a quarter-turn swaps the pairs. <i>Live in Desmos — zoom into a seam.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>The whole theory begins with four real functions of one real variable:</p>
+<p class="math">srx = |csc x| + cot x,&nbsp;&nbsp; sxp = |csc x| − cot x = 1/srx</p>
+<p class="math">cxp = |sec x| + tan x,&nbsp;&nbsp; crx = |sec x| − tan x = 1/cxp</p>
+<p>The absolute values <i>fold</i> the cosecant and secant upward, so all four stay positive
+wherever they're defined. The gray lines in the static image are the <b>seams</b> — the points
+<span class="math">x = kπ/2</span> where the underlying trig functions blow up and the primitives
+are undefined. Between seams, each primitive is smooth.</p>
+<p>Three things to notice before any formalism: (1) the curves come in <b>reciprocal pairs</b>
+that mirror each other across the line <span class="math">y = 1</span>; (2) shifting by a
+quarter-turn exchanges the sine-family with the cosine-family; (3) the picture is
+<b>π-periodic</b> — nothing here knows about the half-turn. That last fact will matter.</p>
+</div>
+<div class="formal"><span class="tag cert">CERTIFIED</span>
+<b>Formal home:</b> §10, Audit A, items A–B. Positivity, reciprocal identities, quadrant-local
+smoothness, and reflection/quarter-turn laws are consequences of ordinary trigonometry —
+no R-specific axiom, no physics import.</div>
+
+<h3>§2. One curve is enough</h3>
+<div class="intuition">
+<p>Four names, but how many independent generators? Fix one open quadrant and set
+<span class="math">z = srx</span>. From the single number <span class="math">z</span> you recover
+the quadrant's orientation sign <span class="math">ε = sgn(z−1)</span> — above or below 1 —
+and then the whole quartet, rationally:</p>
+<p class="math">srx = z,&nbsp; sxp = 1/z,&nbsp; cxp = (z+ε)/(εz−1),&nbsp; crx = (εz−1)/(z+ε)</p>
+<p>Trace the blue curve in Figure&nbsp;1 on any single interval between gray lines: its height
+<i>is</i> <span class="math">z</span>, and the other three curves on that interval are
+algebraic shadows of it. The multiplicity of operator names is representational, not a
+count of independent continuous generators.</p>
+<p>The catch — visible in Figure&nbsp;1 — is that this reconstruction is <b>π-periodic</b>.
+Phase modulo 2π, a lifted phase, winding history: all invisible to the static quartet.
+Recovering the half-turn needs additional discrete or historical information.</p>
+</div>
+<div class="formal"><span class="tag cert">CERTIFIED</span>
+<b>Formal home:</b> §10, Audit A, item B (Local generator theorem). The generator also satisfies
+<span class="math">z′ = −(1+z²)/2</span>, so the rational function field it generates is closed
+under differentiation — item C.</div>
+
+<h3>§3. The UNA pair and its conspiring sum</h3>
+
+<figure class="graph">
+<div class="calc" id="d2"></div>
+<img class="fallback" id="f2" src="graphs/g2_una.png" alt="UNA pair urx, uxp and their sum 4/sin(2x)">
+<figcaption><b>Figure 2.</b> The UNA pair <span class="math">urx = srx − crx</span> (blue),
+<span class="math">uxp = cxp − sxp</span> (orange), and their sum (green) landing exactly on
+<span class="math">4/sin(2x)</span> (red dashed) — the two curves coincide everywhere.
+<i>Live in Desmos.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>Subtract across the families instead of within them:</p>
+<p class="math">urx = srx − crx,&nbsp;&nbsp;&nbsp; uxp = cxp − sxp</p>
+<p>Each difference is a tangle of absolute values — but their <b>sum collapses</b>:</p>
+<p class="math">urx + uxp = 4/sin(2x)</p>
+<p>Expand it and watch everything cancel: the absolute-valued envelopes annihilate, the
+cotangents and tangents combine, and only <span class="math">2(tan x + cot x) = 4/sin(2x)</span>
+remains. The green curve and the red dashed curve in Figure&nbsp;2 are the same curve —
+that's the identity, drawn.</p>
+</div>
+<div class="formal"><span class="tag cert">CERTIFIED</span> <span class="tag note">SIGN FIXTURE</span>
+<b>Formal home:</b> §10, Audit A, item D. The canonical convention is
+<span class="math">uxp = cxp − sxp</span>. A reversed label
+<span class="math">uxp = sxp − cxp</span> that propagated through part of the historical
+Trig2 workbook was a <b>transcription error</b>, not an alternative convention; it is retired.
+The expansion <span class="math">|sec x| + tan x − 1/(|csc x| + cot x)</span> fixes the sign
+directly. No normalization quarantine is required on account of it.</div>
+
+<h3>§4. The sign that survives</h3>
+
+<figure class="graph">
+<div class="calc" id="d3"></div>
+<img class="fallback" id="f3" src="graphs/g3_flatwave.png" alt="FlatWave = sgn(sin 2x)">
+<figcaption><b>Figure 3.</b> <span class="math">FlatWave = 1/urx + 1/uxp = sgn(sin 2x)</span>:
+a square wave flipping every quarter-turn. <i>Live in Desmos.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>From the UNA pair, form <span class="math">1/urx + 1/uxp</span>. The algebra gives
+<span class="math">(urx+uxp)/(urx·uxp) = sgn(sin 2x)</span> — a pure sign, ±1, with all
+magnitude washed out. Figure&nbsp;3 is that sign.</p>
+<p>Read its symmetries off the graph: it <b>reverses every quarter-turn</b> (cophase),
+<b>repeats every half-turn</b>, and is <b>blind to the 2π deck shift</b>
+(<span class="math">FW(θ+2π) = FW(θ)</span> exactly). This little square wave is the book's
+running example of orientation <i>represented</i>: it faithfully records relative orientation,
+and it will be carefully distinguished — in §15–16 — from things it is not: not a deck
+character, not a spin-lift sign, not a physical chirality.</p>
+</div>
+<div class="formal"><span class="tag cert">CERTIFIED</span>
+<b>Formal home:</b> §10, Audit A (FlatWave layer); transformation laws verified independently
+(§15–16 use them). The deck-blindness, cophase reversal, and half-turn invariance are exact
+identities of <span class="math">sgn(sin 2x)</span>.</div>
+
+<h3>§5. A smooth ellipse through the seams</h3>
+
+<figure class="graph">
+<div class="calc" id="d4"></div>
+<img class="fallback" id="f4" src="graphs/g4_carrier.png" alt="Carrier ellipse (H,V)">
+<figcaption><b>Figure 4.</b> The harmonic carrier <span class="math">(H,V) =
+(sin 2t/4, cos 2t/2)</span>, a smooth closed ellipse. The primitives blow up at their seams;
+the carrier sails through. <i>Live in Desmos — drag t.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>Invert the UNA sum: <span class="math">H = 1/(urx+uxp) = sin(2x)/4</span>, and set
+<span class="math">V = H′ = cos(2x)/2</span>. Then <span class="math">V² + 4H² = 1/4</span> —
+an ellipse, drawn in Figure&nbsp;4. Two contrasts with everything before it:</p>
+<p>First, <b>smoothness</b>: the primitives in Figure&nbsp;1 explode at every gray seam, but
+the carrier is smooth across all of them. Smooth continuation does not assign finite values
+to the primitive poles — it sidesteps them into a new pair of coordinates.</p>
+<p>Second, <b>topology</b>: the ellipse is a circle. No single real scalar can parametrize a
+circle both continuously and injectively — that's why the carrier needs the <i>pair</i>
+<span class="math">(H,V)</span>, or an atlas of at least two charts. One generator gave us the
+algebra; the circle forces the representation to double. No second intrinsic degree of
+freedom is created — just the honest bookkeeping a loop demands.</p>
+</div>
+<div class="formal"><span class="tag cert">CERTIFIED</span>
+<b>Formal home:</b> §10, Audit A, item E. Carrier extraction, ellipse identity, smooth seam
+extension, and the scalar topological obstruction (no continuous injective
+<span class="math">S¹ → ℝ</span>) are ordinary mathematics.</div>
+
+<h3>§6. One parameter is not two</h3>
+
+<figure class="graph">
+<div class="calc" id="d5"></div>
+<img class="fallback" id="f5" src="graphs/g5_transfer.png" alt="Transfer-amplitude curve u(λ)">
+<figcaption><b>Figure 5.</b> <span class="math">u(λ) = (√λ, √(1−λ))</span>: one real parameter
+tracing a quarter-circle inside a two-dimensional state space. <i>Live in Desmos.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>Now a picture of a <i>negative</i> result — what you <b>can't</b> get. The curve
+<span class="math">u(λ) = (√λ, √(1−λ))</span> lives in a two-dimensional space but is
+intrinsically one-dimensional: it can't cover the disc, let alone the complex projective
+line <span class="math">ℂP¹</span> (two real dimensions). Want the full complex state?
+You must <b>add</b> an independent phase <span class="math">φ</span>:
+<span class="math">ψ(λ,φ) = (√λ, e^{iφ}√(1−λ))</span> — and that addition is an explicit
+extension, not a theorem squeezed from the one-parameter curve.</p>
+<p>This is the book's rank firewall in miniature: <b>display dimension is not intrinsic
+rank</b>. A one-parameter state mapped into a big space traces at most a one-dimensional
+image. Readout complexity, output multiplicity, relabeling — none of them manufacture a
+missing independent degree of freedom. When a target needs more rank than the source has,
+the lawful moves are: restrict the target, extend the source explicitly, import the
+structure with its provenance recorded, or leave the gap open. There is no fifth route.</p>
+</div>
+<div class="formal"><span class="tag cert">CERTIFIED</span>
+<b>Formal home:</b> §11, Audit B, items E (differential rank firewall:
+<span class="math">rank(dŷ) ≤ min(rank dΦ, rank dE, rank dΓ)</span>), H (complex-state rank
+obstruction), I (extension certificates).</div>
+
+<h3>§7. <i>J</i> versus −<i>J</i>: orientation you can point at</h3>
+
+<figure class="graph">
+<div class="calc" id="d6"></div>
+<img class="fallback" id="f6" src="graphs/g6_J.png" alt="J rotates +90 degrees, -J rotates -90 degrees">
+<figcaption><b>Figure 6.</b> The exchange operator <span class="math">J</span> rotates
+<span class="math">v → Jv</span> by +90° (blue); <span class="math">−J</span> rotates by
+−90° (red). Both satisfy <span class="math">J² = −I</span>. Reversing the plane's
+orientation swaps them. <i>Live in Desmos.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>The scalar Riccati flow lifts to a two-component real linear system, and on that plane
+sits an exact complex structure: <span class="math">J² = −I</span>. Figure&nbsp;6 shows what
+it does — a quarter-turn. And here is the whole orientation question in one picture:</p>
+<p><b>Representation is free.</b> The algebra carries both <span class="math">J</span> and
+<span class="math">−J</span>; mirror reversal is exactly represented; nothing is
+mathematically missing. The old worry — that the formalism <i>can't</i> carry handedness —
+is retired right here.</p>
+<p><b>Preference is absent.</b> Declare an oriented plane and exactly one orthogonal complex
+structure is compatible with it; reverse the orientation and <span class="math">J ↔ −J</span>.
+But nothing in the inherited structure <i>picks</i> one. The two are related by an
+automorphism of the unoriented data. That gap — between <i>can represent</i> and
+<i>does select</i> — is what §15 and §16 make precise.</p>
+<p>Note also what <span class="math">J</span> does <i>not</i> do: it doesn't create an
+independently variable phase (that's Figure&nbsp;5's lesson again — a complex structure is
+algebra, not a new coordinate).</p>
+</div>
+<div class="formal"><span class="tag cert">CERTIFIED</span>
+<b>Formal home:</b> §12, Audit C, items A–B. Real projective lift, <span class="math">J²=−I</span>,
+conjugacy classification, orientation-relative uniqueness of the orthogonal complex
+structure. The <span class="math">J</span>/phase distinction is item A; the representation
+result is item B.</div>
+
+<h3>§8. The orientation question in one picture</h3>
+
+<figure class="graph">
+<div class="calc" id="d7"></div>
+<img class="fallback" id="f7" src="graphs/g7_mirror.png" alt="Mirror pair of spirals, neither preferred">
+<figcaption><b>Figure 7.</b> A mirror pair: both spirals satisfy every equation in the
+inherited corpus; no internal measurement prefers one. <i>Live in Desmos.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>Figure&nbsp;7 is the book's central question, drawn with spirals instead of equations.
+Two mirror realizations. Both lawful. The metric, the incidence identities, the
+transformation laws — all preserved under consistent sign transport. Now ask: <i>which
+one is preferred?</i></p>
+<p>The answer the audit earns, in two steps. First (§15): the framework <i>represents</i>
+orientation (Figures&nbsp;3, 6, 7 all show it) but <i>derives no preference</i> — the two
+members of each mirror pair sit on exactly equal footing. Second (§16): this isn't an
+accident of the examples. Whenever an orientation-reversing automorphism with no fixed
+orientation exists, <b>no intrinsic rule can canonically select one orientation</b> —
+the proof is four lines.</p>
+<p>Crucially, this is a <i>bounded</i> result. It doesn't say nature can't prefer a
+handedness, and it doesn't say mathematics can never select one. It says: <i>this</i>
+structure, with <i>its</i> symmetries, doesn't — and here's exactly what you'd have to
+add to change that (§17).</p>
+</div>
+<div class="formal"><span class="tag cert">CERTIFIED</span>
+<b>Formal home:</b> §15 (Theorem 0.III.T1) and §16 (Theorem 0.IV.T1), with the symmetry
+inventory of §14 keeping the distinct transformations in Figure&nbsp;7's family
+(frame reversal, cell reorientation, <span class="math">J ↔ −J</span>, central-sign loss)
+from being conflated.</div>
+
+<h2 id="part2">Part II — Then earn it: the audit</h2>
+
+<p>Part I showed the mathematics. Part II checks the provenance: which claims are inherited,
+from where, and with what status. The governing rule admits the historical T0–T3 corpus
+<b>claim by claim, only with the status actually earned</b> — never by title, chronology, or
+prior use. Standard background mathematics stays available as inherited mathematics.</p>
+
+<h3>§9. What we're allowed to use</h3>
+<div class="formal"><span class="tag cert">GOVERNING SOURCE RULE</span>
+<p>Book 0 admits T0–T3 as the sole inherited Projection Craft source corpus. Physical
+frameworks used <i>inside</i> T2 or T3 do not enter the revised core merely because the
+source essays used them — they remain provenance-bearing imports. No result from T4 onward,
+the S essays, loose papers, spreadsheets, or prior exploratory discussion is a premise of
+Book 0. The inherited mathematical background (M0) is ordinary real analysis, trigonometry,
+and elementary topology: no R-specific axiom.</p></div>
+
+<h3>§10. Audit A — the scalar kernel (T0 → M1)</h3>
+<p>What survives, item by item:</p>
+<ul class="tight">
+<li><b>A. Primitive reciprocal kernel.</b> The four definitions of §1, positivity,
+<span class="math">srx·sxp = cxp·crx = 1</span>, quadrant-local smoothness, reflection and
+quarter-turn laws — ordinary trigonometry.</li>
+<li><b>B. Local generator theorem.</b> §2's one-generator reconstruction
+<span class="math">z = srx</span>, <span class="math">ε = sgn(z−1)</span>, rational quartet
+recovery — with the π-periodicity limit: no half-turn branch from static data.</li>
+<li><b>C. Differential closure.</b> <span class="math">z′ = −(1+z²)/2</span>; the rational
+function field <span class="math">K<sub>Q</sub> = ℝ(z)</span> is closed under
+<span class="math">d/dx</span>. A mathematical phase derivative, not a physical time law.</li>
+<li><b>D. UNA sign audit — conflict resolved.</b> Canonical
+<span class="math">uxp = cxp − sxp</span>; the reversed label was transcription error
+(see §3). Then <span class="math">urx + uxp = 4/sin(2x)</span> follows with no chartwise
+sign choice, and <span class="math">H = sin(2x)/4</span> extends smoothly to ℝ.</li>
+<li><b>E. Harmonic carrier.</b> §5's ellipse <span class="math">V² + 4H² = 1/4</span>,
+smooth through seams, homeomorphic to <span class="math">S¹</span> — hence no single
+scalar parametrizes it continuously and injectively.</li>
+<li><b>F. Reciprocal-even normalization.</b>
+<span class="math">E<sub>D</sub> = 1/(srx+sxp+cxp+crx) = |sin 2x|/(4(|sin x|+|cos x|))</span>
+carries no continuous information beyond <span class="math">|H|</span>; normalized
+primitives give a positive partition of unity — algebra, not probability.</li>
+<li><b>G. Product and logarithmic representations.</b>
+<span class="math">P = cxp·srx</span>, <span class="math">y = ln P</span> are
+reparameterizations; hyperbolic functions arise exactly after the log change. No physical
+rapidity or Lorentz kinematics is established.</li>
+<li><b>H. Bounded transfer, reciprocal-odds atlas, and the minimal signed scalar (T0.III).</b>
+The auxiliary pair completes to the transfer circle
+<span class="math">p² + q² = 2</span>; the bounded coordinate
+<span class="math">λ = (1−p)/2</span> satisfies
+<span class="math">0 &lt; λ &lt; 1</span> with complement
+<span class="math">λ̄ = 1 − λ</span>. Reciprocal access
+<span class="math">R<sub>λ</sub> = 1/λ</span>,
+<span class="math">U<sub>λ</sub> = 1/(1−λ)</span>; reciprocal odds
+<span class="math">Ω = λ/(1−λ)</span>, <span class="math">χ = (1−λ)/λ</span> with
+<span class="math">Ωχ = 1</span> and the displaced-access hyperbola
+<span class="math">χ = R<sub>λ</sub> − 1</span>,
+<span class="math">Ω = U<sub>λ</sub> − 1</span>. The cross-layer ratio
+<span class="math">Ω = λ/(1−λ) = saw<sub>r</sub>/saw<sub>x</sub> = uxp/urx = cxp/srx</span>
+is one projective coordinate in several presentations (T0.III.T8; the UNA-envelope
+equalities rest on T0.II as the essay states). Differentially:
+<span class="math">λ′ = q/2</span>, the affine harmonic equation
+<span class="math">λ″ + λ = 1/2</span>, the exact first integral
+<span class="math">(1−2λ)² + 4(λ′)² = 2</span>, and the sharp phase-rate bounds
+<span class="math">1/2 &lt; λ′ ≤ 1/√2</span>, the upper bound attained exactly at the
+unique midpoint inflection <span class="math">λ = 1/2</span>, where
+<span class="math">Ω = χ = 1</span>. Equal-and-opposite saw derivatives
+<span class="math">saw<sub>r</sub>′ + saw<sub>x</sub>′ = 0</span> — a definitional
+consequence, not a conservation law (T0.III.N2); the rate bounds are properties of the
+x-coordinate, and the harmonic identity is not an equation of motion (T0.III.N3).
+The signed scalar <span class="math">ζ = saw<sub>r</sub></span> satisfies
+<span class="math">ζ ∈ (−1,0) ∪ (0,1)</span> with
+<span class="math">ε = sgn ζ</span> and <span class="math">λ = |ζ|</span>, and
+reconstructs the complete named static calculus modulo π (T0.III.T28); a half-turn
+branch datum is required for 2π, and no value of ζ extends continuously through a
+primitive seam (T0.III.C31; T0.III.N5: static sufficiency supplies no seam-crossing
+law). No probability law, no physical conservation, no equation of motion, no
+Projection-specific axiom: T0.III.T30 certifies axiom-free closure of the layer.
+The internal identities were re-derived independently (13 symbolic and 9 numerical
+checks — all pass); the UNA-envelope equalities of T8 and the primitive
+reconstruction formulas are inherited from T0.II as the essay states.</li>
+<li><b>I. Projection boundary.</b> T0 contains zero physics imports, zero empirical
+calibrations, zero instantiated projection contracts, zero R-specific axioms. Later
+physical claims must factor visibly as <i>external instance → inferred internal state →
+evaluated internal structure → external readout</i>, with units and calibration supplied
+from outside the core.</li>
+</ul>
+<div class="ledger">T0 INHERITANCE LEDGER
+CERTIFIED: primitive definitions and absolute values; reciprocal identities and positivity;
+chart/domain structure; primitive symmetry actions; canonical UNA definitions;
+urx + uxp = 4/sin(2x); half-turn information loss; one-generator Möbius reconstruction;
+Riccati generator law; quadrant-local differential-field closure; bounded transfer atlas
+and reciprocal odds; differential transfer closure with sharp rate bounds; minimal signed
+scalar and seam-obstruction results; axiom-free closure of the bounded transfer layer;
+local vs global representation distinction; harmonic carrier extraction; carrier ellipse and scalar
+topological obstruction; reciprocal-even kernel formulas; representation/information-loss
+theorems; projection-boundary/airlock distinction.
+UNA SIGN DISPOSITION: reversed uxp = sxp − cxp retired as transcription error.
+PHYSICS IMPORT COUNT FOR T0: 0.  R-SPECIFIC MATHEMATICAL AXIOM COUNT FOR T0: 0.
+UNRESOLVED NORMALIZATION CONFLICTS: 0.</div>
+
+<h3>§11. Audit B — the Projection firewall (T1 → M2)</h3>
+<p>T1 adds no physical layer. It formalizes the boundary between the structural calculus and
+any external interpretation:</p>
+<ul class="tight">
+<li><b>A. Projection architecture.</b> Every claim factorizes as
+<span class="math">ŷ = Γ ∘ E ∘ Φ</span> (inference → internal evaluation → readout).
+External declarations don't retroactively become theorems; a coordinate change exactly
+compensated by the readout adds no empirical content.</li>
+<li><b>B. Candidate discipline.</b> Ansatz ≠ admissible candidate; uniqueness-in-class ≠
+necessity; obstruction-of-a-family ≠ impossibility. Every no-go theorem must declare its
+candidate universe, admissibility, provenance, equivalence relation, and — for global
+claims — an exhaustiveness argument. One lawful counterexample defeats a uniqueness claim;
+failure to find one proves nothing.</li>
+<li><b>C. Observation grammar.</b> Complete records, calibration, uncertainty, frozen
+versions — the <i>slots</i>, not the fillings. Structural–dimensional nonidentity: a
+dimensionless output doesn't become time or energy by renaming. Calibration ≠ validation.</li>
+<li><b>D. Orientation at the readout boundary.</b> In the affine family
+<span class="math">y = αz + β</span>, the sign <span class="math">σ = sgn(α)</span> is
+representable and identifiable under orientation-sensitive information — but this is a
+readout-identifiability result, <b>not</b> a physical chirality law. T1 rules out only the
+overclaim that the framework <i>cannot</i> carry an orientation sign.</li>
+<li><b>E. Differential rank firewall.</b> §6's picture, formally:
+<span class="math">rank(dŷ) ≤ min(rank dΦ, rank dE, rank dΓ)</span>. The readout cannot
+manufacture intrinsic rank.</li>
+<li><b>F. Coframe/metric obstruction.</b> One-forms <span class="math">e<sup>a</sup> =
+f<sup>a</sup>(x)dx</span> span at most rank one; wedges vanish; no nondegenerate
+four-coframe from the scalar family alone. Exact and limited: it proves additional
+structure must be <i>supplied</i>, not that higher rank is impossible.</li>
+<li><b>G. Fixed-generator curvature obstruction.</b>
+<span class="math">ω = K dη ⇒ dω + ω∧ω = 0</span> locally — scalar variation along one
+fixed generator is not curvature.</li>
+<li><b>H. Complex-state rank obstruction.</b> <span class="math">J² = −I</span> is algebra,
+not a new phase variable (§6–7). <span class="math">u(λ)</span> can't cover
+<span class="math">ℂP¹</span>; <span class="math">ψ(λ,φ)</span> is an explicit extension —
+a rank-completion example, not quantum mechanics.</li>
+<li><b>I. Extension certificates.</b> "More structure is needed" becomes an auditable
+choice: restrict the target, extend the source explicitly, import with provenance, or
+leave the gap open. Readout complexity is not a fifth route.</li>
+</ul>
+<div class="ledger">T1 INHERITANCE LEDGER
+CERTIFIED AS M2 FORMAL FRAMEWORK: Projection factorization; contract and provenance
+grammar; prediction and operational equivalence; candidate-class and necessity discipline;
+information-loss rules; observation and joining grammar; structural–dimensional nonidentity;
+units/origin/orientation as readout fields; calibration-versus-validation separation;
+identifiability and gauge compensation; detectability and falsifiability definitions;
+differential rank factorization; scalar image-rank bound; coframe and metric rank
+obstruction; fixed-generator local-flatness result; algebraic-complex-structure versus
+independent-phase distinction; extension-certificate logic.
+CANDIDATE-CLASS RESULTS, NOT UNIVERSAL LAWS: scalar and vector affine readouts; anchor
+designs; regularization rules; score functions; penalties; adequacy predicates.
+NOT INHERITED AS PHYSICAL CONTENT: any concrete Φ or Γ; any external system or measurand;
+any unit, scale, anchor, dataset, or probability law; any physical clock, spacetime
+dimension, coframe, gauge or gravitational field; any quantum interpretation; any physical
+handedness; any empirical validation.
+PHYSICS IMPORT COUNT FOR T1: 0.  R-SPECIFIC MATHEMATICAL AXIOM COUNT FOR T1: 0.
+EXTERNAL DATA COUNT FOR T1: 0.  NUMERICAL BRIDGE CALIBRATION COUNT FOR T1: 0.</div>
+<p><b>Second audit conclusion.</b> M2 is the Projection, observation, readout, and rank
+firewall — not the place where physical orientation is obtained. No Orientation Axiom is
+warranted at the T1 stage; T1 alone proves no global no-preference theorem for physical
+chirality. The question passes to T2: does the internal algebra select a handedness?</p>
+
+<h3>§12. Audit C — orientation representation (T2 → M3)</h3>
+<ul class="tight">
+<li><b>A. Real lift, rank intact.</b> The Riccati flow lifts to a homogeneous two-component
+real linear system; quotiented by scale it lives in <span class="math">ℝP¹</span> — one real
+degree of freedom, the T1 rank theorem undefeated. Inside it, <span class="math">J² =
+−I</span>: an exact complex structure, but no independently variable phase (§7).</li>
+<li><b>B. Internal orientation is representable.</b> Once an oriented Euclidean two-plane
+is declared, exactly one orthogonal complex structure is compatible; reversing orientation
+sends <span class="math">J ↔ −J</span> (Figure&nbsp;6). The "formalism can't carry
+orientation" worry is retired. What is <i>not</i> supplied: a theorem privileging
+<span class="math">J</span> over <span class="math">−J</span> before orientation data are
+declared.</li>
+<li><b>C. Seam, Pin, and central-lift nonselection.</b> The local data don't force a unique
+folded seam law (<span class="math">J</span>, <span class="math">−J</span>, reflections all
+lawful). The real D4 skeleton and complex Q8 lift can share one projective quotient —
+projective/quadratic readouts cannot recover the missing central ±. An obstruction to
+<i>selecting</i> a lift, not to representing one.</li>
+<li><b>D. Clifford and signature discipline.</b> <span class="math">M₂(ℝ)</span> admits
+multiple Clifford presentations; signature lives in the declared quadratic form and
+grading, not in the matrix algebra. Pauli completion is a representation theorem, not a
+physical-spin theorem.</li>
+<li><b>E. Composition and control.</b> Tensor products, Hamiltonian expressibility, Lie
+closure, tomography — exact relative to their declared extensions; they add representation
+and control possibilities, no chirality selector. A preferred handedness would still need
+a declared physical dynamics, boundary condition, or orientation-sensitive observable.</li>
+</ul>
+<div class="ledger">T2 INHERITANCE DISPOSITION
+CERTIFIED AS DERIVED REPRESENTATION MATHEMATICS: real projective Riccati lift; projective
+rank-one status; J² = −I; real matrix closure; conjugacy classification of real 2D complex
+structures; orientation-relative uniqueness of the orthogonal complex structure; exact
+Clifford identities after a presentation is declared; bilinear and reflection theorems;
+information-loss and central-sign obstructions.
+RETAINED AS EXPLICIT EXTENSIONS OR PRESENTATION DATA: ordered oriented channel plane;
+Clifford embedding and grading; complex scalar extension; independent phase φ; C²/CP¹
+completion; tensor-product composition; control/detector parameter spaces; seam
+representatives.
+NOT INHERITED AS PHYSICAL CONTENT: physical qubit or spin ontology; Born probabilities;
+physical subsystem independence; physical time; action scale; microscopic Hamiltonian;
+laboratory controls; noise model; causal interpretation; physical Pin/Spin structure;
+physical chirality; empirical quantum mechanics; calibration or validation results.
+PHYSICS IMPORT COUNT INTO REVISED M3: 0.  R-SPECIFIC AXIOM COUNT ADDED: 0.
+PHYSICAL HANDEDNESS SELECTION: absent.</div>
+<p><b>Third audit conclusion.</b> M3 is frozen as an algebraic representation layer with
+explicit internal orientation machinery. T2 defeats both the claim that a new axiom is
+needed to <i>represent</i> handedness and the opposite overclaim that <span class="math">J</span>,
+a Clifford presentation, or a Pin candidate <i>selects</i> nature's handedness. Surviving
+statement: <i>representation without selection</i>.</p>
+
+<h3>§13. Audit D — the geometric carrier (T3 → M4)</h3>
+<ul class="tight">
+<li><b>A. Tetrahedral carrier and spatial rank.</b> From Euclidean affine 3-space, three
+mutually adjacent tetrahedral edge directions give
+<span class="math">G = ℓ²[[1,½,½],[½,1,½],[½,½,1]]</span>,
+<span class="math">det G = ℓ⁶/2 &gt; 0</span> — rank three, lawfully resolving the T1
+spatial-rank obstruction by <i>adding</i> independent geometric data. Oblique coordinates
+are linear changes of basis: coordinate choice alone generates no new physics.</li>
+<li><b>B. Geometric orientation: representable, not preferred.</b> The carrier's
+isometry group <span class="math">O(G)</span> contains orientation-reversing maps;
+oriented frames and cross products use a declared volume form. Handed frames exist and are
+distinguishable <i>once an orientation is declared</i>; the metric privileges none
+(Figure&nbsp;7).</li>
+<li><b>C. Oriented complexes and incidence closure.</b> Declared oriented simplicial
+refinement with <span class="math">D₁D₀ = 0</span>, <span class="math">D₂D₁ = 0</span> —
+orientation-consistent combinatorics; coherent under reorientation, selecting nothing.</li>
+<li><b>D. Coframe, determinant, Hodge.</b> Standard machinery once manifold, metric,
+orientation, and bundle data are declared. The Hodge star needs an orientation convention;
+historical T3's physical time, Lorentzian signature, Maxwell assignments, and
+Einstein–Maxwell action are <b>stripped</b> — deferred to the physics interface.</li>
+<li><b>E. Obstruction ledger.</b> One scalar can't generate a rank-four coframe; coordinate
+changes generate no new physics; no lattice is retained as preferred physical substrate;
+incidence closure doesn't determine a Hodge map; a lattice doesn't determine its update
+law; physical time is not supplied by the spatial carrier.</li>
+</ul>
+<div class="ledger">T3 INHERITANCE DISPOSITION
+CERTIFIED AS REVISED M4 MATHEMATICS: tetrahedral basis and Gram geometry; rank-three
+carrier theorem; continuous coordinate equivalence; reciprocal-basis and metric machinery;
+oriented volume and cross-product representation; primal/dual incidence architecture;
+D₁D₀ = 0 and D₂D₁ = 0; discrete-form sign discipline; triad/coframe rank and
+nondegeneracy criteria; connection, torsion, curvature, holonomy, Hodge constructions
+when their geometric data are declared; obstruction/continuum ledgers.
+RETAINED AS DECLARED EXTENSIONS OR GEOMETRIC DATA: the tetrahedral carrier itself;
+discrete center lattice; simplicial refinement; dual complex; finite Hodge or mass
+matrices; variable triad; temporal covector (as pure coframe data); edge coframes; face
+holonomies.
+NOT INHERITED AS PHYSICAL CONTENT: Newtonian time, mass laws, force/Poisson laws,
+charge/current, ε₀, μ₀, c, G, Maxwell dynamics, Lorentzian signature as fact about
+nature, Einstein–Hilbert/Maxwell dynamics, lattice-as-vacuum claims, empirical deviations.
+PHYSICS IMPORT COUNT INTO REVISED M4: 0.  R-SPECIFIC AXIOM COUNT ADDED: 0.
+PREFERRED PHYSICAL HANDEDNESS SELECTION: absent.</div>
+<p><b>Fourth audit conclusion.</b> M4 is frozen as the geometric carrier layer. The
+orientation question survives the complete T0–T3 audit only in the narrowed form of
+<i>preference</i> rather than <i>representation</i>.</p>
+
+<h3>§14. Symmetry inventory</h3>
+<p>The inherited corpus contains distinct transformations that must not be conflated:
+scalar sign reversal, reciprocal exchange, phase reflection, quarter-turn and half-turn
+maps, projective sign loss, <span class="math">J ↔ −J</span> under orientation reversal,
+reflection and Pin representatives, reversal of an oriented Euclidean frame, reversal of
+cell orientation, and changes of coframe orientation. Some are presentation changes; some
+alter orientation-sensitive quantities; some are invisible after projective or quadratic
+quotient; some need global gluing data. <b>None, by itself, is a theorem of physical
+parity violation.</b></p>
+<div class="formal"><span class="tag cert">AUDIT RULE</span>
+An orientation-sensitive sign is <i>structural</i> when the state space or geometric object
+retains it; a <i>convention</i> when all invariant content is unchanged by simultaneous
+reorientation; <i>physical</i> only after a P0 observable contract and a P1–P3
+law/source/calibration record make the two alternatives operationally distinguishable.</div>
+
+<h2 id="part3">Part III — The two theorems</h2>
+
+<h3>§15. Representation–Preference Separation</h3>
+<div class="thm">
+<p class="tname">Theorem 0.III.T1 — Representation–Preference Separation</p>
+<p><i>Candidate universe.</i> The mathematical structures admitted by revised M0–M4, with
+their declared domains, extension statuses, and the orientation-reversing transformations
+explicitly available in T0–T3.</p>
+<p>Within this candidate universe: (1) orientation can be represented internally; (2)
+mirror-related or oppositely oriented realizations are mathematically admissible; (3) T2
+supplies the pair <span class="math">J</span> and <span class="math">−J</span> when the
+underlying two-plane orientation is reversed; (4) T3 supplies oppositely oriented frames
+and cell complexes while preserving the metric and incidence identities under consistent
+sign transport; (5) projective or quadratic quotients may erase a central sign rather than
+select it; (6) no inherited theorem assigns one member of the orientation-reversed pair a
+privileged physical status.</p>
+<p><b>Therefore revised M0–M4 represent orientation but do not derive a preferred physical
+chirality.</b></p>
+<p><i>Proof sketch.</i> T1 shows orientation is representable at a readout boundary when
+orientation-sensitive information is retained. T2 makes it internal: reversing the declared
+oriented channel plane sends <span class="math">J → −J</span>, while local/projective seam
+data choose no unique central lift. T3 makes it geometric: reversing an ordered frame or
+cell orientation changes the orientation-sensitive signs while the metric, rank, and
+boundary-of-boundary identities stay lawful. The complete T2/T3 closure ledgers contain no
+physical selection rule breaking these paired realizations. Representation present;
+preference not derived. ∎</p>
+</div>
+<ul class="tight">
+<li><b>Corollary 0.III.C1 — No Orientation Axiom required for representation.</b> No new
+axiom is needed to define handedness, mirror reversal, oriented frames or cells, or
+spinorial/projective lift candidates.</li>
+<li><b>Corollary 0.III.C2 — Physical chirality remains a physics-interface problem.</b> A
+later parity-violating interaction, chirality-sensitive observable, oriented source,
+boundary condition, or preparation law may lawfully distinguish the alternatives — entering
+through the physics interface with provenance visible. The no-preference theorem does not
+forbid parity violation in nature.</li>
+<li><b>Corollary 0.III.C3 — Candidate-boundary warning.</b> Not a universal claim that no
+extension could ever select an orientation — only that the inherited T0–T3 framework, as
+audited and without hidden later premises, does not.</li>
+</ul>
+<div class="formal"><b>Checkpoint.</b> MATHEMATICAL ORIENTATION REPRESENTATION: solved.
+PREFERRED PHYSICAL CHIRALITY SELECTION: not derived. ADDED ORIENTATION AXIOM: none.</div>
+
+<h3>§16. Automorphism Obstruction to Canonical Orientation</h3>
+<div class="thm">
+<p class="tname">Theorem 0.IV.T1 — Automorphism Obstruction to Canonical Orientation</p>
+<p>Let <span class="math">U</span> be an unoriented mathematical structure admitted by
+revised M0–M4, and <span class="math">Or(U) = {o₊, o₋}</span> its two possible orientations.
+Suppose an automorphism <span class="math">r ∈ Aut(U)</span> exchanges the orientations
+with no fixed orientation: <span class="math">r·o₊ = o₋</span>,
+<span class="math">r·o₋ = o₊</span>.</p>
+<p>A canonical selector from <span class="math">U</span> alone would be a rule
+<span class="math">C</span> with <span class="math">C(U) ∈ Or(U)</span>, natural under
+automorphisms: <span class="math">C(U) = g·C(U)</span> for every
+<span class="math">g ∈ Aut(U)</span>, since <span class="math">g</span> maps
+<span class="math">U</span> to the same underlying structure.</p>
+<p>Taking <span class="math">g = r</span>: <span class="math">C(U) = r·C(U)</span>. But
+<span class="math">r</span> has no fixed point on <span class="math">Or(U)</span>, so
+<span class="math">r·C(U) ≠ C(U)</span> — contradiction.</p>
+<p><b>Hence an unoriented structure admitting an orientation-reversing automorphism cannot
+canonically select one of its two orientations from its orientation-symmetric data
+alone.</b> ∎</p>
+</div>
+<p><i>Application to T2.</i> For the unoriented Euclidean two-channel plane, a reflection
+exchanges the orientations; after one is declared the compatible complex structure is
+<span class="math">J</span>, and reversal sends <span class="math">J ↔ −J</span> (Figure 6).
+Candidate central lifts can share one projective quotient, so quotient data can't restore
+the missing preferred sign.</p>
+<p><i>Application to T3.</i> For the tetrahedral metric carrier, <span class="math">O(G)</span>
+contains orientation-reversing isometries; reversing an ordered frame changes the
+orientation sign while preserving the Gram metric. Consistent reorientation changes
+incidence/cochain signs but preserves the boundary-of-boundary identities (Figure 7).</p>
+<ul class="tight">
+<li><b>Corollary 0.IV.C1 — Exact scope.</b> The obstruction applies only when the selector
+must be intrinsic to the orientation-symmetric inherited structure — not after additional
+orientation-breaking data are supplied.</li>
+<li><b>Corollary 0.IV.C2 — Orientation-sensitive quantities don't defeat it.</b>
+FlatWave signs, pseudoscalars, cross products, oriented volumes, <span class="math">J</span>,
+axial quantities, oriented cochains may transform oddly under reversal — that proves
+orientation is <i>represented</i>, not <i>preferred</i>.</li>
+<li><b>Corollary 0.IV.C3 — No universal impossibility claim.</b> The theorem doesn't say
+mathematics can never select chirality — only that a symmetric structure can't canonically
+break its own exact orientation-reversal symmetry without additional asymmetric structure,
+a restricted candidate domain, a boundary/source condition, or a non-invariant physical
+law.</li>
+</ul>
+<div class="formal"><b>Obstruction disposition.</b> REPRESENTATION OBSTRUCTION: retired.
+CANONICAL-PREFERENCE OBSTRUCTION FOR ORIENTATION-SYMMETRIC M0–M4 STRUCTURES: proved.
+PHYSICAL PARITY-VIOLATION QUESTION: deferred to the physics interface.</div>
+
+<h2 id="part4">Part IV — Close the book</h2>
+
+<h3>§17. Minimal extension, only if necessary</h3>
+<p><b>No new mathematical axiom is required at Book 0 closure.</b></p>
+<p>For purely mathematical work needing a definite orientation, the minimal addition is a
+declared orientation convention <span class="math">o ∈ {+1,−1}</span> plus an explicit
+statement of how orientation-sensitive objects transform when <span class="math">o</span>
+is reversed. That datum is ordinary convention — not a law selecting nature's handedness.</p>
+<p>For a later physical theory claiming a <i>preferred</i> chirality, a sign convention is
+insufficient. The smallest admissible physical addition must contain an
+<b>orientation-breaking empirical or dynamical statement</b> whose mirror alternatives are
+operationally distinguishable, filed in one or more of:</p>
+<ul class="tight">
+<li><b>P0</b> — a chirality-sensitive observable or preparation/readout contract;</li>
+<li><b>P1</b> — a parity-violating interaction, action term, constitutive law, or dynamical
+principle;</li>
+<li><b>P2</b> — an oriented source, initial condition, boundary condition, or
+state-preparation datum;</li>
+<li><b>P3</b> — any dimensional scale, coupling, or calibration needed to compare the
+chirality-sensitive prediction with measurement.</li>
+</ul>
+<p>The later theory must then prove which conclusions follow from that smallest added item —
+and may not relabel the orientation convention <span class="math">o</span> as a physical
+law.</p>
+<div class="formal"><b>Minimal-extension verdict.</b> ADDED R-SPECIFIC MATHEMATICAL AXIOM:
+none. MATHEMATICAL ORIENTATION DATUM WHEN NEEDED: ordinary convention/structure, not a new
+law. PHYSICAL CHIRALITY IMPORT: deferred; none selected in Book 0.</div>
+
+<h3>§18. Extension ledger and closure</h3>
+<p><b>Frozen formal spine.</b></p>
+<ul class="tight">
+<li><b>M0</b> — ordinary inherited mathematics.</li>
+<li><b>M1</b> — T0 scalar kernel: absolute-valued reciprocal primitives, canonical UNA
+signs, one-generator reduction, differential closure, bounded transfer, FlatWave/carrier,
+seam and topology results, reciprocal-even normalization, mathematical projection
+boundary.</li>
+<li><b>M2</b> — T1 Projection/readout/rank firewall: factorization, candidate and necessity
+discipline, observation grammar, dimensional and calibration separation, information-loss
+and differential-rank theorems, obstruction certificates, extension discipline.</li>
+<li><b>M3</b> — T2 algebraic/orientation-representation layer: real projective lift and
+complex structure; orientation-relative <span class="math">J</span>; Clifford, reflection,
+bilinear, Pin/central-lift, complex, tensor, and control constructions with
+declaration/extension status preserved; no inherited quantum or physical ontology.</li>
+<li><b>M4</b> — T3 geometric carrier layer: tetrahedral Gram geometry and rank; coordinate
+equivalence; orientation, volume, cross-product, incidence, coframe-rank, connection,
+curvature, holonomy, Hodge mathematics with extensions explicit; no inherited Newtonian,
+Maxwell, Einstein, or other physical law.</li>
+<li><b>M5</b> — decadic carrier airlock layer (forward-looking): M4 plus Axiom 0, applied
+to the earned rank-five real carrier <span class="math">U = E ⊕ V</span>. Axiom 0 requires
+a tagged independent real partner with <span class="math">U ∩ iU = {0}</span> and
+<span class="math">W = U ⊕ iU</span>; the primitive lift of an upstream operator
+<span class="math">A</span> is diagonal <span class="math">A ⊕ ιAι⁻¹</span> (no off-diagonal
+mixing is primitive). The closure operator <span class="math">I(u,v) = (−v,u)</span>, the
+complexification <span class="math">W ≅ U ⊗<sub>ℝ</sub> ℂ</span>, and
+<span class="math">dim<sub>ℝ</sub>W = 10</span>,
+<span class="math">dim<sub>ℂ</sub>W = 5</span> are derived consequences, not additional
+axioms. M5 inherits no Spin(10), chirality selector, gauge groups, or empirical
+calibration — those enter later as theorems or explicit imports.</li>
+</ul>
+<p><b>Newly proved or resolved in this book.</b> (1) The reversed
+<span class="math">uxp = sxp − cxp</span> wording is transcription error; canonical
+<span class="math">uxp = cxp − sxp</span> restored with no normalization branch. (2) T1's
+orientation result is readout-identifiability, not a chirality law. (3) T2 supplies genuine
+internal orientation representation and mirror/lift structure. (4) T2 selects no unique
+seam lift, Clifford signature, spin ontology, Hamiltonian, or preferred handedness. (5)
+T3 supplies independent spatial rank and genuine oriented geometric structures. (6) T3
+makes the tetrahedral carrier neither physically fundamental nor orientationally
+preferred. (7) The Representation–Preference Separation Theorem. (8) The Automorphism
+Obstruction to Canonical Orientation.</p>
+<div class="ledger">ADDED-AXIOM LEDGER
+R-specific mathematical axioms added in Book 0: 0.
+Orientation axioms added in Book 0: 0.
+Physics imports from historical T0–T3 admitted into revised M0–M4: 0.
+Empirical calibrations admitted into the revised M0–M4 formal spine: 0.
+
+OPEN PHYSICAL-DEBT LEDGER (not defects — unanswered physical questions, kept outside
+the inherited core until explicitly imported or derived):
+physical time and clock realization; physical state ontology and probability law;
+physical dynamics and action principles; physical metric signature and spacetime
+interpretation; physical electromagnetic and gravitational laws; physical spin and
+fermion interpretation; physical parity violation and chirality selection;
+dimensional constants and calibration; any empirical claim distinguishing the theory
+from a coordinate or representation change.</div>
+<div class="thm">
+<p class="tname">Theorem 0.VI.T1 — Book 0 Closure</p>
+<p>Under the revised source boundary, T0–T3 suffice to establish a coherent formal core
+with scalar, projective, algebraic, orientation, rank, and geometric machinery while
+maintaining zero inherited physical law. The inherited core can represent orientation but
+cannot canonically prefer one orientation wherever orientation reversal remains an
+automorphism of the admitted structure. <b>Therefore Book 0 closes with no added
+Orientation Axiom and no hidden physics import.</b> The next lawful dependency step is to
+reconstruct Books 1–3 from frozen M0–M4, normalizing the mathematics and symmetry
+structure before any physical interface is opened. ∎</p>
+</div>
+<div class="ledger">BOOK 0 FINAL STATUS
+FORMAL INHERITANCE AUDIT: complete.
+M0–M4: frozen.
+ORIENTATION REPRESENTATION: solved.
+CANONICAL PREFERENCE FROM ORIENTATION-SYMMETRIC FORMAL STRUCTURE: obstructed.
+PREFERRED PHYSICAL CHIRALITY: unresolved and deferred to physics.
+ADDED MATHEMATICAL AXIOMS: 0.
+PHYSICS IMPORTS INTO FORMAL CORE: 0.</div>
+
+<footer>
+<p>Rewrite of Book 0 of <i>R Theory — Volume I</i> (working manuscript). Restructured:
+pictures and intuition first (Part I), formal audit second (Part II). All theorems,
+ledgers, and status labels are from the original; no mathematics added. Graphs are live
+Desmos calculators with static fallbacks generated from the same formulas.</p>
+</footer>
+
+<script>
+var GRAPHS = [
+ {id:'d1', fb:'f1', vw:{left:-7, right:7, bottom:-6, top:12}, exprs:[
+  {latex:'y=\\left|\\frac{1}{\\sin(x)}\\right|+\\frac{\\cos(x)}{\\sin(x)}', color:'#1f77b4'},
+  {latex:'y=\\left|\\frac{1}{\\sin(x)}\\right|-\\frac{\\cos(x)}{\\sin(x)}', color:'#ff7f0e'},
+  {latex:'y=\\left|\\frac{1}{\\cos(x)}\\right|+\\frac{\\sin(x)}{\\cos(x)}', color:'#2ca02c'},
+  {latex:'y=\\left|\\frac{1}{\\cos(x)}\\right|-\\frac{\\sin(x)}{\\cos(x)}', color:'#d62728'}]},
+ {id:'d2', fb:'f2', vw:{left:-7, right:7, bottom:-12, top:12}, exprs:[
+  {latex:'y=\\left|\\frac{1}{\\sin(x)}\\right|+\\frac{\\cos(x)}{\\sin(x)}-\\left|\\frac{1}{\\cos(x)}\\right|+\\frac{\\sin(x)}{\\cos(x)}', color:'#1f77b4'},
+  {latex:'y=\\left|\\frac{1}{\\cos(x)}\\right|+\\frac{\\sin(x)}{\\cos(x)}-\\left|\\frac{1}{\\sin(x)}\\right|+\\frac{\\cos(x)}{\\sin(x)}', color:'#ff7f0e'},
+  {latex:'y=\\left|\\frac{1}{\\sin(x)}\\right|+\\frac{\\cos(x)}{\\sin(x)}-\\left|\\frac{1}{\\cos(x)}\\right|+\\frac{\\sin(x)}{\\cos(x)}+\\left|\\frac{1}{\\cos(x)}\\right|+\\frac{\\sin(x)}{\\cos(x)}-\\left|\\frac{1}{\\sin(x)}\\right|+\\frac{\\cos(x)}{\\sin(x)}', color:'#2ca02c'},
+  {latex:'y=\\frac{4}{\\sin(2x)}', color:'#d62728', lineStyle:'dashed'}]},
+ {id:'d3', fb:'f3', vw:{left:-7, right:7, bottom:-1.7, top:1.7}, exprs:[
+  {latex:'y=\\operatorname{sign}(\\sin(2x))', color:'#9467bd'}]},
+ {id:'d4', fb:'f4', vw:{left:-0.34, right:0.34, bottom:-0.64, top:0.64}, exprs:[
+  {latex:'\\left(\\frac{\\sin(2t)}{4},\\frac{\\cos(2t)}{2}\\right)', color:'#1f77b4'}]},
+ {id:'d5', fb:'f5', vw:{left:-0.15, right:1.25, bottom:-0.15, top:1.25}, exprs:[
+  {latex:'x^{2}+y^{2}=1', color:'#999999', lineStyle:'dashed'},
+  {latex:'\\left(\\sqrt{t},\\sqrt{1-t}\\right)\\left\\{0\\le t\\le1\\right\\}', color:'#1f77b4'}]},
+ {id:'d6', fb:'f6', vw:{left:-1.35, right:1.35, bottom:-1.35, top:1.35}, exprs:[
+  {latex:'x^{2}+y^{2}=1', color:'#999999'},
+  {latex:'(1,0)', color:'#000000', showLabel:true, label:'v'},
+  {latex:'(0,1)', color:'#1f77b4', showLabel:true, label:'Jv'},
+  {latex:'(0,-1)', color:'#d62728', showLabel:true, label:'-Jv'},
+  {latex:'\\left(0.35\\cos(t),0.35\\sin(t)\\right)\\left\\{0\\le t\\le\\frac{\\pi}{2}\\right\\}', color:'#1f77b4'},
+  {latex:'\\left(0.5\\sin(t),-0.5\\cos(t)\\right)\\left\\{0\\le t\\le\\frac{\\pi}{2}\\right\\}', color:'#d62728'}]},
+ {id:'d7', fb:'f7', vw:{left:-1.25, right:1.25, bottom:-1.25, top:1.25}, exprs:[
+  {latex:'\\left(\\frac{t\\cos(t)}{12},\\frac{t\\sin(t)}{12}\\right)\\left\\{0\\le t\\le4\\pi\\right\\}', color:'#1f77b4'},
+  {latex:'\\left(\\frac{t\\cos(t)}{12},-\\frac{t\\sin(t)}{12}\\right)\\left\\{0\\le t\\le4\\pi\\right\\}', color:'#d62728', lineStyle:'dashed'}]}
+];
+function initAll(){
+  if(!window.Desmos || !Desmos.GraphingCalculator) return;
+  GRAPHS.forEach(function(g){
+    try{
+      var el = document.getElementById(g.id);
+      var calc = Desmos.GraphingCalculator(el,
+        {keypad:false, expressionsTopbar:false, settingsMenu:false, zoomButtons:true,
+         expressionsCollapsed:false, border:false});
+      g.exprs.forEach(function(e, i){
+        var cfg = {id:'e'+i, latex:e.latex, color:e.color};
+        if(e.lineStyle === 'dashed') cfg.lineStyle = Desmos.Styles.DASHED;
+        if(e.showLabel){ cfg.showLabel = true; cfg.label = e.label; }
+        calc.setExpression(cfg);
+      });
+      calc.setMathBounds(g.vw);
+      el.style.display = 'block';
+      var fb = document.getElementById(g.fb);
+      if(fb) fb.style.display = 'none';
+    }catch(err){ /* keep static fallback */ }
+  });
+}
+(function(){
+  var s = document.createElement('script');
+  s.src = 'https://www.desmos.com/api/v1.10/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6';
+  s.async = true;
+  s.onload = function(){ setTimeout(initAll, 300); };
+  document.head.appendChild(s);
+  setTimeout(function(){ initAll(); }, 9000);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book 8 — Pre-Maxwell Geometry and the Compact-Carrier Field Boundary (Restructured)</title>
+<style>
+  :root { --ink:#1a1a1a; --muted:#5a5a5a; --accent:#1b5faa; --paper:#fff; --wash:#f6f8fb; --line:#dfe5ec; }
+  body { font-family: -apple-system, "Segoe UI", Georgia, serif; color:var(--ink); background:var(--paper);
+         max-width: 860px; margin:0 auto; padding: 24px 20px 80px; line-height:1.65; }
+  h1 { font-size:1.9em; line-height:1.25; margin-bottom:.2em; }
+  h2 { font-size:1.45em; margin-top:2.2em; border-bottom:2px solid var(--line); padding-bottom:.3em; }
+  h3 { font-size:1.15em; margin-top:1.8em; color:var(--accent); }
+  .sub { color:var(--muted); font-size:1.05em; margin-top:0; }
+  .about { background:var(--wash); border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:1.5em 0; }
+  .about p { margin:.5em 0; }
+  figure.graph { margin:1.6em 0; border:1px solid var(--line); border-radius:8px; overflow:hidden; background:#fff; }
+  figure.graph .calc { width:100%; height:430px; display:none; }
+  figure.graph img.fallback { width:100%; display:block; }
+  figure.graph figcaption { padding:10px 16px; font-size:.92em; color:var(--muted); background:var(--wash);
+                            border-top:1px solid var(--line); }
+  figure.graph figcaption b { color:var(--ink); }
+  .intuition { border-left:3px solid var(--accent); padding:.2em 0 .2em 1em; margin:1em 0; }
+  .formal { background:var(--wash); border:1px solid var(--line); border-radius:8px; padding:12px 18px; margin:1.2em 0; }
+  .thm { border:1px solid var(--accent); border-radius:8px; padding:14px 18px; margin:1.4em 0; background:#fbfdff; }
+  .thm .tname { font-weight:700; color:var(--accent); }
+  .ledger { font-family: ui-monospace, Menlo, monospace; font-size:.85em; background:#0f1720; color:#d7e3f0;
+            border-radius:8px; padding:14px 18px; overflow-x:auto; white-space:pre-wrap; margin:1.2em 0; }
+  .tag { display:inline-block; font-size:.72em; font-weight:700; letter-spacing:.05em; border-radius:4px;
+         padding:.15em .6em; margin-right:.4em; vertical-align:middle; }
+  .tag.proved { background:#e6f4ea; color:#146c2e; border:1px solid #b7dfc0; }
+  .tag.symbolic { background:#e8f6f5; color:#0b6e5f; border:1px solid #a9dccf; }
+  .tag.numeric { background:#e8f0fe; color:#1b5faa; border:1px solid #bcd3f5; }
+  .tag.standard { background:#f1eefb; color:#5b4a9e; border:1px solid #cfc4ee; }
+  .tag.manuscript { background:#fff4e0; color:#8a5a00; border:1px solid #ecd9a8; }
+  .tag.assumption { background:#fdeee4; color:#a04a00; border:1px solid #f2c9a8; }
+  .tag.incorrect { background:#fde8e8; color:#a02020; border:1px solid #f0b0b0; }
+  .tag.incomplete { background:#eceff1; color:#455a64; border:1px solid #b0bec5; }
+  .tag.niv { background:#ffe9c9; color:#7a4a00; border:1px solid #e0a83e; }
+  code, .math { font-family: ui-monospace, Menlo, monospace; }
+  .math { background:#f2f5f9; padding:.1em .35em; border-radius:4px; font-size:.95em; }
+  ul.tight li { margin:.35em 0; }
+  .nav { display:flex; flex-wrap:wrap; gap:.5em; margin:1.2em 0 2em; }
+  .nav a { text-decoration:none; border:1px solid var(--line); border-radius:20px; padding:.3em 1em;
+           font-size:.9em; color:var(--accent); background:var(--wash); }
+  table.scope { border-collapse:collapse; width:100%; font-size:.92em; margin:1.2em 0; }
+  table.scope th, table.scope td { border:1px solid var(--line); padding:.45em .6em; text-align:left; vertical-align:top; }
+  table.scope th { background:var(--wash); }
+  footer { margin-top:3em; color:var(--muted); font-size:.9em; border-top:1px solid var(--line); padding-top:1em; }
+  .status { font-size:.85em; color:#555; }
+</style>
+<!-- SITENAV-START -->
+<style>
+.sitenav{font-family:Georgia,serif;font-size:.88em;background:#f4f4f0;border:1px solid #bbb;
+ border-radius:4px;padding:8px 14px;margin:0 0 1.5em;display:flex;flex-wrap:wrap;
+ align-items:center;gap:8px 16px;line-height:1.4}
+.sitenav a{color:#0645ad;text-decoration:none;white-space:nowrap}
+.sitenav a:hover{text-decoration:underline}
+.sitenav .sitenav-brand{font-weight:bold;color:#1a1a1a}
+.sitenav .sitenav-links{display:flex;flex-wrap:wrap;gap:8px 14px}
+.sitenav-search{margin-left:auto;display:flex;gap:6px;align-items:center}
+.sitenav-search input{font-family:Georgia,serif;font-size:.95em;padding:4px 8px;
+ border:1px solid #999;border-radius:3px;width:170px;background:#fff;color:#1a1a1a}
+.sitenav-search button{font-family:Georgia,serif;font-size:.95em;padding:4px 12px;
+ border:1px solid #666;border-radius:3px;background:#eee;cursor:pointer;color:#1a1a1a}
+</style>
+<!-- SITENAV-END -->
+</head>
+<body>
+<!-- SITENAV-NAV-START -->
+<nav class="sitenav" aria-label="Site navigation">
+<a class="sitenav-brand" href="../">R Theory — Rewrite</a>
+<span class="sitenav-links">
+<a href="../#hard">Hard&nbsp;science</a><a href="../#theoretical">Theoretical</a><a href="../vol0/">Vol&nbsp;0</a><a href="../vol4/">Vol&nbsp;IV</a><a href="../tables/">Tables</a>
+</span>
+<form class="sitenav-search" action="https://www.google.com/search" method="get" target="_blank" role="search"
+ onsubmit="if(!this.q.value.trim())return false;this.q.value='site:cosbykit-afk.github.io/r-theory-rewrite '+this.q.value">
+<input type="text" name="q" placeholder="Search this site&#8230;" aria-label="Search this site">
+<button type="submit">Search</button>
+</form>
+</nav>
+<!-- SITENAV-NAV-END -->
+
+<h1>Book 8 — Pre-Maxwell Geometry and the Compact-Carrier Field Boundary</h1>
+<p class="sub">A restructured rewrite of <i>R Theory — Volume II</i>, Book 8. Pictures first, then the audit.</p>
+
+<div class="about">
+<p><b>About this rewrite.</b> This is a restructuring of Book 8, not a new result. Every theorem,
+ledger entry, and status label below comes from the original manuscript; no mathematics has been added.
+What changed is the order of presentation:</p>
+<p><b>Part I</b> shows the mathematics — graphs first, intuition second, with each picture pointing
+to the section that proves it.<br>
+<b>Part II</b> runs the dependency audit: what is inherited, what is declared, what is imported.<br>
+<b>Part III</b> lists every theorem with exactly one scope label.<br>
+<b>Part IV</b> closes the book with the closure ledger: established, conditional, not derived.</p>
+<p>Intuition is labeled as intuition. Theorems are labeled as theorems. Scope tags are the
+auditor's, applied under Kit's rule: <i>report only what the math has proven.</i></p>
+<p>Each graph below is a <b>live Desmos calculator</b> — drag, zoom, and trace it. If Desmos
+can't load, a static image is shown instead, generated from the same formulas and numerically
+asserted. <b>Honesty note:</b> live Desmos rendering could not be browser-verified from this
+workstation (no live browser available); the PNG fallbacks are provided and every plotted
+identity was executed and checked with real assertions.</p>
+</div>
+
+<div class="nav">
+<a href="#part1">I. See it first</a><a href="#part2">II. Then earn it</a>
+<a href="#part3">III. Scope labels</a><a href="#part4">IV. Close the book</a>
+</div>
+
+<h2 id="part1">Part I — See it first</h2>
+
+<p>Book 8 asks one question: <b>how much electromagnetic-looking structure follows from the
+mathematical carrier <i>before</i> Maxwell dynamics is admitted?</b> The answer, in brief:
+exterior closure and gauge redundancy come free; a Lorentzian Hodge star must be declared;
+continuous local U(1) cannot be squeezed out of FlatWave's discrete signs; and Maxwell's
+equations become essentially unique only inside an explicitly declared candidate class.
+Eight pictures, one per section.</p>
+
+<h3>§1. Different potentials, same field</h3>
+
+<figure class="graph">
+<div class="calc" id="d1"></div>
+<img class="fallback" id="f1" src="graphs/b8_g1_gauge.png" alt="Gauge redundancy: A1 and A2 differ by dchi but give the same B">
+<figcaption><b>Figure 1.</b> In two dimensions, <span class="math">A₁ = sin x·dy</span> (blue)
+and <span class="math">A₂ = x·dx + sin x·dy = A₁ + dχ</span> with
+<span class="math">χ = x²/2</span> (orange) are <i>different</i> one-forms, but
+<span class="math">B = dA₁ = dA₂ = cos x·dx∧dy</span> (green; the red dashed copy of
+<span class="math">dA₂</span> sits exactly on top of it). The added piece
+<span class="math">dχ</span> is invisible to the field because
+<span class="math">d²χ = 0</span>. <i>Live in Desmos.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>Think of the potential <span class="math">A</span> as a landscape and the field
+<span class="math">B = dA</span> as its slope pattern. Adding a pure gradient
+<span class="math">dχ</span> — a tilt with no curl of its own — reshapes the landscape
+without changing any slope reading. That is gauge redundancy: the redundancy is in the
+description, not the physics, and it follows from <span class="math">d² = 0</span> alone,
+with no metric, no dynamics, and no electromagnetism.</p>
+</div>
+<div class="formal"><span class="tag standard">STANDARD IMPORTED THEOREM</span>
+<b>Formal home:</b> §8.1, Theorem 8.1.T1. <span class="math">d² = 0</span>, gauge invariance
+of <span class="math">B = dA</span>, and <span class="math">dB = 0</span> are ordinary
+exterior calculus. Corollary 8.1.C1 (grad/curl/div in form language) is ordinary Euclidean
+vector calculus. Calling <span class="math">A</span> a vector potential or
+<span class="math">dB = 0</span> a no-monopole law requires a separate electromagnetic
+projection contract — the manuscript states this firewall explicitly, and the audit keeps it.</div>
+
+<h3>§2. A quarter-turn that must be declared</h3>
+
+<figure class="graph">
+<div class="calc" id="d2"></div>
+<img class="fallback" id="f2" src="graphs/b8_g2_hodge.png" alt="Hodge star squared equals minus one: a quarter-turn applied twice">
+<figcaption><b>Figure 2.</b> On 2-forms in Lorentzian signature the Hodge star acts like a
+quarter-turn: <span class="math">⋆F</span> (orange) is <span class="math">F</span> (blue)
+rotated 90°, and <span class="math">⋆²F = −F</span> (red). Two quarter-turns make a
+half-turn — a complex structure on the space of 2-forms. <i>Live in Desmos.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>In ordinary 3D Euclidean space, the Hodge star applied twice gives you back what you
+started with (<span class="math">⋆₃² = +1</span>). Declare a Lorentzian metric — one minus
+sign among the four directions — and on 2-forms the star squares to <i>minus</i> the
+identity. That minus sign is a complex structure: it lets 2-forms behave like complex
+numbers. But nothing in the Euclidean carrier forces the Lorentzian signature; it is a
+declared geometric extension, and the book labels it as such.</p>
+</div>
+<div class="formal"><span class="tag assumption">ASSUMPTION / DECLARED EXTENSION</span>
+<b>Formal home:</b> §8.2, extensions 8.2.E1 (independent fourth direction
+<span class="math">τ</span>) and 8.2.E2 (oriented Lorentzian metric).
+<span class="tag standard">STANDARD IMPORTED THEOREM</span> Given the declared metric,
+<span class="math">⋆₄² = −1</span> on 2-forms is standard Lorentzian geometry (verified by
+direct matrix computation in the audit).
+<span class="tag manuscript">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> The constitutive boundary:
+<span class="math">G = λ⋆₄F</span> is a constitutive <i>identification</i> and
+<span class="math">dG = J</span> a sourced field law — neither is forced by exterior
+calculus. Conditional Corollary 8.2.C1 (<span class="math">dJ = 0</span> from
+<span class="math">dG = J</span>) is a <span class="tag proved">CHECKED PROOF</span>.</div>
+
+<h3>§3. Two dots are not a circle</h3>
+
+<figure class="graph">
+<div class="calc" id="d3"></div>
+<img class="fallback" id="f3" src="graphs/b8_g3_z2.png" alt="The two FlatWave signs inside the U(1) circle">
+<figcaption><b>Figure 3.</b> FlatWave's transition data are the two signs
+<span class="math">{+1, −1}</span> (red dots: phase 0 and phase π) sitting inside the
+continuous circle <span class="math">U(1)</span> (gray). Renaming the dots as complex
+phases does not fill in the circle: no continuous fiber coordinate, no infinitesimal
+phase transformations, and no connection are created by the relabeling.
+<i>Live in Desmos.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>FlatWave hands you a coin — heads or tails at each overlap of charts. You may call
+heads "phase 0" and tails "phase π", embedding the coin in the circle of all phases.
+But you still only ever see heads or tails: the embedding manufactures no new
+transition functions <span class="math">e^{iχ(x)}</span>, no way to rotate the phase by a
+tiny amount, and no gauge field. Continuous local U(1) is a strictly larger datum and
+must be declared, not derived, from the discrete signs.</p>
+</div>
+<div class="formal"><span class="tag proved">CHECKED PROOF</span>
+<b>Formal home:</b> §8.3, Negative Theorem 8.3.N1 and Corollaries 8.3.C1–C2. The argument
+is definitional and complete: the inclusion <span class="math">{±1} ⊂ U(1)</span> does
+not enlarge the inherited Čech transition data. Likewise the carrier phasor
+<span class="math">Z<sub>car</sub> = e^{2ix}</span> becomes a gauge phase only after an
+independent local redundancy is supplied — packaging a phase into
+<span class="math">S¹</span> is not the same as gauging it.</div>
+
+<h3>§4. A phase gradient carries no curvature</h3>
+
+<figure class="graph">
+<div class="calc" id="d4"></div>
+<img class="fallback" id="f4" src="graphs/b8_g4_puregauge.png" alt="Pure-gauge connection: phase, its gradient, and vanishing curvature">
+<figcaption><b>Figure 4.</b> Start with a spacetime-dependent phase
+<span class="math">χ = sin 2x</span> (blue). Its gradient
+<span class="math">A = dχ = 2cos 2x·dx</span> (orange) is a connection — but a
+<i>pure-gauge</i> one: its curvature <span class="math">F = dA = d²χ ≡ 0</span> (green,
+flat) vanishes identically, because <span class="math">dx∧dx = 0</span>. A scalar phase
+gradient alone never makes local field curvature. <i>Live in Desmos.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>Suppose a complex field's phase is allowed to be redefined independently at each
+point — <i>local</i> phase redundancy. Then the ordinary derivative stops comparing
+phases correctly, and a compensating field <span class="math">A</span> is forced into
+existence: the Abelian connection, transforming as <span class="math">A ↦ A + dχ</span>.
+Its curvature <span class="math">F = dA</span> is gauge invariant and closed. But notice
+what the theorem does <i>not</i> give you: it does not give you the charged field, the
+redundancy itself, the coupling, the signature, or any dynamics. The connection is
+forced <i>after</i> the redundancy is declared — the declaration is the price of
+admission.</p>
+</div>
+<div class="formal"><span class="tag proved">CHECKED PROOF</span>
+<b>Formal home:</b> §8.4, Lemma 8.4.L1 and Theorem 8.4.T1. Verified by direct symbolic
+computation: <span class="math">dψ′ = e^{iqχ}(dψ + iq·dχ·ψ)</span>,
+covariance forces <span class="math">A′ = A + dχ</span>,
+<span class="math">D²ψ = −iqFψ</span> with <span class="math">F = dA</span>, and
+<span class="math">dF = 0</span>.
+<span class="tag assumption">ASSUMPTION / DECLARATION</span> The local phase equivalence
+<span class="math">ψ ↦ e^{iqχ(x)}ψ</span> itself (8.4.E1) is declared, not derived —
+the book's status firewall says so explicitly.</div>
+
+<h3>§5. The theta term sees only the boundary</h3>
+
+<figure class="graph">
+<div class="calc" id="d5"></div>
+<img class="fallback" id="f5" src="graphs/b8_g5_theta.png" alt="A total derivative integrates to zero in the bulk: boundary term">
+<figcaption><b>Figure 5.</b> A cartoon of Lemma 8.5.L2 in one dimension: the theta-term
+density is a total derivative <span class="math">db/dx</span> (orange) of a localized
+bump <span class="math">b(x)</span> (blue). Its positive and negative lobes cancel
+exactly — the bulk integral is <span class="math">≈ 10⁻¹⁶</span> — so a constant theta
+coefficient contributes only at the boundary and never alters the bulk equations.
+<i>Live in Desmos.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>Inside the declared candidate class — local, quadratic in <span class="math">F</span>,
+no derivatives of <span class="math">F</span>, constant coefficients — there are only two
+possible terms: <span class="math">F∧⋆F</span> (parity even) and
+<span class="math">F∧F</span> (parity odd). But the odd one is a total derivative,
+<span class="math">F∧F = d(A∧F)</span>, so with constant coefficient it slides off to
+the boundary and drops out of the bulk equations. What survives in the bulk is unique
+up to normalization: the Maxwell action, giving <span class="math">d⋆F = 0</span>
+alongside the identity <span class="math">dF = 0</span>. Uniqueness <i>within the
+class</i> — nonlinear, higher-derivative, non-Abelian, and lattice theories were never
+in the room.</p>
+</div>
+<div class="formal"><span class="tag standard">STANDARD IMPORTED THEOREM</span>
+<b>Formal home:</b> §8.5, Lemma 8.5.L1 (the two quadratic 4-forms — standard invariant
+theory).
+<span class="tag symbolic">COMPLETED SYMBOLIC CHECK</span> Lemma 8.5.L2:
+<span class="math">F∧F = d(A∧F)</span> verified by exact symbolic computation on test
+1-forms.
+<span class="tag manuscript">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> Theorem 8.5.T1 (candidate-relative
+Maxwell uniqueness) and Conditional Corollary 8.5.C1 (source coupling
+<span class="math">a·d⋆F = J</span> with <span class="math">dJ = 0</span>): conditional
+theorems whose proof ingredients are standard, but whose candidate-class boundary is a
+manuscript declaration. The projection status is explicit — this does not promote
+Maxwell theory into a theorem of the carrier calculus.</div>
+
+<h3>§6. The symmetry that refuses to choose</h3>
+
+<figure class="graph">
+<div class="calc" id="d6"></div>
+<img class="fallback" id="f6" src="graphs/b8_g6_potentials.png" alt="Two symmetric potentials with inequivalent vacuum pairs">
+<figcaption><b>Figure 6.</b> Both potentials respect the certified discrete symmetries
+<span class="math">φ ↦ φ + π/2</span> and <span class="math">φ ↦ −φ</span>, yet their
+vacua (dots) sit in different places: <span class="math">Λ(1 − cos 4φ)</span> (blue)
+is minimal at <span class="math">φ = 0, π/2, π</span>, while
+<span class="math">Λ(1 + cos 4φ)</span> (orange) is minimal at
+<span class="math">φ = π/4, 3π/4</span>. The symmetry restricts the <i>shape</i> of the
+potential to harmonics of <span class="math">cos 4φ</span> but selects neither the sign
+nor any coefficient. <i>Live in Desmos — check the minima.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>Promote the carrier phase to a compact scalar field
+<span class="math">φ: M → ℝ/πℤ</span> on a declared Lorentzian spacetime. The most
+general two-derivative action is then
+<span class="math">S = ∫√−g·[−½K(φ)(∇φ)² − V(φ)]</span> — no other terms are possible,
+and the book writes down its equation of motion and stress tensor exactly. Imposing the
+carrier's discrete symmetries forces <span class="math">K</span> and
+<span class="math">V</span> to be built from a single invariant,
+<span class="math">C = cos 4φ</span>. But "built from <span class="math">cos 4φ</span>"
+still leaves every harmonic's coefficient free — including the sign of the first one.
+Two fully symmetric potentials can have inequivalent vacuum pairs. Symmetry classifies;
+it does not select.</p>
+</div>
+<div class="formal"><span class="tag symbolic">COMPLETED SYMBOLIC CHECK</span>
+<b>Formal home:</b> §8.6, Theorem 8.6.T1 — the Euler–Lagrange equation
+<span class="math">K□φ + ½K<sub>,φ</sub>(∇φ)² − V<sub>,φ</sub> = 0</span> and the stress
+tensor <span class="math">T<sub>μν</sub> = K∂<sub>μ</sub>φ∂<sub>ν</sub>φ −
+g<sub>μν</sub>[½K(∇φ)² + V]</span> verified by exact symbolic computation.
+<span class="tag proved">CHECKED PROOF</span> Theorems 8.6.T2 (Fourier restriction to
+<span class="math">cos 4nφ</span>; the identities
+<span class="math">C = X² − Y² = 4V<sub>car</sub>² − 16H² = 1 − 32H² = 8V<sub>car</sub>² − 1</span>
+verified numerically) and 8.6.T3 (one-dimensional metric flattening; the change of
+variables verified numerically).
+<span class="tag manuscript">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> Negative Theorem 8.6.N1
+(non-uniqueness of the interaction) and Conditional Corollary 8.6.C1 (round-metric
+selection principle) — argued completely in the text; the selection principle is a
+further declaration, not a theorem of the carrier alone.
+<span class="tag standard">STANDARD IMPORTED THEOREM</span> §8.7: the free-field,
+winding (<span class="math">∮w ∈ ℤ</span>), and null-sector results are standard scalar
+field theory after the declared premises; the wave identity
+<span class="math">□Z = 2iZ□φ − 4Z(dφ)²</span> is a
+<span class="tag symbolic">COMPLETED SYMBOLIC CHECK</span>, and each of the five null-carrier
+items (8.7.T4) is a <span class="tag proved">CHECKED PROOF</span>.</div>
+
+<h3>§7. A sphere capped by the carrier</h3>
+
+<figure class="graph">
+<div class="calc" id="d7"></div>
+<img class="fallback" id="f7" src="graphs/b8_g7_bloch.png" alt="Bloch meridian arc and the coherency ceiling 4|H|">
+<figcaption><b>Figure 7.</b> Declare the two Saw magnitudes to be the diagonal weights of
+a normalized two-state system. The state then lives on a sphere
+(<span class="math">S₁² + S₂² + S₃² = 1</span>; blue arc is the
+<span class="math">φ = 0</span> meridian), and the off-diagonal coherence is capped by
+the carrier itself: <span class="math">|c|² ≤ λ(1−λ) = |H|</span> (orange dashed
+ceiling, i.e. <span class="math">S₂² + S₃² = 4|H|</span>). At
+<span class="math">λ = 1/2</span> the state sits on the equator and
+<span class="math">|H| = 1/4</span> is maximal; at the poles the transverse size
+vanishes. <i>Live in Desmos.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>This is the book's most striking landing. Take the two complementary Saw weights,
+use them as the diagonal of a 2×2 coherency matrix, and ask how large the off-diagonal
+coherence can be. Positive semidefiniteness answers: at most
+<span class="math">λ(1−λ)</span> — which is exactly <span class="math">|H|</span>, the
+reciprocal carrier quantity from Book 2. The same <span class="math">H = 1/(urx+uxp)</span>
+that fell out of the reciprocal calculus now caps the transverse radius of a Bloch
+sphere and sets the angular coefficient of the Fubini–Study metric,
+<span class="math">ds² = dλ²/(4|H|) + |H|dφ²</span>. But one scalar still cannot trace
+out the sphere's full curvature (<span class="math">dλ∧dφ = 0</span> when both are
+functions of <span class="math">x</span> alone) — the missing datum is an independent
+relative phase, and the book refuses to smuggle it in.</p>
+</div>
+<div class="formal"><span class="tag proved">CHECKED PROOF</span>
+<b>Formal home:</b> §8.7A, Theorems 8.7A.T1–T3 and Negative Theorem 8.7A.N1. The sphere
+identity is elementary algebra; the coherency ceiling follows from
+<span class="math">det J = λ(1−λ) − |c|² ≥ 0</span>; the Fubini–Study coefficients were
+verified numerically by finite differences of the normalized state
+(<span class="math">g<sub>λλ</sub> = 1/(4|H|)</span>,
+<span class="math">g<sub>φφ</sub> = |H|</span>, off-diagonal zero); the one-scalar
+obstruction is <span class="math">dx∧dx = 0</span>. All conditional on the declared
+two-state lift — the manuscript's status qualification is preserved verbatim: this
+does not make <span class="math">H</span> an electromagnetic coherence.
+<b>Textual slip (minor):</b> the displayed line reads
+<span class="math">ds² = −|⟨ψ|dψ⟩|²</span>, omitting the
+<span class="math">⟨dψ|dψ⟩</span> term; the proof text ("subtract the vertical phase
+component") and the resulting metric are correct.</div>
+
+<h3>§8. The witness that passes — and the guess that fails</h3>
+
+<figure class="graph">
+<div class="calc" id="d8"></div>
+<img class="fallback" id="f8" src="graphs/b8_g8_polarization.png" alt="Circular-polarization witness circle versus the failed direct quadrature invariant">
+<figcaption><b>Figure 8.</b> The naive guess <span class="math">E = E₀sin 2x</span>,
+<span class="math">cB = E₀cos 2x</span> gives
+<span class="math">E² − c²B² = −E₀²cos 4x</span> (orange dashed) — wobbling, not
+identically zero, so it fails the vacuum null-field test. But the normalized carrier
+<i>does</i> fit a circularly polarized wave exactly: the electric tip traces the unit
+circle <span class="math">(C, S) = (cos 2x, sin 2x)</span> (blue) with
+<span class="math">E² = c²B² = E₀²</span>,
+<span class="math">E·B = 0</span>, <span class="math">E×B = (E₀²/c)k̂</span> — once the
+vacuum EM frame, amplitude, propagation direction, and
+<span class="math">B = (k̂×E)/c</span> are imported. <i>Live in Desmos.</i></figcaption>
+</figure>
+
+<div class="intuition">
+<p>Two electromagnetic experiments, opposite outcomes. Assign the double-angle
+quadratures directly to field magnitudes and the null invariant
+<span class="math">E² − c²B²</span> oscillates instead of vanishing — no-go, by direct
+computation. But feed the <i>normalized</i> carrier
+<span class="math">(C, S) = (cos 2x, sin 2x)</span> into the standard
+circular-polarization template and every invariant lands exactly. The difference is
+the import contract: the witness imports the transverse frame, the amplitude, the
+propagation direction, and the vacuum relation between <span class="math">E</span> and
+<span class="math">B</span>. What is proved is <i>compatibility</i> — a representation
+witness — not a derivation of electromagnetism, of <span class="math">c</span>, or of
+a preferred helicity.</p>
+</div>
+<div class="formal"><span class="tag numeric">COMPLETED NUMERICAL CHECK</span>
+<b>Formal home:</b> §8.7B, Negative Theorem 8.7B.N1:
+<span class="math">E² − c²B² = −E₀²cos(4x) ≢ 0</span> verified numerically.
+<span class="tag proved">CHECKED PROOF</span> Conditional Theorem 8.7B.T1: all five
+witness identities verified numerically from <span class="math">C² + S² = 1</span> and
+the imported cross-product construction, for both helicity signs
+<span class="math">σ = ±1</span> — and the theory selects neither.
+<span class="tag proved">CHECKED PROOF</span> §8.7B.3 rank obstruction:
+<span class="math">A = g(x)dx ⇒ F = 0</span>, and
+<span class="math">A = Σf<sub>a</sub>(x)θ<sup>a</sup> ⇒ F∧F = 0</span>, verified
+numerically. The orientation firewall (§8.7C.2) stands: FlatWave sign, helicity, frame
+orientation, mirror, projective sign, and charge sign remain distinct.</div>
+
+<h2 id="part2">Part II — Then earn it: the dependency audit</h2>
+
+<p>Volume II inherits <b>only</b> results already earned in Volume I (Books 0–6), plus
+ordinary background mathematics and explicitly named physics imports. Here is what Book 8
+actually leans on, and the status of each support.</p>
+
+<h3>From Volume I (checked against the audit ledger)</h3>
+<ul class="tight">
+<li><span class="tag proved">CHECKED PROOF</span> <b>Book 2 algebraic spine</b> —
+<span class="math">H = 1/(urx+uxp) = sin(2x)/4</span>,
+<span class="math">Z<sub>car</sub> = 2V + i·4H = e^{2ix}</span>,
+<span class="math">FlatWave = 1/urx + 1/uxp = sgn(sin 2x)</span> and the reciprocal
+identities were verified independently to ~10⁻¹³. Book 8's §8.7C re-states
+<span class="math">H = sin(2x)/4</span> and <span class="math">C + iS = e^{i2x}</span>
+from this earned core.</li>
+<li><span class="tag proved">CHECKED PROOF</span> <b>FlatWave transformation laws</b> —
+<span class="math">FW(θ+π/2) = −FW(θ)</span>, <span class="math">FW(θ+π) = FW(θ)</span>,
+deck-blindness — independently verified. These ground the "certified quarter-turn and
+reflection actions" invoked in §8.6.</li>
+<li><span class="tag standard">STANDARD IMPORTED THEOREM</span> <b>Exterior calculus,
+Hodge duality, vector calculus</b> — <span class="math">d² = 0</span>,
+<span class="math">⋆₃² = +1</span>, <span class="math">⋆₄² = −1</span> (Lorentzian),
+grad/curl/div in form language. The manuscript re-derives standard material; credit
+belongs to the literature.</li>
+<li><span class="tag manuscript">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> <b>The Flower Euclidean
+endpoint</b> — §8.1 uses the revised Flower construction "through its revised Euclidean
+endpoint." The Volume I ledger records the synthetic Flower proofs (Book 4) as read but
+not machine-checked. Book 8's use is honest about this: no lattice structure is retained
+as a preferred substrate, and the twelve-neighbor Laplacian appears in §8.7C.3 only as
+an unpromoted hypothetical.</li>
+<li><span class="tag manuscript">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> <b>FlatWave Čech data</b> —
+§8.3's <span class="math">ε<sub>ij</sub> ∈ {±1}</span> with
+<span class="math">ε<sub>ij</sub>ε<sub>jk</sub>ε<sub>ki</sub> = 1</span> rests on the
+Book 3 transition-cocycle computations, which the ledger records as read but not
+independently checked. The no-go argument built on them (§8.3.N1) is complete as
+given.</li>
+</ul>
+
+<h3>From Book 7 (Volume II — outside the Volume I ledger)</h3>
+<ul class="tight">
+<li><span class="tag numeric">COMPLETED NUMERICAL CHECK</span> <b>Balance-product,
+cosine companion, transfer–carrier map, carrier phasor</b> — Book 8's §8.7C and §8.7A
+import <span class="math">H = ελ(1−λ)</span>,
+<span class="math">cos(2x) = ε(1−2λ)√(1+4λ(1−λ))</span>,
+<span class="math">U + iW = ε(a+ib)²</span> as proved in Book 7 §7.1. These are
+<b>not</b> in the Volume I ledger (Book 7 is Volume II), so their "proved" status
+depends on the Book 7 audit, not on this one. This audit verified each identity
+numerically on the transfer chart (4000 sample points, max error &lt; 10⁻¹⁰) —
+including the subtle point that <span class="math">λ</span> here is Book 7's transfer
+coordinate <span class="math">λ = ε·(1/urx) ∈ (0,1)</span>, not the closed-form
+<span class="math">(1+sin x−cos x)/2</span> outside its principal branch. With the
+correct coordinate, all four identities hold; with the naive closed form, the cosine
+companion fails (e.g. at <span class="math">x = 9π/8</span>). The manuscript is
+consistent on this point — the dependency bridge names Book 7 §7.1 explicitly.</li>
+</ul>
+
+<h3>Declared, not derived</h3>
+<ul class="tight">
+<li><span class="tag assumption">ASSUMPTION / DECLARED EXTENSION</span> The independent
+fourth direction <span class="math">τ</span> (8.2.E1), the oriented Lorentzian metric
+(8.2.E2), the local phase redundancy <span class="math">ψ ↦ e^{iqχ(x)}ψ</span> (8.4.E1),
+the compact-scalar lift <span class="math">φ: M → ℝ/πℤ</span> (8.6.E1), the normalized
+two-state lift (8.7A.1), and the candidate action class (8.5.C) are all explicit
+declarations. The book never presents them as consequences of the carrier.</li>
+<li><span class="tag assumption">PHYSICS IMPORT</span> The vacuum electromagnetic frame
+(transverse pair <span class="math">e₁,e₂</span>, <span class="math">k̂ = e₁×e₂</span>,
+amplitude <span class="math">E₀</span>, <span class="math">c</span>,
+<span class="math">B = (k̂×E)/c</span>), charge/current ontology
+(<span class="math">q</span>, <span class="math">J</span>), and Lorentzian spacetime as
+a physical arena are named imports. Per the volume's governing status rule, the
+circular-polarization witness (§8.7B.T1) and the Maxwell uniqueness theorem (§8.5.T1)
+are therefore <b>conditional reconstructions</b>, never derivations of physical law.
+The prediction-difference set remains empty (§8.7C.3).</li>
+</ul>
+
+<h2 id="part3">Part III — Every claim, one scope label</h2>
+
+<table class="scope">
+<tr><th>Claim</th><th>Scope</th><th>Basis</th></tr>
+<tr><td>8.1.T1 Euclidean exterior closure</td><td><span class="tag standard">STANDARD IMPORTED THEOREM</span></td><td>Verified on test forms; ordinary exterior calculus</td></tr>
+<tr><td>8.1.T2 Euclidean Hodge duality; 8.1.C1 vector-calculus equivalence</td><td><span class="tag standard">STANDARD IMPORTED THEOREM</span></td><td>Direct matrix check <span class="math">⋆₃²=+1</span></td></tr>
+<tr><td>8.2.E1 fourth direction; 8.2.E2 Lorentzian metric</td><td><span class="tag assumption">ASSUMPTION / DECLARED EXTENSION</span></td><td>Explicitly declared; not derived from the Flower construction</td></tr>
+<tr><td><span class="math">⋆₄²=−1</span> on 2-forms (given E2)</td><td><span class="tag standard">STANDARD IMPORTED THEOREM</span></td><td>Explicit 6×6 matrix verification</td></tr>
+<tr><td>Constitutive boundary (<span class="math">G=λ⋆₄F</span>, <span class="math">dG=J</span> not forced)</td><td><span class="tag manuscript">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span></td><td>Status discipline stated in text</td></tr>
+<tr><td>8.2.C1 current closure <span class="math">dJ=0</span></td><td><span class="tag proved">CHECKED PROOF</span></td><td><span class="math">d²=0</span> applied to the admitted equation</td></tr>
+<tr><td>8.3.N1 Z₂ does not generate local U(1); 8.3.C1–C2</td><td><span class="tag proved">CHECKED PROOF</span></td><td>Definitional argument, complete as given</td></tr>
+<tr><td>8.4.E1 local phase redundancy declared</td><td><span class="tag assumption">ASSUMPTION / DECLARATION</span></td><td>The essential added premise, labeled as such</td></tr>
+<tr><td>8.4.L1 derivative obstruction; 8.4.T1 Abelian connection forced</td><td><span class="tag proved">CHECKED PROOF</span></td><td>Symbolic verification: covariance, <span class="math">D²ψ=−iqFψ</span>, <span class="math">dF=0</span></td></tr>
+<tr><td>8.5.C candidate class; 8.5.L1 quadratic 4-forms</td><td><span class="tag standard">STANDARD IMPORTED THEOREM</span> + <span class="tag assumption">DECLARED CLASS</span></td><td>Standard invariant theory inside a declared boundary</td></tr>
+<tr><td>8.5.L2 theta term is a boundary term</td><td><span class="tag symbolic">COMPLETED SYMBOLIC CHECK</span></td><td><span class="math">F∧F=d(A∧F)</span> verified symbolically</td></tr>
+<tr><td>8.5.T1 Maxwell uniqueness in class; 8.5.C1 source coupling</td><td><span class="tag manuscript">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span> (conditional)</td><td>Proof ingredients standard; class boundary declared; not a derivation of physical Maxwell theory</td></tr>
+<tr><td>8.6.E1 compact scalar lift declared</td><td><span class="tag assumption">ASSUMPTION / DECLARATION</span></td><td>Independent Lorentzian spacetime supplied</td></tr>
+<tr><td>8.6.T1 two-derivative action class, E–L, stress tensor</td><td><span class="tag symbolic">COMPLETED SYMBOLIC CHECK</span></td><td>Equation and <span class="math">T<sub>μν</sub></span> verified symbolically</td></tr>
+<tr><td>8.6.T2 discrete-symmetry restriction; 8.6.T3 metric flattening</td><td><span class="tag proved">CHECKED PROOF</span></td><td>Fourier argument; change of variables verified numerically</td></tr>
+<tr><td>8.6.N1 symmetry does not select the interaction; 8.6.C1 round-metric principle</td><td><span class="tag manuscript">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span></td><td>Follows from T2; selection principle is a further declaration</td></tr>
+<tr><td>8.7.T1 free field &amp; Noether current; 8.7.T2 winding</td><td><span class="tag standard">STANDARD IMPORTED THEOREM</span></td><td>Standard scalar field theory after declared premises</td></tr>
+<tr><td>8.7.T3 carrier wave identity</td><td><span class="tag symbolic">COMPLETED SYMBOLIC CHECK</span></td><td><span class="math">□Z=2iZ□φ−4Z(dφ)²</span> verified symbolically</td></tr>
+<tr><td>8.7.T4 null carrier sector (5 items)</td><td><span class="tag proved">CHECKED PROOF</span></td><td>Each item verified; remains scalar structure, not EM</td></tr>
+<tr><td>8.7A.T1 sphere identity; 8.7A.T2 coherency ceiling; 8.7A.T3 Fubini–Study metric</td><td><span class="tag proved">CHECKED PROOF</span></td><td>Algebra; determinant; FS coefficients verified numerically</td></tr>
+<tr><td>8.7A.N1 one-scalar projective-curvature obstruction</td><td><span class="tag proved">CHECKED PROOF</span></td><td><span class="math">dλ∧dφ ∝ dx∧dx = 0</span></td></tr>
+<tr><td>8.7B.N1 direct E/B quadrature no-go</td><td><span class="tag numeric">COMPLETED NUMERICAL CHECK</span></td><td><span class="math">E²−c²B²=−E₀²cos4x ≢ 0</span></td></tr>
+<tr><td>8.7B.T1 circular-polarization witness</td><td><span class="tag proved">CHECKED PROOF</span> (conditional)</td><td>All five identities verified; EM frame imported; neither helicity selected</td></tr>
+<tr><td>8.7B.3 single-scalar rank obstruction (<span class="math">F∧F=0</span>)</td><td><span class="tag proved">CHECKED PROOF</span></td><td>Verified numerically on test configurations</td></tr>
+</table>
+
+<h2 id="part4">Part IV — Close the book</h2>
+
+<div class="ledger">BOOK 8 CLOSURE LEDGER (from §8.8, scope-annotated by the audit)
+
+CERTIFIED OR RE-PROVED, no new electromagnetic physics:
+• Euclidean exterior closure and spatial Hodge structure [STANDARD]
+• Metric-free F=dA ⇒ dF=0 after a 4D carrier is declared [STANDARD, conditional on declaration]
+• FlatWave's Z2 transition character and the no-go to continuous local U(1) [CHECKED PROOF]
+• Book 7's balance-product, cosine companion, transfer-carrier map, carrier phasor
+  [COMPLETED NUMERICAL CHECK here; "proved" status depends on the Book 7 audit]
+• Abelian connection forced by declared local phase redundancy [CHECKED PROOF, conditional]
+• Scalar action class, E-L equation, stress tensor [COMPLETED SYMBOLIC CHECK]
+• Null scalar-wave sector [CHECKED PROOF] — scalar radiation-like structure, not EM
+• Bloch/CP1 sphere identity, coherency ceiling |c|^2<=|H|, Fubini-Study metric [CHECKED PROOF, conditional on two-state lift]
+• Circular-polarization witness [CHECKED PROOF, conditional on EM import]; direct quadrature fails [COMPLETED NUMERICAL CHECK]
+
+CONDITIONAL on declared geometry / field-theory premises:
+• star4^2=-1 on Lorentzian 2-forms [STANDARD given the declared metric]
+• Maxwell bulk action unique within the declared quadratic class [MANUSCRIPT, conditional]
+• Gauge-invariant source coupling requires dJ=0 [MANUSCRIPT, conditional]
+• Winding sectors of the compact carrier [STANDARD]
+
+NOT DERIVED in Book 8:
+physical time; Lorentzian signature as a fact about nature; electric charge or
+current ontology; empirical identification of F with measured E and B fields;
+eps0, mu0, vacuum impedance, c; a unique carrier potential; transverse photon
+polarizations; nontrivial local U(1) from FlatWave or complex notation alone;
+quantum dynamics; any nonempty Projection-specific empirical prediction set.
+
+VERDICT: reciprocal EM representation — passed; normalized phase/polarization
+compatibility — passed conditionally; homogeneous gauge closure after F=dA —
+passed structurally; generic EM curvature from one R scalar — obstructed;
+sourced Maxwell dynamics from the reciprocal scalar calculus alone — not derived;
+preferred charge sign or helicity — not derived; nonempty Projection-specific
+empirical prediction set — not yet earned.</div>
+
+<div class="formal"><span class="tag manuscript">MANUSCRIPT ASSERTION</span> <span class="tag niv">not independently verified</span>
+<b>Dependency lock Book 8 → Book 9</b> (from the source): Book 9 may inherit the
+carrier, projective geometry, rank obstructions, and the distinction between scalar
+phase, coframe, connection, and curvature. Lorentzian spacetime and gravitational field
+equations are not supplied by Book 8 and enter Book 9 through explicit imports stated
+there. The audit confirms this lock is consistent with the book's actual dependency
+posture — nothing in Book 8 derives a physical spacetime.</div>
+
+<footer>
+<p>Rewrite of Book 8 of <i>R Theory — Volume II</i> (working manuscript; source span
+lines 1284–2093 of volume2_full.txt, 810 lines / 3631 words). Restructured: pictures
+and intuition first (Part I), dependency audit second (Part II). All theorems, ledgers,
+and status qualifications are from the original; no mathematics added. Graphs are live
+Desmos calculators with static PNG fallbacks generated from the same formulas; every
+plotted identity was executed and numerically asserted
+(<span class="math">verify_book8.py</span>, <span class="math">gen_figs_book8.py</span>).
+Live Desmos rendering was not browser-verified from this workstation.</p>
+
+<p class="status">Rewrite status: every checkable claim on this page was re-verified —
+72 real assertions in <span class="math">validation/book8/verify_book8.py</span>
+(45 checked-proof, 5 symbolic, 22 numerical), all passing, no timeouts; worst
+measured numerical error 5.3e-8 on the 8.6.T3 metric-flattening grid check
+(finite-grid noise; the change of variables is exact algebra). Embed consistency
+checked by <span class="math">validation/book8/test_embeds.py</span> (Desmos
+latex ↔ fallback PNG ↔ caption, viewport containment, negative control). Pictures
+illustrate checked statements; they are not the proofs.</p>
+</footer>
+
+<script>
+var GRAPHS = [
+ {id:'d1', fb:'f1', vw:{left:-7, right:7, bottom:-8, top:8}, exprs:[
+  {latex:'y=\\sin(x)', color:'#1f77b4'},
+  {latex:'y=x', color:'#ff7f0e'},
+  {latex:'y=\\cos(x)', color:'#2ca02c'},
+  {latex:'y=\\cos(x)', color:'#d62728', lineStyle:'dashed'}]},
+ {id:'d2', fb:'f2', vw:{left:-1.4, right:1.4, bottom:-1.4, top:1.4}, exprs:[
+  {latex:'x^{2}+y^{2}=1', color:'#999999'},
+  {latex:'(1,0)', color:'#1f77b4', showLabel:true, label:'F'},
+  {latex:'(0,1)', color:'#ff7f0e', showLabel:true, label:'*F'},
+  {latex:'(-1,0)', color:'#d62728', showLabel:true, label:'**F=-F'},
+  {latex:'\\left(0.55\\cos(t),0.55\\sin(t)\\right)\\left\\{0\\le t\\le\\frac{\\pi}{2}\\right\\}', color:'#1f77b4'},
+  {latex:'\\left(0.55\\cos(t),0.55\\sin(t)\\right)\\left\\{\\frac{\\pi}{2}\\le t\\le\\pi\\right\\}', color:'#ff7f0e'}]},
+ {id:'d3', fb:'f3', vw:{left:-1.4, right:1.4, bottom:-1.4, top:1.4}, exprs:[
+  {latex:'x^{2}+y^{2}=1', color:'#999999', lineStyle:'dashed'},
+  {latex:'(1,0)', color:'#d62728', showLabel:true, label:'+1'},
+  {latex:'(-1,0)', color:'#d62728', showLabel:true, label:'-1'}]},
+ {id:'d4', fb:'f4', vw:{left:-7, right:7, bottom:-2.6, top:2.6}, exprs:[
+  {latex:'y=\\sin(2x)', color:'#1f77b4'},
+  {latex:'y=2\\cos(2x)', color:'#ff7f0e'},
+  {latex:'y=0', color:'#2ca02c'}]},
+ {id:'d5', fb:'f5', vw:{left:-3.5, right:3.5, bottom:-1.2, top:1.2}, exprs:[
+  {latex:'y=e^{-x^{2}}', color:'#1f77b4'},
+  {latex:'y=-2xe^{-x^{2}}', color:'#ff7f0e'}]},
+ {id:'d6', fb:'f6', vw:{left:-0.2, right:3.4, bottom:-0.3, top:2.3}, exprs:[
+  {latex:'y=1-\\cos(4x)\\left\\{0\\le x\\le\\pi\\right\\}', color:'#1f77b4'},
+  {latex:'y=1+\\cos(4x)\\left\\{0\\le x\\le\\pi\\right\\}', color:'#ff7f0e'},
+  {latex:'(0,0)', color:'#1f77b4', showLabel:true, label:'vac'},
+  {latex:'(\\frac{\\pi}{2},0)', color:'#1f77b4'},
+  {latex:'(\\pi,0)', color:'#1f77b4'},
+  {latex:'(\\frac{\\pi}{4},0)', color:'#ff7f0e', showLabel:true, label:'vac'},
+  {latex:'(\\frac{3\\pi}{4},0)', color:'#ff7f0e'}]},
+ {id:'d7', fb:'f7', vw:{left:-0.1, right:1.1, bottom:-0.15, top:1.15}, exprs:[
+  {latex:'\\left(t,2\\sqrt{t(1-t)}\\right)\\left\\{0\\le t\\le1\\right\\}', color:'#1f77b4'},
+  {latex:'y=4x(1-x)\\left\\{0\\le x\\le1\\right\\}', color:'#ff7f0e', lineStyle:'dashed'},
+  {latex:'(0.5,1)', color:'#d62728', showLabel:true, label:'λ=1/2'}]},
+ {id:'d8', fb:'f8', vw:{left:-1.4, right:1.4, bottom:-1.4, top:1.4}, exprs:[
+  {latex:'\\left(\\cos(2t),\\sin(2t)\\right)', color:'#1f77b4'},
+  {latex:'y=-\\cos(4x)', color:'#ff7f0e', lineStyle:'dashed'}]}
+];
+function initAll(){
+  if(!window.Desmos || !Desmos.GraphingCalculator) return;
+  GRAPHS.forEach(function(g){
+    try{
+      var el = document.getElementById(g.id);
+      var calc = Desmos.GraphingCalculator(el,
+        {keypad:false, expressionsTopbar:false, settingsMenu:false, zoomButtons:true,
+         expressionsCollapsed:false, border:false});
+      g.exprs.forEach(function(e, i){
+        var cfg = {id:'e'+i, latex:e.latex, color:e.color};
+        if(e.lineStyle === 'dashed') cfg.lineStyle = Desmos.Styles.DASHED;
+        if(e.showLabel){ cfg.showLabel = true; cfg.label = e.label; }
+        calc.setExpression(cfg);
+      });
+      calc.setMathBounds(g.vw);
+      el.style.display = 'block';
+      var fb = document.getElementById(g.fb);
+      if(fb) fb.style.display = 'none';
+    }catch(err){ /* keep static fallback */ }
+  });
+}
+(function(){
+  var s = document.createElement('script');
+  s.src = 'https://www.desmos.com/api/v1.10/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6';
+  s.async = true;
+  s.onload = function(){ setTimeout(initAll, 300); };
+  document.head.appendChild(s);
+  setTimeout(function(){ initAll(); }, 9000);
+})();
+</script>
+</body>
+</html>
