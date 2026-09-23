@@ -43,7 +43,7 @@ a{color:#0645ad}
 <nav class="sitenav" aria-label="Site navigation">
 <a class="sitenav-brand" href="../">R Theory — Rewrite</a>
 <span class="sitenav-links">
-<a href="../#hard">Hard&nbsp;science</a><a href="../#theoretical">Theoretical</a><a href="../vol0/">Vol&nbsp;0</a><a href="../vol4/">Vol&nbsp;IV</a><a href="../tables/">Tables</a>
+<a href="../#hard">Hard&nbsp;science</a><a href="../#theoretical">Theoretical</a><a href="../vol0/">Vol&nbsp;0</a><a href="../vol4/">Vol&nbsp;IV</a><a href="../tables/">Tables</a><a href="../research/">Research</a>
 </span>
 <form class="sitenav-search" action="https://www.google.com/search" method="get" target="_blank" role="search"
  onsubmit="if(!this.q.value.trim())return false;this.q.value='site:cosbykit-afk.github.io/r-theory-rewrite '+this.q.value">
@@ -233,7 +233,7 @@ proof already existed (K-1…K-9, 2026-09-19). The analytic result is
 documentation of the corrected derivations (B-4).</p>
 </div>
 
-<h2>Open follow-up items (as of 2026-09-22)</h2>
+<h2>Open follow-up items (as of 2026-09-23)</h2>
 <p>The breakage follow-up worker (every ~6h) works these in priority order,
 logging terse per-run entries to the dedicated log channel; status changes
 sync to the notation ledger. All are <span class="tag IN">IN</span> the sense
@@ -241,15 +241,27 @@ of "not yet done" — none is claimed complete.</p>
 <table>
 <tr><th>Item</th><th>What is open</th><th>Status</th></tr>
 <tr><td>B-1</td><td>Module 12's 1820 projected Clifford four-form image check,
-re-run on the <i>corrected</i> C′: is max|C′(v) − 48v| &lt; 1e-6 over all
-1820 forms?</td><td>OPEN</td></tr>
-<tr><td>B-2</td><td>Corrected Lagrange projectors
+re-run on the <i>corrected</i> C′ — <b>completed 2026-09-22</b>:
+max|C′(v) − 48v| = <b>16.0</b> over all 1820 forms (1036 in the
+48-eigenspace: 896 zero + 140 nonzero; 784 pure 64-eigenvectors; 0 mixed).
+The manuscript's projected forms do <b>not</b> lie in the 48-eigenspace.</td>
+<td>CLOSED — <span class="tag IC">IC</span> (manuscript claim), <span class="tag NC">NC</span>
+(CHECKED numeric counterexample)</td></tr>
+<tr><td>B-2</td><td>Lagrange projectors
 p₁(x)=(x−48)(x−64)/3072, p₁₈₂₀(x)=x(64−x)/768,
-p₆₄₃₅(x)=x(x−48)/1024: idempotence, pairwise orthogonality, completeness on
-the corrected C′.</td><td>OPEN</td></tr>
-<tr><td>B-3</td><td>Rewrite-series status hygiene: sweep the series pages for
-citations of the original (invalid) Modules 6/8–12 encodings and fix any
-overclaims (book13/book16 already carry the corrected wording).</td><td>OPEN</td></tr>
+p₆₄₃₅(x)=x(x−48)/1024 — <b>verified 2026-09-22</b>: applied matrix-free to 10
+random symmetric 128×128 matrices (5 real, 5 complex); idempotence, pairwise
+orthogonality, and completeness residuals all ≤ 3.6e-16 (machine precision;
+bar was 1e-6).</td>
+<td>CLOSED — <span class="tag NC">NC</span> (CONFIRMED, CHECKED numeric)</td></tr>
+<tr><td>B-3</td><td>Rewrite-series status hygiene: swept 2026-09-23 for
+citations of the original (invalid) Modules 6/8–12 encodings and unscoped
+decomposition claims — this table's B-1/B-2 rows refreshed (they were stale
+OPEN); the tables page's fourform row clarified as the corrected-convention
+construction (not the manuscript's Module 12 projection); book13/book16/book18
+wording verified already scoped to the corrected operator. No remaining
+overclaims.</td>
+<td>CLOSED — sweep completed 2026-09-23, fixes committed locally</td></tr>
 <tr><td>B-4</td><td>Ledger documentation: the corrected Module 6 construction
 (guarded Σ, S+S<sup>†</sup>=0) and the exact derivation
 ρ(A)M=AM+MA<sup>T</sup> ⇒ ρ(A)²M=A²M+2AMA<sup>T</sup>+M(A<sup>T</sup>)² into
