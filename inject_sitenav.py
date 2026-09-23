@@ -39,7 +39,7 @@ NAV_TMPL = """<!-- SITENAV-NAV-START -->
 <nav class="sitenav" aria-label="Site navigation">
 <a class="sitenav-brand" href="{p}">R Theory — Rewrite</a>
 <span class="sitenav-links">
-<a href="{p}#hard">Hard&nbsp;science</a><a href="{p}#theoretical">Theoretical</a><a href="{p}vol0/">Vol&nbsp;0</a><a href="{p}vol4/">Vol&nbsp;IV</a><a href="{p}tables/">Tables</a>
+<a href="{p}#hard">Hard&nbsp;science</a><a href="{p}#theoretical">Theoretical</a><a href="{p}vol0/">Vol&nbsp;0</a><a href="{p}vol4/">Vol&nbsp;IV</a><a href="{p}tables/">Tables</a><a href="{p}research/">Research</a>
 </span>
 <form class="sitenav-search" action="https://www.google.com/search" method="get" target="_blank" role="search"
  onsubmit="if(!this.q.value.trim())return false;this.q.value='site:{site} '+this.q.value">
