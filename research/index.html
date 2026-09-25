@@ -54,7 +54,7 @@
 <nav class="sitenav" aria-label="Site navigation">
 <a class="sitenav-brand" href="../">R Theory — Rewrite</a>
 <span class="sitenav-links">
-<a href="../#hard">Hard&nbsp;science</a><a href="../#theoretical">Theoretical</a><a href="../vol0/">Vol&nbsp;0</a><a href="../vol4/">Vol&nbsp;IV</a><a href="../tables/">Tables</a><a href="../research/">Research</a>
+<a href="../contents/">Contents</a><a href="../#hard">Hard&nbsp;science</a><a href="../#theoretical">Theoretical</a><a href="../vol0/">Vol&nbsp;0</a><a href="../vol4/">Vol&nbsp;IV</a><a href="../tables/">Tables</a><a href="../research/">Research</a>
 </span>
 <form class="sitenav-search" action="https://www.google.com/search" method="get" target="_blank" role="search"
  onsubmit="if(!this.q.value.trim())return false;this.q.value='site:cosbykit-afk.github.io/r-theory-rewrite '+this.q.value">
@@ -73,7 +73,7 @@
 <p>Every claim carries a scope label: <span class="tag proved">PROVED</span> <span class="tag checked">CHECKED</span> <span class="tag asserted">ASSERTED</span> <span class="tag refuted">REFUTED</span> <span class="tag incomplete">INCOMPLETE</span>. A numerical check is never presented as a proof; a proof is never followed by redundant sampling.</p>
 </div>
 
-<h2>1. Critical path: double-angle → elliptic → conic</h2>
+<h2 id="1-critical-path-double-angle-elliptic-conic">1. Critical path: double-angle → elliptic → conic</h2>
 <div class="about">
 <p>The active program follows one line of identities outward. The double-angle formulas generate an elliptic (rotation) flow; the elliptic flow is the rational parametrization of a conic; the conic carries the full operator set. Each step below is proved from the previous one.</p>
 <p><strong>Chain (all <span class="tag proved">PROVED</span>):</strong></p>
@@ -88,7 +88,7 @@
 <p>Full document: <code>una_operators/CHAIN_conic_unification.md</code> (7 links, 7 independent verifiers, all exit 0).</p>
 </div>
 
-<h2>2. Proved results</h2>
+<h2 id="2-proved-results">2. Proved results</h2>
 <h3>Seven-gate campaign (2026-09-22) — all crossed</h3>
 <table>
 <tr><th>Gate</th><th>Result</th></tr>
@@ -102,7 +102,7 @@
 </table>
 <p><strong>Theorem ledger:</strong> 41 theorems <code>T1–T41</code> in the theorems spreadsheet (35 added by this campaign). Scope counts: 38 <span class="tag proved">PROVED</span> (analytic, complete), 1 infinite-descent proof, 1 analytic proof with numeric confirmation, 1 analytic proof whose bare global form is <span class="tag refuted">REFUTED</span>. The <em>R Theory scaffold</em> column reads <em>N/A (operator theory)</em> for the 35 new rows; <code>T1–T6</code> carry R Theory scaffold entries (Books 1–2). Proof-pointer audit 2026-09-22: all 35 new rows point to existing PROVED sections in the gate documents (35/35 resolve); the gate verifiers were independently re-run the same day, all exit 0.</p>
 
-<h2>3. Checked (computed, not proved)</h2>
+<h2 id="3-checked-computed-not-proved">3. Checked (computed, not proved)</h2>
 <ul>
 <li><span class="tag checked">CHECKED</span> Gate-1 supporting: numeric residuals and coverage sweeps for all 7 loci (evidence for Proofs 1–7, not the proofs).</li>
 <li><span class="tag checked">CHECKED</span> Gate-3 confirmations: quarter-arc orbit table (400 pts/quadrant), x-lift (200 pts), <code>arg(W/U) = 2·arctan p</code> (2000 pts, worst deviation 9.3e−14).</li>
@@ -114,14 +114,14 @@
 <li><span class="tag checked">CHECKED</span> E8 probe, existence parts only: a D₄ subgroup of W(E₈) exists; an order-8 conjugacy class exists. (The <em>distinguished</em> versions are refuted — see below.)</li>
 </ul>
 
-<h2>4. Asserted (open, honestly labeled)</h2>
+<h2 id="4-asserted-open-honestly-labeled">4. Asserted (open, honestly labeled)</h2>
 <ul>
 <li><span class="tag asserted">ASSERTED</span> The D₄ quarter-turn <code>r = ab</code> is identified with the domain eighth-turn <code>x ↦ x + π/4</code>. Gate: <strong>GATE-12</strong>.</li>
 <li><span class="tag asserted">ASSERTED</span> The ledger's channel-spinor construction (component formulas, domain/codomain of <code>S</code>, seam equation) — the three missing definiens are named exactly; the construction is absent from all workspace materials, not contradicted. Gate: <strong>GATE-34</strong>.</li>
 <li><span class="tag asserted">ASSERTED</span> Seam-crossing continuity of the polar <code>(θ,ℓs,ℓc)</code> lift. Gates: <strong>GATE-22</strong>, <strong>GATE-27</strong>.</li>
 </ul>
 
-<h2>5. Refuted</h2>
+<h2 id="5-refuted">5. Refuted</h2>
 <ul>
 <li><span class="tag refuted">REFUTED</span> The bare-cosecant / bare-secant Chebyshev forms as <em>global</em> statements: <code>srxⁿ+sxpⁿ = 2Tₙ(csc x)</code> fails outside Q1 (Q3 counterexample: <code>2T₃(csc x) = −52</code> vs true <code>+52</code>). Valid only Q1-scoped; globally the argument must be <code>|csc x|</code> / <code>|sec x|</code>.</li>
 <li><span class="tag refuted">REFUTED</span> <code>M_ε</code> is elliptic — it is a projective reflection/involution.</li>
@@ -130,12 +130,12 @@
 <li><span class="tag refuted">REFUTED</span> E8 distinguished-symmetry hypotheses (pre-registered, all three): no distinguished D₄ ≤ W(E₈); no distinguished order-8 class; no distinguished chain integer in the exact 30380 table (multiplicities <code>{1:6720, 7:2160, 35:240, 140:1}</code>). Narrow verdict: <em>the preregistered probe found no distinguished chain symmetry in the E8 data.</em> This does not refute every possible relationship.</li>
 </ul>
 
-<h2>6. Incomplete</h2>
+<h2 id="6-incomplete">6. Incomplete</h2>
 <ul>
 <li><span class="tag incomplete">INCOMPLETE</span> None in the gate-campaign scope. Process note: the gate-3 worker's report omitted the required "new gates opened" section, so no follow-up gates were recorded from gate 3; none were invented afterward.</li>
 </ul>
 
-<h2>7. Open gates — the research to-do ledger</h2>
+<h2 id="7-open-gates-the-research-to-do-ledger">7. Open gates — the research to-do ledger</h2>
 <p>29 open gates, GATE-8 through GATE-36, each with a precise crossing criterion. This is the current research task list.</p>
 <table>
 <tr><th>Gate</th><th>Task</th><th>Crossing criterion</th></tr>
@@ -170,7 +170,7 @@
 <tr><td>GATE-36</td><td>a7-branching</td><td>Branch the exact 30380 to the explicit A₇ subsystem carrying the 8-cycle; test the pre-registered hypothesis of no distinguished dyadic signature in the branching multiplicities.</td></tr>
 </table>
 
-<h2>8. Notation</h2>
+<h2 id="8-notation">8. Notation</h2>
 <div class="about">
 <p>Canonical operator notation (locked 2026-09-22; the sign-flipped T-paper variant is superseded):</p>
 <p><code>srx = |csc x| + cot x</code>, <code>sxp = 1/srx</code>, <code>cxp = |sec x| + tan x</code>, <code>crx = 1/cxp</code>, <code>urx = srx − crx</code>, <code>uxp = cxp − sxp</code>.</p>
@@ -178,14 +178,14 @@
 <p>Source of truth: <code>una_operators/NOTATION.md</code>. Gate ledger: <code>una_operators/further/GATES.md</code>. Refinement log: <code>una_operators/further/REFINEMENTS.md</code>. Chain document: <code>una_operators/CHAIN_conic_unification.md</code>.</p>
 </div>
 
-<h2>9. Related literature</h2>
+<h2 id="9-related-literature">9. Related literature</h2>
 <ul>
 <li><strong>Shilin Yu, "Interactions between Lie Theory and Algebraic Geometry"</strong> (research statement, UPenn) — <a href="https://www2.math.upenn.edu/~shilinyu/files/research.pdf">research.pdf</a>. Used here as the structural model for this page (program → proved results → open directions) and as background for the representation-theoretic direction: the statement discusses the PBW/Duflo isomorphism alongside the HKR isomorphism and Todd-class parallels between Lie theory and algebraic geometry. Cited as literature only; none of its results are imported as ours, and no connection to our operator set is claimed.</li>
 <li><strong>Garrett Lisi, "An Exceptionally Simple Theory of Everything"</strong> — the E8 reference point our 30380 weight table and the gate-7 probe are measured against.</li>
 <li><strong>Euclid's Elements</strong> (Fitzpatrick/Heiberg) — the extension program: R Theory is built as an extension of Euclid, so proofs are carried through from the Elements outward.</li>
 </ul>
 
-<h2>10. R Theory audit front — 2026-09-25</h2>
+<h2 id="10-r-theory-audit-front-2026-09-25">10. R Theory audit front — 2026-09-25</h2>
 <p class="small">These are <strong>R Theory audit</strong> findings (Casimir/Clifford computation modules, manuscript methodology, Euclid extension) — not Una operator-theory results. Same scope discipline: <span class="tag proved">PROVED</span> <span class="tag checked">CHECKED</span> <span class="tag asserted">ASSERTED</span> <span class="tag refuted">REFUTED</span> <span class="tag incomplete">INCOMPLETE</span>.</p>
 <h3>Computation Modules 7–12 — clean-slate rebuild</h3>
 <p>The manuscript's Modules 7–12 as encoded did not establish their claims; corrected replacements were drafted 2026-09-25 and verified against the B-6/Casimir framework:</p>

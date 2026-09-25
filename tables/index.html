@@ -42,7 +42,7 @@ a{color:#0645ad}
 <nav class="sitenav" aria-label="Site navigation">
 <a class="sitenav-brand" href="../">R Theory — Rewrite</a>
 <span class="sitenav-links">
-<a href="../#hard">Hard&nbsp;science</a><a href="../#theoretical">Theoretical</a><a href="../vol0/">Vol&nbsp;0</a><a href="../vol4/">Vol&nbsp;IV</a><a href="../tables/">Tables</a><a href="../research/">Research</a>
+<a href="../contents/">Contents</a><a href="../#hard">Hard&nbsp;science</a><a href="../#theoretical">Theoretical</a><a href="../vol0/">Vol&nbsp;0</a><a href="../vol4/">Vol&nbsp;IV</a><a href="../tables/">Tables</a><a href="../research/">Research</a>
 </span>
 <form class="sitenav-search" action="https://www.google.com/search" method="get" target="_blank" role="search"
  onsubmit="if(!this.q.value.trim())return false;this.q.value='site:cosbykit-afk.github.io/r-theory-rewrite '+this.q.value">
@@ -65,7 +65,7 @@ manuscript assertion · <span class="tag AX">AX</span> assumption or axiom ·
 <span class="tag IC">IC</span> incorrect result. A downloaded table is exactly the
 array the check ran on; it inherits the check's status, nothing more.</p>
 
-<h2>E8 weight table — the 30380</h2>
+<h2 id="e8-weight-table-the-30380">E8 weight table — the 30380</h2>
 <p>The full weight/multiplicity table for the E8 irreducible representation of dimension
 30380, highest Dynkin label (0,0,0,0,0,0,1,0), Bourbaki labeling
 (chain 1-3-4-5-6-7-8, node 2 on 4). Computed by exact big-integer Freudenthal recursion.</p>
@@ -82,7 +82,7 @@ complete by box bound bA⁻¹bᵀ ≤ (λ,λ) = 6. Dominant multiplicities:
 (stabilizers E6×A1, D7, E7, E8). Two failed constructions along the way are recorded
 in the audit log and establish nothing.</p>
 
-<h2>Clifford / so(16) / Casimir constructions</h2>
+<h2 id="clifford-so-16-casimir-constructions">Clifford / so(16) / Casimir constructions</h2>
 <table>
 <tr><th>Table</th><th>Shape</th><th>Status</th><th>What it is</th></tr>
 <tr><td><code>gammas.npy</code></td><td>16 × 256 × 256</td><td><span class="tag NC">NC</span></td><td>The 16 Clifford generators. <b>Tuning note:</b> the manuscript's Wolfram module as written is algebraically wrong (Clifford violation 2.0 at pair (1,3) against its own 1e-10 tolerance). These use the one-line fix — the standard one-sided σ₃ string — giving Clifford violation 0, BγB⁻¹ = −γᵀ violation 0, γ₁₇² = I violation 0. <b>Critical subset, downloadable:</b> <a href="gammas_critical.csv">gammas_critical.csv</a> — every nonzero entry of all 16 generators (4,096 rows, 76&nbsp;KB; lossless, rebuilds the 16.8&nbsp;MB binary exactly). Each γ is a signed permutation: exactly one nonzero per row and column, values ±1, ±i.</td></tr>
@@ -100,7 +100,7 @@ in the audit log and establish nothing.</p>
 <tr><td><code>Me_reference_1820.npy</code></td><td>1820 × 1820</td><td><span class="tag NC">NC</span></td><td>Reference instance M<sub>e</sub>(m₀,m₂,M<sub>rest</sub>) = m₀Π₀ + m₂Π₂ + M<sub>rest</sub> with m₀=2.0, m₂=5.0, M<sub>rest</sub> positive-definite (seed 20260924). [M<sub>e</sub>,Γ<sub>oct</sub>] = 1.3e-15; the inverse formula M<sub>e</sub>⁻¹ = m₀⁻¹Π₀ + m₂⁻¹Π₂ + M<sub>rest</sub>⁺ checks at 4.2e-15. <b>This is a construction, not the physical M<sub>e</sub>:</b> the theory does not supply m₀, m₂ — and non-equivariance is <span class="tag NC">NC</span> (‖[M<sub>e</sub>,dρ(X)]‖<sub>F</sub> = 54.81 ≫ 0, consistent with the proved no-go: no nonzero symmetric SO(16)-equivariant operator on the 1820 transforms as the 120). <b>Diagonals and parameters, downloadable:</b> <a href="Me_reference_diag.csv">Me_reference_diag.csv</a> (1820 rows), <a href="Me_reference_params.json">Me_reference_params.json</a>.</td></tr>
 </table>
 
-<h2>Deliberately absent</h2>
+<h2 id="deliberately-absent">Deliberately absent</h2>
 <p class="small">These are not pre-computable — the inputs do not exist in any source the audit
 could reach, or exist only as a mock: O<sub>prop</sub>, the C8 contraction, and the
 S_F / N₁₈₂₀ closure. <b>Update 2026-09-25:</b> P₅₄ is no longer absent — the
@@ -109,7 +109,7 @@ M<sub>e</sub> has an explicit reference construction above (the physical m₀, m
 not supplied by theory). They are recorded as missing inputs in the dependency chain,
 not as missing computation.</p>
 
-<h2>Loading them</h2>
+<h2 id="loading-them">Loading them</h2>
 <pre>import numpy as np, csv
 # E8 30380 (this page)
 rows = list(csv.DictReader(open('table_30380_full.csv')))
