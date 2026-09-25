@@ -42,7 +42,7 @@ a{color:#0645ad}
 <nav class="sitenav" aria-label="Site navigation">
 <a class="sitenav-brand" href="../">R Theory — Rewrite</a>
 <span class="sitenav-links">
-<a href="../contents/">Contents</a><a href="../#hard">Hard&nbsp;science</a><a href="../#theoretical">Theoretical</a><a href="../vol0/">Vol&nbsp;0</a><a href="../vol4/">Vol&nbsp;IV</a><a href="../tables/">Tables</a><a href="../research/">Research</a>
+<a href="../contents/">Contents</a><a href="../index/">Index</a><a href="../#hard">Hard&nbsp;science</a><a href="../#theoretical">Theoretical</a><a href="../vol0/">Vol&nbsp;0</a><a href="../vol4/">Vol&nbsp;IV</a><a href="../tables/">Tables</a><a href="../research/">Research</a>
 </span>
 <form class="sitenav-search" action="https://www.google.com/search" method="get" target="_blank" role="search"
  onsubmit="if(!this.q.value.trim())return false;this.q.value='site:cosbykit-afk.github.io/r-theory-rewrite '+this.q.value">
@@ -59,11 +59,11 @@ a{color:#0645ad}
 <p>This guide extracts that method as a toolkit for creative reason — not just geometric proof, but any disciplined thinking that has to be original and also correct.</p>
 <hr />
 <h2 id="the-toolkit-with-cited-elements-examples">The Toolkit (with cited Elements examples)</h2>
-<h3>1. Define before you reason</h3>
+<h3 id="1-define-before-you-reason">1. Define before you reason</h3>
 <p>Book 1 opens not with a theorem but with 23 definitions. "A point is that of which there is no part." (Book 1, Def. 1, <span class="tag t-source">SOURCE</span>) A line is "a length without breadth" (Def. 2), a circle a figure "such that all of the straight-lines radiating towards [the circumference] from one point amongst those lying inside the figure are equal to one another" (Def. 15).</p>
 <p>Notice what Euclid is doing: he is not describing things found in nature. He is <em>stipulating</em> the objects his reasoning will be about. Nothing in the 465 propositions can wobble, because every term was fixed at the door.</p>
 <p><strong>Habit (<span class="tag t-synthesis">SYNTHESIS</span>):</strong> Before arguing anything, write down your definitions. If you cannot define "fair," "done," "safe," or "proved" to your own satisfaction, you are not ready to reason about them — you are ready to define them. Vagueness upstream becomes contradiction downstream.</p>
-<h3>2. Declare your permissions: the Postulates</h3>
+<h3 id="2-declare-your-permissions-the-postulates">2. Declare your permissions: the Postulates</h3>
 <p>After definitions come the five Postulates — things Euclid asks to be granted:</p>
 <ol>
 <li>"Let it have been postulated to draw a straight-line from any point to any point." (Book 1, Post. 1, <span class="tag t-source">SOURCE</span>)</li>
@@ -74,7 +74,7 @@ a{color:#0645ad}
 </ol>
 <p>The postulates are not claimed truths — they are <em>permissions to act</em>. The first three are literally construction licenses: draw, extend, sweep a circle. Euclid's reason is creative in the most literal sense: it makes things.</p>
 <p><strong>Habit (<span class="tag t-synthesis">SYNTHESIS</span>):</strong> Separate your assumptions from your conclusions, and write the assumptions down as permissions. "What am I allowed to suppose here?" is a more productive question than "What is true?" — because it makes the foundations negotiable rather than invisible. Euclid's fifth postulate shows why: stating it openly is what eventually let others vary it and discover non-Euclidean geometry.</p>
-<h3>3. Agree on the moves: the Common Notions</h3>
+<h3 id="3-agree-on-the-moves-the-common-notions">3. Agree on the moves: the Common Notions</h3>
 <p>The five Common Notions are Euclid's rules of inference:</p>
 <ol>
 <li>"Things equal to the same thing are also equal to one another." (C.N. 1, <span class="tag t-source">SOURCE</span>)</li>
@@ -85,7 +85,7 @@ a{color:#0645ad}
 </ol>
 <p>These look trivial — and that is the point. Every sophisticated proof in the <em>Elements</em> is made of trivial steps. The genius is that the steps are <em>explicit</em>.</p>
 <p><strong>Habit (<span class="tag t-synthesis">SYNTHESIS</span>):</strong> Break your argument into steps small enough to be boring. If a step feels clever, it is probably doing undeclared work. Cleverness belongs in the <em>design</em> of the argument (which lemma to prove next); the <em>steps</em> themselves should be checkable by a child.</p>
-<h3>4. Construct before you conclude</h3>
+<h3 id="4-construct-before-you-conclude">4. Construct before you conclude</h3>
 <p>The very first proposition does not prove a fact — it <em>builds something</em>:</p>
 <blockquote>
 <p>"To construct an equilateral triangle on a given finite straight-line." (Book 1, Prop. 1, <span class="tag t-source">SOURCE</span>)</p>
@@ -93,12 +93,12 @@ a{color:#0645ad}
 <p>Euclid draws a circle with center A and radius AB, another with center B and radius BA, joins their intersection C to A and B — and then proves the result equilateral, using the circle definition (the radii are equal) and Common Notion 1 (things equal to the same thing are equal to one another). The proof <em>ends</em> with "which was required to construct" (ὅπερ ἔδει ποιῆσαι), not "which was required to prove."</p>
 <p>Construction-first is the creative move. Instead of asking "is there an equilateral triangle?", Euclid shows how to make one. Existence is established by production.</p>
 <p><strong>Habit (<span class="tag t-synthesis">SYNTHESIS</span>):</strong> When stuck on whether something is possible, try to build an instance. A constructed example settles more than a paragraph of plausibility. (And when construction is impossible, the <em>failure</em> of the attempt often reveals the hidden obstruction — Euclid's successors learned this with angle trisection.)</p>
-<h3>5. Chain every step to its predecessors</h3>
+<h3 id="5-chain-every-step-to-its-predecessors">5. Chain every step to its predecessors</h3>
 <p>Consider Proposition 47 — the Pythagorean theorem: "In right-angled triangles, the square on the side subtending the right-angle is equal to the (sum of the) squares on the sides containing the right-angle." (Book 1, Prop. 47, <span class="tag t-source">SOURCE</span>)</p>
 <p>Euclid's proof builds squares on all three sides (citing Prop. 1.46, which constructs a square), draws a parallel through the right-angle vertex (Prop. 1.31), uses congruent triangles (Prop. 1.4, the side-angle-side criterion), the fact that a parallelogram is double a triangle on the same base (Prop. 1.41), and finishes by adding equals to equals (C.N. 2). Every single move cites its warrant.</p>
 <p>This is the <em>Elements</em>' most remarkable feature, in the encyclopedia article's words: "the arrangement of the matter so that one proposition follows on another in a strictly logical order, with the minimum of assumption and very little that is superfluous." (encyclopedia article, "The Elements" section, <span class="tag t-source">SOURCE</span>)</p>
 <p><strong>Habit (<span class="tag t-synthesis">SYNTHESIS</span>):</strong> Keep a dependency ledger for your own reasoning. When you claim something, note what it rests on. Chains expose two things: circular arguments (a claim resting on itself through intermediaries) and load-bearing assumptions (the one unproved link everything hangs from). Both are worth knowing.</p>
-<h3>6. Equality by coincidence — test against reality</h3>
+<h3 id="6-equality-by-coincidence-test-against-reality">6. Equality by coincidence — test against reality</h3>
 <p>Common Notion 4 — things that coincide are equal — is Euclid's empirical anchor. Superposition is how triangles are shown congruent: lay one upon the other and see whether they match. It is the closest the <em>Elements</em> comes to an experiment.</p>
 <p><strong>Habit (<span class="tag t-synthesis">SYNTHESIS</span>):</strong> Prefer coincidence-tests to authority-tests. Don't ask "does the expert agree?" — ask "if I lay my claim over the evidence, do they coincide?" A prediction that matches observation is superposition made modern.</p>
 <hr />
@@ -125,7 +125,7 @@ a{color:#0645ad}
 <p><strong>The synthesis (<span class="tag t-synthesis">SYNTHESIS</span>):</strong> Euclid's postulates and the TESS "what if?" are the same move in opposite directions. A postulate says: <em>fix this, and see what follows.</em> A "what if?" says: <em>vary this, and see what changes.</em> Creative reason needs both — the discipline to follow consequences strictly, and the playfulness to choose which assumptions to vary. The <em>Elements</em> is what you get when you fix the assumptions and follow through completely; non-Euclidean geometry is what you get when you "what if?" the fifth postulate.</p>
 <hr />
 <h2 id="habits-and-exercises">Habits and Exercises</h2>
-<h3>Daily habits (<span class="tag t-synthesis">SYNTHESIS</span>)</h3>
+<h3 id="daily-habits-synthesis">Daily habits (<span class="tag t-synthesis">SYNTHESIS</span>)</h3>
 <ol>
 <li><strong>Define one term a day.</strong> Pick a word you used loosely today — "obvious," "fair," "enough" — and write a definition Euclid would accept. If you can't, you found a leak.</li>
 <li><strong>List your postulates.</strong> Before starting a piece of work, write the 3–5 things you are taking as given. Revisit the list at the end; circle anything that turned out to be load-bearing and unproved.</li>
@@ -133,7 +133,7 @@ a{color:#0645ad}
 <li><strong>Ask the parallel-postulate question.</strong> Identify the assumption in your work that feels most like Postulate 5 — the one everyone accepts but nobody proved. Ask: what would follow if it were false?</li>
 <li><strong>Construct an instance.</strong> For every abstract claim you make this week, build one concrete example. If you can't build one, downgrade the claim.</li>
 </ol>
-<h3>Exercises</h3>
+<h3 id="exercises">Exercises</h3>
 <ol>
 <li><strong>The Prop-1 exercise (Elements, <span class="tag t-source">SOURCE</span> material).</strong> On paper, with a real compass: given a segment AB, construct the equilateral triangle exactly as Book 1, Prop. 1 does — two circles, join the intersection. Then write the proof that your triangle is equilateral, citing the circle definition and C.N. 1 at each step. Notice how the <em>doing</em> precedes the <em>proving</em>.</li>
 <li><strong>The Prop-47 walkthrough (Elements, <span class="tag t-source">SOURCE</span> material).</strong> Read the proof of Prop. 47 in Book 1 and list every proposition it cites (1.46, 1.31, 1.14, 1.4, 1.41 among them). For each cited proposition, note what <em>it</em> cites. You have just drawn a dependency graph — the skeleton of the <em>Elements</em>' architecture. (<span class="tag t-synthesis">SYNTHESIS</span>: try the same for one of your own arguments.)</li>
