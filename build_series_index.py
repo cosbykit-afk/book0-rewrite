@@ -57,6 +57,29 @@ def sort_key(term):
     return k or term.lower()
 
 
+# A section label like "§4.", "Figure 1", "Part I", "1.I", "6.3A" leads the
+# heading; the keyword is the first content word after it. Rework the title
+# so the keyword comes first and the label trails in parentheses:
+#   "§4. A phase gradient carries no curvature" -> "Phase gradient carries no
+#   curvature (§4)"
+LABEL_RE = re.compile(
+    r"^(§\s*[\w.]+|Figure \d+|Part [IVXLC]+|[\d][\w.]*?)\s*[—–:]\s*"
+    r"|^(§\s*[\w.]+\.|[\d][\w.]*\.)\s+"
+)
+ARTICLE_RE = re.compile(r"^(a|an|the)\s+", re.IGNORECASE)
+
+
+def keyword_title(term):
+    m = LABEL_RE.match(term)
+    label = m.group(1) if m else ""
+    rest = term[m.end():] if m else term
+    rest = ARTICLE_RE.sub("", rest).strip()
+    if not rest:
+        return term, sort_key(term)
+    display = f"{rest} ({label})" if label else rest
+    return display, sort_key(rest)
+
+
 def main():
     entries = []  # (term, dir, anchor)
     pages = []
@@ -86,15 +109,15 @@ def main():
                     continue
                 term = clean_text(inner)
                 if term:
-                    entries.append((term, d, m.group(1)))
+                    display, key = keyword_title(term)
+                    entries.append((key, display, d, m.group(1)))
     print(f"{len(entries)} entries from {len(pages)} pages")
 
     # group by letter
     groups = {}
-    for term, d, a in entries:
-        k = sort_key(term)
-        letter = k[0].upper() if k and k[0].isalpha() else "#"
-        groups.setdefault(letter, []).append((k, term, d, a))
+    for key, display, d, a in entries:
+        letter = key[0].upper() if key and key[0].isalpha() else "#"
+        groups.setdefault(letter, []).append((key, display, d, a))
     for letter in groups:
         groups[letter].sort(key=lambda e: (e[0], e[2], e[3]))
 
@@ -110,10 +133,10 @@ def main():
     for letter in letters:
         body.append(f'<h2 id="ix-{letter.lower()}">{letter}</h2>')
         body.append("<ul>")
-        for _, term, d, a in groups[letter]:
+        for _, display, d, a in groups[letter]:
             loc = (f'<a href="../{d}/#{a}">'
                    f"{html.escape(short_label(d))}</a>")
-            body.append(f"  <li><b>{html.escape(term)}</b> — {loc}</li>")
+            body.append(f"  <li><b>{html.escape(display)}</b> — {loc}</li>")
         body.append("</ul>")
     inner = "\n".join(body)
 

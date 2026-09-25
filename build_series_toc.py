@@ -130,15 +130,15 @@ def main():
         return page_title(text), [(i, t) for i, t in h2_list(text) if i]
 
     volumes = [
-        ("Volume 0 — Exact Witnesses at the Physics Boundary",
+        ("vol-0", "Volume 0 — Exact Witnesses at the Physics Boundary",
          ["vol0", "book20", "book21", "book22"]),
-        ("Volume I — Books 0–6",
+        ("vol-1", "Volume I — Books 0–6",
          ["book0", "book1", "book2", "book3", "book4", "book5", "book6"]),
-        ("Volume II — Books 7–13",
+        ("vol-2", "Volume II — Books 7–13",
          ["book7", "book8", "book9", "book10", "book11", "book12", "book13"]),
-        ("Volume III — Books 14–16",
+        ("vol-3", "Volume III — Books 14–16",
          ["book14", "book15", "book16"]),
-        ("Volume IV — The Discrete Octant and the Computational Frontier",
+        ("vol-4", "Volume IV — The Discrete Octant and the Computational Frontier",
          ["vol4", "book17", "book18", "book19"]),
     ]
     companions = ["tables", "appendix", "research", "guide", "title"]
@@ -149,8 +149,8 @@ def main():
         '<p class="sub">Every book and companion page, with each section as '
         "a hyperlink anchor straight to its place in the page. Click a "
         "section to land exactly there.</p>")
-    for vtitle, dirs in volumes:
-        body.append(f'<h2 id="{slugify(vtitle)}">{html.escape(vtitle)}</h2>')
+    for vid, vtitle, dirs in volumes:
+        body.append(f'<h2 id="{vid}">{html.escape(vtitle)}</h2>')
         for d in dirs:
             title, heads = struct(d)
             body.append(
@@ -160,7 +160,7 @@ def main():
                 f"{html.escape(short_label(t))}</a></li>"
                 for i, t in heads)
             body.append(f"<ul>\n{lis}\n</ul>")
-    body.append("<h2>Companion pages</h2>")
+    body.append('<h2 id="companions">Companion pages</h2>')
     for d in companions:
         title, heads = struct(d)
         body.append(f'<h3><a href="../{d}/">{html.escape(title)}</a></h3>')
